@@ -87,7 +87,7 @@
         app:layout_constraintBottom_toBottomOf="@id/id_et_view"
         app:layout_constraintStart_toStartOf="@id/id_et_view"
         app:layout_constraintEnd_toStartOf="@id/et_id"
-        android:src="@drawable/ic_man-user"/>
+        android:src="@drawable/ic_user"/>
 
     <EditText
         android:id="@+id/et_id"
@@ -98,8 +98,11 @@
         app:layout_constraintStart_toEndOf="@id/iv_id"
         app:layout_constraintEnd_toEndOf="@+id/id_et_view"
         android:fontFamily="@font/bmdohyun"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:hint="ID"
-        android:ems="8"/>
+        android:ems="8"
+        android:background="#00000000"/>
 
     <View
         android:id="@+id/view_line"
@@ -126,7 +129,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/pw_et_view"
         app:layout_constraintStart_toStartOf="@+id/pw_et_view"
         app:layout_constraintEnd_toStartOf="@+id/et_pw"
-        android:src="@drawable/ic_locked-padlock"/>
+        android:src="@drawable/ic_lock"/>
 
     <EditText
         android:id="@+id/et_pw"
@@ -137,8 +140,11 @@
         app:layout_constraintStart_toEndOf="@+id/iv_pw"
         app:layout_constraintEnd_toEndOf="@+id/pw_et_view"
         android:fontFamily="@font/bmdohyun"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:ems="8"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:background="#00000000"/>
 
     <ImageButton
         android:id="@+id/bt_check"

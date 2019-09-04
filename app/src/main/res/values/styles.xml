@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ToolBarTheme" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textColor">#6cccde</item>
+    </style>
+
+    <style name="TabTheme" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">#6cccde</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#2898ad</item>
+        <item name="colorAccent">#FFFFFF</item>
+    </style>
+
 </resources>
