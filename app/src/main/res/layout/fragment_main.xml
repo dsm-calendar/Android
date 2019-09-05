@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,7 +61,9 @@
             android:background="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radio_group"/>
+            app:layout_constraintTop_toBottomOf="@id/radio_group"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_fragment_main"/>
 
         <TextView
             android:id="@+id/tv_timeTable"
