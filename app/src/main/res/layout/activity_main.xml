@@ -12,6 +12,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
             android:theme="@style/ToolBarTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -35,6 +36,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
+        android:id="@+id/main_viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.86"
