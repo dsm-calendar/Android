@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -30,9 +31,14 @@
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/main_tabBar"
             android:theme="@style/TabTheme"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/tabText"
+            app:tabRippleColor="@null"
+            app:tabIndicatorColor="#FFFFFF"
+            app:tabIndicatorHeight="5dp"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -40,7 +46,6 @@
         android:id="@+id/main_viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.86"
         app:layout_constraintTop_toBottomOf="@id/appBar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

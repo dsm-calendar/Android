@@ -5,13 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 
-    public PagerAdapter(FragmentManager fm) {
+    private String[] titleList = {"일정보기", "Main", "그룹목록"};
+
+    PagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -35,8 +38,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         super.destroyItem(container, position, object);
     }
 
-    //    @Override
-//    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-//        return (view == object);
-//    }
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titleList[position];
+    }
 }
