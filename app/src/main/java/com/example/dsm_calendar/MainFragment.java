@@ -64,11 +64,11 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         if (v.getId() == R.id.notice_radioButton){
             adapter = new MainRVAdapter(getContext(), noticeList);
             recyclerView.setAdapter(adapter);
-            Toast.makeText(getContext(),"notice", Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(),"notice", Toast.LENGTH_SHORT).show();
         } else if(v.getId() == R.id.schedule_radioButton){
             adapter = new MainRVAdapter(getContext(), todayList);
             recyclerView.setAdapter(adapter);
-            Toast.makeText(getContext(),"schedule", Toast.LENGTH_SHORT);
+            Toast.makeText(getContext(),"schedule", Toast.LENGTH_SHORT).show();
         }
     }
 }
