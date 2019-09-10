@@ -16,6 +16,7 @@
         android:background="@drawable/view_dot_background"/>
 
     <TextView
+        android:id="@+id/main_rv_item_tv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dot_view"

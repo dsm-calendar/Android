@@ -32,10 +32,10 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tabBar"
-            android:theme="@style/TabTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextAppearance="@style/tabText"
+            android:background="#6cccde"
             app:tabRippleColor="@null"
             app:tabIndicatorColor="#FFFFFF"
             app:tabIndicatorHeight="5dp"/>

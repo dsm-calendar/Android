@@ -24,6 +24,5 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.main_tabBar);
         tabLayout.setupWithViewPager(viewPager);
-        //TODO: tab indicator is not showing
     }
 }

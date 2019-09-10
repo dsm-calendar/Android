@@ -14,10 +14,10 @@
     </style>
 
     <style name="TabTheme" parent="Widget.MaterialComponents.TabLayout">
-        <item name="android:background">#6cccde</item>
+        <item name="android:colorPrimary">#6cccde</item>
         <item name="android:textColorPrimary">#FFFFFF</item>
         <item name="android:textColorSecondary">#2898ad</item>
-        <item name="colorAccent">#FFFFFF</item>
+        <item name="colorAccent">#6cccde</item>
     </style>
 
     <style name="tabText" parent="@android:style/TextAppearance.Widget.TabWidget">
