@@ -29,7 +29,7 @@
                    android:layout_gravity="center"
                    android:gravity="center"
                    android:textSize="20dp"
-                   android:textColor="#000000"
+                   android:textColor="#6cccde"
                    android:fontFamily="@font/bmdohyun"/>
 
            </androidx.appcompat.widget.Toolbar>
