@@ -42,7 +42,9 @@
                android:background="#6cccde"
                app:tabRippleColor="@null"
                app:tabIndicatorColor="#FFFFFF"
-               app:tabIndicatorHeight="5dp"/>
+               app:tabIndicatorHeight="5dp"
+               app:tabTextColor="#2898ad"
+               app:tabSelectedTextColor="#FFFFFF"/>
 
        </com.google.android.material.appbar.AppBarLayout>
 
