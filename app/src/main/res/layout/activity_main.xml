@@ -5,47 +5,53 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.14"
-        app:layout_constraintTop_toTopOf="parent">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/main_toolbar"
-            android:theme="@style/ToolBarTheme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+       <com.google.android.material.appbar.AppBarLayout
+           android:id="@+id/appBar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DSM-Calendar"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:textColor="#000000"
-                android:fontFamily="@font/bmdohyun"/>
+           <androidx.appcompat.widget.Toolbar
+               android:id="@+id/main_toolbar"
+               android:theme="@style/ToolBarTheme"
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize">
 
-        </androidx.appcompat.widget.Toolbar>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="DSM-Calendar"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   android:textSize="20dp"
+                   android:textColor="#000000"
+                   android:fontFamily="@font/bmdohyun"/>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/main_tabBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabTextAppearance="@style/tabText"
-            android:background="#6cccde"
-            app:tabRippleColor="@null"
-            app:tabIndicatorColor="#FFFFFF"
-            app:tabIndicatorHeight="5dp"/>
+           </androidx.appcompat.widget.Toolbar>
 
-    </com.google.android.material.appbar.AppBarLayout>
+           <com.google.android.material.tabs.TabLayout
+               android:id="@+id/main_tabBar"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               app:tabTextAppearance="@style/tabText"
+               android:background="#6cccde"
+               app:tabRippleColor="@null"
+               app:tabIndicatorColor="#FFFFFF"
+               app:tabIndicatorHeight="5dp"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/main_viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/appBar"/>
+       </com.google.android.material.appbar.AppBarLayout>
+
+       <androidx.viewpager.widget.ViewPager
+           android:id="@+id/main_viewPager"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toBottomOf="@id/appBar"/>
+
+   </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
