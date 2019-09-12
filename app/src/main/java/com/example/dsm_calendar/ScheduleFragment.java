@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         list.add(new SampleSchedule("sample 1", "2019-03-04", "blablablabla"));
-        list.add(new SampleSchedule("sample 2", "2019-04-23", "boomshakalaka"));
+        list.add(new SampleSchedule("sample 2", "2019-04-23", "today i have to go to school i want to go home fuck"));
         list.add(new SampleSchedule("sample 3", "2019-05-05", "holiday"));
 
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
