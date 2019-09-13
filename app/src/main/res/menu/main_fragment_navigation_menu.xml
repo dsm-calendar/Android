@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/ic_gear"
+        android:title="설정"/>
+    <item
+        android:id="@+id/code"
+        android:icon="@drawable/ic_authentication"
+        android:title="인증코드"/>
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/ic_logout"
+        android:title="로그아웃"/>
+</menu>
