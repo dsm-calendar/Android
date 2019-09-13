@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
     Toolbar toolbar;
     DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tabLayout.setupWithViewPager(viewPager);
 
         drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.main_navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         setToolBar();
     }
@@ -60,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.mail:
                 Toast.makeText(this, "mail box", Toast.LENGTH_SHORT).show();
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
