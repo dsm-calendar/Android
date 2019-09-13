@@ -97,5 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_list);
+        actionBar.setDisplayShowTitleEnabled(false);
     }
 }
