@@ -1,9 +1,11 @@
 package com.example.dsm_calendar;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -12,6 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -50,6 +55,13 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
         rootView.findViewById(R.id.notice_radioButton).setOnClickListener(this);
         rootView.findViewById(R.id.schedule_radioButton).setOnClickListener(this);
+
+        ArrayList<Drawable> obj = new ArrayList<>();
+        MainVPBannerAdapter adapter = new MainVPBannerAdapter(getContext(), obj);
+        ViewPager pager = rootView.findViewById(R.id.main_viewPager);
+        pager.setAdapter(adapter);
+        TabLayout tabLayout = rootView.findViewById(R.id.main_vp_tab);
+        tabLayout.setupWithViewPager(pager, true);
 
         return rootView;
     }

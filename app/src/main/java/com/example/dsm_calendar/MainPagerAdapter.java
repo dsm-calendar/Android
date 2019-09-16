@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] titleList = {"일정보기", "Main", "그룹목록"};
 
-    PagerAdapter(FragmentManager fm) {
+    MainPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
