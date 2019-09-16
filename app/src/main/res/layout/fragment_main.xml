@@ -22,15 +22,15 @@
 
         </androidx.viewpager.widget.ViewPager>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/main_vp_tab"
+        <LinearLayout
+            android:id="@+id/slider_dots"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/main_viewPager"
             app:layout_constraintStart_toStartOf="@id/main_viewPager"
             app:layout_constraintEnd_toEndOf="@id/main_viewPager"
-            app:layout_constraintBottom_toBottomOf="@id/main_viewPager"
-            app:tabGravity="center"
-            app:tabIndicatorHeight="0dp"/>
+            android:gravity="center_vertical|center_horizontal"/>
 
         <View
             android:id="@+id/view_background_rv"
