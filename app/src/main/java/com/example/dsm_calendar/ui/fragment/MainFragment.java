@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.dsm_calendar.ui.adapter.MainRVAdapter;
-import com.example.dsm_calendar.ui.adapter.MainVPBannerAdapter;
+import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
 import com.example.dsm_calendar.R;
 import com.rd.PageIndicatorView;
 
@@ -59,10 +59,11 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
         Integer[] obj = {R.drawable.sample_sportscar, R.drawable.sample_rainbow, R.drawable.sample_ocean, R.drawable.sample_universe, R.drawable.sample_car};
 
+        //https://github.com/romandanylyk/PageIndicatorView
         PageIndicatorView pageIndicatorView = rootView.findViewById(R.id.pager_indicator);
         pageIndicatorView.setCount(obj.length);
         pageIndicatorView.setSelection(0);
-        MainVPBannerAdapter adapter = new MainVPBannerAdapter(getContext(), obj);
+        MainBannerAdapter adapter = new MainBannerAdapter(getContext(), obj);
         ViewPager pager = rootView.findViewById(R.id.main_viewPager);
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="320dp"
+    android:layout_height="60dp"
+    android:layout_margin="10dp"
+    android:elevation="5dp"
+    android:id="@+id/group_rv_item"
+    android:background="#FFFFFF"
+    android:layout_gravity="center_horizontal">
+
+    <View
+        android:id="@+id/view_color_group"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/view_dot_group_background"/>
+
+    <TextView
+        android:id="@+id/tv_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_color_group"
+        android:layout_marginStart="20dp"
+        android:text="Sample Group"
+        android:fontFamily="@font/bmdohyun"
+        android:textSize="14dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
