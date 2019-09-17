@@ -1,4 +1,4 @@
-package com.example.dsm_calendar;
+package com.example.dsm_calendar.data;
 
 public class SampleSchedule {
 

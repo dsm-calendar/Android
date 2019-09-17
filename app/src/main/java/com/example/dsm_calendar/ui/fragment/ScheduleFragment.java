@@ -1,4 +1,4 @@
-package com.example.dsm_calendar;
+package com.example.dsm_calendar.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
+
+import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,6 @@
-package com.example.dsm_calendar;
+package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +8,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.SampleSchedule;
 
 import java.util.ArrayList;
 
 public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.ScheduleViewHolder> {
 
     private ArrayList<SampleSchedule> list;
-    private SparseBooleanArray selectedItems = new SparseBooleanArray();
     private Context context;
 
     public ScheduleRVAdapter(Context context, ArrayList<SampleSchedule> list){
@@ -72,9 +72,9 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
             boolean expended = schedule.getExpended();
             content.setVisibility(expended ? View.VISIBLE : View.GONE);
 
-            tv_title.setText(schedule.title);
-            tv_date.setText(schedule.date);
-            tv_content.setText(schedule.content);
+            tv_title.setText(schedule.getTitle());
+            tv_date.setText(schedule.getDate());
+            tv_content.setText(schedule.getContent());
         }
     }
 }

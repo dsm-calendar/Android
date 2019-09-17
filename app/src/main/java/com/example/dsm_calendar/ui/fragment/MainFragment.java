@@ -1,22 +1,22 @@
-package com.example.dsm_calendar;
+package com.example.dsm_calendar.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.dsm_calendar.ui.adapter.MainRVAdapter;
+import com.example.dsm_calendar.ui.adapter.MainVPBannerAdapter;
+import com.example.dsm_calendar.R;
 import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         rootView.findViewById(R.id.notice_radioButton).setOnClickListener(this);
         rootView.findViewById(R.id.schedule_radioButton).setOnClickListener(this);
 
-        Integer[] obj = {R.drawable.sample_car2, R.drawable.sample_rainbow};
+        Integer[] obj = {R.drawable.sample_sportscar, R.drawable.sample_rainbow, R.drawable.sample_ocean, R.drawable.sample_universe, R.drawable.sample_car};
 
         PageIndicatorView pageIndicatorView = rootView.findViewById(R.id.pager_indicator);
         pageIndicatorView.setCount(obj.length);

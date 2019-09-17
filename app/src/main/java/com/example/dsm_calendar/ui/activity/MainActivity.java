@@ -1,4 +1,4 @@
-package com.example.dsm_calendar;
+package com.example.dsm_calendar.ui.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
+import com.example.dsm_calendar.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 

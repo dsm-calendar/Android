@@ -1,16 +1,20 @@
-package com.example.dsm_calendar;
+package com.example.dsm_calendar.ui.adapter;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.dsm_calendar.ui.fragment.GroupFragment;
+import com.example.dsm_calendar.ui.fragment.MainFragment;
+import com.example.dsm_calendar.ui.fragment.ScheduleFragment;
+
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] titleList = {"일정보기", "Main", "그룹목록"};
 
-    MainPagerAdapter(FragmentManager fm) {
-        super(fm);
+    public MainPagerAdapter(FragmentManager fm) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     @Override

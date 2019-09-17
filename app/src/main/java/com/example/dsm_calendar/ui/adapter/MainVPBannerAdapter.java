@@ -1,4 +1,4 @@
-package com.example.dsm_calendar;
+package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.dsm_calendar.R;
 
 public class MainVPBannerAdapter extends PagerAdapter {
 
