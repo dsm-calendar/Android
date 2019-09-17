@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/group_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:itemCount="5"
-        tools:listitem="@layout/item_fragment_group"/>
+        tools:listitem="@layout/item_fragment_group" />
     
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="60dp"

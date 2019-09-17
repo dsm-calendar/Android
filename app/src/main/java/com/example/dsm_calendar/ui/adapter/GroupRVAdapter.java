@@ -34,7 +34,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
-        holder.bind(groupList.get(position));
+        holder.bind(name);
     }
 
     @Override
