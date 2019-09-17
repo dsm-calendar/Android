@@ -37,8 +37,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         noticeList.add("sample");
         noticeList.add("sample2");
         noticeList.add("sample3");
-        noticeList.add("long long long long long sample");
-        noticeList.add("hohohohohoho");
+        noticeList.add("long long long long long long sample");
+        noticeList.add("short sample?");
         noticeList.add("sample what?");
 
         todayList.add("do laundry");
