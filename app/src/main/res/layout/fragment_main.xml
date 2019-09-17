@@ -18,19 +18,20 @@
             android:layout_height="180dp"
             app:layout_constraintTop_toTopOf="@+id/main_constraintLayout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        </androidx.viewpager.widget.ViewPager>
-
-        <LinearLayout
-            android:id="@+id/slider_dots"
-            android:layout_width="match_parent"
+        <com.rd.PageIndicatorView
+            android:id="@+id/pager_indicator"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/main_viewPager"
+            android:layout_width="wrap_content"
+            app:piv_viewPager="@id/main_viewPager"
+            app:layout_constraintBottom_toBottomOf="@id/main_viewPager"
             app:layout_constraintStart_toStartOf="@id/main_viewPager"
             app:layout_constraintEnd_toEndOf="@id/main_viewPager"
-            android:gravity="center_vertical|center_horizontal"/>
+            android:layout_marginBottom="10dp"
+            app:piv_dynamicCount="true"
+            app:piv_interactiveAnimation="true"
+            app:piv_animationType="thinWorm"/>
 
         <View
             android:id="@+id/view_background_rv"

@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.rd.PageIndicatorView;
+
 import java.util.ArrayList;
 
 public class MainFragment extends Fragment implements RadioButton.OnClickListener {
@@ -57,42 +59,24 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
         Integer[] obj = {R.drawable.sample_car2, R.drawable.sample_rainbow};
 
+        PageIndicatorView pageIndicatorView = rootView.findViewById(R.id.pager_indicator);
+        pageIndicatorView.setCount(obj.length);
+        pageIndicatorView.setSelection(0);
         MainVPBannerAdapter adapter = new MainVPBannerAdapter(getContext(), obj);
         ViewPager pager = rootView.findViewById(R.id.main_viewPager);
         pager.setAdapter(adapter);
-//        LinearLayout sliderDotsPanel = rootView.findViewById(R.id.slider_dots);
-        int dotsCount = adapter.getCount();
-//        ImageView[] dots = new ImageView[dotsCount];
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
+            @Override
+            public void onPageSelected(int position) {
+                pageIndicatorView.setSelected(position);
+            }
 
-//        for (int i = 0; i < dotsCount; i++){
-//            dots[i] = new ImageView(getContext());
-//            dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.default_dot));
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//            params.setMargins(8,0,0,8);
-//            sliderDotsPanel.addView(dots[i], params);
-//        }
-//
-//        dots[0].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.selected_dot));
-//        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//                for(int i = 0; i<dotsCount; i++){
-//                    dots[i].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.default_dot));
-//                }
-//                dots[position].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.selected_dot));
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
+            @Override
+            public void onPageScrollStateChanged(int state) { }
+        });
 
         return rootView;
     }
