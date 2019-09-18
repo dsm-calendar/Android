@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.ui.activity.MessageActivity;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,11 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
         String date = dateList.get(position);
 
         holder.bind(message, date);
+        String test = String.format("item %d clicked", position);
+        holder.itemView.setOnClickListener( v -> {
+            Toast.makeText(context, test, Toast.LENGTH_LONG).show();
+            ((MessageActivity)context).finish();
+        });
     }
 
     @Override
