@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,10 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
         holder.bind(name);
+        holder.itemView.setOnClickListener( v -> {
+            Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show();
+            //TODO: replace fragment to single group fragment
+        });
     }
 
     @Override
