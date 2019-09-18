@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,12 @@ public class GroupFragment extends Fragment {
         adapter = new GroupRVAdapter(groups, getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+
+        FloatingActionButton fab_add = rootView.findViewById(R.id.group_fab);
+        fab_add.setOnClickListener(v -> {
+            Toast.makeText(getContext(), "fab clicked", Toast.LENGTH_SHORT).show();
+        });
+
         return rootView;
     }
 
