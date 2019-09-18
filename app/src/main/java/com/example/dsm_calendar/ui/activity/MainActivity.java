@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.mail:
-                Toast.makeText(this, "mail box", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
