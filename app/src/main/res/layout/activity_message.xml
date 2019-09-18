@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="메세지함"
             android:layout_gravity="center"
-            android:fontFamily="@font/bmdohyun"
+            android:fontFamily="@font/bm_dohyun"
             android:textSize="16dp"
             android:textColor="#FFFFFF"/>
 

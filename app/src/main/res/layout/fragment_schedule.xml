@@ -47,7 +47,7 @@
             android:layout_marginTop="20dp"
             android:text="TODAY"
             android:textSize="20dp"
-            android:fontFamily="@font/bmjua"/>
+            android:fontFamily="@font/bm_jua"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/schedule_rv"

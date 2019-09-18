@@ -41,7 +41,7 @@
         android:layout_marginStart="30dp"
         android:text="DMS Calendar"
         android:textSize="30dp"
-        android:fontFamily="@font/bmdohyun"
+        android:fontFamily="@font/bm_dohyun"
         android:textColor="#000000"/>
 
     <Button
@@ -56,7 +56,7 @@
         android:textColor="#FFFFFF"
         android:text="Join"
         android:textSize="24dp"
-        android:fontFamily="@font/bmdohyun"/>
+        android:fontFamily="@font/bm_dohyun"/>
 
     <TextView
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
         android:layout_height="40dp"
         android:text="Login"
         android:textSize="28dp"
-        android:fontFamily="@font/bmdohyun"
+        android:fontFamily="@font/bm_dohyun"
         android:textColor="#000000"/>
 
     <View
@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/id_et_view"
         app:layout_constraintStart_toEndOf="@id/iv_id"
         app:layout_constraintEnd_toEndOf="@+id/id_et_view"
-        android:fontFamily="@font/bmdohyun"
+        android:fontFamily="@font/bm_dohyun"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:hint="ID"
@@ -139,7 +139,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/pw_et_view"
         app:layout_constraintStart_toEndOf="@+id/iv_pw"
         app:layout_constraintEnd_toEndOf="@+id/pw_et_view"
-        android:fontFamily="@font/bmdohyun"
+        android:fontFamily="@font/bm_dohyun"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:ems="8"

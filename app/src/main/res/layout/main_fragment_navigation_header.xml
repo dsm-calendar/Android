@@ -25,7 +25,7 @@
         android:layout_marginStart="20dp"
         android:textSize="16dp"
         android:text="2학년 2반 1번"
-        android:fontFamily="@font/bmdohyun"/>
+        android:fontFamily="@font/bm_dohyun"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,6 +36,6 @@
         android:layout_marginStart="20dp"
         android:textSize="18dp"
         android:text="장만월"
-        android:fontFamily="@font/bmdohyun"/>
+        android:fontFamily="@font/bm_dohyun"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

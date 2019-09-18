@@ -62,7 +62,7 @@
                 android:text="공지사항"
                 android:gravity="center"
                 android:textColor="@color/radio_text"
-                android:fontFamily="@font/bmjua"
+                android:fontFamily="@font/bm_jua"
                 android:textSize="16dp"/>
 
             <RadioButton
@@ -75,7 +75,7 @@
                 android:text="오늘 일정"
                 android:gravity="center"
                 android:textColor="@color/radio_text"
-                android:fontFamily="@font/bmjua"
+                android:fontFamily="@font/bm_jua"
                 android:textSize="16dp"/>
 
         </RadioGroup>
@@ -98,7 +98,7 @@
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/bmjua"
+            android:fontFamily="@font/bm_jua"
             android:text="시간표"
             android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginTop="40dp"
-            android:fontFamily="@font/bmdohyun"
+            android:fontFamily="@font/bm_dohyun"
             android:text="Sample 시간표"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -141,6 +141,7 @@
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_date_background"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:gravity="center"
                     android:textSize="12dp"/>
                 <TextView
@@ -148,6 +149,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_date_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="월"/>
                 <TextView
@@ -155,6 +157,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_date_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="화"/>
                 <TextView
@@ -162,6 +165,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_date_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="수"/>
                 <TextView
@@ -169,6 +173,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_date_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="목"/>
                 <TextView
@@ -176,6 +181,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_date_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="금"/>
             </TableRow>
@@ -186,6 +192,7 @@
                     android:layout_height="30dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:text="1"
                     android:textSize="12dp" />
                 <TextView
@@ -193,30 +200,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -225,6 +237,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="2"/>
                 <TextView
@@ -232,30 +245,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -264,6 +282,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="3"/>
                 <TextView
@@ -271,30 +290,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -303,6 +327,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="4"/>
                 <TextView
@@ -310,30 +335,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -342,6 +372,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="5"/>
                 <TextView
@@ -349,30 +380,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -381,6 +417,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="6"/>
                 <TextView
@@ -388,30 +425,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -420,6 +462,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="7"/>
                 <TextView
@@ -427,30 +470,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -459,6 +507,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="8"/>
                 <TextView
@@ -466,30 +515,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
             <TableRow>
@@ -498,6 +552,7 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"
                     android:text="9"/>
                 <TextView
@@ -505,30 +560,35 @@
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
                 <TextView
                     android:layout_height="30dp"
                     android:layout_width="50dp"
                     android:background="@drawable/table_schedule_background"
                     android:gravity="center"
+                    android:fontFamily="@font/nanumsquare_r"
                     android:textSize="12dp"/>
             </TableRow>
         </TableLayout>

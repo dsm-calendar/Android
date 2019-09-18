@@ -28,7 +28,7 @@
         android:layout_marginStart="20dp"
         android:maxWidth="250dp"
         android:textSize="15dp"
-        android:fontFamily="@font/bmjua"
+        android:fontFamily="@font/bm_jua"
         android:text="sample message"/>
 
     <ImageButton
@@ -50,6 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="10dp"
+        android:fontFamily="@font/nanumsquare_r"
         android:textSize="10dp"
         android:text="sample date text"/>
 

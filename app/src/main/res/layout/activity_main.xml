@@ -31,7 +31,7 @@
                    android:gravity="center"
                    android:textSize="20dp"
                    android:textColor="#6cccde"
-                   android:fontFamily="@font/bmdohyun"/>
+                   android:fontFamily="@font/bm_dohyun"/>
 
            </androidx.appcompat.widget.Toolbar>
 

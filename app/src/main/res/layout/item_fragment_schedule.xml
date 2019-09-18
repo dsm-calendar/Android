@@ -27,6 +27,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:fontFamily="@font/nanumsquare_r"
             android:textSize="16dp"
             android:text="Sample Title"/>
 
@@ -35,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:fontFamily="@font/nanumsquare_r"
             android:textSize="12dp"
             android:text="2019-06-29"/>
 
@@ -51,6 +53,7 @@
                 android:id="@+id/tv_schedule_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquare_r"
                 android:text="sample string"
                 android:textSize="15dp"
                 android:maxWidth="100dp"/>

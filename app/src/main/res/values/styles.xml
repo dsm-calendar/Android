@@ -14,7 +14,7 @@
     </style>
 
     <style name="tabText" parent="@android:style/TextAppearance.Widget.TabWidget">
-        <item name="android:fontFamily">@font/bmdohyun</item>
+        <item name="android:fontFamily">@font/bm_dohyun</item>
         <item name="android:textSize">15dp</item>
     </style>
 

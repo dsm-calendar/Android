@@ -30,7 +30,7 @@
         app:layout_constraintStart_toEndOf="@+id/view_color_group"
         android:layout_marginStart="20dp"
         android:text="Sample Group"
-        android:fontFamily="@font/bmdohyun"
+        android:fontFamily="@font/bm_dohyun"
         android:textSize="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
