@@ -33,7 +33,8 @@ public class MainRVAdapter extends RecyclerView.Adapter<MainRVAdapter.MainViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        holder.tv.setText(list.get(position));
+        String title = list.get(position);
+        holder.bind(title);
     }
 
     @Override
@@ -46,6 +47,10 @@ public class MainRVAdapter extends RecyclerView.Adapter<MainRVAdapter.MainViewHo
         MainViewHolder(@NonNull View itemView) {
             super(itemView);
             tv = itemView.findViewById(R.id.main_rv_item_tv);
+        }
+
+        public void bind(String title){
+            tv.setText(title);
         }
     }
 }
