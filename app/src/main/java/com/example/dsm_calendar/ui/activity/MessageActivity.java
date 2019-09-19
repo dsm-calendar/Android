@@ -2,6 +2,8 @@ package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.adapter.MessageRVAdapter;
+import com.example.dsm_calendar.ui.dialog.MessageItemClickDialog;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,7 @@ public class MessageActivity extends AppCompatActivity {
     MessageRVAdapter adapter;
     ArrayList<String> messageList = new ArrayList<>();
     ArrayList<String> dateList = new ArrayList<>();
+    MessageItemClickDialog messageItemClickDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

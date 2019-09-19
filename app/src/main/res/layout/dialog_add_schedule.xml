@@ -16,8 +16,8 @@
         android:id="@+id/button_dialog_schedule_add_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view_dialog_schedule_add_background"
+        app:layout_constraintStart_toStartOf="@id/view_dialog_schedule_add_background"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
@@ -41,6 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
+        android:fontFamily="@font/nanumsquare_r"
         android:hint="일정 제목을 입력하세요"/>
 
     <EditText
@@ -51,6 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
+        android:fontFamily="@font/nanumsquare_r"
         android:hint="일정 내용을 입력하세요"/>
 
     <ImageButton
@@ -61,6 +63,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_schedule_add_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:background="#e9e7e7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

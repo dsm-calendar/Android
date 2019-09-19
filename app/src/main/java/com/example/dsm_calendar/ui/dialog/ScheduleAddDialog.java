@@ -44,6 +44,6 @@ public class ScheduleAddDialog extends Dialog {
         checkButton = findViewById(R.id.button_schedule_add);
 
         offButton.setOnClickListener(offButtonListener);
-        checkButton.setOnClickListener(checkButtonListener);
+        checkButton.setOnClickListener(checkButtonListener) ;
     }
 }

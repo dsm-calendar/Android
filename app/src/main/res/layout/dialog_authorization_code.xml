@@ -53,13 +53,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tv_dialog_auth"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_dialog_auth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:fontFamily="@font/nanumsquare_r"
             android:hint="Code here"/>
 
     </com.google.android.material.textfield.TextInputLayout>
