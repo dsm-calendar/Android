@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.SampleSchedule;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
+import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,8 @@ public class ScheduleFragment extends Fragment {
     private RecyclerView recyclerView;
     private ScheduleRVAdapter adapter;
     private ArrayList<SampleSchedule> list = new ArrayList<>();
+    private ImageButton scheduleAddButton;
+    private ScheduleAddDialog scheduleAddDialog;
 
     public ScheduleFragment() {}
 
@@ -39,6 +44,12 @@ public class ScheduleFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
+        scheduleAddDialog = new ScheduleAddDialog(rootView.getContext(), offButtonListener, checkButtonListener);
+        scheduleAddButton = rootView.findViewById(R.id.schedule_add_button);
+        scheduleAddButton.setOnClickListener( v -> {
+            scheduleAddDialog.show();
+        });
+
         return rootView;
     }
 
@@ -46,4 +57,18 @@ public class ScheduleFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
+    private View.OnClickListener offButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            scheduleAddDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener checkButtonListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(v.getContext(), "check", Toast.LENGTH_SHORT).show();
+        }
+    };
 }

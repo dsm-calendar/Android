@@ -28,10 +28,10 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    AuthCodeDialog authCodeDialog;
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private AuthCodeDialog authCodeDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

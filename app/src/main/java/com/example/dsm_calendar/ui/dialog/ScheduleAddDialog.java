@@ -5,24 +5,23 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
-public class AuthCodeDialog extends Dialog {
+public class ScheduleAddDialog extends Dialog {
 
-    private TextInputLayout textInputLayout;
-    private TextInputEditText editText;
-    private ImageButton offButton;
-    private ImageButton checkButton;
-    private View.OnClickListener offButtonListener;
-    private View.OnClickListener checkButtonListener;
+    EditText title;
+    EditText content;
+    ImageButton offButton;
+    ImageButton checkButton;
+    View.OnClickListener offButtonListener;
+    View.OnClickListener checkButtonListener;
 
-    public AuthCodeDialog(@NonNull Context context, View.OnClickListener offButtonListener, View.OnClickListener checkButtonListener) {
+    public ScheduleAddDialog(@NonNull Context context, View.OnClickListener offButtonListener, View.OnClickListener checkButtonListener) {
         super(context);
         this.offButtonListener = offButtonListener;
         this.checkButtonListener = checkButtonListener;
@@ -37,12 +36,12 @@ public class AuthCodeDialog extends Dialog {
         layoutParams.dimAmount = 0.8f;
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.dialog_authorization_code);
+        setContentView(R.layout.dialog_add_schedule);
 
-        textInputLayout = findViewById(R.id.tl_dialog_auth);
-        editText = findViewById(R.id.et_dialog_auth);
-        offButton = findViewById(R.id.button_dialog_auth_off);
-        checkButton = findViewById(R.id.button_dialog_auth);
+        title = findViewById(R.id.et_schedule_add_title);
+        content = findViewById(R.id.et_schedule_add_content);
+        offButton = findViewById(R.id.button_dialog_schedule_add_off);
+        checkButton = findViewById(R.id.button_schedule_add);
 
         offButton.setOnClickListener(offButtonListener);
         checkButton.setOnClickListener(checkButtonListener);
