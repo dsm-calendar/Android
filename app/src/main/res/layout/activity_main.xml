@@ -63,6 +63,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/main_fragment_navigation_header"
-        app:menu="@menu/main_fragment_navigation_menu"/>
+        app:menu="@menu/main_navigation_menu"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

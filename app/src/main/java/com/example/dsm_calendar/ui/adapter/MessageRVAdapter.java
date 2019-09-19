@@ -42,10 +42,7 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
 
         holder.bind(message, date);
         String test = String.format("item %d clicked", position);
-        holder.itemView.setOnClickListener( v -> {
-            Toast.makeText(context, test, Toast.LENGTH_LONG).show();
-            ((MessageActivity)context).finish();
-        });
+        holder.itemView.setOnClickListener( v -> Toast.makeText(context, test, Toast.LENGTH_LONG).show());
     }
 
     @Override

@@ -21,15 +21,17 @@ import android.widget.Toast;
 
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    AuthCodeDialog authCodeDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ImageView profile = header.findViewById(R.id.profile_image);
         profile.setBackground(new ShapeDrawable(new OvalShape()));
         profile.setClipToOutline(true);
+
+        authCodeDialog = new AuthCodeDialog(this, offButtonListener, checkButtonListener);
 
         setToolBar();
     }
@@ -82,13 +86,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.setting:
+            case R.id.item_setting:
                 Toast.makeText(this, "setting", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.code:
-                Toast.makeText(this, "code", Toast.LENGTH_SHORT).show();
+            case R.id.item_code:
+                authCodeDialog.show();
                 break;
-            case R.id.exit:
+            case R.id.item_event:
+                Toast.makeText(this, "event", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item_timetable:
+                Toast.makeText(this, "timetable", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item_school_calendar:
+                Toast.makeText(this, "school calendar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item_group_calendar:
+                Toast.makeText(this, "group calendar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item_my_calendar:
+                Toast.makeText(this, "my calendar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item_logout:
                 Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -113,4 +132,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setHomeAsUpIndicator(R.drawable.ic_list);
         actionBar.setDisplayShowTitleEnabled(false);
     }
+
+    private View.OnClickListener offButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            authCodeDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener checkButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(v.getContext(), "check", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
