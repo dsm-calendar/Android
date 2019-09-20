@@ -36,10 +36,6 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
         holder.bind(name);
-        holder.itemView.setOnClickListener( v -> {
-            Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show();
-            //TODO: replace fragment to single group fragment
-        });
     }
 
     @Override
@@ -52,6 +48,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_group_name = itemView.findViewById(R.id.tv_group_name);
+            itemView.setOnClickListener(v -> Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show());
         }
 
         private void bind(String groupName){
