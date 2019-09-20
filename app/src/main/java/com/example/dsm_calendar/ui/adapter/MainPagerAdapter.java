@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.dsm_calendar.ui.fragment.GroupFragment;
+import com.example.dsm_calendar.ui.fragment.GroupRootFragment;
 import com.example.dsm_calendar.ui.fragment.MainFragment;
 import com.example.dsm_calendar.ui.fragment.ScheduleFragment;
 
@@ -27,7 +28,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case 0: return new ScheduleFragment();
             case 1: return new MainFragment();
-            case 2: return new GroupFragment();
+            case 2: return new GroupRootFragment();
             default: return null;
         }
     }

@@ -8,9 +8,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.ui.fragment.GroupSingleFragment;
 
 import java.util.ArrayList;
 
@@ -48,7 +52,15 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_group_name = itemView.findViewById(R.id.tv_group_name);
-            itemView.setOnClickListener(v -> Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show());
+            itemView.setOnClickListener(v -> {
+                Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show();
+                FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container, new GroupSingleFragment());
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            });
         }
 
         private void bind(String groupName){
