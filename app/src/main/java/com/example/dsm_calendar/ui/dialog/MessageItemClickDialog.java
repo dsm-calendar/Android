@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
@@ -45,8 +44,8 @@ public class MessageItemClickDialog extends Dialog {
 
         setContentView(R.layout.dialog_message_item_click);
         offButton = findViewById(R.id.button_message_item_click_off);
-        yesButton = findViewById(R.id.button_message_item_yes);
-        noButton = findViewById(R.id.button_message_item_no);
+        yesButton = findViewById(R.id.button_delete_message_yes);
+        noButton = findViewById(R.id.button_delete_message_no);
 
         offButton.setOnClickListener(offButtonListener);
         yesButton.setOnClickListener(yesButtonListener);
