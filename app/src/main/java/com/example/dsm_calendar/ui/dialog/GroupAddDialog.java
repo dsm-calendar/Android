@@ -6,31 +6,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
 
-public class MessageDeleteDialog extends Dialog {
+public class GroupAddDialog extends Dialog {
 
     private View.OnClickListener offButtonListener;
-    private View.OnClickListener yesButtonListener;
-    private View.OnClickListener noButtonListener;
+    private View.OnClickListener checkButtonListener;
+    private EditText editText;
+    private ImageView offButton;
+    private ImageButton checkButton;
 
-    private ImageButton offButton;
-    private Button yesButton;
-    private Button noButton;
-
-    public MessageDeleteDialog(
+    public GroupAddDialog(
             @NonNull Context context,
             View.OnClickListener offButtonListener,
-            View.OnClickListener yesButtonListener,
-            View.OnClickListener noButtonListener) {
+            View.OnClickListener checkButtonListener) {
         super(context);
         this.offButtonListener = offButtonListener;
-        this.yesButtonListener = yesButtonListener;
-        this.noButtonListener = noButtonListener;
+        this.checkButtonListener = checkButtonListener;
     }
 
     @Override
@@ -43,16 +41,13 @@ public class MessageDeleteDialog extends Dialog {
 
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.dialog_delete_message);
+        setContentView(R.layout.dialog_group_add);
 
-        offButton = findViewById(R.id.button_delete_message_off);
-        yesButton = findViewById(R.id.button_delete_message_yes);
-        noButton = findViewById(R.id.button_delete_message_no);
+        editText = findViewById(R.id.et_dialog_group_add);
+        offButton = findViewById(R.id.button_dialog_group_add_off);
+        checkButton = findViewById(R.id.button_dialog_group_add);
 
         offButton.setOnClickListener(offButtonListener);
-        yesButton.setOnClickListener(yesButtonListener);
-        noButton.setOnClickListener(noButtonListener);
+        checkButton.setOnClickListener(checkButtonListener);
     }
-
-    //TODO: add dialog view(background) text
 }

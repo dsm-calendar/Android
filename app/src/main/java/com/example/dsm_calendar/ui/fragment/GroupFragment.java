@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
+import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class GroupFragment extends Fragment {
     private RecyclerView recyclerView;
     private GroupRVAdapter adapter;
     private ArrayList<String> groups = new ArrayList<>();
+    private GroupAddDialog groupAddDialog;
 
     public GroupFragment(){}
 
@@ -49,9 +51,12 @@ public class GroupFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
+        groupAddDialog = new GroupAddDialog(getContext(), offButtonListener, checkButtonListener);
+        //TODO: inject context to each fragment from main activity
+
         FloatingActionButton fab_add = rootView.findViewById(R.id.group_fab);
         fab_add.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "fab clicked", Toast.LENGTH_SHORT).show();
+            groupAddDialog.show();
         });
 
         return rootView;
@@ -61,4 +66,18 @@ public class GroupFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
+
+    private View.OnClickListener offButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            groupAddDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener checkButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getContext(), "check", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
