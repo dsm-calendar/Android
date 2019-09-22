@@ -12,8 +12,19 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="#6cccde"/>
 
+    <ImageButton
+        android:id="@+id/button_delete_message_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_dialog_delete_message_click_background"
+        app:layout_constraintStart_toStartOf="@id/view_dialog_delete_message_click_background"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_cross_out"
+        android:background="@null"/>
+
     <ImageView
-        android:id="@+id/iv__delete_message"
+        android:id="@+id/iv_delete_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/view_dialog_delete_message_click_background"
@@ -26,7 +37,7 @@
         android:id="@+id/tv_delete_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv__delete_message"
+        app:layout_constraintTop_toBottomOf="@id/iv_delete_message"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"

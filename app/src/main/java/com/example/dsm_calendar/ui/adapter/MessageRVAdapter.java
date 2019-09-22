@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.ui.activity.MessageActivity;
+import com.example.dsm_calendar.ui.dialog.MessageDeleteDialog;
 import com.example.dsm_calendar.ui.dialog.MessageItemClickDialog;
 
 import java.util.ArrayList;
@@ -22,6 +22,7 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
     private ArrayList<String> dateList;
     private Context context;
     private MessageItemClickDialog messageItemClickDialog;
+    private MessageDeleteDialog messageDeleteDialog;
 
     public MessageRVAdapter(ArrayList<String> message, ArrayList<String> date, Context context){
         this.messageList = message;
@@ -34,7 +35,8 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity_message, parent, false);
         MessageViewHolder holder = new MessageViewHolder(item);
-        messageItemClickDialog = new MessageItemClickDialog(context, offButtonListener, yesButtonListener, noButtonListener);
+        messageItemClickDialog = new MessageItemClickDialog(context, MCDOffButtonListener, MCDYesButtonListener, MCDNoButtonListener);
+        messageDeleteDialog = new MessageDeleteDialog(context, MDDOffButtonListener, MDDYesButtonListener, MDDNoButtonListener);
         return holder;
     }
 
@@ -50,7 +52,7 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
         });
 
         holder.itemView.setOnLongClickListener( v -> {
-            Toast.makeText(context, "long click", Toast.LENGTH_LONG).show();
+            messageDeleteDialog.show();
             return true;
         });
     }
@@ -77,21 +79,42 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
         }
     }
 
-    private View.OnClickListener offButtonListener = new View.OnClickListener() {
+    private View.OnClickListener MCDOffButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             messageItemClickDialog.dismiss();
         }
     };
 
-    private View.OnClickListener yesButtonListener = new View.OnClickListener() {
+    private View.OnClickListener MCDYesButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Toast.makeText(messageItemClickDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
         }
     };
 
-    private View.OnClickListener noButtonListener = new View.OnClickListener(){
+    private View.OnClickListener MCDNoButtonListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(messageItemClickDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private  View.OnClickListener MDDOffButtonListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            messageDeleteDialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener MDDYesButtonListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(messageItemClickDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private View.OnClickListener MDDNoButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Toast.makeText(messageItemClickDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
