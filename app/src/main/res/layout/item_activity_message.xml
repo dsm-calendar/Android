@@ -31,17 +31,6 @@
         android:fontFamily="@font/bm_jua"
         android:text="sample message"/>
 
-    <ImageButton
-        android:id="@+id/button_message_delete"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_trash_can"
-        android:background="@null"/>
-
     <TextView
         android:id="@+id/tv_message_date"
         android:layout_width="wrap_content"
