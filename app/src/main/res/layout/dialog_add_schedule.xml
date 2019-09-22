@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_schedule_add_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="#e9e7e7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
