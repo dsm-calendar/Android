@@ -1,6 +1,5 @@
 package com.example.dsm_calendar.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +14,7 @@ import com.example.dsm_calendar.R;
 
 public class GroupRootFragment extends Fragment {
 
-    private Context context;
-
-    public GroupRootFragment(Context context) {
-        this.context = context;
-    }
+    public GroupRootFragment() {}
 
     @Nullable
     @Override

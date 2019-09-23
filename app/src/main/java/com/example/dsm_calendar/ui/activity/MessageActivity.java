@@ -22,7 +22,6 @@ public class MessageActivity extends AppCompatActivity {
     MessageRVAdapter adapter;
     ArrayList<String> messageList = new ArrayList<>();
     ArrayList<String> dateList = new ArrayList<>();
-    GroupInviteDialog groupInviteDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

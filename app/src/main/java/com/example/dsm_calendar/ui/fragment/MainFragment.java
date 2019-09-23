@@ -1,6 +1,5 @@
 package com.example.dsm_calendar.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,15 +23,12 @@ import java.util.ArrayList;
 
 public class MainFragment extends Fragment implements RadioButton.OnClickListener {
 
-    private Context context;
     private RecyclerView recyclerView;
     private MainRVAdapter adapter;
     private ArrayList<String> noticeList = new ArrayList<>();
     private ArrayList<String> todayList = new ArrayList<>();
 
-    public MainFragment(Context context) {
-        this.context = context;
-    }
+    public MainFragment() {}
 
     @Nullable
     @Override
@@ -54,8 +50,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         recyclerView = rootView.findViewById(R.id.main_rv);
-        adapter = new MainRVAdapter(context, noticeList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        adapter = new MainRVAdapter(getActivity(), noticeList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
         rootView.findViewById(R.id.notice_radioButton).setOnClickListener(this);
@@ -67,7 +63,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         PageIndicatorView pageIndicatorView = rootView.findViewById(R.id.pager_indicator);
         pageIndicatorView.setCount(obj.length);
         pageIndicatorView.setSelection(0);
-        MainBannerAdapter adapter = new MainBannerAdapter(context, obj);
+        MainBannerAdapter adapter = new MainBannerAdapter(getActivity(), obj);
         ViewPager pager = rootView.findViewById(R.id.main_viewPager);
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -94,13 +90,13 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.notice_radioButton){
-            adapter = new MainRVAdapter(context, noticeList);
+            adapter = new MainRVAdapter(getActivity(), noticeList);
             recyclerView.setAdapter(adapter);
-            Toast.makeText(context,"notice", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"notice", Toast.LENGTH_SHORT).show();
         } else if(v.getId() == R.id.schedule_radioButton){
-            adapter = new MainRVAdapter(context, todayList);
+            adapter = new MainRVAdapter(getActivity(), todayList);
             recyclerView.setAdapter(adapter);
-            Toast.makeText(context,"schedule", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"schedule", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,11 +46,11 @@ public class GroupFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_group, container, false);
         recyclerView = rootView.findViewById(R.id.group_rv);
-        adapter = new GroupRVAdapter(groups, getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new GroupRVAdapter(groups, getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        groupAddDialog = new GroupAddDialog(getContext(), offButtonListener, checkButtonListener);
+        groupAddDialog = new GroupAddDialog(getActivity(), offButtonListener, checkButtonListener);
 
         FloatingActionButton fab_add = rootView.findViewById(R.id.group_fab);
         fab_add.setOnClickListener(v -> {
@@ -76,7 +75,7 @@ public class GroupFragment extends Fragment {
     private View.OnClickListener checkButtonListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(getContext(), "check", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "check", Toast.LENGTH_SHORT).show();
         }
     };
 }
