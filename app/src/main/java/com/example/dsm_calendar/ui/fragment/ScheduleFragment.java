@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +23,16 @@ import java.util.ArrayList;
 
 public class ScheduleFragment extends Fragment {
 
+    private Context context;
     private RecyclerView recyclerView;
     private ScheduleRVAdapter adapter;
     private ArrayList<SampleSchedule> list = new ArrayList<>();
     private ImageButton scheduleAddButton;
     private ScheduleAddDialog scheduleAddDialog;
 
-    public ScheduleFragment() {}
+    public ScheduleFragment(Context context) {
+        this.context = context;
+    }
 
     @Nullable
     @Override
@@ -40,11 +44,11 @@ public class ScheduleFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
         recyclerView = rootView.findViewById(R.id.schedule_rv);
-        adapter = new ScheduleRVAdapter(getContext(), list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new ScheduleRVAdapter(context, list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
 
-        scheduleAddDialog = new ScheduleAddDialog(rootView.getContext(), offButtonListener, checkButtonListener);
+        scheduleAddDialog = new ScheduleAddDialog(context, offButtonListener, checkButtonListener);
         scheduleAddButton = rootView.findViewById(R.id.schedule_add_button);
         scheduleAddButton.setOnClickListener( v -> {
             scheduleAddDialog.show();
@@ -68,7 +72,7 @@ public class ScheduleFragment extends Fragment {
     private View.OnClickListener checkButtonListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
-            Toast.makeText(v.getContext(), "check", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "check", Toast.LENGTH_SHORT).show();
         }
     };
 }

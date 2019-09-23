@@ -1,21 +1,24 @@
 package com.example.dsm_calendar.ui.adapter;
 
+import android.content.Context;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.example.dsm_calendar.ui.fragment.GroupFragment;
 import com.example.dsm_calendar.ui.fragment.GroupRootFragment;
 import com.example.dsm_calendar.ui.fragment.MainFragment;
 import com.example.dsm_calendar.ui.fragment.ScheduleFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
+    private Context context;
     private String[] titleList = {"일정보기", "Main", "그룹목록"};
 
-    public MainPagerAdapter(FragmentManager fm) {
+    public MainPagerAdapter(FragmentManager fm, Context context) {
         super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        this.context = context;
     }
 
     @Override
@@ -26,9 +29,9 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case 0: return new ScheduleFragment();
-            case 1: return new MainFragment();
-            case 2: return new GroupRootFragment();
+            case 0: return new ScheduleFragment(context);
+            case 1: return new MainFragment(context);
+            case 2: return new GroupRootFragment(context);
             default: return null;
         }
     }

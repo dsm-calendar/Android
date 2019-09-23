@@ -27,7 +27,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
+    private MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), this);
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
