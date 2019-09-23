@@ -46,13 +46,11 @@ public class MessageDeleteDialog extends Dialog {
         setContentView(R.layout.dialog_delete_message);
 
         offButton = findViewById(R.id.button_delete_message_off);
-        yesButton = findViewById(R.id.button_delete_message_yes);
-        noButton = findViewById(R.id.button_delete_message_no);
+        yesButton = findViewById(R.id.button_dialog_delete_group_yes);
+        noButton = findViewById(R.id.button_dialog_delete_group_no);
 
         offButton.setOnClickListener(offButtonListener);
         yesButton.setOnClickListener(yesButtonListener);
         noButton.setOnClickListener(noButtonListener);
     }
-
-    //TODO: add dialog view(background) text
 }

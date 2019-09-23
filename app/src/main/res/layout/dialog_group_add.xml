@@ -12,6 +12,20 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="#6cccde"/>
 
+    <TextView
+        android:id="@+id/tv_dialog_group_add_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_dialog_group_add_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_dialog_group_add_background"
+        app:layout_constraintStart_toStartOf="@id/view_dialog_group_add_background"
+        app:layout_constraintEnd_toEndOf="@id/view_dialog_group_add_background"
+        android:text="그룹 생성하기"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/bm_dohyun"
+        android:textSize="18dp"/>
+
+
     <ImageButton
         android:id="@+id/button_dialog_group_add_off"
         android:layout_width="wrap_content"

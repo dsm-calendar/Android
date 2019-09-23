@@ -6,18 +6,30 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/view_dialog_delete_message_click_background"
+        android:id="@+id/view_dialog_delete_message_background"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#6cccde"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_dialog_delete_message_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_dialog_delete_message_background"
+        app:layout_constraintStart_toStartOf="@id/view_dialog_delete_message_background"
+        app:layout_constraintEnd_toEndOf="@id/view_dialog_delete_message_background"
+        android:text="메세지 삭제"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/bm_dohyun"
+        android:textSize="18dp"/>
+
     <ImageButton
         android:id="@+id/button_delete_message_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_delete_message_click_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_delete_message_click_background"
+        app:layout_constraintTop_toTopOf="@id/view_dialog_delete_message_background"
+        app:layout_constraintStart_toStartOf="@id/view_dialog_delete_message_background"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
@@ -27,7 +39,7 @@
         android:id="@+id/iv_delete_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/view_dialog_delete_message_click_background"
+        app:layout_constraintTop_toBottomOf="@id/view_dialog_delete_message_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
@@ -41,16 +53,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:text="정말 요청을 삭제하시겠습니까?"
+        android:text="정말 메세지를 삭제하시겠습니까?"
         android:fontFamily="@font/nanumsquare_r"/>
 
     <Button
-        android:id="@+id/button_delete_message_yes"
+        android:id="@+id/button_dialog_delete_group_yes"
         android:layout_width="0dp"
         android:layout_height="60dp"
         app:layout_constraintTop_toBottomOf="@id/tv_delete_message"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_delete_message_no"
+        app:layout_constraintEnd_toStartOf="@id/button_dialog_delete_group_no"
         android:layout_marginTop="20dp"
         android:text="YES"
         android:textSize="20dp"
@@ -59,11 +71,11 @@
         android:background="#e9e7e7"/>
 
     <Button
-        android:id="@+id/button_delete_message_no"
+        android:id="@+id/button_dialog_delete_group_no"
         android:layout_width="0dp"
         android:layout_height="60dp"
         app:layout_constraintTop_toBottomOf="@id/tv_delete_message"
-        app:layout_constraintStart_toEndOf="@id/button_delete_message_yes"
+        app:layout_constraintStart_toEndOf="@id/button_dialog_delete_group_yes"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:text="NO"

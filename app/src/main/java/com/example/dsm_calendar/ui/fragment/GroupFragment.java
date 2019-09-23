@@ -52,7 +52,6 @@ public class GroupFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         groupAddDialog = new GroupAddDialog(getContext(), offButtonListener, checkButtonListener);
-        //TODO: inject context to each fragment from main activity
 
         FloatingActionButton fab_add = rootView.findViewById(R.id.group_fab);
         fab_add.setOnClickListener(v -> {

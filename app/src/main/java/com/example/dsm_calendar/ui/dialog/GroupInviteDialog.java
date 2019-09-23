@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
 
-public class MessageItemClickDialog extends Dialog {
+public class GroupInviteDialog extends Dialog {
 
     private View.OnClickListener offButtonListener;
     private View.OnClickListener yesButtonListener;
@@ -21,7 +21,7 @@ public class MessageItemClickDialog extends Dialog {
     private Button yesButton;
     private Button noButton;
 
-    public MessageItemClickDialog(
+    public GroupInviteDialog(
             @NonNull Context context,
             View.OnClickListener offButtonListener,
             View.OnClickListener yesButtonListener,
@@ -42,10 +42,10 @@ public class MessageItemClickDialog extends Dialog {
 
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.dialog_message_item_click);
-        offButton = findViewById(R.id.button_message_item_click_off);
-        yesButton = findViewById(R.id.button_delete_message_yes);
-        noButton = findViewById(R.id.button_delete_message_no);
+        setContentView(R.layout.dialog_group_invite);
+        offButton = findViewById(R.id.button_dialog_invite_group_off);
+        yesButton = findViewById(R.id.button_dialog_invite_group_yes);
+        noButton = findViewById(R.id.button_dialog_invite_group_no);
 
         offButton.setOnClickListener(offButtonListener);
         yesButton.setOnClickListener(yesButtonListener);
