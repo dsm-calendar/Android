@@ -95,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "event", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_timetable:
-                Toast.makeText(this, "timetable", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
+                startActivity(intent);
                 break;
             case R.id.item_school_calendar:
                 Toast.makeText(this, "school calendar", Toast.LENGTH_SHORT).show();
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_list);
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setHomeButtonEnabled(true);
     }
 
     private View.OnClickListener offButtonListener = new View.OnClickListener() {

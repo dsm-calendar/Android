@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.adapter.MessageRVAdapter;
-import com.example.dsm_calendar.ui.dialog.GroupInviteDialog;
 
 import java.util.ArrayList;
 
