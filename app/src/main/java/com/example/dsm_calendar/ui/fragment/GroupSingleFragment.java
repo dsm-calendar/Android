@@ -18,6 +18,7 @@ public class GroupSingleFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //TODO: add fab to group single fragment
         View rootView = inflater.inflate(R.layout.fragment_group_single, container, false);
         return rootView;
     }
