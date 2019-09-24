@@ -34,6 +34,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        //TODO: fix timetable layout
         noticeList.add("sample");
         noticeList.add("sample2");
         noticeList.add("sample3");

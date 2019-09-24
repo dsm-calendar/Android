@@ -12,7 +12,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="#6cccde"/>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/button_time_table_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +20,8 @@
         app:layout_constraintStart_toStartOf="@id/view_time_table_background"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
-        android:src="@drawable/ic_cross_out"/>
+        android:src="@drawable/ic_cross_out"
+        android:background="@null"/>
 
     <TextView
         android:id="@+id/tv_time_table_whole_time_table"
@@ -170,9 +171,10 @@
         android:layout_width="360dp"
         android:layout_height="450dp"
         app:layout_constraintTop_toBottomOf="@id/tv_time_table_title"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:background="#6cccde"
         android:orientation="horizontal">
         <TableRow android:layout_weight="1">
@@ -802,10 +804,9 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:textSize="18dp"
+                android:textSize="14dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
     </TableLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
