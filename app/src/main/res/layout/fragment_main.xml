@@ -59,7 +59,7 @@
                 android:background="@drawable/radio_states_notice"
                 android:button="@null"
                 android:checked="true"
-                android:text="공지사항"
+                android:text="@string/notice"
                 android:gravity="center"
                 android:textColor="@color/radio_text"
                 android:fontFamily="@font/bm_jua"
@@ -72,7 +72,7 @@
                 android:background="@drawable/radio_states_schedule"
                 android:button="@null"
                 android:checked="false"
-                android:text="오늘 일정"
+                android:text="@string/today_schedule"
                 android:gravity="center"
                 android:textColor="@color/radio_text"
                 android:fontFamily="@font/bm_jua"
@@ -99,7 +99,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/bm_jua"
-            android:text="시간표"
+            android:text="@string/timeTable"
             android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_background_rv" />
@@ -120,11 +120,13 @@
             android:layout_height="20dp"
             android:layout_marginTop="40dp"
             android:fontFamily="@font/bm_dohyun"
-            android:text="Sample 시간표"
+            android:text="@string/sample_time_table"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_line2" />
+
+        <!--TODO: remake timeTable-->
 
         <TableLayout
             android:layout_width="300dp"

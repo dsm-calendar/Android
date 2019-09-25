@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="@id/view_dialog_invite_group_background"
         app:layout_constraintStart_toStartOf="@id/view_dialog_invite_group_background"
         app:layout_constraintEnd_toEndOf="@id/view_dialog_invite_group_background"
-        android:text="그룹 초대 요청 수락"
+        android:text="@string/accept_group_invite"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="18dp"/>
@@ -34,7 +34,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
-        android:background="@null"/>
+        android:background="@null"
+        android:contentDescription="@string/back" />
 
     <ImageView
         android:id="@+id/iv_dialog_invite_group"
@@ -44,7 +45,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_contact"/>
+        android:src="@drawable/ic_contact"
+        android:contentDescription="@string/accept_group_invite" />
 
     <TextView
         android:id="@+id/tv_dialog_invite_group"
@@ -55,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="초대를 수락하시겠습니까?"/>
+        android:text="@string/accept_group_invite_description"/>
 
     <Button
         android:id="@+id/button_dialog_invite_group_yes"
@@ -65,7 +67,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_dialog_invite_group_no"
         android:layout_marginTop="20dp"
-        android:text="YES"
+        android:text="@string/yes"
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/bm_dohyun"
@@ -79,7 +81,7 @@
         app:layout_constraintStart_toEndOf="@id/button_dialog_invite_group_yes"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:text="NO"
+        android:text="@string/no"
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/bm_dohyun"

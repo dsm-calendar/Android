@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="메세지함"
+            android:text="@string/mail_box"
             android:layout_gravity="center"
             android:fontFamily="@font/bm_dohyun"
             android:textSize="16dp"

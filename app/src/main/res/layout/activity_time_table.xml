@@ -21,7 +21,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
-        android:background="@null"/>
+        android:background="@null"
+        android:contentDescription="@string/back" />
 
     <TextView
         android:id="@+id/tv_time_table_whole_time_table"
@@ -31,7 +32,7 @@
         app:layout_constraintBottom_toBottomOf="@id/view_time_table_background"
         app:layout_constraintStart_toStartOf="@id/view_time_table_background"
         app:layout_constraintEnd_toEndOf="@id/view_time_table_background"
-        android:text="전체 시간표"
+        android:text="@string/whole_timeTable"
         android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"/>
@@ -54,7 +55,7 @@
             android:textColor="#2898ad"
             android:fontFamily="@font/bm_dohyun"
             android:button="@null"
-            android:text="1학년"/>
+            android:text="@string/first_grade"/>
 
         <RadioButton
             android:id="@+id/radioButton_grade_2"
@@ -66,7 +67,7 @@
             android:textColor="#2898ad"
             android:fontFamily="@font/bm_dohyun"
             android:button="@null"
-            android:text="2학년"/>
+            android:text="@string/second_grade"/>
 
         <RadioButton
             android:id="@+id/radioButton_grade_3"
@@ -78,7 +79,7 @@
             android:textColor="#2898ad"
             android:fontFamily="@font/bm_dohyun"
             android:button="@null"
-            android:text="3학년"/>
+            android:text="@string/third_grade"/>
 
     </RadioGroup>
 
@@ -101,7 +102,7 @@
             android:background="@drawable/radio_states_time_table_class"
             android:checked="true"
             android:button="@null"
-            android:text="1반"
+            android:text="@string/class_1"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
             android:textSize="10dp"
@@ -116,7 +117,7 @@
             android:layout_weight="1"
             android:background="@drawable/radio_states_time_table_class"
             android:button="@null"
-            android:text="2반"
+            android:text="@string/class_2"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
             android:textSize="10dp"
@@ -131,7 +132,7 @@
             android:layout_weight="1"
             android:background="@drawable/radio_states_time_table_class"
             android:button="@null"
-            android:text="3반"
+            android:text="@string/class_3"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
             android:textSize="10dp"
@@ -145,7 +146,7 @@
             android:layout_weight="1"
             android:background="@drawable/radio_states_time_table_class"
             android:button="@null"
-            android:text="4반"
+            android:text="@string/class_4"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
             android:textSize="10dp"
@@ -161,7 +162,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:text="2학년 2반 시간표"
+        android:text="@string/sample_time_table"
         android:textSize="18dp"
         android:fontFamily="@font/bm_dohyun"
         android:textColor="#404040"/>
@@ -192,7 +193,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#d0f4fb"
                 android:gravity="center"
-                android:text="월"
+                android:text="@string/monday"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -203,7 +204,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#d0f4fb"
                 android:gravity="center"
-                android:text="화"
+                android:text="@string/tuesday"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -214,7 +215,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#d0f4fb"
                 android:gravity="center"
-                android:text="수"
+                android:text="@string/wednesday"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -225,7 +226,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#d0f4fb"
                 android:gravity="center"
-                android:text="목"
+                android:text="@string/thursday"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -236,7 +237,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#d0f4fb"
                 android:gravity="center"
-                android:text="금"
+                android:text="@string/friday"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -249,70 +250,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="1"
-                android:textSize="18dp"
-                android:textColor="#2898ad"
-                android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="0.1dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:textColor="#2898ad"
-                android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="0.1dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:textColor="#2898ad"
-                android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="0.1dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:textColor="#2898ad"
-                android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="0.1dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:textColor="#2898ad"
-                android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="0.1dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:textSize="18dp"
-                android:textColor="#2898ad"
-                android:fontFamily="@font/nanumsquare_r"/>
-        </TableRow>
-        <TableRow android:layout_weight="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_margin="0.1dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:text="2"
+                android:text="@string/number_1"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -375,7 +313,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="3"
+                android:text="@string/number_2"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -438,7 +376,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="4"
+                android:text="@string/number_3"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -501,7 +439,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="5"
+                android:text="@string/number_4"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -564,7 +502,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="6"
+                android:text="@string/number_5"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -627,7 +565,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="7"
+                android:text="@string/number_6"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -690,7 +628,7 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="8"
+                android:text="@string/number_7"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
@@ -753,7 +691,70 @@
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
-                android:text="9"
+                android:text="@string/number_8"
+                android:textSize="18dp"
+                android:textColor="#2898ad"
+                android:fontFamily="@font/nanumsquare_r"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="0.1dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#2898ad"
+                android:fontFamily="@font/nanumsquare_r"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="0.1dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#2898ad"
+                android:fontFamily="@font/nanumsquare_r"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="0.1dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#2898ad"
+                android:fontFamily="@font/nanumsquare_r"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="0.1dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#2898ad"
+                android:fontFamily="@font/nanumsquare_r"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="0.1dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:textColor="#2898ad"
+                android:fontFamily="@font/nanumsquare_r"/>
+        </TableRow>
+        <TableRow android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="0.1dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="@string/number_9"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -30,7 +30,8 @@
         android:layout_marginBottom="70dp"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="140dp"
-        android:src="@drawable/main_logo"/>
+        android:src="@drawable/main_logo"
+        android:contentDescription="@string/logo" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,7 +40,7 @@
         app:layout_constraintStart_toStartOf="@id/view_logo"
         android:layout_marginTop="100dp"
         android:layout_marginStart="30dp"
-        android:text="DMS Calendar"
+        android:text="@string/dsm_calendar"
         android:textSize="30dp"
         android:fontFamily="@font/bm_dohyun"
         android:textColor="#000000"/>
@@ -54,7 +55,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/button_signup_round_background"
         android:textColor="#FFFFFF"
-        android:text="Join"
+        android:text="@string/join"
         android:textSize="24dp"
         android:fontFamily="@font/bm_dohyun"/>
 
@@ -65,7 +66,7 @@
         android:layout_marginBottom="10dp"
         android:layout_width="80dp"
         android:layout_height="40dp"
-        android:text="Login"
+        android:text="@string/login"
         android:textSize="28dp"
         android:fontFamily="@font/bm_dohyun"
         android:textColor="#000000"/>
@@ -87,7 +88,8 @@
         app:layout_constraintBottom_toBottomOf="@id/id_et_view"
         app:layout_constraintStart_toStartOf="@id/id_et_view"
         app:layout_constraintEnd_toStartOf="@id/et_id"
-        android:src="@drawable/ic_user"/>
+        android:src="@drawable/ic_user"
+        android:contentDescription="@string/id" />
 
     <EditText
         android:id="@+id/et_id"
@@ -100,7 +102,9 @@
         android:fontFamily="@font/bm_dohyun"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:hint="ID"
+        android:hint="@string/id"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:ems="8"
         android:background="#00000000"/>
 
@@ -129,7 +133,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/pw_et_view"
         app:layout_constraintStart_toStartOf="@+id/pw_et_view"
         app:layout_constraintEnd_toStartOf="@+id/et_pw"
-        android:src="@drawable/ic_lock"/>
+        android:src="@drawable/ic_lock"
+        android:contentDescription="@string/password" />
 
     <EditText
         android:id="@+id/et_pw"
@@ -143,7 +148,9 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:ems="8"
-        android:hint="Password"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
         android:background="#00000000"/>
 
     <ImageButton
@@ -154,6 +161,7 @@
         app:layout_constraintStart_toEndOf="@id/view_line"
         app:layout_constraintTop_toTopOf="@id/id_et_view"
         android:background="@drawable/button_check_round_background"
-        android:src="@drawable/ic_tick"/>
+        android:src="@drawable/ic_tick"
+        android:contentDescription="@string/confirm_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

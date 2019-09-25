@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="@id/view_dialog_delete_message_background"
         app:layout_constraintStart_toStartOf="@id/view_dialog_delete_message_background"
         app:layout_constraintEnd_toEndOf="@id/view_dialog_delete_message_background"
-        android:text="메세지 삭제"
+        android:text="@string/delete_message"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="18dp"/>
@@ -33,7 +33,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
-        android:background="@null"/>
+        android:background="@null"
+        android:contentDescription="@string/back" />
 
     <ImageView
         android:id="@+id/iv_delete_message"
@@ -43,7 +44,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_trash"/>
+        android:src="@drawable/ic_trash"
+        android:contentDescription="@string/delete_message" />
 
     <TextView
         android:id="@+id/tv_delete_message"
@@ -53,7 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:text="정말 메세지를 삭제하시겠습니까?"
+        android:text="@string/delete_message_description"
         android:fontFamily="@font/nanumsquare_r"/>
 
     <Button
@@ -64,7 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/button_dialog_delete_group_no"
         android:layout_marginTop="20dp"
-        android:text="YES"
+        android:text="@string/yes"
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/bm_dohyun"
@@ -78,7 +80,7 @@
         app:layout_constraintStart_toEndOf="@id/button_dialog_delete_group_yes"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:text="NO"
+        android:text="@string/no"
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/bm_dohyun"

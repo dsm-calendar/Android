@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="@id/view_dialog_schedule_add_background"
         app:layout_constraintStart_toStartOf="@id/view_dialog_schedule_add_background"
         app:layout_constraintEnd_toEndOf="@id/view_dialog_schedule_add_background"
-        android:text="일정 추가"
+        android:text="@string/add_schedule"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="18dp"/>
@@ -34,7 +34,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
-        android:background="@null"/>
+        android:background="@null"
+        android:contentDescription="@string/back" />
 
     <ImageView
         android:id="@+id/iv_schedule_add"
@@ -44,7 +45,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_calendar"/>
+        android:src="@drawable/ic_calendar"
+        android:contentDescription="@string/add_schedule" />
 
     <EditText
         android:id="@+id/et_schedule_add_title"
@@ -55,7 +57,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/nanumsquare_r"
-        android:hint="일정 제목을 입력하세요"/>
+        android:hint="@string/input_schedule_title"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/et_schedule_add_content"
@@ -66,7 +70,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/nanumsquare_r"
-        android:hint="일정 내용을 입력하세요"/>
+        android:hint="@string/input_schedule_content"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <ImageButton
         android:id="@+id/button_schedule_add"
@@ -77,6 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:background="#e9e7e7"/>
+        android:background="#e9e7e7"
+        android:contentDescription="@string/confirm_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
