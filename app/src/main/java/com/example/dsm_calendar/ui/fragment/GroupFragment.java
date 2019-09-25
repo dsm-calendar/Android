@@ -25,6 +25,7 @@ public class GroupFragment extends Fragment {
     private GroupRVAdapter adapter;
     private ArrayList<String> groups = new ArrayList<>();
     private GroupAddDialog groupAddDialog;
+    private FloatingActionButton fab_add;
 
     public GroupFragment(){}
 
@@ -49,10 +50,24 @@ public class GroupFragment extends Fragment {
         adapter = new GroupRVAdapter(groups, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if(dy > 0){
+                    if (fab_add.isShown()){
+                        fab_add.hide();
+                    }
+                } else if(dy < 0){
+                    if(!fab_add.isShown()){
+                        fab_add.show();
+                    }
+                }
+            }
+        });
 
         groupAddDialog = new GroupAddDialog(getActivity(), offButtonListener, checkButtonListener);
 
-        FloatingActionButton fab_add = rootView.findViewById(R.id.group_fab);
+        fab_add = rootView.findViewById(R.id.group_fab);
         fab_add.setOnClickListener(v -> {
             groupAddDialog.show();
         });

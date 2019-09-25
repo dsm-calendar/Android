@@ -9,6 +9,7 @@
     android:background="#eeeeee">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView_group_single"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -86,6 +87,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_group_single"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
