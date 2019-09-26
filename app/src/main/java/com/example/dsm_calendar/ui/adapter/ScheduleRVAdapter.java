@@ -20,6 +20,7 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
     private ArrayList<SampleSchedule> list;
     private Context context;
 
+    //TODO: longClick (or something else) to delete item
     public ScheduleRVAdapter(Context context, ArrayList<SampleSchedule> list){
         this.context = context;
         this.list = list;
