@@ -1,7 +1,5 @@
 package com.example.dsm_calendar.ui.adapter;
 
-import android.content.Context;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -10,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.example.dsm_calendar.ui.fragment.GroupRootFragment;
 import com.example.dsm_calendar.ui.fragment.MainFragment;
 import com.example.dsm_calendar.ui.fragment.ScheduleFragment;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
 

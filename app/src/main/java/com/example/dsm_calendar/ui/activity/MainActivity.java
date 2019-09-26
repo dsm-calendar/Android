@@ -27,7 +27,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager());
+    private MainPagerAdapter adapter;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -38,9 +38,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         ViewPager viewPager = findViewById(R.id.main_viewPager);
+        adapter = new MainPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
+
         TabLayout tabLayout = findViewById(R.id.main_tabBar);
         tabLayout.setupWithViewPager(viewPager);
 
