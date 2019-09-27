@@ -70,4 +70,5 @@
     <string name="sample_student_number">2학년 2반 1번</string>
     <string name="sample_name">장만월</string>
     <string name="banner_image">banner image</string>
+    <string name="deleteSchedule">delete schedule</string>
 </resources>

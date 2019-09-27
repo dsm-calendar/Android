@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "group calendar", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_my_calendar:
-                Toast.makeText(this, "my calendar", Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.item_logout:
                 Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
