@@ -47,40 +47,6 @@
                app:tabTextColor="#2898ad"
                app:tabSelectedTextColor="#FFFFFF"/>
 
-           <androidx.constraintlayout.widget.ConstraintLayout
-               android:id="@+id/group_toolbar"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:background="#FFFFFF"
-               android:visibility="gone">
-
-               <ImageButton
-                   android:id="@+id/group_off"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintTop_toTopOf="parent"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   android:layout_marginStart="30dp"
-                   android:background="@null"
-                   android:src="@drawable/ic_left_arrow"
-                   android:contentDescription="@string/back" />
-
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   app:layout_constraintTop_toTopOf="parent"
-                   app:layout_constraintBottom_toBottomOf="parent"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   android:layout_margin="10dp"
-                   android:textColor="#6cccde"
-                   android:fontFamily="@font/bm_dohyun"
-                   android:text="@string/sample_group"
-                   android:textSize="20dp"/>
-
-           </androidx.constraintlayout.widget.ConstraintLayout>
-
        </com.google.android.material.appbar.AppBarLayout>
 
        <androidx.viewpager.widget.ViewPager

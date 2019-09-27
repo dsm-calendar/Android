@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,6 +61,7 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
         TextView tv_content;
         LinearLayout item;
         LinearLayout content;
+        ImageButton delete;
 
         ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,15 +70,23 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
             tv_content = itemView.findViewById(R.id.tv_schedule_content);
             item = itemView.findViewById(R.id.schedule_rv_item);
             content = itemView.findViewById(R.id.content);
+            delete = itemView.findViewById(R.id.button_my_schedule_delete);
         }
 
         private void bind(SampleSchedule schedule) {
             boolean expended = schedule.getExpended();
             content.setVisibility(expended ? View.VISIBLE : View.GONE);
+            delete.setVisibility(expended ? View.VISIBLE : View.GONE);
 
             tv_title.setText(schedule.getTitle());
             tv_date.setText(schedule.getDate());
             tv_content.setText(schedule.getContent());
+            delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
