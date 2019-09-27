@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private AuthCodeDialog authCodeDialog;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
 
-        ViewPager viewPager = findViewById(R.id.main_viewPager);
-        adapter = new MainPagerAdapter(getSupportFragmentManager());
+        viewPager = findViewById(R.id.main_viewPager);
+        tabLayout = findViewById(R.id.main_tabBar);
+
+        adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
 
-        TabLayout tabLayout = findViewById(R.id.main_tabBar);
+
         tabLayout.setupWithViewPager(viewPager);
 
         toolbar = findViewById(R.id.main_toolbar);
