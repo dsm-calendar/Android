@@ -66,6 +66,7 @@ public class GroupFragment extends Fragment {
         });
 
         groupAddDialog = new GroupAddDialog(getActivity(), offButtonListener, checkButtonListener);
+        groupAddDialog.setCanceledOnTouchOutside(true);
 
         fab_add = rootView.findViewById(R.id.group_fab);
         fab_add.setOnClickListener(v -> {

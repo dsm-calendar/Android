@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private AuthCodeDialog authCodeDialog;
+
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
@@ -48,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
 
-
         tabLayout.setupWithViewPager(viewPager);
 
         toolbar = findViewById(R.id.main_toolbar);
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profile.setClipToOutline(true);
 
         authCodeDialog = new AuthCodeDialog(this, offButtonListener, checkButtonListener);
+        authCodeDialog.setCanceledOnTouchOutside(true);
 
         setToolBar();
     }

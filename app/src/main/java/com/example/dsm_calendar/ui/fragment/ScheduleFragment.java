@@ -45,6 +45,8 @@ public class ScheduleFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         scheduleAddDialog = new ScheduleAddDialog(getActivity(), offButtonListener, checkButtonListener);
+        scheduleAddDialog.setCanceledOnTouchOutside(true);
+
         scheduleAddButton = rootView.findViewById(R.id.schedule_add_button);
         scheduleAddButton.setOnClickListener( v -> {
             scheduleAddDialog.show();
