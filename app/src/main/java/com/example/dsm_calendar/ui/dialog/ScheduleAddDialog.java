@@ -36,12 +36,12 @@ public class ScheduleAddDialog extends Dialog {
         layoutParams.dimAmount = 0.8f;
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.dialog_add_schedule);
+        setContentView(R.layout.dialog_addschedule);
 
-        title = findViewById(R.id.et_schedule_add_title);
-        content = findViewById(R.id.et_schedule_add_content);
-        offButton = findViewById(R.id.button_dialog_schedule_add_off);
-        checkButton = findViewById(R.id.button_schedule_add);
+        title = findViewById(R.id.et_addschedule_title);
+        content = findViewById(R.id.et_addschedule_content);
+        offButton = findViewById(R.id.button_addschedule_off);
+        checkButton = findViewById(R.id.button_addschedule_confirm);
 
         offButton.setOnClickListener(offButtonListener);
         checkButton.setOnClickListener(checkButtonListener) ;
