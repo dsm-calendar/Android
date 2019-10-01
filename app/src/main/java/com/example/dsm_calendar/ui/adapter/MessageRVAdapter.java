@@ -37,6 +37,10 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
         MessageViewHolder holder = new MessageViewHolder(item);
         groupInviteDialog = new GroupInviteDialog(context, MCDOffButtonListener, MCDYesButtonListener, MCDNoButtonListener);
         messageDeleteDialog = new MessageDeleteDialog(context, MDDOffButtonListener, MDDYesButtonListener, MDDNoButtonListener);
+
+        groupInviteDialog.setCanceledOnTouchOutside(true);
+        messageDeleteDialog.setCanceledOnTouchOutside(true);
+
         return holder;
     }
 

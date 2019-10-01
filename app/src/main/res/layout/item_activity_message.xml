@@ -16,7 +16,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"/>
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/item_message" />
 
     <TextView
         android:id="@+id/tv_message"
@@ -29,7 +30,7 @@
         android:maxWidth="250dp"
         android:textSize="15dp"
         android:fontFamily="@font/bm_jua"
-        android:text="sample message"/>
+        android:text="@string/sample_message"/>
 
     <TextView
         android:id="@+id/tv_message_date"
@@ -41,6 +42,6 @@
         android:layout_marginEnd="10dp"
         android:fontFamily="@font/nanumsquare_r"
         android:textSize="10dp"
-        android:text="sample date text"/>
+        android:text="@string/sample_date_text"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

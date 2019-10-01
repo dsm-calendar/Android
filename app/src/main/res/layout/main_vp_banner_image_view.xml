@@ -6,9 +6,9 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
-        android:id="@+id/vp_adapter" />
+        android:id="@+id/vp_adapter"
+        android:contentDescription="@string/banner_image" />
 
 </LinearLayout>

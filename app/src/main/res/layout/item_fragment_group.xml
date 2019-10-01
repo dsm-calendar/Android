@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/view_color_group"
         android:layout_marginStart="20dp"
-        android:text="Sample Group"
+        android:text="@string/sample_group"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="16dp"/>
 
