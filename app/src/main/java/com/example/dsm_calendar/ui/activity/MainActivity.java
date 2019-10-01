@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         viewPager = findViewById(R.id.vp_main_main);
         tabLayout = findViewById(R.id.tl_main_main);
 
