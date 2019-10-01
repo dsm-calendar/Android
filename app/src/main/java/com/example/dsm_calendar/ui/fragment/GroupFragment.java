@@ -37,22 +37,10 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        groups.add("동휘와 함께하는 게임 만들기");
-        groups.add("윤성이와 함께하는 디자인");
-        groups.add("승민이와 함께하는 안드로이드");
-        groups.add("하경이와 함께하는 서버만들기");
-        groups.add("담임쌤과 함께하는 \"코아\"개념 배우기");
-        groups.add("희명이와 함께하는 탈모갤러리");
-        groups.add("민트니스가 함께하는 근성장 팩토리");
-        groups.add("채홍이와 함께하는 인생파탄내기");
-        groups.add("이제는 쓸게없어 막쓰는 그룹");
-        groups.add("hello world!");
-        groups.add("Tlqkf");
-
         View rootView = inflater.inflate(R.layout.fragment_group, container, false);
+
         recyclerView = rootView.findViewById(R.id.rv_group_view);
-        adapter = new GroupRVAdapter(groups, getActivity());
+        adapter = new GroupRVAdapter(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -82,6 +70,8 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         fab_add = rootView.findViewById(R.id.fab_group_actionButton);
         fab_add.setOnClickListener(v -> groupPresenter.onClickAddGroup());
 
+        groupPresenter.onStarted(groups);
+
         return rootView;
     }
 
@@ -93,5 +83,10 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     @Override
     public void showGroupAddDialog() {
         groupAddDialog.show();
+    }
+
+    @Override
+    public void addItems(ArrayList<String> testGroup) {
+        adapter.groupList = testGroup;
     }
 }

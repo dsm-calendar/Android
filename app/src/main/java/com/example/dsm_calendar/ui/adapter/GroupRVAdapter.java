@@ -15,11 +15,10 @@ import java.util.ArrayList;
 
 public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupViewHolder> {
 
-    private ArrayList<String> groupList;
+    public ArrayList<String> groupList;
     private Context context;
 
-    public GroupRVAdapter(ArrayList<String> groups, Context context){
-        this.groupList = groups;
+    public GroupRVAdapter(Context context){
         this.context = context;
     }
 
