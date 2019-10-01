@@ -6,45 +6,45 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/view_time_table_background"
+        android:id="@+id/view_timetable_background"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#6cccde"/>
 
     <ImageButton
-        android:id="@+id/button_time_table_off"
+        android:id="@+id/button_timetable_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_time_table_background"
-        app:layout_constraintStart_toStartOf="@id/view_time_table_background"
+        app:layout_constraintTop_toTopOf="@id/view_timetable_background"
+        app:layout_constraintStart_toStartOf="@id/view_timetable_background"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
         android:background="@null"/>
 
     <TextView
-        android:id="@+id/tv_time_table_whole_time_table"
+        android:id="@+id/tv_timetable_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_time_table_background"
-        app:layout_constraintBottom_toBottomOf="@id/view_time_table_background"
-        app:layout_constraintStart_toStartOf="@id/view_time_table_background"
-        app:layout_constraintEnd_toEndOf="@id/view_time_table_background"
+        app:layout_constraintTop_toTopOf="@id/view_timetable_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_timetable_background"
+        app:layout_constraintStart_toStartOf="@id/view_timetable_background"
+        app:layout_constraintEnd_toEndOf="@id/view_timetable_background"
         android:text="전체 시간표"
         android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"/>
 
     <RadioGroup
-        android:id="@+id/radio_group_grade"
+        android:id="@+id/rg_timetable_grade"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        app:layout_constraintTop_toBottomOf="@id/view_time_table_background"
+        app:layout_constraintTop_toBottomOf="@id/view_timetable_background"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton_grade_1"
+            android:id="@+id/button_timetable_grade_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -57,7 +57,7 @@
             android:text="1학년"/>
 
         <RadioButton
-            android:id="@+id/radioButton_grade_2"
+            android:id="@+id/button_timetable_grade_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -69,7 +69,7 @@
             android:text="2학년"/>
 
         <RadioButton
-            android:id="@+id/radioButton_grade_3"
+            android:id="@+id/button_timetable_grade_3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -83,17 +83,17 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/radio_group_class"
+        android:id="@+id/rg_timetable_class"
         android:layout_width="360dp"
         android:layout_height="20dp"
-        app:layout_constraintTop_toBottomOf="@id/radio_group_grade"
+        app:layout_constraintTop_toBottomOf="@id/rg_timetable_grade"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton_class_1"
+            android:id="@+id/button_timetable_class_1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -108,7 +108,7 @@
             android:textColor="@color/radio_class_text"/>
 
         <RadioButton
-            android:id="@+id/radioButton_class_2"
+            android:id="@+id/button_timetable_class_2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -123,7 +123,7 @@
             android:textColor="@color/radio_class_text" />
 
         <RadioButton
-            android:id="@+id/radioButton_class_3"
+            android:id="@+id/button_timetable_class_3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -138,7 +138,7 @@
             android:textColor="@color/radio_class_text" />
 
         <RadioButton
-            android:id="@+id/radioButton_class_4"
+            android:id="@+id/button_timetable_class_4"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -154,10 +154,10 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/tv_time_table_title"
+        android:id="@+id/tv_timetable_tableTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/radio_group_class"
+        app:layout_constraintTop_toBottomOf="@id/rg_timetable_class"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
@@ -167,10 +167,10 @@
         android:textColor="#404040"/>
 
     <TableLayout
-        android:id="@+id/time_table_time_table"
+        android:id="@+id/tl_timetable_table"
         android:layout_width="360dp"
         android:layout_height="450dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_time_table_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_timetable_tableTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

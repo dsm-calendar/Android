@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item_setting"
+        android:id="@+id/item_navigation_setting"
         android:icon="@drawable/ic_gear"
         android:title="설정"/>
     <item
-        android:id="@+id/item_code"
+        android:id="@+id/item_navigation_code"
         android:icon="@drawable/ic_authentication"
         android:title="인증코드"/>
 
     <item
-        android:id="@+id/item-event"
+        android:id="@+id/item_navigation_event"
         android:icon="@drawable/ic_confetti"
         android:title="이벤트 요청"/>
 
     <item
-        android:id="@+id/item_timetable"
+        android:id="@+id/item_navigation_timeTable"
         android:icon="@drawable/ic_calendar_logo"
         android:title="시간표 보기"/>
 
     <group
-        android:id="@+id/item_calendar_group"
+        android:id="@+id/group_navigation_calendar"
         android:checkableBehavior="single">
 
         <item
@@ -29,24 +29,24 @@
             android:enabled="false"/>
 
         <item
-            android:id="@+id/item_school_calendar"
+            android:id="@+id/item_navigation_calendar_school"
             android:icon="@drawable/ic_school_logo"
             android:title="학교 캘린더 보기"/>
 
         <item
-            android:id="@+id/item_group_calendar"
+            android:id="@+id/item_navigation_calendar_group"
             android:icon="@drawable/ic_multiple_users_silhouette"
             android:title="그룹 캘린더 보기"/>
 
         <item
-            android:id="@+id/item_my_calendar"
+            android:id="@+id/item_navigation_calendar_my"
             android:icon="@drawable/ic_avatar"
             android:title="개인 캘린더 보기"/>
 
     </group>
 
     <item
-        android:id="@+id/item_logout"
+        android:id="@+id/item_navigation_logout"
         android:icon="@drawable/ic_logout"
         android:title="로그아웃"/>
 </menu>

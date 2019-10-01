@@ -65,7 +65,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         pageIndicatorView.setCount(obj.length);
         pageIndicatorView.setSelection(0);
         MainBannerAdapter adapter = new MainBannerAdapter(getActivity(), obj);
-        ViewPager pager = rootView.findViewById(R.id.main_viewPager);
+        ViewPager pager = rootView.findViewById(R.id.vp_main_main);
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

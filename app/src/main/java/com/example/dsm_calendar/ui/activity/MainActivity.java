@@ -38,16 +38,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager viewPager = findViewById(R.id.main_viewPager);
+        ViewPager viewPager = findViewById(R.id.vp_main_main);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
-        TabLayout tabLayout = findViewById(R.id.main_tabBar);
+        TabLayout tabLayout = findViewById(R.id.tl_main_main);
         tabLayout.setupWithViewPager(viewPager);
 
-        toolbar = findViewById(R.id.main_toolbar);
+        toolbar = findViewById(R.id.tb_main_main);
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        navigationView = findViewById(R.id.main_navigation_view);
+        navigationView = findViewById(R.id.nv_main_main);
         navigationView.setNavigationItemSelectedListener(this);
 
         View header = navigationView.getHeaderView(0);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_toolbar_menu, menu);
+        menuInflater.inflate(R.menu.menu_toolbar, menu);
 
         return true;
     }
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
-            case R.id.mail:
+            case R.id.item_toolbar_mail:
                 Intent intent = new Intent(MainActivity.this, MessageActivity.class);
                 startActivity(intent);
                 break;
@@ -85,29 +85,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.item_setting:
+            case R.id.item_navigation_setting:
                 Toast.makeText(this, "setting", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.item_code:
+            case R.id.item_navigation_code:
                 authCodeDialog.show();
                 break;
-            case R.id.item_event:
+            case R.id.item_navigation_event:
                 Toast.makeText(this, "event", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.item_timetable:
+            case R.id.item_navigation_timeTable:
                 Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.item_school_calendar:
+            case R.id.item_navigation_calendar_school:
                 Toast.makeText(this, "school calendar", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.item_group_calendar:
+            case R.id.item_navigation_calendar_group:
                 Toast.makeText(this, "group calendar", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.item_my_calendar:
+            case R.id.item_navigation_calendar_my:
                 Toast.makeText(this, "my calendar", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.item_logout:
+            case R.id.item_navigation_logout:
                 Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
                 break;
         }
