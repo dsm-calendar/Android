@@ -16,18 +16,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.dsm_calendar.contract.MainContract;
+import com.example.dsm_calendar.data.MainRepository;
+import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainContract.View{
 
     private MainPagerAdapter adapter;
     private Toolbar toolbar;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
+
+    private MainPresenter mainPresenter = new MainPresenter(this, new MainRepository());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.mail:
-                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
-                startActivity(intent);
+                mainPresenter.onClickMailbox();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -96,29 +98,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.item_setting:
-                Toast.makeText(this, "setting", Toast.LENGTH_SHORT).show();
+                mainPresenter.onClickSetting();
                 break;
             case R.id.item_code:
-                authCodeDialog.show();
+                mainPresenter.onClickAuthCode();
                 break;
             case R.id.item_event:
-                Toast.makeText(this, "event", Toast.LENGTH_SHORT).show();
+                mainPresenter.onClickRequireEvent();
                 break;
             case R.id.item_timetable:
-                Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
-                startActivity(intent);
+                mainPresenter.onClickTimeTable();
                 break;
             case R.id.item_school_calendar:
-                Toast.makeText(this, "school calendar", Toast.LENGTH_SHORT).show();
+                mainPresenter.onClickSchoolCalendar();
                 break;
             case R.id.item_group_calendar:
                 Toast.makeText(this, "group calendar", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_my_calendar:
-                viewPager.setCurrentItem(0);
+                mainPresenter.onClickMyCalendar();
                 break;
             case R.id.item_logout:
-                Toast.makeText(this, "logout", Toast.LENGTH_SHORT).show();
+                mainPresenter.onClickLogout();
                 break;
         }
         drawerLayout.closeDrawers();
@@ -157,4 +158,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(v.getContext(), "check", Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    public void startMailBoxActivity() {
+        Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showAuthDialog() {
+        authCodeDialog.show();
+    }
+
+    @Override
+    public void startTimeTableActivity() {
+        Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void moveToMyCalendar() {
+        viewPager.setCurrentItem(0);
+    }
 }
