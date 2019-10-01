@@ -1,13 +1,5 @@
 package com.example.dsm_calendar.ui.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -19,11 +11,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
-import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
 
-        viewPager = findViewById(R.id.main_viewPager);
-        tabLayout = findViewById(R.id.main_tabBar);
+        viewPager = findViewById(R.id.vp_main_main);
+        tabLayout = findViewById(R.id.tl_main_main);
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout);
         viewPager.setAdapter(adapter);
