@@ -6,71 +6,67 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/view_dialog_group_add_background"
+        android:id="@+id/view_addgroup_background"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#6cccde"/>
 
     <TextView
-        android:id="@+id/tv_dialog_group_add_title"
+        android:id="@+id/tv_addgroup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_group_add_background"
-        app:layout_constraintBottom_toBottomOf="@id/view_dialog_group_add_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_group_add_background"
-        app:layout_constraintEnd_toEndOf="@id/view_dialog_group_add_background"
-        android:text="@string/make_group"
+        app:layout_constraintTop_toTopOf="@id/view_addgroup_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_addgroup_background"
+        app:layout_constraintStart_toStartOf="@id/view_addgroup_background"
+        app:layout_constraintEnd_toEndOf="@id/view_addgroup_background"
+        android:text="그룹 생성하기"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="18dp"/>
 
 
     <ImageButton
-        android:id="@+id/button_dialog_group_add_off"
+        android:id="@+id/button_addgroup_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_group_add_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_group_add_background"
+        app:layout_constraintTop_toTopOf="@id/view_addgroup_background"
+        app:layout_constraintStart_toStartOf="@id/view_addgroup_background"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
-        android:background="@null"
-        android:contentDescription="@string/back" />
+        android:background="@null"/>
 
     <ImageView
-        android:id="@+id/iv_dialog_group_add"
+        android:id="@+id/iv_addgroup_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/view_dialog_group_add_background"
+        app:layout_constraintTop_toBottomOf="@id/view_addgroup_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_create"
-        android:contentDescription="@string/make_group" />
+        android:src="@drawable/ic_create"/>
 
     <EditText
-        android:id="@+id/et_dialog_group_add"
+        android:id="@+id/et_addgroup_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv_dialog_group_add"
+        app:layout_constraintTop_toBottomOf="@id/iv_addgroup_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/nanumsquare_r"
-        android:hint="@string/make_group_description"
-        android:importantForAutofill="no"/>
+        android:hint="그룹 이름을 입력해 주세요"/>
 
     <ImageButton
-        android:id="@+id/button_dialog_group_add"
+        android:id="@+id/button_addgroup_confirm"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        app:layout_constraintTop_toBottomOf="@id/et_dialog_group_add"
+        app:layout_constraintTop_toBottomOf="@id/et_addgroup_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_check_gray"
-        android:background="#e9e7e7"
-        android:contentDescription="@string/confirm_button" />
+        android:background="#e9e7e7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

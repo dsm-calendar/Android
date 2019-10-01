@@ -1,13 +1,5 @@
 package com.example.dsm_calendar.ui.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -19,11 +11,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
-import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
 
-        viewPager = findViewById(R.id.main_viewPager);
-        tabLayout = findViewById(R.id.main_tabBar);
+        viewPager = findViewById(R.id.vp_main_main);
+        tabLayout = findViewById(R.id.tl_main_main);
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout);
         viewPager.setAdapter(adapter);
@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         tabLayout.setupWithViewPager(viewPager);
 
-        toolbar = findViewById(R.id.main_toolbar);
+        toolbar = findViewById(R.id.tb_main_main);
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        navigationView = findViewById(R.id.main_navigation_view);
+        navigationView = findViewById(R.id.nv_main_main);
         navigationView.setNavigationItemSelectedListener(this);
 
         View header = navigationView.getHeaderView(0);
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.main_toolbar_menu, menu);
+        menuInflater.inflate(R.menu.menu_toolbar, menu);
 
         return true;
     }
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
-            case R.id.mail:
+            case R.id.item_toolbar_mail:
                 mainPresenter.onClickMailbox();
                 break;
         }
@@ -97,28 +97,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
-            case R.id.item_setting:
+            case R.id.item_navigation_setting:
                 mainPresenter.onClickSetting();
                 break;
-            case R.id.item_code:
+            case R.id.item_navigation_code:
                 mainPresenter.onClickAuthCode();
                 break;
-            case R.id.item_event:
+            case R.id.item_navigation_event:
                 mainPresenter.onClickRequireEvent();
                 break;
-            case R.id.item_timetable:
+            case R.id.item_navigation_timeTable:
                 mainPresenter.onClickTimeTable();
                 break;
-            case R.id.item_school_calendar:
+            case R.id.item_navigation_calendar_school:
                 mainPresenter.onClickSchoolCalendar();
                 break;
-            case R.id.item_group_calendar:
+            case R.id.item_navigation_calendar_group:
                 Toast.makeText(this, "group calendar", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.item_my_calendar:
+            case R.id.item_navigation_calendar_my:
                 mainPresenter.onClickMyCalendar();
                 break;
-            case R.id.item_logout:
+            case R.id.item_navigation_logout:
                 mainPresenter.onClickLogout();
                 break;
         }

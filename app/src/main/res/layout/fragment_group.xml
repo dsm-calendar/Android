@@ -8,14 +8,14 @@
     android:layout_gravity="center_horizontal">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/group_rv"
+        android:id="@+id/rv_group_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:itemCount="5"
         tools:listitem="@layout/item_fragment_group" />
     
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/group_fab"
+        android:id="@+id/fab_group_actionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -50,22 +50,22 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         todayList.add("goto bank");
 
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        recyclerView = rootView.findViewById(R.id.main_rv);
+        recyclerView = rootView.findViewById(R.id.rv_main_listBox);
         adapter = new MainRVAdapter(getActivity(), noticeList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        rootView.findViewById(R.id.notice_radioButton).setOnClickListener(this);
-        rootView.findViewById(R.id.schedule_radioButton).setOnClickListener(this);
+        rootView.findViewById(R.id.button_main_notice).setOnClickListener(this);
+        rootView.findViewById(R.id.button_main_schedule).setOnClickListener(this);
 
         Integer[] obj = {R.drawable.sample_sportscar, R.drawable.sample_rainbow, R.drawable.sample_ocean, R.drawable.sample_universe, R.drawable.sample_car};
 
         //https://github.com/romandanylyk/PageIndicatorView
-        PageIndicatorView pageIndicatorView = rootView.findViewById(R.id.pager_indicator);
+        PageIndicatorView pageIndicatorView = rootView.findViewById(R.id.piv_main_indicator);
         pageIndicatorView.setCount(obj.length);
         pageIndicatorView.setSelection(0);
         MainBannerAdapter adapter = new MainBannerAdapter(getActivity(), obj);
-        ViewPager pager = rootView.findViewById(R.id.main_viewPager);
+        ViewPager pager = rootView.findViewById(R.id.vp_main_main);
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -90,11 +90,11 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.notice_radioButton){
+        if (v.getId() == R.id.button_main_notice){
             adapter = new MainRVAdapter(getActivity(), noticeList);
             recyclerView.setAdapter(adapter);
             Toast.makeText(getActivity(),"notice", Toast.LENGTH_SHORT).show();
-        } else if(v.getId() == R.id.schedule_radioButton){
+        } else if(v.getId() == R.id.button_main_schedule){
             adapter = new MainRVAdapter(getActivity(), todayList);
             recyclerView.setAdapter(adapter);
             Toast.makeText(getActivity(),"schedule", Toast.LENGTH_SHORT).show();

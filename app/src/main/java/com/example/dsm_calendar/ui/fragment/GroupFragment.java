@@ -46,7 +46,7 @@ public class GroupFragment extends Fragment {
         groups.add("Tlqkf");
 
         View rootView = inflater.inflate(R.layout.fragment_group, container, false);
-        recyclerView = rootView.findViewById(R.id.group_rv);
+        recyclerView = rootView.findViewById(R.id.rv_group_view);
         adapter = new GroupRVAdapter(groups, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
@@ -68,7 +68,7 @@ public class GroupFragment extends Fragment {
         groupAddDialog = new GroupAddDialog(getActivity(), offButtonListener, checkButtonListener);
         groupAddDialog.setCanceledOnTouchOutside(true);
 
-        fab_add = rootView.findViewById(R.id.group_fab);
+        fab_add = rootView.findViewById(R.id.fab_group_actionButton);
         fab_add.setOnClickListener(v -> {
             groupAddDialog.show();
         });

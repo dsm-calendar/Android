@@ -16,10 +16,10 @@ public class TimeTableActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_time_table);
+        setContentView(R.layout.activity_timetable);
 
         //TODO: fix timetable layout
-        timeTableOff = findViewById(R.id.button_time_table_off);
+        timeTableOff = findViewById(R.id.button_timetable_off);
         timeTableOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

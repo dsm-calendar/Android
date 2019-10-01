@@ -6,84 +6,77 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/view_dialog_schedule_add_background"
+        android:id="@+id/view_addschedule_background"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#6cccde"/>
 
     <TextView
-        android:id="@+id/tv_dialog_schedule_add_title"
+        android:id="@+id/tv_addschedule_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_schedule_add_background"
-        app:layout_constraintBottom_toBottomOf="@id/view_dialog_schedule_add_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_schedule_add_background"
-        app:layout_constraintEnd_toEndOf="@id/view_dialog_schedule_add_background"
-        android:text="@string/add_schedule"
+        app:layout_constraintTop_toTopOf="@id/view_addschedule_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_addschedule_background"
+        app:layout_constraintStart_toStartOf="@id/view_addschedule_background"
+        app:layout_constraintEnd_toEndOf="@id/view_addschedule_background"
+        android:text="일정 추가"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="18dp"/>
 
     <ImageButton
-        android:id="@+id/button_dialog_schedule_add_off"
+        android:id="@+id/button_addschedule_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_schedule_add_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_schedule_add_background"
+        app:layout_constraintTop_toTopOf="@id/view_addschedule_background"
+        app:layout_constraintStart_toStartOf="@id/view_addschedule_background"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
-        android:background="@null"
-        android:contentDescription="@string/back" />
+        android:background="@null"/>
 
     <ImageView
-        android:id="@+id/iv_schedule_add"
+        android:id="@+id/iv_addschedule_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/view_dialog_schedule_add_background"
+        app:layout_constraintTop_toBottomOf="@id/view_addschedule_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_calendar"
-        android:contentDescription="@string/add_schedule" />
+        android:src="@drawable/ic_calendar"/>
 
     <EditText
-        android:id="@+id/et_schedule_add_title"
+        android:id="@+id/et_addschedule_title"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv_schedule_add"
+        app:layout_constraintTop_toBottomOf="@id/iv_addschedule_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/nanumsquare_r"
-        android:hint="@string/input_schedule_title"
-        android:importantForAutofill="no"
-        android:inputType="text" />
+        android:hint="일정 제목을 입력하세요"/>
 
     <EditText
-        android:id="@+id/et_schedule_add_content"
+        android:id="@+id/et_addschedule_content"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_schedule_add_title"
+        app:layout_constraintTop_toBottomOf="@id/et_addschedule_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/nanumsquare_r"
-        android:hint="@string/input_schedule_content"
-        android:importantForAutofill="no"
-        android:inputType="text" />
+        android:hint="일정 내용을 입력하세요"/>
 
     <ImageButton
-        android:id="@+id/button_schedule_add"
+        android:id="@+id/button_addschedule_confirm"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:src="@drawable/ic_check_gray"
-        app:layout_constraintTop_toBottomOf="@id/et_schedule_add_content"
+        app:layout_constraintTop_toBottomOf="@id/et_addschedule_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:background="#e9e7e7"
-        android:contentDescription="@string/confirm_button" />
+        android:background="#e9e7e7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

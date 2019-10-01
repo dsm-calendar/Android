@@ -6,82 +6,80 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/view_dialog_invite_group_background"
+        android:id="@+id/view_invitegroup_background"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#6cccde"/>
 
     <TextView
-        android:id="@+id/tv_dialog_invite_group_title"
+        android:id="@+id/tv_invitegroup_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_invite_group_background"
-        app:layout_constraintBottom_toBottomOf="@id/view_dialog_invite_group_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_invite_group_background"
-        app:layout_constraintEnd_toEndOf="@id/view_dialog_invite_group_background"
-        android:text="@string/accept_group_invite"
+        app:layout_constraintTop_toTopOf="@id/view_invitegroup_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_invitegroup_background"
+        app:layout_constraintStart_toStartOf="@id/view_invitegroup_background"
+        app:layout_constraintEnd_toEndOf="@id/view_invitegroup_background"
+        android:text="그룹 초대 요청 수락"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="18dp"/>
 
     <ImageButton
-        android:id="@+id/button_dialog_invite_group_off"
+        android:id="@+id/button_invitegroup_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_invite_group_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_invite_group_background"
+        app:layout_constraintTop_toTopOf="@id/view_invitegroup_background"
+        app:layout_constraintStart_toStartOf="@id/view_invitegroup_background"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:src="@drawable/ic_cross_out"
-        android:background="@null"
-        android:contentDescription="@string/back" />
+        android:background="@null"/>
 
     <ImageView
-        android:id="@+id/iv_dialog_invite_group"
+        android:id="@+id/iv_invitegroup_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/view_dialog_invite_group_background"
+        app:layout_constraintTop_toBottomOf="@id/view_invitegroup_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_contact"
-        android:contentDescription="@string/accept_group_invite" />
+        android:src="@drawable/ic_contact"/>
 
     <TextView
-        android:id="@+id/tv_dialog_invite_group"
+        android:id="@+id/tv_invitegroup_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv_dialog_invite_group"
+        app:layout_constraintTop_toBottomOf="@id/iv_invitegroup_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="@string/accept_group_invite_description"/>
+        android:text="초대를 수락하시겠습니까?"/>
 
     <Button
-        android:id="@+id/button_dialog_invite_group_yes"
+        android:id="@+id/button_invitegroup_yes"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_dialog_invite_group"
+        app:layout_constraintTop_toBottomOf="@id/tv_invitegroup_desc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_dialog_invite_group_no"
+        app:layout_constraintEnd_toStartOf="@id/button_invitegroup_no"
         android:layout_marginTop="20dp"
-        android:text="@string/yes"
+        android:text="YES"
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/bm_dohyun"
         android:background="#e9e7e7"/>
 
     <Button
-        android:id="@+id/button_dialog_invite_group_no"
+        android:id="@+id/button_invitegroup_no"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_dialog_invite_group"
-        app:layout_constraintStart_toEndOf="@id/button_dialog_invite_group_yes"
+        app:layout_constraintTop_toBottomOf="@id/tv_invitegroup_desc"
+        app:layout_constraintStart_toEndOf="@id/button_invitegroup_yes"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
-        android:text="@string/no"
+        android:text="NO"
         android:textSize="20dp"
         android:gravity="center"
         android:fontFamily="@font/bm_dohyun"

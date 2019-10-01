@@ -6,53 +6,51 @@
     android:layout_height="match_parent">
 
     <View
-        android:id="@+id/view_dialog_auth_background"
+        android:id="@+id/view_accesscode_background"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#6cccde"/>
 
     <TextView
-        android:id="@+id/tv_dialog_auth_title"
+        android:id="@+id/tv_accesscode_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/view_dialog_auth_background"
-        app:layout_constraintBottom_toBottomOf="@id/view_dialog_auth_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_auth_background"
-        app:layout_constraintEnd_toEndOf="@id/view_dialog_auth_background"
-        android:text="@string/input_auth_code"
+        app:layout_constraintTop_toTopOf="@id/view_accesscode_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_accesscode_background"
+        app:layout_constraintStart_toStartOf="@id/view_accesscode_background"
+        app:layout_constraintEnd_toEndOf="@id/view_accesscode_background"
+        android:text="인증코드 입력"
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="18dp"/>
 
     <ImageButton
-        android:id="@+id/button_dialog_auth_off"
-        app:layout_constraintTop_toTopOf="@+id/view_dialog_auth_background"
-        app:layout_constraintStart_toStartOf="@id/view_dialog_auth_background"
+        android:id="@+id/button_accesscode_off"
+        app:layout_constraintTop_toTopOf="@+id/view_accesscode_background"
+        app:layout_constraintStart_toStartOf="@id/view_accesscode_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:background="@null"
-        android:src="@drawable/ic_cross_out"
-        android:contentDescription="@string/back" />
+        android:src="@drawable/ic_cross_out"/>
 
     <ImageView
-        android:id="@+id/iv_dialog_auth"
+        android:id="@+id/iv_accesscode_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/view_dialog_auth_background"
+        app:layout_constraintTop_toBottomOf="@id/view_accesscode_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
-        android:src="@drawable/ic_admin_sign"
-        android:contentDescription="@string/input_auth_code" />
+        android:src="@drawable/ic_admin_sign"/>
 
     <TextView
-        android:id="@+id/tv_dialog_auth"
+        android:id="@+id/tv_accesscode_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv_dialog_auth"
+        app:layout_constraintTop_toBottomOf="@id/iv_accesscode_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
@@ -60,37 +58,36 @@
         android:textSize="15dp"
         android:textColor="#929292"
         android:fontFamily="@font/nanumsquare_r"
-        android:text="@string/auth_code_description"/>
+        android:text="인증 코드를 입력하여 \n관리자 권한을 취득할 수 있습니다"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tl_dialog_auth"
+        android:id="@+id/til_accesscode_code"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_dialog_auth"
+        app:layout_constraintTop_toBottomOf="@id/tv_accesscode_desc"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_dialog_auth"
+            android:id="@+id/tiet_accesscode_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:fontFamily="@font/nanumsquare_r"
-            android:hint="@string/code_here"/>
+            android:hint="Code here"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageButton
-        android:id="@+id/button_dialog_auth"
+        android:id="@+id/button_accesscode_confirm"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        app:layout_constraintTop_toBottomOf="@id/tl_dialog_auth"
+        app:layout_constraintTop_toBottomOf="@id/til_accesscode_code"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_check_gray"
-        android:background="#e9e7e7"
-        android:contentDescription="@string/confirm_button" />
+        android:background="#e9e7e7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

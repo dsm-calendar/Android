@@ -27,7 +27,7 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
-        Toolbar toolbar = findViewById(R.id.message_toolbar);
+        Toolbar toolbar = findViewById(R.id.tb_message_message);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -50,7 +50,7 @@ public class MessageActivity extends AppCompatActivity {
         dateList.add("2019.06.29");
         dateList.add("2019.07.02");
 
-        recyclerView = findViewById(R.id.message_rv);
+        recyclerView = findViewById(R.id.rv_message_message);
         adapter = new MessageRVAdapter(messageList, dateList, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

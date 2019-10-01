@@ -37,12 +37,12 @@ public class AuthCodeDialog extends Dialog {
         layoutParams.dimAmount = 0.8f;
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.dialog_authorization_code);
+        setContentView(R.layout.dialog_accesscode);
 
-        textInputLayout = findViewById(R.id.tl_dialog_auth);
-        editText = findViewById(R.id.et_dialog_auth);
-        offButton = findViewById(R.id.button_dialog_auth_off);
-        checkButton = findViewById(R.id.button_dialog_auth);
+        textInputLayout = findViewById(R.id.til_accesscode_code);
+        editText = findViewById(R.id.tiet_accesscode_code);
+        offButton = findViewById(R.id.button_accesscode_off);
+        checkButton = findViewById(R.id.button_accesscode_confirm);
 
         offButton.setOnClickListener(offButtonListener);
         checkButton.setOnClickListener(checkButtonListener);

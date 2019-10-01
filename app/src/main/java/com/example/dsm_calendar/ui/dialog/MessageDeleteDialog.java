@@ -43,11 +43,11 @@ public class MessageDeleteDialog extends Dialog {
 
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.dialog_delete_message);
+        setContentView(R.layout.dialog_deletemessage);
 
-        offButton = findViewById(R.id.button_delete_message_off);
-        yesButton = findViewById(R.id.button_dialog_delete_group_yes);
-        noButton = findViewById(R.id.button_dialog_delete_group_no);
+        offButton = findViewById(R.id.button_deletemessage_off);
+        yesButton = findViewById(R.id.button_deletemessage_yes);
+        noButton = findViewById(R.id.button_deletemessage_no);
 
         offButton.setOnClickListener(offButtonListener);
         yesButton.setOnClickListener(yesButtonListener);

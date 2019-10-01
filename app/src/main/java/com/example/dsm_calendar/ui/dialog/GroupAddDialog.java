@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,11 +40,11 @@ public class GroupAddDialog extends Dialog {
 
         getWindow().setAttributes(layoutParams);
 
-        setContentView(R.layout.dialog_group_add);
+        setContentView(R.layout.dialog_addgroup);
 
-        editText = findViewById(R.id.et_dialog_group_add);
-        offButton = findViewById(R.id.button_dialog_group_add_off);
-        checkButton = findViewById(R.id.button_dialog_group_add);
+        editText = findViewById(R.id.et_addgroup_name);
+        offButton = findViewById(R.id.button_addgroup_off);
+        checkButton = findViewById(R.id.button_addgroup_confirm);
 
         offButton.setOnClickListener(offButtonListener);
         checkButton.setOnClickListener(checkButtonListener);
