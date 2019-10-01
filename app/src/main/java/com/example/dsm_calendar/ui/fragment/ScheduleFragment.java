@@ -39,13 +39,13 @@ public class ScheduleFragment extends Fragment {
         list.add(new SampleSchedule("sample 3", "2019-05-05", "holiday"));
 
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
-        recyclerView = rootView.findViewById(R.id.schedule_rv);
+        recyclerView = rootView.findViewById(R.id.rv_schedule_schedule);
         adapter = new ScheduleRVAdapter(getActivity(), list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
         scheduleAddDialog = new ScheduleAddDialog(getActivity(), offButtonListener, checkButtonListener);
-        scheduleAddButton = rootView.findViewById(R.id.schedule_add_button);
+        scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
         scheduleAddButton.setOnClickListener( v -> {
             scheduleAddDialog.show();
         });

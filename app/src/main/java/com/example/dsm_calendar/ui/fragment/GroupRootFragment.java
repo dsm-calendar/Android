@@ -19,7 +19,7 @@ public class GroupRootFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_group_root, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_grouproot, container, false);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, new GroupFragment());

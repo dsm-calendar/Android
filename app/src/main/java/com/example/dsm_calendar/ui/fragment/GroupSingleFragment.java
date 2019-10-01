@@ -24,10 +24,10 @@ public class GroupSingleFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //TODO: add fab to group single fragment
-        View rootView = inflater.inflate(R.layout.fragment_group_single, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_groupsingle, container, false);
 
-        fab = rootView.findViewById(R.id.fab_group_single);
-        nsv = rootView.findViewById(R.id.nestedScrollView_group_single);
+        fab = rootView.findViewById(R.id.fab_groupsingle_actionButton);
+        nsv = rootView.findViewById(R.id.nsv_groupsingle_view);
 
         nsv.setOnScrollChangeListener((View.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             if(scrollY > oldScrollY){
