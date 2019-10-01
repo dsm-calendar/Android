@@ -10,6 +10,6 @@ public interface GroupContract {
     }
 
     interface Repository{
-        
+
     }
 }

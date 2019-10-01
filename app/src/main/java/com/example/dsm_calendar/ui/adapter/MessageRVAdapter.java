@@ -20,14 +20,12 @@ import java.util.ArrayList;
 
 public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.MessageViewHolder> {
 
-    private ArrayList<String> messageList;
-    private ArrayList<String> dateList;
+    public ArrayList<String> messageList;
+    public ArrayList<String> dateList;
     private Context context;
     private MessagePresenter messagePresenter;
 
-    public MessageRVAdapter(ArrayList<String> message, ArrayList<String> date, Context context, MessagePresenter messagePresenter){
-        this.messageList = message;
-        this.dateList = date;
+    public MessageRVAdapter(Context context, MessagePresenter messagePresenter){
         this.context = context;
         this.messagePresenter = messagePresenter;
     }

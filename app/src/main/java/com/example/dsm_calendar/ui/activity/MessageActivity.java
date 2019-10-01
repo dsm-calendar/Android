@@ -27,8 +27,6 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
 
     private RecyclerView recyclerView;
     private MessageRVAdapter adapter;
-    private ArrayList<String> messageList = new ArrayList<>();
-    private ArrayList<String> dateList = new ArrayList<>();
     private GroupInviteDialog groupInviteDialog;
     private MessageDeleteDialog messageDeleteDialog;
     private MessagePresenter messagePresenter = new MessagePresenter(this, new MessageRepository());
@@ -73,25 +71,12 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         groupInviteDialog.setCanceledOnTouchOutside(true);
         messageDeleteDialog.setCanceledOnTouchOutside(true);
 
-        messageList.add("동휘님이 게임만들기 프로젝트에 당신을 초대하셨습니다");
-        messageList.add("윤성님이 야구그룹에 당신을 초대하셨습니다");
-        messageList.add("승민님이 헬스장에 당신을 초대하셨습니다");
-        messageList.add("하경님이 이상한 곳에 당신을 초대하셨습니다");
-        messageList.add("누군가가 대마고에 당신을 초대하셨습니다");
-        messageList.add("경고: 당신은 사람입니다");
-        messageList.add("안녕하세요 dsm-calendar에 오신 것을 환영합니다");
-        dateList.add("2019.01.03");
-        dateList.add("2019.02.14");
-        dateList.add("2019.02.22");
-        dateList.add("2019.05.05");
-        dateList.add("2019.05.10");
-        dateList.add("2019.06.29");
-        dateList.add("2019.07.02");
-
         recyclerView = findViewById(R.id.rv_message_message);
-        adapter = new MessageRVAdapter(messageList, dateList, this, messagePresenter);
+        adapter = new MessageRVAdapter(this, messagePresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        messagePresenter.onStarted();
     }
 
     @Override
@@ -112,5 +97,11 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     @Override
     public void showDeleteDialog() {
         messageDeleteDialog.show();
+    }
+
+    @Override
+    public void addItems(ArrayList<String> testMessage, ArrayList<String> testDate) {
+        adapter.messageList = testMessage;
+        adapter.dateList = testDate;
     }
 }
