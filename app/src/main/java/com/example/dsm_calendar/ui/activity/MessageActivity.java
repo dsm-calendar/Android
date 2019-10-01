@@ -19,6 +19,7 @@ import com.example.dsm_calendar.presenter.MessagePresenter;
 import com.example.dsm_calendar.ui.adapter.MessageRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupInviteDialog;
 import com.example.dsm_calendar.ui.dialog.MessageDeleteDialog;
+import com.example.dsm_calendar.util.GroupInviteDialogListener;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,18 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_cross_out);
 
-        groupInviteDialog = new GroupInviteDialog(this, MCDOffButtonListener, MCDYesButtonListener, MCDNoButtonListener);
+        groupInviteDialog = new GroupInviteDialog(this);
+        groupInviteDialog.setInviteDialogListener(new GroupInviteDialogListener() {
+            @Override
+            public void onYesClicked() {
+                Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNoClicked() {
+                Toast.makeText(groupInviteDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
+            }
+        });
         messageDeleteDialog = new MessageDeleteDialog(this, MDDOffButtonListener, MDDYesButtonListener, MDDNoButtonListener);
         groupInviteDialog.setCanceledOnTouchOutside(true);
         messageDeleteDialog.setCanceledOnTouchOutside(true);
@@ -90,27 +102,6 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     public void showDeleteDialog() {
         messageDeleteDialog.show();
     }
-
-    private View.OnClickListener MCDOffButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            groupInviteDialog.dismiss();
-        }
-    };
-
-    private View.OnClickListener MCDYesButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private View.OnClickListener MCDNoButtonListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(groupInviteDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     private  View.OnClickListener MDDOffButtonListener = new View.OnClickListener(){
         @Override
