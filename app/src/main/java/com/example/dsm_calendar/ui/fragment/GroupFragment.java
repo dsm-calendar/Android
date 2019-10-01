@@ -13,19 +13,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.GroupContract;
+import com.example.dsm_calendar.data.GroupRepository;
+import com.example.dsm_calendar.presenter.GroupPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
+import com.example.dsm_calendar.util.GroupAddDialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class GroupFragment extends Fragment {
+public class GroupFragment extends Fragment implements GroupContract.View {
 
     private RecyclerView recyclerView;
     private GroupRVAdapter adapter;
     private ArrayList<String> groups = new ArrayList<>();
     private GroupAddDialog groupAddDialog;
     private FloatingActionButton fab_add;
+    private GroupPresenter groupPresenter = new GroupPresenter(this, new GroupRepository());
 
     public GroupFragment(){}
 
@@ -65,13 +70,17 @@ public class GroupFragment extends Fragment {
             }
         });
 
-        groupAddDialog = new GroupAddDialog(getActivity(), offButtonListener, checkButtonListener);
+        groupAddDialog = new GroupAddDialog(getActivity());
+        groupAddDialog.setGroupAddDialogListener(new GroupAddDialogListener() {
+            @Override
+            public void onConfirmClicked(String name) {
+                Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
+            }
+        });
         groupAddDialog.setCanceledOnTouchOutside(true);
 
         fab_add = rootView.findViewById(R.id.fab_group_actionButton);
-        fab_add.setOnClickListener(v -> {
-            groupAddDialog.show();
-        });
+        fab_add.setOnClickListener(v -> groupPresenter.onClickAddGroup());
 
         return rootView;
     }
@@ -81,17 +90,8 @@ public class GroupFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    private View.OnClickListener offButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            groupAddDialog.dismiss();
-        }
-    };
-
-    private View.OnClickListener checkButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getActivity(), "check", Toast.LENGTH_SHORT).show();
-        }
-    };
+    @Override
+    public void showGroupAddDialog() {
+        groupAddDialog.show();
+    }
 }
