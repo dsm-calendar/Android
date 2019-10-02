@@ -9,6 +9,7 @@ public interface ScheduleContract {
 
     interface View{
         void showScheduleAddDialog();
+        void showMessageForItemClicked();
         void showMessageForDeleteSchedule();
         void addItems(ArrayList<SampleSchedule> testSchedule);
     }

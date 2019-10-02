@@ -36,7 +36,7 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
 
     @Override
     public void onItemClicked() {
-
+        scheduleView.showMessageForItemClicked();
     }
 
     @Override

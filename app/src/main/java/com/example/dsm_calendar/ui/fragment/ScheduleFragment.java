@@ -78,6 +78,11 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     }
 
     @Override
+    public void showMessageForItemClicked() {
+        Toast.makeText(getActivity(), "ItemClicked", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void showMessageForDeleteSchedule() {
         Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
     }

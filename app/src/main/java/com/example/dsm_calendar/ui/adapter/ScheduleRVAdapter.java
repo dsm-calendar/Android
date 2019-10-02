@@ -84,12 +84,7 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
             tv_title.setText(schedule.getTitle());
             tv_date.setText(schedule.getDate());
             tv_content.setText(schedule.getContent());
-            delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    schedulePresenter.onItemDeleteClicked();
-                }
-            });
+            delete.setOnClickListener(v -> schedulePresenter.onItemDeleteClicked());
         }
     }
 }
