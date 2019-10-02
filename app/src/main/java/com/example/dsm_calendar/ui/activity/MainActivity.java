@@ -25,6 +25,7 @@ import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
 import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
+import com.example.dsm_calendar.util.AccessCodeDialogListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -66,7 +67,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profile.setBackground(new ShapeDrawable(new OvalShape()));
         profile.setClipToOutline(true);
 
-        authCodeDialog = new AuthCodeDialog(this, offButtonListener, checkButtonListener);
+        authCodeDialog = new AuthCodeDialog(this);
+        authCodeDialog.setAuthCodeDialogListener(new AccessCodeDialogListener() {
+            @Override
+            public void onClickConfirm(String code) {
+                Toast.makeText(getApplicationContext(), "Code: " + code, Toast.LENGTH_LONG).show();
+            }
+        });
         authCodeDialog.setCanceledOnTouchOutside(true);
 
         setToolBar();
@@ -143,20 +150,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setHomeButtonEnabled(true);
     }
-
-    private View.OnClickListener offButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            authCodeDialog.dismiss();
-        }
-    };
-
-    private View.OnClickListener checkButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(v.getContext(), "check", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     @Override
     public void startMailBoxActivity() {
