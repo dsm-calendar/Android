@@ -14,18 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.presenter.SchedulePresenter;
 
 import java.util.ArrayList;
 
 public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.ScheduleViewHolder> {
 
-    private ArrayList<SampleSchedule> list;
+    public ArrayList<SampleSchedule> list;
     private Context context;
+    private SchedulePresenter schedulePresenter;
 
-    //TODO: longClick (or something else) to delete item
-    public ScheduleRVAdapter(Context context, ArrayList<SampleSchedule> list){
+    public ScheduleRVAdapter(Context context, SchedulePresenter schedulePresenter){
         this.context = context;
-        this.list = list;
+        this.schedulePresenter = schedulePresenter;
     }
 
     @NonNull
@@ -44,6 +45,8 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
         holder.bind(schedule);
 
         holder.itemView.setOnClickListener( v -> {
+            schedulePresenter.onItemClicked();
+            //TODO: how to manage items in view not adapter?
             boolean expanded = schedule.getExpended();
             schedule.setExpended(!expanded);
             notifyItemChanged(position);
@@ -84,7 +87,7 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "delete", Toast.LENGTH_SHORT).show();
+                    schedulePresenter.onItemDeleteClicked();
                 }
             });
         }

@@ -14,33 +14,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.ScheduleContract;
 import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.ScheduleRepository;
+import com.example.dsm_calendar.presenter.SchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
 
 import java.util.ArrayList;
 
-public class ScheduleFragment extends Fragment {
+public class ScheduleFragment extends Fragment implements ScheduleContract.View {
 
     private RecyclerView recyclerView;
     private ScheduleRVAdapter adapter;
-    private ArrayList<SampleSchedule> list = new ArrayList<>();
     private ImageButton scheduleAddButton;
     private ScheduleAddDialog scheduleAddDialog;
+    private SchedulePresenter schedulePresenter = new SchedulePresenter(this, new ScheduleRepository());
 
     public ScheduleFragment() {}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        list.add(new SampleSchedule("sample 1", "2019-03-04", "blablablabla"));
-        list.add(new SampleSchedule("sample 2", "2019-04-23", "today i have to go to school i want to go home fuck"));
-        list.add(new SampleSchedule("sample 3", "2019-05-05", "holiday"));
-
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
         recyclerView = rootView.findViewById(R.id.rv_schedule_schedule);
-        adapter = new ScheduleRVAdapter(getActivity(), list);
+        adapter = new ScheduleRVAdapter(getActivity(), schedulePresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
@@ -48,9 +46,9 @@ public class ScheduleFragment extends Fragment {
         scheduleAddDialog.setCanceledOnTouchOutside(true);
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
-        scheduleAddButton.setOnClickListener( v -> {
-            scheduleAddDialog.show();
-        });
+        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked());
+
+        schedulePresenter.onStarted();
 
         return rootView;
     }
@@ -73,4 +71,19 @@ public class ScheduleFragment extends Fragment {
             Toast.makeText(getActivity(), "check", Toast.LENGTH_SHORT).show();
         }
     };
+
+    @Override
+    public void showScheduleAddDialog() {
+        scheduleAddDialog.show();
+    }
+
+    @Override
+    public void showMessageForDeleteSchedule() {
+        Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void addItems(ArrayList<SampleSchedule> testSchedule) {
+        adapter.list = testSchedule;
+    }
 }

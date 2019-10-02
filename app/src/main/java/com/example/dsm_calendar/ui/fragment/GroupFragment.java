@@ -40,7 +40,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         View rootView = inflater.inflate(R.layout.fragment_group, container, false);
 
         recyclerView = rootView.findViewById(R.id.rv_group_view);
-        adapter = new GroupRVAdapter(getActivity());
+        adapter = new GroupRVAdapter(getActivity(), groupPresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -83,6 +83,11 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     @Override
     public void showGroupAddDialog() {
         groupAddDialog.show();
+    }
+
+    @Override
+    public void showTestDialog() {
+        Toast.makeText(getActivity(), "item clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override

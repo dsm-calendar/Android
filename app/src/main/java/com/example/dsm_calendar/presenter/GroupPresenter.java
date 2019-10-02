@@ -24,6 +24,11 @@ public class GroupPresenter implements GroupContract.Presenter {
     }
 
     @Override
+    public void onClickItems() {
+        groupView.showTestDialog();
+    }
+
+    @Override
     public void onStarted(ArrayList<String> testGroup) {
         groupRepo.getGroupList(new GroupRepository.GetGroupListListener() {
             @Override

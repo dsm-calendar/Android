@@ -7,11 +7,13 @@ import java.util.ArrayList;
 public interface GroupContract {
     interface View{
         void showGroupAddDialog();
+        void showTestDialog();
         void addItems(ArrayList<String> testGroup);
     }
 
     interface Presenter{
         void onClickAddGroup();
+        void onClickItems();
         void onStarted(ArrayList<String> testGroup);
     }
 

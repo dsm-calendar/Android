@@ -5,21 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.presenter.GroupPresenter;
+
 import java.util.ArrayList;
 
 public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupViewHolder> {
 
     public ArrayList<String> groupList;
     private Context context;
+    private GroupPresenter groupPresenter;
 
-    public GroupRVAdapter(Context context){
+    public GroupRVAdapter(Context context, GroupPresenter groupPresenter){
         this.context = context;
+        this.groupPresenter = groupPresenter;
     }
 
     @NonNull
@@ -47,7 +50,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
             super(itemView);
             tv_group_name = itemView.findViewById(R.id.tv_group_name);
             itemView.setOnClickListener(v -> {
-                Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show();
+                groupPresenter.onClickItems();
             });
         }
 
