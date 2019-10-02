@@ -20,6 +20,7 @@ import com.example.dsm_calendar.data.ScheduleRepository;
 import com.example.dsm_calendar.presenter.SchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
+import com.example.dsm_calendar.util.ScheduleAddDialogListener;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,13 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        scheduleAddDialog = new ScheduleAddDialog(getActivity(), offButtonListener, checkButtonListener);
+        scheduleAddDialog = new ScheduleAddDialog(getActivity());
+        scheduleAddDialog.setScheduleAddDialogListener(new ScheduleAddDialogListener() {
+            @Override
+            public void onClickConfirm(String title, String content) {
+                Toast.makeText(getActivity(), "title: " + title + "\n" + "Content: " + content, Toast.LENGTH_LONG).show();
+            }
+        });
         scheduleAddDialog.setCanceledOnTouchOutside(true);
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
@@ -57,20 +64,6 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
-    private View.OnClickListener offButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            scheduleAddDialog.dismiss();
-        }
-    };
-
-    private View.OnClickListener checkButtonListener = new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getActivity(), "check", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     @Override
     public void showScheduleAddDialog() {
