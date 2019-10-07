@@ -25,7 +25,7 @@ import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
 import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
-import com.example.dsm_calendar.util.AccessCodeDialogListener;
+import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profile.setClipToOutline(true);
 
         authCodeDialog = new AuthCodeDialog(this);
-        authCodeDialog.setAuthCodeDialogListener(new AccessCodeDialogListener() {
+        authCodeDialog.setAuthCodeDialogListener(new DialogListener.AccessCodeDialogListener() {
             @Override
             public void onClickConfirm(String code) {
                 Toast.makeText(getApplicationContext(), "Code: " + code, Toast.LENGTH_LONG).show();

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.util.AccessCodeDialogListener;
+import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -20,7 +21,7 @@ public class AuthCodeDialog extends Dialog implements View.OnClickListener{
     private TextInputEditText editText;
     private ImageButton offButton;
     private ImageButton checkButton;
-    private AccessCodeDialogListener listener;
+    private DialogListener.AccessCodeDialogListener listener;
 
     public AuthCodeDialog(@NonNull Context context) {
         super(context);
@@ -60,7 +61,7 @@ public class AuthCodeDialog extends Dialog implements View.OnClickListener{
         }
     }
 
-    public void setAuthCodeDialogListener(AccessCodeDialogListener listener){
+    public void setAuthCodeDialogListener(DialogListener.AccessCodeDialogListener listener){
         this.listener = listener;
     }
 }

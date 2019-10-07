@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.util.DialogListener;
 import com.example.dsm_calendar.util.GroupAddDialogListener;
 
 public class GroupAddDialog extends Dialog implements  View.OnClickListener{
@@ -19,7 +20,7 @@ public class GroupAddDialog extends Dialog implements  View.OnClickListener{
     private EditText editText;
     private ImageView offButton;
     private ImageButton checkButton;
-    private GroupAddDialogListener listener;
+    private DialogListener.GroupAddDialogListener listener;
 
     public GroupAddDialog(@NonNull Context context) {
         super(context);
@@ -59,7 +60,7 @@ public class GroupAddDialog extends Dialog implements  View.OnClickListener{
         }
     }
 
-    public void setGroupAddDialogListener(GroupAddDialogListener listener){
+    public void setGroupAddDialogListener(DialogListener.GroupAddDialogListener listener){
         this.listener = listener;
     }
 }

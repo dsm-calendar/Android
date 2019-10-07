@@ -20,7 +20,7 @@ import com.example.dsm_calendar.data.ScheduleRepository;
 import com.example.dsm_calendar.presenter.SchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
-import com.example.dsm_calendar.util.ScheduleAddDialogListener;
+import com.example.dsm_calendar.util.DialogListener;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,7 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         recyclerView.setAdapter(adapter);
 
         scheduleAddDialog = new ScheduleAddDialog(getActivity());
-        scheduleAddDialog.setScheduleAddDialogListener(new ScheduleAddDialogListener() {
+        scheduleAddDialog.setScheduleAddDialogListener(new DialogListener.ScheduleAddDialogListener() {
             @Override
             public void onClickConfirm(String title, String content) {
                 Toast.makeText(getActivity(), "title: " + title + "\n" + "Content: " + content, Toast.LENGTH_LONG).show();

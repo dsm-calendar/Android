@@ -18,7 +18,7 @@ import com.example.dsm_calendar.data.GroupRepository;
 import com.example.dsm_calendar.presenter.GroupPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
-import com.example.dsm_calendar.util.GroupAddDialogListener;
+import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         });
 
         groupAddDialog = new GroupAddDialog(getActivity());
-        groupAddDialog.setGroupAddDialogListener(new GroupAddDialogListener() {
+        groupAddDialog.setGroupAddDialogListener(new DialogListener.GroupAddDialogListener() {
             @Override
             public void onConfirmClicked(String name) {
                 Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();

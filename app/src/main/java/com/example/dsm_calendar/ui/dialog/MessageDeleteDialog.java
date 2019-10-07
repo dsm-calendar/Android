@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.util.DialogListener;
 import com.example.dsm_calendar.util.MessageDeleteDialogListener;
 
 public class MessageDeleteDialog extends Dialog implements View.OnClickListener {
@@ -18,7 +19,7 @@ public class MessageDeleteDialog extends Dialog implements View.OnClickListener 
     private ImageButton offButton;
     private Button yesButton;
     private Button noButton;
-    private MessageDeleteDialogListener listener;
+    private DialogListener.MessageDeleteDialogListener listener;
 
     public MessageDeleteDialog(@NonNull Context context) {
         super(context);
@@ -62,7 +63,7 @@ public class MessageDeleteDialog extends Dialog implements View.OnClickListener 
         }
     }
 
-    public void setMessageDeleteDialogListener(MessageDeleteDialogListener listener){
+    public void setMessageDeleteDialogListener(DialogListener.MessageDeleteDialogListener listener){
         this.listener = listener;
     }
 }

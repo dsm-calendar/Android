@@ -18,8 +18,7 @@ import com.example.dsm_calendar.presenter.MessagePresenter;
 import com.example.dsm_calendar.ui.adapter.MessageRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupInviteDialog;
 import com.example.dsm_calendar.ui.dialog.MessageDeleteDialog;
-import com.example.dsm_calendar.util.GroupInviteDialogListener;
-import com.example.dsm_calendar.util.MessageDeleteDialogListener;
+import com.example.dsm_calendar.util.DialogListener;
 
 import java.util.ArrayList;
 
@@ -45,7 +44,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         actionBar.setHomeAsUpIndicator(R.drawable.ic_cross_out);
 
         groupInviteDialog = new GroupInviteDialog(this);
-        groupInviteDialog.setInviteDialogListener(new GroupInviteDialogListener() {
+        groupInviteDialog.setInviteDialogListener(new DialogListener.GroupInviteDialogListener() {
             @Override
             public void onYesClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
@@ -57,7 +56,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
             }
         });
         messageDeleteDialog = new MessageDeleteDialog(this);
-        messageDeleteDialog.setMessageDeleteDialogListener(new MessageDeleteDialogListener() {
+        messageDeleteDialog.setMessageDeleteDialogListener(new DialogListener.MessageDeleteDialogListener() {
             @Override
             public void onYesClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();

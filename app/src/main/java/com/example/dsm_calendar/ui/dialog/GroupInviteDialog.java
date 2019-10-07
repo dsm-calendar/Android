@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.util.DialogListener;
 import com.example.dsm_calendar.util.GroupInviteDialogListener;
 
 public class GroupInviteDialog extends Dialog implements View.OnClickListener {
@@ -18,7 +19,7 @@ public class GroupInviteDialog extends Dialog implements View.OnClickListener {
     private ImageButton offButton;
     private Button yesButton;
     private Button noButton;
-    private GroupInviteDialogListener listener;
+    private DialogListener.GroupInviteDialogListener listener;
 
     public GroupInviteDialog(@NonNull Context context) {
         super(context);
@@ -61,7 +62,7 @@ public class GroupInviteDialog extends Dialog implements View.OnClickListener {
         }
     }
 
-    public void setInviteDialogListener(GroupInviteDialogListener listener){
+    public void setInviteDialogListener(DialogListener.GroupInviteDialogListener listener){
         this.listener = listener;
     }
 }

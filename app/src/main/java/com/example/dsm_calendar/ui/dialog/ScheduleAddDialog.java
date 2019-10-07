@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.util.DialogListener;
 import com.example.dsm_calendar.util.ScheduleAddDialogListener;
 
 public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
@@ -19,7 +20,7 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
     private EditText content;
     private ImageButton offButton;
     private ImageButton checkButton;
-    private ScheduleAddDialogListener listener;
+    private DialogListener.ScheduleAddDialogListener listener;
 
     public ScheduleAddDialog(@NonNull Context context) {
         super(context);
@@ -60,7 +61,7 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
         }
     }
 
-    public void setScheduleAddDialogListener(ScheduleAddDialogListener listener){
+    public void setScheduleAddDialogListener(DialogListener.ScheduleAddDialogListener listener){
         this.listener = listener;
     }
 }
