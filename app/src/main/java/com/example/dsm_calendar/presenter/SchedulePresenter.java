@@ -45,7 +45,7 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
     }
 
     @Override
-    public void onAddScheduleClicked() {
-        scheduleView.showScheduleAddDialog();
+    public void onAddScheduleClicked(String date) {
+        scheduleView.showScheduleAddDialog(date);
     }
 }

@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.util.DialogListener;
-import com.example.dsm_calendar.util.GroupInviteDialogListener;
 
 public class GroupInviteDialog extends Dialog implements View.OnClickListener {
 

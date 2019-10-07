@@ -7,20 +7,23 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.util.DialogListener;
-import com.example.dsm_calendar.util.ScheduleAddDialogListener;
 
 public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
 
     private EditText title;
     private EditText content;
+    private TextView date;
     private ImageButton offButton;
     private ImageButton checkButton;
     private DialogListener.ScheduleAddDialogListener listener;
+
+    private String selectedDate;
 
     public ScheduleAddDialog(@NonNull Context context) {
         super(context);
@@ -39,9 +42,11 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
 
         title = findViewById(R.id.et_addschedule_title);
         content = findViewById(R.id.et_addschedule_content);
+        date = findViewById(R.id.tv_addschedule_date);
         offButton = findViewById(R.id.button_addschedule_off);
         checkButton = findViewById(R.id.button_addschedule_confirm);
 
+        date.setText(selectedDate);
         offButton.setOnClickListener(this);
         checkButton.setOnClickListener(this) ;
     }
@@ -63,5 +68,9 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
 
     public void setScheduleAddDialogListener(DialogListener.ScheduleAddDialogListener listener){
         this.listener = listener;
+    }
+
+    public void setDate(String date){
+        this.selectedDate = date;
     }
 }

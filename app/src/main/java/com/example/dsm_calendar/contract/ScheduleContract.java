@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface ScheduleContract {
 
     interface View{
-        void showScheduleAddDialog();
+        void showScheduleAddDialog(String date);
         void showMessageForItemClicked();
         void showMessageForDeleteSchedule();
         void addItems(ArrayList<SampleSchedule> testSchedule);
@@ -18,7 +18,7 @@ public interface ScheduleContract {
         void onStarted();
         void onItemClicked();
         void onItemDeleteClicked();
-        void onAddScheduleClicked();
+        void onAddScheduleClicked(String date);
     }
 
     interface Repository{

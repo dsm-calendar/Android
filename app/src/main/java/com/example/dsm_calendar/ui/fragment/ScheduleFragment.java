@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
 import com.example.dsm_calendar.util.DialogListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ScheduleFragment extends Fragment implements ScheduleContract.View {
@@ -29,8 +31,12 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     private RecyclerView recyclerView;
     private ScheduleRVAdapter adapter;
     private ImageButton scheduleAddButton;
+    private CalendarView calendarView;
     private ScheduleAddDialog scheduleAddDialog;
     private SchedulePresenter schedulePresenter = new SchedulePresenter(this, new ScheduleRepository());
+
+    private String selectedDate;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public ScheduleFragment() {}
 
@@ -53,7 +59,18 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         scheduleAddDialog.setCanceledOnTouchOutside(true);
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
-        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked());
+        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked(selectedDate));
+
+        calendarView = rootView.findViewById(R.id.cv_schedule_calendar);
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                selectedDate = (year + "-" + month + "-" + dayOfMonth);
+                Toast.makeText(getActivity(), year +"-"+ month +"-"+ dayOfMonth, Toast.LENGTH_LONG).show();
+                //TODO: month + 1
+            }
+        });
+//        selectedDate = sdf.format(calendarView.getDate());
 
         schedulePresenter.onStarted();
 
@@ -66,7 +83,8 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     }
 
     @Override
-    public void showScheduleAddDialog() {
+    public void showScheduleAddDialog(String date) {
+        scheduleAddDialog.setDate(date);
         scheduleAddDialog.show();
     }
 
