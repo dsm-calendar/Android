@@ -69,7 +69,11 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
 
     @Override
     public void onAddScheduleClicked(String date, CalendarDay day) {
-        scheduleView.showScheduleAddDialog(date, day);
+        if (day == null){
+            scheduleView.showMessageForSelectDate();
+        } else {
+            scheduleView.showScheduleAddDialog(date, day);
+        }
     }
 
 }

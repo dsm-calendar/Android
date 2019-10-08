@@ -12,6 +12,7 @@ public interface ScheduleContract {
         void showScheduleAddDialog(String date, CalendarDay day);
         void showMessageForDeleteSchedule();
         void showMessageForItemAdded();
+        void showMessageForSelectDate();
         void getItems(ArrayList<SampleSchedule> testSchedule);
         void addSchedule(SampleSchedule schedule);
         void deleteSchedule(int position);
