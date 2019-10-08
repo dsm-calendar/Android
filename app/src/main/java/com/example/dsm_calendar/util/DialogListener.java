@@ -20,6 +20,6 @@ public interface DialogListener {
     }
 
     interface ScheduleAddDialogListener{
-        void onClickConfirm(String title, String content);
+        void onClickConfirm(String title, String date, String content);
     }
 }

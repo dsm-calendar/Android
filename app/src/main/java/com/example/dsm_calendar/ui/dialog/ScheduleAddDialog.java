@@ -3,6 +3,7 @@ package com.example.dsm_calendar.ui.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -58,7 +59,7 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
                 dismiss();
                 break;
             case R.id.button_addschedule_confirm:
-                listener.onClickConfirm(title.getText().toString(), content.getText().toString());
+                listener.onClickConfirm(title.getText().toString(), date.getText().toString(), content.getText().toString());
                 title.setText("");
                 content.setText("");
                 dismiss();
@@ -70,7 +71,10 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
         this.listener = listener;
     }
 
-    public void setDate(String date){
-        this.selectedDate = date;
+    public void setDate(String selectedDate){
+        this.selectedDate = selectedDate;
+        if (date != null){
+            date.setText(selectedDate);
+        }
     }
 }

@@ -52,8 +52,10 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         scheduleAddDialog = new ScheduleAddDialog(getActivity());
         scheduleAddDialog.setScheduleAddDialogListener(new DialogListener.ScheduleAddDialogListener() {
             @Override
-            public void onClickConfirm(String title, String content) {
+            public void onClickConfirm(String title, String date, String content) {
                 Toast.makeText(getActivity(), "title: " + title + "\n" + "Content: " + content, Toast.LENGTH_LONG).show();
+                adapter.list.add(new SampleSchedule(title, date,content));
+                adapter.notifyItemInserted(adapter.getItemCount()+1);
             }
         });
         scheduleAddDialog.setCanceledOnTouchOutside(true);
@@ -65,9 +67,7 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                selectedDate = (year + "-" + month + "-" + dayOfMonth);
-                Toast.makeText(getActivity(), year +"-"+ month +"-"+ dayOfMonth, Toast.LENGTH_LONG).show();
-                //TODO: month + 1
+                selectedDate = (year + "-" + (month+1) + "-" + dayOfMonth);
             }
         });
 //        selectedDate = sdf.format(calendarView.getDate());
