@@ -32,6 +32,8 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.GregorianCalendar;
 
 public class ScheduleFragment extends Fragment implements ScheduleContract.View {
@@ -142,6 +144,12 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     @Override
     public void addSchedule(SampleSchedule schedule) {
         adapter.list.add(schedule);
+        Collections.sort(adapter.list, new Comparator<SampleSchedule>() {
+            @Override
+            public int compare(SampleSchedule o1, SampleSchedule o2) {
+                return o1.getDate().compareTo(o2.getDate());
+            }
+        });
         adapter.notifyDataSetChanged();
         setScheduleDecorate();
     }
