@@ -37,6 +37,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
         holder.bind(name);
+        holder.itemView.setOnClickListener(v -> groupPresenter.onClickItems());
     }
 
     @Override
@@ -49,9 +50,6 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_group_name = itemView.findViewById(R.id.tv_group_name);
-            itemView.setOnClickListener(v -> {
-                groupPresenter.onClickItems();
-            });
         }
 
         private void bind(String groupName){

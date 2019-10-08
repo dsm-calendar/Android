@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class GroupRepository implements GroupContract.Repository {
 
-    private ArrayList<String> testGroup = new ArrayList<>();
-
     public interface GetGroupListListener{
         void onSuccess(ArrayList<String> testGroup);
         void onFail();
@@ -15,6 +13,8 @@ public class GroupRepository implements GroupContract.Repository {
 
     @Override
     public void getGroupList(GetGroupListListener listener) {
+        ArrayList<String> testGroup = new ArrayList<>();
+
         testGroup.add("동휘와 함께하는 게임 만들기");
         testGroup.add("윤성이와 함께하는 디자인");
         testGroup.add("승민이와 함께하는 안드로이드");
