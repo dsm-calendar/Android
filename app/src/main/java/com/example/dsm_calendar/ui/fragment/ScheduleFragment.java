@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +44,10 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     private SchedulePresenter schedulePresenter = new SchedulePresenter(this, new ScheduleRepository());
 
     private GregorianCalendar today = new GregorianCalendar();
-    private String selectedDate = today.get(Calendar.YEAR) + "-" + (today.get(Calendar.MONTH)+1) + "-" + today.get(Calendar.DATE);
+    private String selectedDate;
+    // = today.get(Calendar.YEAR) + "-" + (today.get(Calendar.MONTH)+1) + "-" + today.get(Calendar.DATE)
     private CalendarDay day;
+    private ArrayList<CalendarDay> scheduleDayList = new ArrayList<>();
 
 
     public ScheduleFragment() {}
@@ -58,23 +61,16 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
-        scheduleAddDialog = new ScheduleAddDialog(getActivity());
-        scheduleAddDialog.setScheduleAddDialogListener(new DialogListener.ScheduleAddDialogListener() {
-            @Override
-            public void onClickConfirm(String title, String date, String content, CalendarDay day) {
-                schedulePresenter.onAddSchedule(new SampleSchedule(title, date, content, day));
-            }
-        });
-        scheduleAddDialog.setCanceledOnTouchOutside(true);
+        setScheduleAddDialog(rootView);
 
-        scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
-        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked(selectedDate,day));
-
+        getScheduleDate();
         calendarView = rootView.findViewById(R.id.cv_schedule_calendar);
         calendarView.addDecorators(
                 new SaturdayDecorator(),
                 new SundayDecorator(),
-                new OnDayDecorator());
+                new OnDayDecorator(),
+                new EventDecorator(Color.RED, scheduleDayList));
+        calendarView.setSelectedDate(today);
         calendarView.setOnDateChangedListener((new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -86,6 +82,33 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         schedulePresenter.onStarted();
 
         return rootView;
+    }
+
+    private void setScheduleAddDialog(View rootView){
+        scheduleAddDialog = new ScheduleAddDialog(getActivity());
+        scheduleAddDialog.setScheduleAddDialogListener(new DialogListener.ScheduleAddDialogListener() {
+            @Override
+            public void onClickConfirm(String title, String date, String content, CalendarDay day) {
+                schedulePresenter.onAddSchedule(new SampleSchedule(title, date, content, day));
+            }
+        });
+        scheduleAddDialog.setCanceledOnTouchOutside(true);
+
+        scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
+        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked(selectedDate,day));
+    }
+
+    private void setScheduleDecorate(){
+        getScheduleDate();
+        calendarView.addDecorator(new EventDecorator(Color.RED, scheduleDayList));
+    }
+
+    private void getScheduleDate(){
+        if(adapter.list != null){
+            for(int i = 0; i < adapter.getItemCount(); ++i){
+                scheduleDayList.add(adapter.list.get(i).getDay());
+            }
+        }
     }
 
     @Override
@@ -118,6 +141,7 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     public void addSchedule(SampleSchedule schedule) {
         adapter.list.add(schedule);
         adapter.notifyDataSetChanged();
+        setScheduleDecorate();
     }
 
     @Override
