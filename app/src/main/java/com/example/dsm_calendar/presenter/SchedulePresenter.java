@@ -24,7 +24,7 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
         scheduleRepo.getScheduleList(new ScheduleRepository.GetScheduleListListener() {
             @Override
             public void onSuccess(ArrayList<SampleSchedule> testSchedule) {
-                scheduleView.addItems(testSchedule);
+                scheduleView.getItems(testSchedule);
             }
 
             @Override
@@ -35,17 +35,40 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
     }
 
     @Override
-    public void onItemClicked() {
-        scheduleView.showMessageForItemClicked();
+    public void onItemDeleteClicked(int index) {
+        scheduleRepo.deleteSchedule(new ScheduleRepository.DeleteScheduleListener() {
+            @Override
+            public void onSuccess() {
+                scheduleView.showMessageForDeleteSchedule();
+                scheduleView.deleteSchedule(index);
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
     }
 
     @Override
-    public void onItemDeleteClicked() {
-        scheduleView.showMessageForDeleteSchedule();
+    public void onAddSchedule(String title, String date, String content) {
+        scheduleRepo.addSchedule(title, date, content, new ScheduleRepository.AddScheduleListener() {
+            @Override
+            public void onSuccess() {
+                scheduleView.showMessageForItemAdded();
+                scheduleView.addSchedule(new SampleSchedule(title, date, content));
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
     }
 
     @Override
     public void onAddScheduleClicked(String date) {
         scheduleView.showScheduleAddDialog(date);
     }
+
 }

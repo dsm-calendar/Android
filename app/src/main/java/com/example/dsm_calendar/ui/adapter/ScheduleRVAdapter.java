@@ -39,14 +39,11 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
 
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
-
         SampleSchedule schedule = list.get(position);
 
         holder.bind(schedule);
 
         holder.itemView.setOnClickListener( v -> {
-            schedulePresenter.onItemClicked();
-            //TODO: how to manage items in view not adapter?
             boolean expanded = schedule.getExpended();
             schedule.setExpended(!expanded);
             notifyItemChanged(position);
@@ -78,13 +75,14 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
 
         private void bind(SampleSchedule schedule) {
             boolean expended = schedule.getExpended();
+            Toast.makeText(context, expended+"", Toast.LENGTH_SHORT).show();
             content.setVisibility(expended ? View.VISIBLE : View.GONE);
             delete.setVisibility(expended ? View.VISIBLE : View.GONE);
 
             tv_title.setText(schedule.getTitle());
             tv_date.setText(schedule.getDate());
             tv_content.setText(schedule.getContent());
-            delete.setOnClickListener(v -> schedulePresenter.onItemDeleteClicked());
+            delete.setOnClickListener(v -> schedulePresenter.onItemDeleteClicked(getAdapterPosition()));
         }
     }
 }

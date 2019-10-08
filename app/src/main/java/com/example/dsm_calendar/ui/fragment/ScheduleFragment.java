@@ -21,10 +21,10 @@ import com.example.dsm_calendar.data.ScheduleRepository;
 import com.example.dsm_calendar.presenter.SchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
-import com.example.dsm_calendar.util.DialogListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class ScheduleFragment extends Fragment implements ScheduleContract.View {
 
@@ -35,8 +35,8 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     private ScheduleAddDialog scheduleAddDialog;
     private SchedulePresenter schedulePresenter = new SchedulePresenter(this, new ScheduleRepository());
 
-    private String selectedDate;
-    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private GregorianCalendar today = new GregorianCalendar();
+    private String selectedDate = today.get(Calendar.YEAR) + "-" + (today.get(Calendar.MONTH)+1) + "-" + today.get(Calendar.DATE);
 
     public ScheduleFragment() {}
 
@@ -50,27 +50,14 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         recyclerView.setAdapter(adapter);
 
         scheduleAddDialog = new ScheduleAddDialog(getActivity());
-        scheduleAddDialog.setScheduleAddDialogListener(new DialogListener.ScheduleAddDialogListener() {
-            @Override
-            public void onClickConfirm(String title, String date, String content) {
-                Toast.makeText(getActivity(), "title: " + title + "\n" + "Content: " + content, Toast.LENGTH_LONG).show();
-                adapter.list.add(new SampleSchedule(title, date,content));
-                adapter.notifyItemInserted(adapter.getItemCount()+1);
-            }
-        });
+        scheduleAddDialog.setScheduleAddDialogListener((title, date, content) -> schedulePresenter.onAddSchedule(title, date, content));
         scheduleAddDialog.setCanceledOnTouchOutside(true);
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
         scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked(selectedDate));
 
         calendarView = rootView.findViewById(R.id.cv_schedule_calendar);
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                selectedDate = (year + "-" + (month+1) + "-" + dayOfMonth);
-            }
-        });
-//        selectedDate = sdf.format(calendarView.getDate());
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> selectedDate = (year + "-" + (month+1) + "-" + dayOfMonth));
 
         schedulePresenter.onStarted();
 
@@ -89,17 +76,30 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     }
 
     @Override
-    public void showMessageForItemClicked() {
-        Toast.makeText(getActivity(), "ItemClicked", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void showMessageForDeleteSchedule() {
         Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void addItems(ArrayList<SampleSchedule> testSchedule) {
+    public void showMessageForItemAdded() {
+        Toast.makeText(getActivity(), "item added", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void getItems(ArrayList<SampleSchedule> testSchedule) {
         adapter.list = testSchedule;
+    }
+
+    @Override
+    public void addSchedule(SampleSchedule schedule) {
+        adapter.list.add(schedule);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void deleteSchedule(int position) {
+        adapter.list.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
     }
 }
