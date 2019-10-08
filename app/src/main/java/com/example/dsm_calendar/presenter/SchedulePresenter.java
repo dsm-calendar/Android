@@ -3,6 +3,7 @@ package com.example.dsm_calendar.presenter;
 import com.example.dsm_calendar.contract.ScheduleContract;
 import com.example.dsm_calendar.data.SampleSchedule;
 import com.example.dsm_calendar.data.ScheduleRepository;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.ArrayList;
 
@@ -51,12 +52,12 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
     }
 
     @Override
-    public void onAddSchedule(String title, String date, String content) {
-        scheduleRepo.addSchedule(title, date, content, new ScheduleRepository.AddScheduleListener() {
+    public void onAddSchedule(SampleSchedule schedule) {
+        scheduleRepo.addSchedule(schedule, new ScheduleRepository.AddScheduleListener() {
             @Override
             public void onSuccess() {
                 scheduleView.showMessageForItemAdded();
-                scheduleView.addSchedule(new SampleSchedule(title, date, content));
+                scheduleView.addSchedule(schedule);
             }
 
             @Override
@@ -67,8 +68,8 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
     }
 
     @Override
-    public void onAddScheduleClicked(String date) {
-        scheduleView.showScheduleAddDialog(date);
+    public void onAddScheduleClicked(String date, CalendarDay day) {
+        scheduleView.showScheduleAddDialog(date, day);
     }
 
 }

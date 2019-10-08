@@ -27,7 +27,7 @@
             android:layout_height="600dp"
             android:background="@drawable/fragment_schedule_background"/>
 
-        <CalendarView
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/cv_schedule_calendar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"

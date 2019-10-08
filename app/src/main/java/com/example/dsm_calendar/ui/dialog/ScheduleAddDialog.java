@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.util.DialogListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
 
@@ -24,6 +25,7 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
     private DialogListener.ScheduleAddDialogListener listener;
 
     private String selectedDate;
+    private CalendarDay day;
 
     public ScheduleAddDialog(@NonNull Context context) {
         super(context);
@@ -58,7 +60,7 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
                 dismiss();
                 break;
             case R.id.button_addschedule_confirm:
-                listener.onClickConfirm(title.getText().toString(), date.getText().toString(), content.getText().toString());
+                listener.onClickConfirm(title.getText().toString(), date.getText().toString(), content.getText().toString(), day);
                 title.setText("");
                 content.setText("");
                 dismiss();
@@ -70,8 +72,9 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
         this.listener = listener;
     }
 
-    public void setDate(String selectedDate){
+    public void setDate(String selectedDate, CalendarDay day){
         this.selectedDate = selectedDate;
+        this.day = day;
         if (date != null){
             date.setText(selectedDate);
         }

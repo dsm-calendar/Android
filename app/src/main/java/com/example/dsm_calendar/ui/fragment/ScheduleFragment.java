@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -19,8 +18,16 @@ import com.example.dsm_calendar.contract.ScheduleContract;
 import com.example.dsm_calendar.data.SampleSchedule;
 import com.example.dsm_calendar.data.ScheduleRepository;
 import com.example.dsm_calendar.presenter.SchedulePresenter;
+import com.example.dsm_calendar.ui.Decorator.EventDecorator;
+import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
+import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
+import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
+import com.example.dsm_calendar.util.DialogListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,12 +38,14 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     private RecyclerView recyclerView;
     private ScheduleRVAdapter adapter;
     private ImageButton scheduleAddButton;
-    private CalendarView calendarView;
+    private MaterialCalendarView calendarView;
     private ScheduleAddDialog scheduleAddDialog;
     private SchedulePresenter schedulePresenter = new SchedulePresenter(this, new ScheduleRepository());
 
     private GregorianCalendar today = new GregorianCalendar();
     private String selectedDate = today.get(Calendar.YEAR) + "-" + (today.get(Calendar.MONTH)+1) + "-" + today.get(Calendar.DATE);
+    private CalendarDay day;
+
 
     public ScheduleFragment() {}
 
@@ -50,14 +59,29 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         recyclerView.setAdapter(adapter);
 
         scheduleAddDialog = new ScheduleAddDialog(getActivity());
-        scheduleAddDialog.setScheduleAddDialogListener((title, date, content) -> schedulePresenter.onAddSchedule(title, date, content));
+        scheduleAddDialog.setScheduleAddDialogListener(new DialogListener.ScheduleAddDialogListener() {
+            @Override
+            public void onClickConfirm(String title, String date, String content, CalendarDay day) {
+                schedulePresenter.onAddSchedule(new SampleSchedule(title, date, content, day));
+            }
+        });
         scheduleAddDialog.setCanceledOnTouchOutside(true);
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
-        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked(selectedDate));
+        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked(selectedDate,day));
 
         calendarView = rootView.findViewById(R.id.cv_schedule_calendar);
-        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> selectedDate = (year + "-" + (month+1) + "-" + dayOfMonth));
+        calendarView.addDecorators(
+                new SaturdayDecorator(),
+                new SundayDecorator(),
+                new OnDayDecorator());
+        calendarView.setOnDateChangedListener((new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                selectedDate = date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay();
+                day = date;
+            }
+        }));
 
         schedulePresenter.onStarted();
 
@@ -70,8 +94,8 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     }
 
     @Override
-    public void showScheduleAddDialog(String date) {
-        scheduleAddDialog.setDate(date);
+    public void showScheduleAddDialog(String date, CalendarDay day) {
+        scheduleAddDialog.setDate(date, day);
         scheduleAddDialog.show();
     }
 

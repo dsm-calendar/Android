@@ -1,5 +1,7 @@
 package com.example.dsm_calendar.util;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+
 public interface DialogListener {
     interface AccessCodeDialogListener{
         void onClickConfirm(String code);
@@ -20,6 +22,6 @@ public interface DialogListener {
     }
 
     interface ScheduleAddDialogListener{
-        void onClickConfirm(String title, String date, String content);
+        void onClickConfirm(String title, String date, String content, CalendarDay day);
     }
 }
