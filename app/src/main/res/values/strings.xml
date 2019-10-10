@@ -71,4 +71,6 @@
     <string name="sample_name">장만월</string>
     <string name="banner_image">banner image</string>
     <string name="deleteSchedule">delete schedule</string>
+    <string name="schedule">일정보기</string>
+    <string name="member">멤버보기</string>
 </resources>

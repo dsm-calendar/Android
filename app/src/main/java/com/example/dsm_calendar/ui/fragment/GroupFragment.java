@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupContract;
 import com.example.dsm_calendar.data.GroupRepository;
 import com.example.dsm_calendar.presenter.GroupPresenter;
+import com.example.dsm_calendar.ui.activity.GroupActivity;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
 import com.example.dsm_calendar.util.DialogListener;
@@ -86,8 +88,9 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     }
 
     @Override
-    public void showTestDialog() {
-        Toast.makeText(getActivity(), "item clicked", Toast.LENGTH_SHORT).show();
+    public void startGroupActivity() {
+        Intent intent = new Intent(getActivity(), GroupActivity.class);
+        startActivity(intent);
     }
 
     @Override
