@@ -46,11 +46,23 @@
         android:layout_marginTop="10dp"
         android:src="@drawable/ic_calendar"/>
 
+    <TextView
+        android:id="@+id/tv_addschedule_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/iv_addschedule_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/sample_date_text"
+        android:textSize="20dp"
+        android:fontFamily="@font/nanumsquare_r"
+        android:layout_margin="10dp"/>
+
     <EditText
         android:id="@+id/et_addschedule_title"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/iv_addschedule_logo"
+        app:layout_constraintTop_toBottomOf="@id/tv_addschedule_date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"

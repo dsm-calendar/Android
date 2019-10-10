@@ -1,16 +1,24 @@
 package com.example.dsm_calendar.data;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+
 public class SampleSchedule {
 
     String title;
     String date;
     String content;
     Boolean expended = false;
+    CalendarDay day;
 
-    public SampleSchedule(String title, String date, String content){
+    public SampleSchedule(String title, String date, String content, CalendarDay day){
         this.title = title;
         this.date = date;
         this.content = content;
+        this.day = day;
+    }
+
+    public CalendarDay getDay() {
+        return day;
     }
 
     public String getTitle() {
@@ -27,6 +35,10 @@ public class SampleSchedule {
 
     public Boolean getExpended() {
         return expended;
+    }
+
+    public void setDay(CalendarDay day) {
+        this.day = day;
     }
 
     public void setTitle(String title) {

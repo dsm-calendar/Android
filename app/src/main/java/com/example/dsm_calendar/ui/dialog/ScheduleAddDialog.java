@@ -7,24 +7,28 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.util.DialogListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
-public class ScheduleAddDialog extends Dialog {
+public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
 
-    EditText title;
-    EditText content;
-    ImageButton offButton;
-    ImageButton checkButton;
-    View.OnClickListener offButtonListener;
-    View.OnClickListener checkButtonListener;
+    private EditText title;
+    private EditText content;
+    private TextView date;
+    private ImageButton offButton;
+    private ImageButton checkButton;
+    private DialogListener.ScheduleAddDialogListener listener;
 
-    public ScheduleAddDialog(@NonNull Context context, View.OnClickListener offButtonListener, View.OnClickListener checkButtonListener) {
+    private String selectedDate;
+    private CalendarDay day;
+
+    public ScheduleAddDialog(@NonNull Context context) {
         super(context);
-        this.offButtonListener = offButtonListener;
-        this.checkButtonListener = checkButtonListener;
     }
 
     @Override
@@ -40,10 +44,39 @@ public class ScheduleAddDialog extends Dialog {
 
         title = findViewById(R.id.et_addschedule_title);
         content = findViewById(R.id.et_addschedule_content);
+        date = findViewById(R.id.tv_addschedule_date);
         offButton = findViewById(R.id.button_addschedule_off);
         checkButton = findViewById(R.id.button_addschedule_confirm);
 
-        offButton.setOnClickListener(offButtonListener);
-        checkButton.setOnClickListener(checkButtonListener) ;
+        date.setText(selectedDate);
+        offButton.setOnClickListener(this);
+        checkButton.setOnClickListener(this) ;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button_addschedule_off:
+                dismiss();
+                break;
+            case R.id.button_addschedule_confirm:
+                listener.onClickConfirm(title.getText().toString(), date.getText().toString(), content.getText().toString(), day);
+                title.setText("");
+                content.setText("");
+                dismiss();
+                break;
+        }
+    }
+
+    public void setScheduleAddDialogListener(DialogListener.ScheduleAddDialogListener listener){
+        this.listener = listener;
+    }
+
+    public void setDate(String selectedDate, CalendarDay day){
+        this.selectedDate = selectedDate;
+        this.day = day;
+        if (date != null){
+            date.setText(selectedDate);
+        }
     }
 }

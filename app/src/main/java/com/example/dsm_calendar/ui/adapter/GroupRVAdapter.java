@@ -5,22 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.presenter.GroupPresenter;
+
 import java.util.ArrayList;
 
 public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupViewHolder> {
 
-    private ArrayList<String> groupList;
+    public ArrayList<String> groupList;
     private Context context;
+    private GroupPresenter groupPresenter;
 
-    public GroupRVAdapter(ArrayList<String> groups, Context context){
-        this.groupList = groups;
+    public GroupRVAdapter(Context context, GroupPresenter groupPresenter){
         this.context = context;
+        this.groupPresenter = groupPresenter;
     }
 
     @NonNull
@@ -35,6 +37,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
         holder.bind(name);
+        holder.itemView.setOnClickListener(v -> groupPresenter.onClickItems());
     }
 
     @Override
@@ -47,9 +50,6 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_group_name = itemView.findViewById(R.id.tv_group_name);
-            itemView.setOnClickListener(v -> {
-                Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show();
-            });
         }
 
         private void bind(String groupName){
