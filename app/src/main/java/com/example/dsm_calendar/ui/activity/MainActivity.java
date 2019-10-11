@@ -106,9 +106,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_navigation_setting:
                 mainPresenter.onClickSetting();
                 break;
-            case R.id.item_navigation_code:
-                mainPresenter.onClickAuthCode();
-                break;
             case R.id.item_navigation_event:
                 mainPresenter.onClickRequireEvent();
                 break;
@@ -117,9 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.item_navigation_calendar_school:
                 mainPresenter.onClickSchoolCalendar();
-                break;
-            case R.id.item_navigation_calendar_group:
-                Toast.makeText(this, "group calendar", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_navigation_calendar_my:
                 mainPresenter.onClickMyCalendar();
@@ -155,11 +149,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void startMailBoxActivity() {
         Intent intent = new Intent(MainActivity.this, MessageActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void showAuthDialog() {
-        authCodeDialog.show();
     }
 
     @Override

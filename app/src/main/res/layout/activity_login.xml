@@ -144,7 +144,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/view_login_pw"
         app:layout_constraintStart_toEndOf="@+id/iv_login_pw"
         app:layout_constraintEnd_toEndOf="@+id/view_login_pw"
-        android:fontFamily="@font/bm_dohyun"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:ems="8"

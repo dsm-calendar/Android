@@ -3,9 +3,6 @@ package com.example.dsm_calendar.util;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 public interface DialogListener {
-    interface AccessCodeDialogListener{
-        void onClickConfirm(String code);
-    }
 
     interface GroupAddDialogListener{
         void onConfirmClicked(String name);

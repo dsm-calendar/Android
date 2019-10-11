@@ -26,11 +26,6 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void onClickAuthCode() {
-        mainView.showAuthDialog();
-    }
-
-    @Override
     public void onClickRequireEvent() {
 
     }
