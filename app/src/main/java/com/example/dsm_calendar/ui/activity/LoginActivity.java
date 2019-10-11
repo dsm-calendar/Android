@@ -1,6 +1,8 @@
 package com.example.dsm_calendar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -26,5 +28,13 @@ public class LoginActivity extends AppCompatActivity {
         id = findViewById(R.id.et_login_id);
         password = findViewById(R.id.et_login_pw);
         confirm = findViewById(R.id.button_login_confirm);
+
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignInActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

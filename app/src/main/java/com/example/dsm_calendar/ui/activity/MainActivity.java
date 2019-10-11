@@ -24,7 +24,6 @@ import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
-import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private AuthCodeDialog authCodeDialog;
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -66,15 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ImageView profile = header.findViewById(R.id.profile_image);
         profile.setBackground(new ShapeDrawable(new OvalShape()));
         profile.setClipToOutline(true);
-
-        authCodeDialog = new AuthCodeDialog(this);
-        authCodeDialog.setAuthCodeDialogListener(new DialogListener.AccessCodeDialogListener() {
-            @Override
-            public void onClickConfirm(String code) {
-                Toast.makeText(getApplicationContext(), "Code: " + code, Toast.LENGTH_LONG).show();
-            }
-        });
-        authCodeDialog.setCanceledOnTouchOutside(true);
 
         setToolBar();
     }

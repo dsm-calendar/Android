@@ -88,7 +88,7 @@
         app:layout_constraintBottom_toBottomOf="@id/view_login_id"
         app:layout_constraintStart_toStartOf="@id/view_login_id"
         app:layout_constraintEnd_toStartOf="@id/et_login_id"
-        android:src="@drawable/ic_user"/>
+        android:src="@drawable/ic_user"
         android:contentDescription="@string/id" />
 
     <EditText
