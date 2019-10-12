@@ -71,4 +71,9 @@
     <string name="sample_name">장만월</string>
     <string name="banner_image">banner image</string>
     <string name="deleteSchedule">delete schedule</string>
+    <string name="schedule">일정보기</string>
+    <string name="member">멤버보기</string>
+    <string name="welcome">대마캘린더에 오신 것을 환영합니다</string>
+    <string name="std_no">학번</string>
+    <string name="sign_in">회원가입</string>
 </resources>

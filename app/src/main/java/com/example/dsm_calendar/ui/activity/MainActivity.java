@@ -24,7 +24,6 @@ import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
-import com.example.dsm_calendar.ui.dialog.AuthCodeDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private AuthCodeDialog authCodeDialog;
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -67,15 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profile.setBackground(new ShapeDrawable(new OvalShape()));
         profile.setClipToOutline(true);
 
-        authCodeDialog = new AuthCodeDialog(this);
-        authCodeDialog.setAuthCodeDialogListener(new DialogListener.AccessCodeDialogListener() {
-            @Override
-            public void onClickConfirm(String code) {
-                Toast.makeText(getApplicationContext(), "Code: " + code, Toast.LENGTH_LONG).show();
-            }
-        });
-        authCodeDialog.setCanceledOnTouchOutside(true);
-
         setToolBar();
     }
 
@@ -106,9 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_navigation_setting:
                 mainPresenter.onClickSetting();
                 break;
-            case R.id.item_navigation_code:
-                mainPresenter.onClickAuthCode();
-                break;
             case R.id.item_navigation_event:
                 mainPresenter.onClickRequireEvent();
                 break;
@@ -117,9 +103,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.item_navigation_calendar_school:
                 mainPresenter.onClickSchoolCalendar();
-                break;
-            case R.id.item_navigation_calendar_group:
-                Toast.makeText(this, "group calendar", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_navigation_calendar_my:
                 mainPresenter.onClickMyCalendar();
@@ -155,11 +138,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void startMailBoxActivity() {
         Intent intent = new Intent(MainActivity.this, MessageActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void showAuthDialog() {
-        authCodeDialog.show();
     }
 
     @Override

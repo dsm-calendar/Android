@@ -25,7 +25,7 @@ public class GroupPresenter implements GroupContract.Presenter {
 
     @Override
     public void onClickItems() {
-        groupView.showTestDialog();
+        groupView.startGroupActivity();
     }
 
     @Override

@@ -49,7 +49,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
         TextView tv_group_name ;
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_group_name = itemView.findViewById(R.id.tv_group_name);
+            tv_group_name = itemView.findViewById(R.id.tv_item_group_name);
         }
 
         private void bind(String groupName){
