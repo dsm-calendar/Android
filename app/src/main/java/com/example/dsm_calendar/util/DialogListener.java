@@ -21,4 +21,9 @@ public interface DialogListener {
     interface ScheduleAddDialogListener{
         void onClickConfirm(String title, String date, String content, CalendarDay day);
     }
+
+    interface GroupMenuDialogListener {
+        void onClickEditGroupTitle();
+        void onClickDeleteGroup();
+    }
 }

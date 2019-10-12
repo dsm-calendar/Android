@@ -1,9 +1,12 @@
 package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,7 +40,6 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
         holder.bind(name);
-        holder.itemView.setOnClickListener(v -> groupPresenter.onClickItems());
     }
 
     @Override
@@ -47,13 +49,18 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
 
     public class GroupViewHolder extends RecyclerView.ViewHolder {
         TextView tv_group_name ;
+        ImageButton menu;
+
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_group_name = itemView.findViewById(R.id.tv_item_group_name);
+            menu = itemView.findViewById(R.id.button_item_group_menu);
         }
 
         private void bind(String groupName){
             tv_group_name.setText(groupName);
+            itemView.setOnClickListener(v -> groupPresenter.onClickItems());
+            menu.setOnClickListener(v -> groupPresenter.onClickItemMenu());
         }
     }
 }
