@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -24,7 +23,6 @@ import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
-import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
