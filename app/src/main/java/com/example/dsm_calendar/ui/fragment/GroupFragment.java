@@ -17,7 +17,7 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupContract;
 import com.example.dsm_calendar.data.GroupRepository;
 import com.example.dsm_calendar.presenter.GroupPresenter;
-import com.example.dsm_calendar.ui.activity.GroupActivity;
+import com.example.dsm_calendar.ui.activity.GroupSingleActivity;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMenuDialog;
@@ -30,7 +30,6 @@ public class GroupFragment extends Fragment implements GroupContract.View {
 
     private RecyclerView recyclerView;
     private GroupRVAdapter adapter;
-    private ArrayList<String> groups = new ArrayList<>();
     private GroupAddDialog groupAddDialog;
     private GroupMenuDialog groupMenuDialog;
     private FloatingActionButton fab_add;
@@ -87,7 +86,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         fab_add = rootView.findViewById(R.id.fab_group_actionButton);
         fab_add.setOnClickListener(v -> groupPresenter.onClickAddGroup());
 
-        groupPresenter.onStarted(groups);
+        groupPresenter.onStarted();
 
         return rootView;
     }
@@ -109,7 +108,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
 
     @Override
     public void startGroupActivity() {
-        Intent intent = new Intent(getActivity(), GroupActivity.class);
+        Intent intent = new Intent(getActivity(), GroupSingleActivity.class);
         startActivity(intent);
     }
 

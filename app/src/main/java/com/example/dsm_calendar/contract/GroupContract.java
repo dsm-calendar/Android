@@ -16,7 +16,7 @@ public interface GroupContract {
         void onClickAddGroup();
         void onClickItems();
         void onClickItemMenu();
-        void onStarted(ArrayList<String> testGroup);
+        void onStarted();
     }
 
     interface Repository{
