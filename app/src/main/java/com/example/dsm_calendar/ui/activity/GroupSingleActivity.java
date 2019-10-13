@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dsm_calendar.R;
 
-public class GroupActivity extends AppCompatActivity {
+public class GroupSingleActivity extends AppCompatActivity {
 
     private TextView groupTitle;
     private ImageButton showSchedule;
@@ -32,7 +32,15 @@ public class GroupActivity extends AppCompatActivity {
         showSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GroupActivity.this, GroupScheduleActivity.class);
+                Intent intent = new Intent(GroupSingleActivity.this, GroupScheduleActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        showMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GroupSingleActivity.this, GroupMemberActivity.class);
                 startActivity(intent);
             }
         });

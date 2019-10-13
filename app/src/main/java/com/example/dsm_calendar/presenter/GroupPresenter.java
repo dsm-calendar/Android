@@ -34,7 +34,7 @@ public class GroupPresenter implements GroupContract.Presenter {
     }
 
     @Override
-    public void onStarted(ArrayList<String> testGroup) {
+    public void onStarted() {
         groupRepo.getGroupList(new GroupRepository.GetGroupListListener() {
             @Override
             public void onSuccess(ArrayList<String> testGroup) {

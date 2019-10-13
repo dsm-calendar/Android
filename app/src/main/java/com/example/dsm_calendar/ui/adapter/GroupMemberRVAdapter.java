@@ -13,17 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.SampleStudent;
+import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 
 import java.util.ArrayList;
 
 public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdapter.GroupMemberViewHolder> {
 
     private Context context;
-    //TODO: GroupMemberPresenter
+    private GroupMemberPresenter presenter;
     public ArrayList<SampleStudent> students = new ArrayList<>();
 
-    public GroupMemberRVAdapter(Context context){
+    public GroupMemberRVAdapter(Context context, GroupMemberPresenter presenter){
         this.context = context;
+        this.presenter = presenter;
     }
 
     @NonNull
@@ -65,7 +67,7 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
             std_no.setText(student.getStd_no());
             name.setText(student.getName());
 
-            //TODO: setOnClickListener to detail
+            detail.setOnClickListener(v -> presenter.onClickDetail());
         }
     }
 }
