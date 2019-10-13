@@ -20,6 +20,7 @@ import com.example.dsm_calendar.presenter.GroupPresenter;
 import com.example.dsm_calendar.ui.activity.GroupActivity;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
+import com.example.dsm_calendar.ui.dialog.GroupMenuDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -31,6 +32,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     private GroupRVAdapter adapter;
     private ArrayList<String> groups = new ArrayList<>();
     private GroupAddDialog groupAddDialog;
+    private GroupMenuDialog groupMenuDialog;
     private FloatingActionButton fab_add;
     private GroupPresenter groupPresenter = new GroupPresenter(this, new GroupRepository());
 
@@ -69,6 +71,19 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         });
         groupAddDialog.setCanceledOnTouchOutside(true);
 
+        groupMenuDialog = new GroupMenuDialog();
+        groupMenuDialog.setGroupMenuDialogListener(new DialogListener.GroupMenuDialogListener() {
+            @Override
+            public void onClickEditGroupTitle() {
+                Toast.makeText(getActivity(), "edit", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClickDeleteGroup() {
+                Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         fab_add = rootView.findViewById(R.id.fab_group_actionButton);
         fab_add.setOnClickListener(v -> groupPresenter.onClickAddGroup());
 
@@ -85,6 +100,11 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     @Override
     public void showGroupAddDialog() {
         groupAddDialog.show();
+    }
+
+    @Override
+    public void showGroupMenuDialog() {
+        groupMenuDialog.show(getFragmentManager(), "bottomSheet");
     }
 
     @Override

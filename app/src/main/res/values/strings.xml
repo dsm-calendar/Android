@@ -76,4 +76,5 @@
     <string name="welcome">대마캘린더에 오신 것을 환영합니다</string>
     <string name="std_no">학번</string>
     <string name="sign_in">회원가입</string>
+    <string name="invite_member">멤버 초대하기</string>
 </resources>

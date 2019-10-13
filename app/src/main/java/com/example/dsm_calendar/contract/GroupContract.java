@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public interface GroupContract {
     interface View{
         void showGroupAddDialog();
+        void showGroupMenuDialog();
         void startGroupActivity();
         void addItems(ArrayList<String> testGroup);
     }
@@ -14,6 +15,7 @@ public interface GroupContract {
     interface Presenter{
         void onClickAddGroup();
         void onClickItems();
+        void onClickItemMenu();
         void onStarted(ArrayList<String> testGroup);
     }
 

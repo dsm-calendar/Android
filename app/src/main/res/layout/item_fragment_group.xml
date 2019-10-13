@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:layout_gravity="center_horizontal"
@@ -32,5 +31,16 @@
         android:text="@string/sample_group"
         android:fontFamily="@font/bm_dohyun"
         android:textSize="16dp"/>
+
+    <ImageButton
+        android:id="@+id/button_item_group_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_details"
+        android:background="@null"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

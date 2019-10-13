@@ -1,6 +1,8 @@
 package com.example.dsm_calendar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,5 +28,13 @@ public class GroupActivity extends AppCompatActivity {
         showSchedule = findViewById(R.id.button_group_schedule);
         showMember = findViewById(R.id.button_group_member);
         groupImage = findViewById(R.id.iv_group_image);
+
+        showSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GroupActivity.this, GroupScheduleActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
