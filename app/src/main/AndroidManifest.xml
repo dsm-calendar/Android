@@ -22,6 +22,7 @@
         <activity android:name=".ui.activity.TimeTableActivity"/>
         <activity android:name=".ui.activity.GroupActivity"/>
         <activity android:name=".ui.activity.GroupScheduleActivity"/>
+        <activity android:name=".ui.activity.GroupMemberActivity"/>
     </application>
 
 </manifest>
