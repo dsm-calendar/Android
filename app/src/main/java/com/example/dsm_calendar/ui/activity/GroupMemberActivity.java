@@ -16,6 +16,7 @@ import com.example.dsm_calendar.data.GroupMemberRepository;
 import com.example.dsm_calendar.data.SampleStudent;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;
+import com.example.dsm_calendar.ui.dialog.GroupMemberMenuDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     private RecyclerView rvMember;
     private GroupMemberRVAdapter adapter;
     private FloatingActionButton addMemberButton;
+    private GroupMemberMenuDialog groupMemberMenuDialog;
 
     private GroupMemberPresenter presenter = new GroupMemberPresenter(this, new GroupMemberRepository());
 
@@ -45,12 +47,14 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         groupMemberBack.setOnClickListener(v -> presenter.onClickBack());
         addMemberButton.setOnClickListener(v -> presenter.onClickAdd());
 
+        groupMemberMenuDialog = new GroupMemberMenuDialog();
+
         presenter.onStarted();
     }
 
     @Override
     public void showGroupMemberDetailDialog() {
-        //TODO: make and show dialog
+        groupMemberMenuDialog.show(getSupportFragmentManager(), "group Member setting");
     }
 
     @Override

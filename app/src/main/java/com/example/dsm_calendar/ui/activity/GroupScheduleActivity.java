@@ -13,5 +13,6 @@ public class GroupScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_group_schedule);
+        //TODO: add decorator to calendar
     }
 }

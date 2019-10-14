@@ -77,4 +77,5 @@
     <string name="std_no">학번</string>
     <string name="sign_in">회원가입</string>
     <string name="invite_member">멤버 초대하기</string>
+    <string name="setting_member">그룹 멤버 설정</string>
 </resources>
