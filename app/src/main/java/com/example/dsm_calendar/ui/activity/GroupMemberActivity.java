@@ -1,12 +1,11 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +16,7 @@ import com.example.dsm_calendar.data.SampleStudent;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupMemberMenuDialog;
+import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -48,6 +48,17 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         addMemberButton.setOnClickListener(v -> presenter.onClickAdd());
 
         groupMemberMenuDialog = new GroupMemberMenuDialog();
+        groupMemberMenuDialog.setListener(new DialogListener.GroupMemberMenuDialogListener() {
+            @Override
+            public void onClickMemberAuth() {
+                Toast.makeText(getApplicationContext(), "auth", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onClickMemberKick() {
+                Toast.makeText(getApplicationContext(), "kick", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         presenter.onStarted();
     }

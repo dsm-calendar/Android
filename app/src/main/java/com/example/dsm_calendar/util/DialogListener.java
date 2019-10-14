@@ -26,4 +26,9 @@ public interface DialogListener {
         void onClickEditGroupTitle();
         void onClickDeleteGroup();
     }
+
+    interface GroupMemberMenuDialogListener{
+        void onClickMemberAuth();
+        void onClickMemberKick();
+    }
 }
