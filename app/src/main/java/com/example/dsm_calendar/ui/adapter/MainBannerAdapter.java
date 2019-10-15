@@ -12,20 +12,21 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.dsm_calendar.R;
 
+import java.util.ArrayList;
+
 public class MainBannerAdapter extends PagerAdapter {
 
     Context context;
     LayoutInflater inflater;
-    Integer[] obj;
+    public ArrayList<Integer> bannerList = new ArrayList<>();
 
-    public MainBannerAdapter(Context context, Integer[] obj){
+    public MainBannerAdapter(Context context){
         this.context = context;
-        this.obj = obj;
     }
 
     @Override
     public int getCount() {
-        return obj.length;
+        return bannerList.size();
     }
 
     @NonNull
@@ -34,7 +35,7 @@ public class MainBannerAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.main_vp_banner_image_view, null);
         ImageView imageView = view.findViewById(R.id.vp_adapter);
-        imageView.setImageResource(obj[position]);
+        imageView.setImageResource(bannerList.get(position));
 
         ViewPager vp = (ViewPager) container;
         vp.addView(view, 0);

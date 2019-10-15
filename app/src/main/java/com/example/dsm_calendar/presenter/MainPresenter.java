@@ -15,6 +15,7 @@ public class MainPresenter implements MainContract.Presenter {
         this.mainRepo = mainRepo;
     }
 
+
     @Override
     public void onClickMailbox() {
         mainView.startMailBoxActivity();

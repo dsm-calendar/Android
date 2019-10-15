@@ -1,6 +1,5 @@
 package com.example.dsm_calendar.ui.dialog;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,25 +14,25 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class GroupMenuDialog extends BottomSheetDialogFragment implements View.OnClickListener {
+public class GroupMemberMenuDialog extends BottomSheetDialogFragment implements View.OnClickListener {
 
     private ImageButton offButton;
-    private ConstraintLayout editGroupName;
-    private ConstraintLayout deleteGroup;
-    private DialogListener.GroupMenuDialogListener listener;
+    private ConstraintLayout editMemberAuth;
+    private ConstraintLayout kickMember;
+    private DialogListener.GroupMemberMenuDialogListener listener;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_group_menu, container, false);
+        View view = inflater.inflate(R.layout.dialog_group_member_menu, container, false);
 
-        offButton = view.findViewById(R.id.button_group_menu_off);
-        editGroupName = view.findViewById(R.id.cl_group_menu_fix_group_title);
-        deleteGroup = view.findViewById(R.id.cl_group_menu_delete_group);
+        offButton = view.findViewById(R.id.button_group_member_menu_off);
+        editMemberAuth = view.findViewById(R.id.cl_group_member_menu_fix_member_auth);
+        kickMember = view.findViewById(R.id.cl_group_member_menu_kick_member);
 
         offButton.setOnClickListener(this);
-        editGroupName.setOnClickListener(this);
-        deleteGroup.setOnClickListener(this);
+        editMemberAuth.setOnClickListener(this);
+        kickMember.setOnClickListener(this);
 
         return view;
     }
@@ -41,21 +40,21 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.button_group_menu_off:
+            case R.id.button_group_member_menu_off:
                 dismiss();
                 break;
-            case R.id.cl_group_menu_fix_group_title:
-                listener.onClickEditGroupTitle();
+            case R.id.cl_group_member_menu_fix_member_auth:
+                listener.onClickMemberAuth();
                 dismiss();
                 break;
-            case R.id.cl_group_menu_delete_group:
-                listener.onClickDeleteGroup();
+            case R.id.cl_group_member_menu_kick_member:
+                listener.onClickMemberKick();
                 dismiss();
                 break;
         }
     }
 
-    public void setGroupMenuDialogListener(DialogListener.GroupMenuDialogListener listener){
+    public void setListener(DialogListener.GroupMemberMenuDialogListener listener){
         this.listener = listener;
     }
 }
