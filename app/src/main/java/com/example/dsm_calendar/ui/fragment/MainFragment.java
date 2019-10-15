@@ -32,6 +32,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private ArrayList<String> noticeList = new ArrayList<>();
     private ArrayList<String> todayList = new ArrayList<>();
     private ArrayList<Integer> bannerList = new ArrayList<>();
+    private PageIndicatorView pageIndicatorView;
 
     private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository());
 
@@ -41,19 +42,15 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
         recyclerView = rootView.findViewById(R.id.rv_main_listBox);
-        mainRVAdapter = new MainRVAdapter(getActivity(), noticeList);
+        mainRVAdapter = new MainRVAdapter(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(mainRVAdapter);
 
         rootView.findViewById(R.id.button_main_notice).setOnClickListener(this);
         rootView.findViewById(R.id.button_main_schedule).setOnClickListener(this);
 
-        //https://github.com/romandanylyk/PageIndicatorView
-        PageIndicatorView pageIndicatorView = rootView.findViewById(R.id.piv_main_indicator);
-        pageIndicatorView.setCount(bannerList.size());
-        pageIndicatorView.setSelection(0);
-        mainBannerAdapter = new MainBannerAdapter(getActivity(), bannerList);
+        mainBannerAdapter = new MainBannerAdapter(getActivity());
 
         ViewPager pager = rootView.findViewById(R.id.vp_main_fragment);
         pager.setAdapter(mainBannerAdapter);
@@ -71,18 +68,38 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         });
 
         presenter.onStarted();
+        setBanner(rootView);
+        setRecyclerView();
         return rootView;
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_main_notice){
-            mainRVAdapter = new MainRVAdapter(getActivity(), noticeList);
-            recyclerView.setAdapter(mainRVAdapter);
+//            mainRVAdapter = new MainRVAdapter(getActivity(), noticeList);
+//            recyclerView.setAdapter(mainRVAdapter);
+            mainRVAdapter.list = noticeList;
+            mainRVAdapter.notifyDataSetChanged();
         } else if(v.getId() == R.id.button_main_schedule){
-            mainRVAdapter = new MainRVAdapter(getActivity(), todayList);
-            recyclerView.setAdapter(mainRVAdapter);
+//            mainRVAdapter = new MainRVAdapter(getActivity(), todayList);
+//            recyclerView.setAdapter(mainRVAdapter);
+            mainRVAdapter.list = todayList;
+            mainRVAdapter.notifyDataSetChanged();
         }
+    }
+
+    private void setBanner(View rootView){
+        //https://github.com/romandanylyk/PageIndicatorView
+        pageIndicatorView = rootView.findViewById(R.id.piv_main_indicator);
+        pageIndicatorView.setCount(mainBannerAdapter.bannerList.size());
+        pageIndicatorView.setSelection(0);
+
+    }
+
+    private void setRecyclerView(){
+        mainRVAdapter.list = noticeList;
+        mainRVAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(mainRVAdapter);
     }
 
     @Override

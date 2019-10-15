@@ -18,11 +18,10 @@ public class MainBannerAdapter extends PagerAdapter {
 
     Context context;
     LayoutInflater inflater;
-    public ArrayList<Integer> bannerList;
+    public ArrayList<Integer> bannerList = new ArrayList<>();
 
-    public MainBannerAdapter(Context context, ArrayList<Integer> bannerList){
+    public MainBannerAdapter(Context context){
         this.context = context;
-        this.bannerList = bannerList;
     }
 
     @Override

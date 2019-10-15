@@ -15,12 +15,11 @@ import java.util.ArrayList;
 
 public class MainRVAdapter extends RecyclerView.Adapter<MainRVAdapter.MainViewHolder> {
 
-    private ArrayList<String> list;
+    public ArrayList<String> list = new ArrayList<>();
     private Context context;
 
-    public MainRVAdapter(Context context, ArrayList<String> list){
+    public MainRVAdapter(Context context){
         this.context = context;
-        this.list = list;
     }
 
     @NonNull

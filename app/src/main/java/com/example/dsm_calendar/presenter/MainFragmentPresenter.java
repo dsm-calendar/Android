@@ -1,6 +1,5 @@
 package com.example.dsm_calendar.presenter;
 
-import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.contract.MainFragmentContract;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 
