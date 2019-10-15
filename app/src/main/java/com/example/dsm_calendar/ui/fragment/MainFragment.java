@@ -27,11 +27,10 @@ import java.util.ArrayList;
 public class MainFragment extends Fragment implements RadioButton.OnClickListener, MainFragmentContract.View {
 
     private RecyclerView recyclerView;
-    public MainRVAdapter mainRVAdapter;
-    public MainBannerAdapter mainBannerAdapter;
+    private MainRVAdapter mainRVAdapter;
+    private MainBannerAdapter mainBannerAdapter;
     private ArrayList<String> noticeList = new ArrayList<>();
     private ArrayList<String> todayList = new ArrayList<>();
-    private ArrayList<Integer> bannerList = new ArrayList<>();
     private PageIndicatorView pageIndicatorView;
 
     private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository());
