@@ -2,7 +2,6 @@ package com.example.dsm_calendar.data;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
@@ -13,5 +12,5 @@ public interface RetrofitService {
 
     @FormUrlEncoded
     @POST("loginStudent")
-    Call<Void> login(@Field("id") String ID, @Field("pw") String password);
+    Call<Void> login(@Body Login login);
 }

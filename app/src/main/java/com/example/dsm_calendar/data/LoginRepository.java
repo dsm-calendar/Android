@@ -19,12 +19,14 @@ public class LoginRepository implements LoginContract.Repository {
 
     @Override
     public void Login(String ID, String password, LoginListener listener) {
+        Login login = new Login(ID, password);
+
         Retrofit retrofit = new Retrofit.Builder().baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<Void> call = retrofitService.login(ID, password);
+        Call<Void> call = retrofitService.login(login);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
