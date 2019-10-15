@@ -59,6 +59,5 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     @Override
     public void showMessageForFail(String message) {
         Toast.makeText(this, "message: "+message, Toast.LENGTH_LONG).show();
-        Log.d(message, "server failure");
     }
 }

@@ -18,8 +18,7 @@ public class SignUpPresenter implements SignUpContract.Presenter {
 
     @Override
     public void onClickSignUp() {
-        int defaultIconIndex = 0;
-        signInRepo.SignUp(signInView.getStd_no(), defaultIconIndex, signInView.getID(), signInView.getPassword(), new SignUpRepository.SignUpListener() {
+        signInRepo.SignUp(signInView.getStd_no(), signInView.getID(), signInView.getPassword(), new SignUpRepository.SignUpListener() {
             @Override
             public void onSuccess() {
                 signInView.showMessageForSuccess();

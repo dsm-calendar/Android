@@ -1,22 +1,21 @@
 package com.example.dsm_calendar.contract;
 
-import com.example.dsm_calendar.data.SignUpRepository;
+import com.example.dsm_calendar.data.LoginRepository;
 
-public interface SignUpContract {
+public interface LoginContract {
     interface View{
         String getID();
         String getPassword();
-        int getStd_no();
 
         void showMessageForSuccess();
         void showMessageForFail(String message);
     }
 
     interface Presenter{
-        void onClickSignUp();
+        void onClickConfirm();
     }
 
     interface Repository{
-        void SignUp(int std_no, String ID, String password, SignUpRepository.SignUpListener listener);
+        void Login(String ID, String password, LoginRepository.LoginListener listener);
     }
 }
