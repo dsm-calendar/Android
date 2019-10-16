@@ -26,10 +26,10 @@ public class LoginRepository implements LoginContract.Repository {
                 .build();
 
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<Void> call = retrofitService.login(login);
-        call.enqueue(new Callback<Void>() {
+        Call<LoginUserInfo> call = retrofitService.login(login);
+        call.enqueue(new Callback<LoginUserInfo>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<LoginUserInfo> call, Response<LoginUserInfo> response) {
                 if (response.code() == 200){
                     listener.onSuccess();
                 } else {
@@ -38,7 +38,7 @@ public class LoginRepository implements LoginContract.Repository {
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<LoginUserInfo> call, Throwable t) {
                 listener.onFail(t.getMessage());
             }
         });

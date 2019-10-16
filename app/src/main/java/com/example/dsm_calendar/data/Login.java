@@ -1,12 +1,12 @@
 package com.example.dsm_calendar.data;
 
 public class Login {
-	private String pw;
 	private String id;
+	private String pw;
 
-	public Login(String pw, String id) {
-		this.pw = pw;
+	public Login(String id, String pw) {
 		this.id = id;
+		this.pw = pw;
 	}
 
 	public void setPw(String pw){
@@ -29,8 +29,8 @@ public class Login {
  	public String toString(){
 		return 
 			"Login{" +
-			"pw = '" + pw + '\'' + 
-			",id = '" + id + '\'' + 
+			"id = '" + id + '\'' +
+			",pw = '" + pw + '\'' +
 			"}";
 		}
 }
