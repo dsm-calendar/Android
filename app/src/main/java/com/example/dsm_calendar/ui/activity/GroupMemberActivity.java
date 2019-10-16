@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupMemberContract;
+import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.GroupMemberRepository;
-import com.example.dsm_calendar.data.SampleStudent;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupMemberMenuDialog;
@@ -74,7 +74,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     }
 
     @Override
-    public void addItems(ArrayList<SampleStudent> students) {
+    public void addItems(ArrayList<Student> students) {
         adapter.students = students;
     }
 }

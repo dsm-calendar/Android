@@ -1,8 +1,8 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.GroupMemberContract;
+import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.GroupMemberRepository;
-import com.example.dsm_calendar.data.SampleStudent;
 
 import java.util.ArrayList;
 
@@ -39,7 +39,7 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
 
         groupMemberRepo.getMemberList(new GroupMemberRepository.GetMemberListListener() {
             @Override
-            public void onSuccess(ArrayList<SampleStudent> students) {
+            public void onSuccess(ArrayList<Student> students) {
                 groupMemberView.addItems(students);
             }
 

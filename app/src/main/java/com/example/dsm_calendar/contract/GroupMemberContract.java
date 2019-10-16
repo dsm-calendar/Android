@@ -1,7 +1,7 @@
 package com.example.dsm_calendar.contract;
 
+import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.GroupMemberRepository;
-import com.example.dsm_calendar.data.SampleStudent;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public interface GroupMemberContract {
     interface View{
         void showGroupMemberDetailDialog();
         void finishActivity();
-        void addItems(ArrayList<SampleStudent> students);
+        void addItems(ArrayList<Student> students);
     }
 
     interface Presenter{

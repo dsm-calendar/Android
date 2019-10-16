@@ -1,6 +1,8 @@
 package com.example.dsm_calendar.data;
 
 import com.example.dsm_calendar.contract.LoginContract;
+import com.example.dsm_calendar.data.DTO.Login;
+import com.example.dsm_calendar.data.DTO.LoginUserInfo;
 
 import retrofit2.Call;
 import retrofit2.Callback;
