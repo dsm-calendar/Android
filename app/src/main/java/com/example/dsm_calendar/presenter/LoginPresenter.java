@@ -22,6 +22,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             @Override
             public void onSuccess() {
                 loginView.showMessageForSuccess();
+                loginView.startMainActivity();
             }
 
             @Override

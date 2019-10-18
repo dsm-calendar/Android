@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private EditText password;
     private ImageButton confirm;
 
-    private LoginPresenter presenter = new LoginPresenter(this, new LoginRepository());
+    private LoginPresenter presenter = new LoginPresenter(this, new LoginRepository(this));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +51,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public String getPassword() {
         return password.getText().toString();
+    }
+
+    @Override
+    public void startMainActivity() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

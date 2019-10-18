@@ -6,6 +6,7 @@ public interface LoginContract {
     interface View{
         String getID();
         String getPassword();
+        void startMainActivity();
 
         void showMessageForSuccess();
         void showMessageForFail(String message);
@@ -17,5 +18,6 @@ public interface LoginContract {
 
     interface Repository{
         void Login(String ID, String password, LoginRepository.LoginListener listener);
+        void saveUserData(int userID);
     }
 }
