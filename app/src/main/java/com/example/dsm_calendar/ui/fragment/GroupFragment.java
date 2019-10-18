@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 public class GroupFragment extends Fragment implements GroupContract.View {
 
+    private TextView noListTextView;
     private RecyclerView recyclerView;
     private GroupRVAdapter adapter;
     private GroupAddDialog groupAddDialog;
@@ -42,10 +44,13 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_group, container, false);
 
+        noListTextView = rootView.findViewById(R.id.tv_no_list_group);
+
         recyclerView = rootView.findViewById(R.id.rv_group_view);
         adapter = new GroupRVAdapter(getActivity(), groupPresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        checkList();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -89,6 +94,14 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         groupPresenter.onStarted();
 
         return rootView;
+    }
+
+    void checkList(){
+        if (adapter.groupList.size() == 0){
+            noListTextView.setVisibility(View.VISIBLE);
+        } else {
+            noListTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override

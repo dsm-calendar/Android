@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +29,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private RecyclerView recyclerView;
     private MainRVAdapter mainRVAdapter;
     private MainBannerAdapter mainBannerAdapter;
+    private TextView noListTextView;
     private ArrayList<String> noticeList = new ArrayList<>();
     private ArrayList<String> todayList = new ArrayList<>();
     private PageIndicatorView pageIndicatorView;
@@ -41,6 +42,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
+        noListTextView = rootView.findViewById(R.id.tv_no_list_main);
 
         recyclerView = rootView.findViewById(R.id.rv_main_listBox);
         mainRVAdapter = new MainRVAdapter(getActivity());
@@ -79,11 +82,13 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 //            recyclerView.setAdapter(mainRVAdapter);
             mainRVAdapter.list = noticeList;
             mainRVAdapter.notifyDataSetChanged();
+            checkList();
         } else if(v.getId() == R.id.button_main_schedule){
 //            mainRVAdapter = new MainRVAdapter(getActivity(), todayList);
 //            recyclerView.setAdapter(mainRVAdapter);
             mainRVAdapter.list = todayList;
             mainRVAdapter.notifyDataSetChanged();
+            checkList();
         }
     }
 
@@ -99,6 +104,15 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         mainRVAdapter.list = noticeList;
         mainRVAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(mainRVAdapter);
+        checkList();
+    }
+
+    private void checkList(){
+        if(mainRVAdapter.list.size() == 0){
+            noListTextView.setVisibility(View.VISIBLE);
+        } else {
+            noListTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override

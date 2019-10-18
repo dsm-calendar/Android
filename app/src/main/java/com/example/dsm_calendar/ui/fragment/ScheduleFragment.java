@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ import java.util.GregorianCalendar;
 
 public class ScheduleFragment extends Fragment implements ScheduleContract.View {
 
+    private TextView noListTextView;
     private RecyclerView recyclerView;
     private ScheduleRVAdapter adapter;
     private ImageButton scheduleAddButton;
@@ -56,10 +58,14 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
+
+        noListTextView = rootView.findViewById(R.id.tv_no_list_my_schedule);
+
         recyclerView = rootView.findViewById(R.id.rv_schedule_schedule);
         adapter = new ScheduleRVAdapter(getActivity(), schedulePresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+        checkList();
 
         setScheduleAddDialog();
 
@@ -84,6 +90,14 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         schedulePresenter.onStarted();
 
         return rootView;
+    }
+
+    void checkList(){
+        if(adapter.list.size() == 0){
+            noListTextView.setVisibility(View.VISIBLE);
+        } else {
+            noListTextView.setVisibility(View.GONE);
+        }
     }
 
     private void setScheduleAddDialog(){

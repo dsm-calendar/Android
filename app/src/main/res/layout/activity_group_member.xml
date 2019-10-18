@@ -46,6 +46,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_gravity="center_vertical"/>
 
+        <TextView
+            android:id="@+id/tv_no_list_group_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/rv_group_member"
+            app:layout_constraintBottom_toBottomOf="@id/rv_group_member"
+            app:layout_constraintStart_toStartOf="@id/rv_group_member"
+            app:layout_constraintEnd_toEndOf="@id/rv_group_member"
+            android:text="@string/no_list"
+            android:textSize="30dp"
+            android:fontFamily="@font/bm_dohyun"
+            android:visibility="gone"/>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_group_member_actionButton"
             android:layout_width="wrap_content"

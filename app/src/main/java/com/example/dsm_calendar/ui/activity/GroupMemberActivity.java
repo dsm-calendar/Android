@@ -1,7 +1,9 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 
 public class GroupMemberActivity extends AppCompatActivity implements GroupMemberContract.View {
 
+    private TextView noListTextView;
     private ImageButton groupMemberBack;
     private RecyclerView rvMember;
     private GroupMemberRVAdapter adapter;
@@ -36,6 +39,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_member);
 
+        noListTextView = findViewById(R.id.tv_no_list_group_member);
         groupMemberBack = findViewById(R.id.button_group_member_back);
         rvMember = findViewById(R.id.rv_group_member);
         addMemberButton = findViewById(R.id.fab_group_member_actionButton);
@@ -43,6 +47,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         adapter = new GroupMemberRVAdapter(this, presenter);
         rvMember.setAdapter(adapter);
         rvMember.setLayoutManager(new LinearLayoutManager(this));
+        checkList();
 
         groupMemberBack.setOnClickListener(v -> presenter.onClickBack());
         addMemberButton.setOnClickListener(v -> presenter.onClickAdd());
@@ -61,6 +66,14 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         });
 
         presenter.onStarted();
+    }
+
+    private void checkList(){
+        if (adapter.students.size() == 0){
+            noListTextView.setVisibility(View.VISIBLE);
+        } else {
+            noListTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override

@@ -31,12 +31,12 @@ public class MainFragmentRepository implements MainFragmentContract.Repository {
     public void getTodaySchedule(GetTodayScheduleListener listener) {
         ArrayList<String> todayList = new ArrayList<>();
 
-        todayList.add("do laundry");
-        todayList.add("homework");
-        todayList.add("buy some beer");
-        todayList.add("sleep like a boss");
-        todayList.add("buy a box of monster energy");
-        todayList.add("goto bank");
+//        todayList.add("do laundry");
+//        todayList.add("homework");
+//        todayList.add("buy some beer");
+//        todayList.add("sleep like a boss");
+//        todayList.add("buy a box of monster energy");
+//        todayList.add("goto bank");
 
         listener.onSuccess(todayList);
     }
