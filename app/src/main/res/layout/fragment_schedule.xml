@@ -60,6 +60,19 @@
             tools:itemCount="5"
             tools:listitem="@layout/item_fragment_schedule"/>
 
+        <TextView
+            android:id="@+id/tv_no_list_my_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/rv_schedule_schedule"
+            app:layout_constraintBottom_toBottomOf="@id/rv_schedule_schedule"
+            app:layout_constraintStart_toStartOf="@id/rv_schedule_schedule"
+            app:layout_constraintEnd_toEndOf="@id/rv_schedule_schedule"
+            android:textSize="20dp"
+            android:text="@string/no_list"
+            android:fontFamily="@font/bm_dohyun"
+            android:visibility="gone"/>
+
         <ImageButton
             android:id="@+id/button_schedule_add"
             android:layout_width="300dp"

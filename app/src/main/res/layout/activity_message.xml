@@ -30,4 +30,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tb_message_message"
         android:layout_marginTop="?attr/actionBarSize"/>
 
+    <TextView
+        android:id="@+id/tv_no_list_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/rv_message_message"
+        app:layout_constraintBottom_toBottomOf="@id/rv_message_message"
+        app:layout_constraintStart_toStartOf="@id/rv_message_message"
+        app:layout_constraintEnd_toEndOf="@id/rv_message_message"
+        android:textSize="30dp"
+        android:text="@string/no_list"
+        android:fontFamily="@font/bm_dohyun"
+        android:visibility="gone"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -88,6 +88,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"/>
 
+        <TextView
+            android:id="@+id/tv_no_list_group_schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/rv_group_schedule"
+            app:layout_constraintBottom_toBottomOf="@id/rv_group_schedule"
+            app:layout_constraintStart_toStartOf="@id/rv_group_schedule"
+            app:layout_constraintEnd_toEndOf="@id/rv_group_schedule"
+            android:textSize="20dp"
+            android:text="@string/no_list"
+            android:fontFamily="@font/bm_dohyun"
+            android:visibility="gone"/>
+
         <ImageButton
             android:id="@+id/button_group_schedule_add"
             android:layout_width="300dp"
