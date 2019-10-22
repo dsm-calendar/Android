@@ -79,4 +79,5 @@
     <string name="invite_member">멤버 초대하기</string>
     <string name="setting_member">그룹 멤버 설정</string>
     <string name="no_list">목록이 비어있습니다.</string>
+    <string name="view_banner_detail">배너 상세보기</string>
 </resources>
