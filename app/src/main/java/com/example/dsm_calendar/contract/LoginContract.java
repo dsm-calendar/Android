@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.contract;
 
+import com.example.dsm_calendar.data.DTO.LoginUserInfo;
 import com.example.dsm_calendar.data.LoginRepository;
 
 public interface LoginContract {
@@ -18,6 +19,6 @@ public interface LoginContract {
 
     interface Repository{
         void Login(String ID, String password, LoginRepository.LoginListener listener);
-        void saveUserData(int userID);
+        void saveUserData(LoginUserInfo user);
     }
 }
