@@ -50,6 +50,7 @@ public class BannerDetailActivity extends AppCompatActivity implements View.OnCl
                 finish();
                 break;
             case R.id.button_bannerDetail_change:
+                //TODO: set visible, invisible due to user's authorization
                 Intent intent = new Intent(BannerDetailActivity.this, BannerManageActivity.class);
                 startActivity(intent);
                 break;
