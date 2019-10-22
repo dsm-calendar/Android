@@ -22,6 +22,7 @@ import com.example.dsm_calendar.ui.activity.GroupSingleActivity;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMenuDialog;
+import com.example.dsm_calendar.ui.dialog.GroupNameEditDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -34,6 +35,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     private GroupRVAdapter adapter;
     private GroupAddDialog groupAddDialog;
     private GroupMenuDialog groupMenuDialog;
+    private GroupNameEditDialog groupNameEditDialog;
     private FloatingActionButton fab_add;
     private GroupPresenter groupPresenter = new GroupPresenter(this, new GroupRepository());
 
@@ -50,7 +52,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         adapter = new GroupRVAdapter(getActivity(), groupPresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-        checkList();
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -80,6 +82,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
             @Override
             public void onClickEditGroupTitle() {
                 Toast.makeText(getActivity(), "edit", Toast.LENGTH_SHORT).show();
+                groupNameEditDialog.show();
             }
 
             @Override
@@ -88,10 +91,19 @@ public class GroupFragment extends Fragment implements GroupContract.View {
             }
         });
 
+        groupNameEditDialog = new GroupNameEditDialog(getActivity());
+        groupNameEditDialog.setGroupNameEditListener(new DialogListener.GroupNameEditDialogListener() {
+            @Override
+            public void onConfirmClicked(String name) {
+                //TODO: get position of clicked item to rename
+            }
+        });
+
         fab_add = rootView.findViewById(R.id.fab_group_actionButton);
         fab_add.setOnClickListener(v -> groupPresenter.onClickAddGroup());
 
         groupPresenter.onStarted();
+        checkList();
 
         return rootView;
     }
@@ -115,12 +127,13 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     }
 
     @Override
-    public void showGroupMenuDialog() {
+    public void showGroupMenuDialog(String name) {
+        groupMenuDialog.setName(name);
         groupMenuDialog.show(getFragmentManager(), "bottomSheet");
     }
 
     @Override
-    public void startGroupActivity() {
+    public void startGroupActivity(String name) {
         Intent intent = new Intent(getActivity(), GroupSingleActivity.class);
         startActivity(intent);
     }

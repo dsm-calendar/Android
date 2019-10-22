@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.ScheduleViewHolder> {
 
-    public ArrayList<SampleSchedule> list;
+    public ArrayList<SampleSchedule> list = new ArrayList<>();
     private Context context;
     private SchedulePresenter schedulePresenter;
 

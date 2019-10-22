@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupViewHolder> {
 
-    public ArrayList<String> groupList;
+    public ArrayList<String> groupList = new ArrayList<>();
     private Context context;
     private GroupPresenter groupPresenter;
 
@@ -39,7 +39,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
-        holder.bind(name);
+        holder.bind(name, name);
     }
 
     @Override
@@ -57,10 +57,11 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
             menu = itemView.findViewById(R.id.button_item_group_menu);
         }
 
-        private void bind(String groupName){
+        private void bind(String groupName, String name){
+            //TODO: give groupInfo instead of name
             tv_group_name.setText(groupName);
-            itemView.setOnClickListener(v -> groupPresenter.onClickItems());
-            menu.setOnClickListener(v -> groupPresenter.onClickItemMenu());
+            itemView.setOnClickListener(v -> groupPresenter.onClickItems(name));
+            menu.setOnClickListener(v -> groupPresenter.onClickItemMenu(name));
         }
     }
 }
