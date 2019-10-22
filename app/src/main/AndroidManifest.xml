@@ -28,6 +28,7 @@
         <activity android:name=".ui.activity.GroupScheduleActivity"/>
         <activity android:name=".ui.activity.GroupMemberActivity"/>
         <activity android:name=".ui.activity.BannerDetailActivity"/>
+        <activity android:name=".ui.activity.BannerManageActivity"/>
     </application>
 
 </manifest>
