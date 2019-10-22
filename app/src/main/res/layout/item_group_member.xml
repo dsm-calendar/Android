@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="10dp"
+    android:elevation="5dp"
+    android:background="@drawable/group_member_background">
+
+    <ImageView
+        android:id="@+id/iv_item_group_member"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:background="#f9f9f9"
+        android:src="@drawable/ic_sprout"/>
+
+    <TextView
+        android:id="@+id/tv_item_group_member_std_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_item_group_member"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/sample_student_number"
+        android:textSize="10dp"
+        android:textColor="#737373"
+        android:fontFamily="@font/bm_dohyun"/>
+
+    <TextView
+        android:id="@+id/tv_item_group_member_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_group_member_std_no"
+        app:layout_constraintStart_toEndOf="@id/iv_item_group_member"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/sample_name"
+        android:textSize="15dp"
+        android:textColor="#737373"
+        android:fontFamily="@font/bm_dohyun"/>
+
+    <ImageButton
+        android:id="@+id/button_item_group_member_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:src="@drawable/ic_details"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

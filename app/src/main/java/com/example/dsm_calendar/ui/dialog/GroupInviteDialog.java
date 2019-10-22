@@ -11,25 +11,17 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.util.DialogListener;
 
-public class GroupInviteDialog extends Dialog {
+public class GroupInviteDialog extends Dialog implements View.OnClickListener {
 
-    private View.OnClickListener offButtonListener;
-    private View.OnClickListener yesButtonListener;
-    private View.OnClickListener noButtonListener;
     private ImageButton offButton;
     private Button yesButton;
     private Button noButton;
+    private DialogListener.GroupInviteDialogListener listener;
 
-    public GroupInviteDialog(
-            @NonNull Context context,
-            View.OnClickListener offButtonListener,
-            View.OnClickListener yesButtonListener,
-            View.OnClickListener noButtonListener) {
+    public GroupInviteDialog(@NonNull Context context) {
         super(context);
-        this.offButtonListener = offButtonListener;
-        this.yesButtonListener = yesButtonListener;
-        this.noButtonListener = noButtonListener;
     }
 
     @Override
@@ -47,8 +39,29 @@ public class GroupInviteDialog extends Dialog {
         yesButton = findViewById(R.id.button_invitegroup_yes);
         noButton = findViewById(R.id.button_invitegroup_no);
 
-        offButton.setOnClickListener(offButtonListener);
-        yesButton.setOnClickListener(yesButtonListener);
-        noButton.setOnClickListener(noButtonListener);
+        offButton.setOnClickListener(this);
+        yesButton.setOnClickListener(this);
+        noButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button_invitegroup_off:
+                dismiss();
+                break;
+            case R.id.button_invitegroup_yes:
+                listener.onYesClicked();
+                dismiss();
+                break;
+            case R.id.button_invitegroup_no:
+                listener.onNoClicked();
+                dismiss();
+                break;
+        }
+    }
+
+    public void setInviteDialogListener(DialogListener.GroupInviteDialogListener listener){
+        this.listener = listener;
     }
 }

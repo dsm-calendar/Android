@@ -1,9 +1,11 @@
 package com.example.dsm_calendar.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,43 +15,44 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.GroupContract;
+import com.example.dsm_calendar.data.GroupRepository;
+import com.example.dsm_calendar.presenter.GroupPresenter;
+import com.example.dsm_calendar.ui.activity.GroupSingleActivity;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
+import com.example.dsm_calendar.ui.dialog.GroupMenuDialog;
+import com.example.dsm_calendar.ui.dialog.GroupNameEditDialog;
+import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class GroupFragment extends Fragment {
+public class GroupFragment extends Fragment implements GroupContract.View {
 
+    private TextView noListTextView;
     private RecyclerView recyclerView;
     private GroupRVAdapter adapter;
-    private ArrayList<String> groups = new ArrayList<>();
     private GroupAddDialog groupAddDialog;
+    private GroupMenuDialog groupMenuDialog;
+    private GroupNameEditDialog groupNameEditDialog;
     private FloatingActionButton fab_add;
+    private GroupPresenter groupPresenter = new GroupPresenter(this, new GroupRepository());
 
     public GroupFragment(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        groups.add("동휘와 함께하는 게임 만들기");
-        groups.add("윤성이와 함께하는 디자인");
-        groups.add("승민이와 함께하는 안드로이드");
-        groups.add("하경이와 함께하는 서버만들기");
-        groups.add("담임쌤과 함께하는 \"코아\"개념 배우기");
-        groups.add("희명이와 함께하는 탈모갤러리");
-        groups.add("민트니스가 함께하는 근성장 팩토리");
-        groups.add("채홍이와 함께하는 인생파탄내기");
-        groups.add("이제는 쓸게없어 막쓰는 그룹");
-        groups.add("hello world!");
-        groups.add("Tlqkf");
-
         View rootView = inflater.inflate(R.layout.fragment_group, container, false);
+
+        noListTextView = rootView.findViewById(R.id.tv_no_list_group);
+
         recyclerView = rootView.findViewById(R.id.rv_group_view);
-        adapter = new GroupRVAdapter(groups, getActivity());
+        adapter = new GroupRVAdapter(getActivity(), groupPresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -65,15 +68,52 @@ public class GroupFragment extends Fragment {
             }
         });
 
-        groupAddDialog = new GroupAddDialog(getActivity(), offButtonListener, checkButtonListener);
+        groupAddDialog = new GroupAddDialog(getActivity());
+        groupAddDialog.setGroupAddDialogListener(new DialogListener.GroupAddDialogListener() {
+            @Override
+            public void onConfirmClicked(String name) {
+                Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
+            }
+        });
         groupAddDialog.setCanceledOnTouchOutside(true);
 
-        fab_add = rootView.findViewById(R.id.fab_group_actionButton);
-        fab_add.setOnClickListener(v -> {
-            groupAddDialog.show();
+        groupMenuDialog = new GroupMenuDialog();
+        groupMenuDialog.setGroupMenuDialogListener(new DialogListener.GroupMenuDialogListener() {
+            @Override
+            public void onClickEditGroupTitle() {
+                Toast.makeText(getActivity(), "edit", Toast.LENGTH_SHORT).show();
+                groupNameEditDialog.show();
+            }
+
+            @Override
+            public void onClickDeleteGroup() {
+                Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+            }
         });
 
+        groupNameEditDialog = new GroupNameEditDialog(getActivity());
+        groupNameEditDialog.setGroupNameEditListener(new DialogListener.GroupNameEditDialogListener() {
+            @Override
+            public void onConfirmClicked(String name) {
+                //TODO: get position of clicked item to rename
+            }
+        });
+
+        fab_add = rootView.findViewById(R.id.fab_group_actionButton);
+        fab_add.setOnClickListener(v -> groupPresenter.onClickAddGroup());
+
+        groupPresenter.onStarted();
+        checkList();
+
         return rootView;
+    }
+
+    void checkList(){
+        if (adapter.groupList.size() == 0){
+            noListTextView.setVisibility(View.VISIBLE);
+        } else {
+            noListTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -81,17 +121,25 @@ public class GroupFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    private View.OnClickListener offButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            groupAddDialog.dismiss();
-        }
-    };
+    @Override
+    public void showGroupAddDialog() {
+        groupAddDialog.show();
+    }
 
-    private View.OnClickListener checkButtonListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(getActivity(), "check", Toast.LENGTH_SHORT).show();
-        }
-    };
+    @Override
+    public void showGroupMenuDialog(String name) {
+        groupMenuDialog.setName(name);
+        groupMenuDialog.show(getFragmentManager(), "bottomSheet");
+    }
+
+    @Override
+    public void startGroupActivity(String name) {
+        Intent intent = new Intent(getActivity(), GroupSingleActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void addItems(ArrayList<String> testGroup) {
+        adapter.groupList = testGroup;
+    }
 }

@@ -1,26 +1,31 @@
 package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.presenter.GroupPresenter;
+
 import java.util.ArrayList;
 
 public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupViewHolder> {
 
-    private ArrayList<String> groupList;
+    public ArrayList<String> groupList = new ArrayList<>();
     private Context context;
+    private GroupPresenter groupPresenter;
 
-    public GroupRVAdapter(ArrayList<String> groups, Context context){
-        this.groupList = groups;
+    public GroupRVAdapter(Context context, GroupPresenter groupPresenter){
         this.context = context;
+        this.groupPresenter = groupPresenter;
     }
 
     @NonNull
@@ -34,7 +39,7 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         String name = groupList.get(position);
-        holder.bind(name);
+        holder.bind(name, name);
     }
 
     @Override
@@ -44,16 +49,19 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
 
     public class GroupViewHolder extends RecyclerView.ViewHolder {
         TextView tv_group_name ;
+        ImageButton menu;
+
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_group_name = itemView.findViewById(R.id.tv_group_name);
-            itemView.setOnClickListener(v -> {
-                Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show();
-            });
+            tv_group_name = itemView.findViewById(R.id.tv_item_group_name);
+            menu = itemView.findViewById(R.id.button_item_group_menu);
         }
 
-        private void bind(String groupName){
+        private void bind(String groupName, String name){
+            //TODO: give groupInfo instead of name
             tv_group_name.setText(groupName);
+            itemView.setOnClickListener(v -> groupPresenter.onClickItems(name));
+            menu.setOnClickListener(v -> groupPresenter.onClickItemMenu(name));
         }
     }
 }

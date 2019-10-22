@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/view_color_group_background"
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+        android:background="#6cccde"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_group_line"
+        android:layout_width="80dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="100dp"
+        android:background="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@id/view_color_group_background"
+        app:layout_constraintStart_toStartOf="@id/view_color_group_background"
+        app:layout_constraintTop_toTopOf="@id/view_color_group_background" />
+
+    <TextView
+        android:id="@+id/tv_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/bm_dohyun"
+        android:text="@string/sample_group"
+        android:textColor="#FFFFFF"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="@id/view_color_group_background"
+        app:layout_constraintStart_toStartOf="@id/view_color_group_background"
+        app:layout_constraintTop_toBottomOf="@id/view_group_line" />
+
+    <ImageView
+        android:id="@+id/iv_group_image"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/sample_people"
+        app:layout_constraintEnd_toEndOf="@id/view_color_group_background"
+        app:layout_constraintStart_toStartOf="@id/view_color_group_background"
+        app:layout_constraintTop_toBottomOf="@id/tv_group_name" />
+
+    <ImageButton
+        android:id="@+id/button_group_schedule"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toStartOf="@+id/button_group_member"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_color_group_background"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/button_group_main_background"
+        android:src="@drawable/ic_calendar"/>
+
+    <TextView
+        android:id="@+id/tv_group_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/button_group_schedule"
+        app:layout_constraintStart_toStartOf="@id/button_group_schedule"
+        app:layout_constraintEnd_toEndOf="@id/button_group_schedule"
+        android:layout_marginTop="10dp"
+        android:text="@string/schedule"
+        android:textColor="#404040"
+        android:fontFamily="@font/bm_dohyun"/>
+
+    <ImageButton
+        android:id="@+id/button_group_member"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button_group_schedule"
+        app:layout_constraintTop_toBottomOf="@id/view_color_group_background"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/button_group_main_background"
+        android:src="@drawable/ic_man_user"/>
+
+    <TextView
+        android:id="@+id/tv_group_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/button_group_member"
+        app:layout_constraintStart_toStartOf="@id/button_group_member"
+        app:layout_constraintEnd_toEndOf="@id/button_group_member"
+        android:layout_marginTop="10dp"
+        android:text="@string/member"
+        android:textColor="#404040"
+        android:fontFamily="@font/bm_dohyun"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

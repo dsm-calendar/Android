@@ -12,22 +12,17 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.util.DialogListener;
 
-public class GroupAddDialog extends Dialog {
+public class GroupAddDialog extends Dialog implements  View.OnClickListener{
 
-    private View.OnClickListener offButtonListener;
-    private View.OnClickListener checkButtonListener;
     private EditText editText;
     private ImageView offButton;
     private ImageButton checkButton;
+    private DialogListener.GroupAddDialogListener listener;
 
-    public GroupAddDialog(
-            @NonNull Context context,
-            View.OnClickListener offButtonListener,
-            View.OnClickListener checkButtonListener) {
+    public GroupAddDialog(@NonNull Context context) {
         super(context);
-        this.offButtonListener = offButtonListener;
-        this.checkButtonListener = checkButtonListener;
     }
 
     @Override
@@ -46,7 +41,25 @@ public class GroupAddDialog extends Dialog {
         offButton = findViewById(R.id.button_addgroup_off);
         checkButton = findViewById(R.id.button_addgroup_confirm);
 
-        offButton.setOnClickListener(offButtonListener);
-        checkButton.setOnClickListener(checkButtonListener);
+        offButton.setOnClickListener(this);
+        checkButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.button_addgroup_off:
+                dismiss();
+                break;
+            case R.id.button_addgroup_confirm:
+                listener.onConfirmClicked(editText.getText().toString());
+                editText.setText("");
+                dismiss();
+                break;
+        }
+    }
+
+    public void setGroupAddDialogListener(DialogListener.GroupAddDialogListener listener){
+        this.listener = listener;
     }
 }

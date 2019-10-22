@@ -4,10 +4,6 @@
         android:id="@+id/item_navigation_setting"
         android:icon="@drawable/ic_gear"
         android:title="@string/setting"/>
-    <item
-        android:id="@+id/item_navigation_code"
-        android:icon="@drawable/ic_authentication"
-        android:title="@string/auth_code"/>
 
     <item
         android:id="@+id/item_navigation_event"
@@ -32,11 +28,6 @@
             android:id="@+id/item_navigation_calendar_school"
             android:icon="@drawable/ic_school_logo"
             android:title="@string/school_calendar"/>
-
-        <item
-            android:id="@+id/item_navigation_calendar_group"
-            android:icon="@drawable/ic_multiple_users_silhouette"
-            android:title="@string/group_calendar"/>
 
         <item
             android:id="@+id/item_navigation_calendar_my"
