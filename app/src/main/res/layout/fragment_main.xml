@@ -93,6 +93,19 @@
             tools:listitem="@layout/item_fragment_main"/>
 
         <TextView
+            android:id="@+id/tv_no_list_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/rv_main_listBox"
+            app:layout_constraintBottom_toBottomOf="@id/rv_main_listBox"
+            app:layout_constraintStart_toStartOf="@id/rv_main_listBox"
+            app:layout_constraintEnd_toEndOf="@id/rv_main_listBox"
+            android:text="@string/no_list"
+            android:textSize="20dp"
+            android:fontFamily="@font/bm_dohyun"
+            android:visibility="gone"/>
+
+        <TextView
             android:id="@+id/tv_main_table"
             android:layout_width="40dp"
             android:layout_height="20dp"

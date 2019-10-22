@@ -24,13 +24,13 @@ public class GroupPresenter implements GroupContract.Presenter {
     }
 
     @Override
-    public void onClickItems() {
-        groupView.startGroupActivity();
+    public void onClickItems(String name) {
+        groupView.startGroupActivity(name);
     }
 
     @Override
-    public void onClickItemMenu() {
-        groupView.showGroupMenuDialog();
+    public void onClickItemMenu(String name) {
+        groupView.showGroupMenuDialog(name);
     }
 
     @Override

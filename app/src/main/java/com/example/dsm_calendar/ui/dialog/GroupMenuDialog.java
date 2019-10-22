@@ -1,11 +1,11 @@
 package com.example.dsm_calendar.ui.dialog;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +20,10 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
     private ImageButton offButton;
     private ConstraintLayout editGroupName;
     private ConstraintLayout deleteGroup;
+    private TextView groupName;
     private DialogListener.GroupMenuDialogListener listener;
+
+    private String name;
 
     @Nullable
     @Override
@@ -30,10 +33,12 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
         offButton = view.findViewById(R.id.button_group_menu_off);
         editGroupName = view.findViewById(R.id.cl_group_menu_fix_group_title);
         deleteGroup = view.findViewById(R.id.cl_group_menu_delete_group);
+        groupName = view.findViewById(R.id.tv_group_menu_group_name);
 
         offButton.setOnClickListener(this);
         editGroupName.setOnClickListener(this);
         deleteGroup.setOnClickListener(this);
+        groupName.setText(name);
 
         return view;
     }
@@ -57,5 +62,9 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
 
     public void setGroupMenuDialogListener(DialogListener.GroupMenuDialogListener listener){
         this.listener = listener;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 }

@@ -2,6 +2,7 @@ package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 public class MessageActivity extends AppCompatActivity implements MessageContract.View {
 
+    private TextView noListTextView;
     private RecyclerView recyclerView;
     private MessageRVAdapter adapter;
     private GroupInviteDialog groupInviteDialog;
@@ -70,12 +72,19 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         groupInviteDialog.setCanceledOnTouchOutside(true);
         messageDeleteDialog.setCanceledOnTouchOutside(true);
 
+        noListTextView = findViewById(R.id.tv_no_list_message);
+
         recyclerView = findViewById(R.id.rv_message_message);
         adapter = new MessageRVAdapter(this, messagePresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        checkList();
 
         messagePresenter.onStarted();
+    }
+
+    void checkList(){
+        //TODO: setVisibility to visible when adapter list size is 0
     }
 
     @Override

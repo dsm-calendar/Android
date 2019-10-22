@@ -8,6 +8,10 @@ public interface DialogListener {
         void onConfirmClicked(String name);
     }
 
+    interface GroupNameEditDialogListener{
+        void onConfirmClicked(String name);
+    }
+
     interface GroupInviteDialogListener{
         void onYesClicked();
         void onNoClicked();
