@@ -12,6 +12,11 @@ public interface DialogListener {
         void onConfirmClicked(String name);
     }
 
+    interface GroupDeleteDialogListener{
+        void onYesClicked();
+        void onNoClicked();
+    }
+
     interface GroupInviteDialogListener{
         void onYesClicked();
         void onNoClicked();

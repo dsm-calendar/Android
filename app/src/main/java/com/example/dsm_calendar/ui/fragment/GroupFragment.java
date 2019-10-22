@@ -21,6 +21,7 @@ import com.example.dsm_calendar.presenter.GroupPresenter;
 import com.example.dsm_calendar.ui.activity.GroupSingleActivity;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
+import com.example.dsm_calendar.ui.dialog.GroupDeleteDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMenuDialog;
 import com.example.dsm_calendar.ui.dialog.GroupNameEditDialog;
 import com.example.dsm_calendar.util.DialogListener;
@@ -36,6 +37,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     private GroupAddDialog groupAddDialog;
     private GroupMenuDialog groupMenuDialog;
     private GroupNameEditDialog groupNameEditDialog;
+    private GroupDeleteDialog groupDeleteDialog;
     private FloatingActionButton fab_add;
     private GroupPresenter groupPresenter = new GroupPresenter(this, new GroupRepository());
 
@@ -88,6 +90,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
             @Override
             public void onClickDeleteGroup() {
                 Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+                groupDeleteDialog.show();
             }
         });
 
@@ -96,6 +99,19 @@ public class GroupFragment extends Fragment implements GroupContract.View {
             @Override
             public void onConfirmClicked(String name) {
                 //TODO: get position of clicked item to rename
+            }
+        });
+
+        groupDeleteDialog = new GroupDeleteDialog(getActivity());
+        groupDeleteDialog.setGroupDeleteDialogListener(new DialogListener.GroupDeleteDialogListener() {
+            @Override
+            public void onYesClicked() {
+                //TODO: get item position to delete or get out of group
+            }
+
+            @Override
+            public void onNoClicked() {
+                Toast.makeText(getActivity(), "그룹 삭제가 취소되었습니다", Toast.LENGTH_LONG).show();
             }
         });
 
