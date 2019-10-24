@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -81,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.item_toolbar_mail:
-                mainPresenter.onClickMailbox();
+                Intent mailBoxIntent = new Intent(MainActivity.this, MessageActivity.class);
+                startActivity(mailBoxIntent);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -91,19 +93,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.item_navigation_setting:
-                mainPresenter.onClickSetting();
                 break;
             case R.id.item_navigation_event:
-                mainPresenter.onClickRequireEvent();
+                Intent makeNoticeIntent = new Intent(MainActivity.this, MakeNoticeActivity.class);
+                startActivity(makeNoticeIntent);
                 break;
             case R.id.item_navigation_timeTable:
-                mainPresenter.onClickTimeTable();
+                Intent timeTableIntent = new Intent(MainActivity.this, TimeTableActivity.class);
+                startActivity(timeTableIntent);
                 break;
             case R.id.item_navigation_calendar_school:
-                mainPresenter.onClickSchoolCalendar();
+                Toast.makeText(this, "schoolCalendar", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.item_navigation_calendar_my:
-                mainPresenter.onClickMyCalendar();
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.item_navigation_logout:
                 mainPresenter.onClickLogout();
@@ -130,22 +133,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setHomeAsUpIndicator(R.drawable.ic_list);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setHomeButtonEnabled(true);
-    }
-
-    @Override
-    public void startMailBoxActivity() {
-        Intent intent = new Intent(MainActivity.this, MessageActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void startTimeTableActivity() {
-        Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void moveToMyCalendar() {
-        viewPager.setCurrentItem(0);
     }
 }
