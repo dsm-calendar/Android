@@ -12,7 +12,7 @@
         android:id="@+id/cl_makeNotice_title"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorTitle"
+        android:background="@color/skyblue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -141,7 +141,7 @@
             android:background="@android:color/white"
             android:fontFamily="@font/nanumsquare_r"
             android:text="@string/cancel"
-            android:textColor="@color/colorTitle"
+            android:textColor="@color/skyblue"
             android:textSize="18dp" />
 
         <Button
@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorTitle"
+            android:background="@color/skyblue"
             android:fontFamily="@font/nanumsquare_r"
             android:text="@string/send_request"
             android:textColor="@android:color/white"
