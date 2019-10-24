@@ -1,5 +1,7 @@
 package com.example.dsm_calendar.contract;
 
+import com.example.dsm_calendar.data.MainRepository;
+
 public interface MainContract {
     interface View{
 
@@ -7,9 +9,10 @@ public interface MainContract {
 
     interface Presenter {
         void onClickLogout();
+        void onStarted();
     }
 
     interface Repository{
-
+        void getUserInfo(MainRepository.GetUserInfoListener listener);
     }
 }

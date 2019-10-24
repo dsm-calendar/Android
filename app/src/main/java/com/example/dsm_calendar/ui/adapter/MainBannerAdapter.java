@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.ui.activity.BannerDetailActivity;
+import com.example.dsm_calendar.ui.activity.MainActivity;
 
 import java.util.ArrayList;
 
@@ -36,6 +39,14 @@ public class MainBannerAdapter extends PagerAdapter {
         View view = inflater.inflate(R.layout.main_vp_banner_image_view, null);
         ImageView imageView = view.findViewById(R.id.vp_adapter);
         imageView.setImageResource(bannerList.get(position));
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, BannerDetailActivity.class);
+                intent.putExtra("image", bannerList.get(position));
+                context.startActivity(intent);
+            }
+        });
 
         ViewPager vp = (ViewPager) container;
         vp.addView(view, 0);
