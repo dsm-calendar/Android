@@ -18,7 +18,6 @@
         android:contentDescription="@string/profile_image" />
 
     <TextView
-        android:id="@+id/tv_main_userclass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
@@ -30,7 +29,6 @@
         android:fontFamily="@font/bm_dohyun"/>
 
     <TextView
-        android:id="@+id/tv_main_userid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
