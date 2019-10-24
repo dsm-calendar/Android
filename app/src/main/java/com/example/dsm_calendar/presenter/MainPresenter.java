@@ -15,37 +15,6 @@ public class MainPresenter implements MainContract.Presenter {
         this.mainRepo = mainRepo;
     }
 
-
-    @Override
-    public void onClickMailbox() {
-        mainView.startMailBoxActivity();
-    }
-
-    @Override
-    public void onClickSetting() {
-
-    }
-
-    @Override
-    public void onClickRequireEvent() {
-
-    }
-
-    @Override
-    public void onClickTimeTable() {
-        mainView.startTimeTableActivity();
-    }
-
-    @Override
-    public void onClickSchoolCalendar() {
-
-    }
-
-    @Override
-    public void onClickMyCalendar() {
-        mainView.moveToMyCalendar();
-    }
-
     @Override
     public void onClickLogout() {
 
