@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,22 +28,27 @@ import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainContract.View{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainContract.View {
 
     private MainPagerAdapter adapter;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private TextView userId;
+    private TextView userClass;
+    private ImageView profile;
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
-    private MainPresenter mainPresenter = new MainPresenter(this, new MainRepository());
+    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mainPresenter = new MainPresenter(this, new MainRepository(this));
 
         viewPager = findViewById(R.id.vp_main_main);
         tabLayout = findViewById(R.id.tl_main_main);
@@ -59,12 +65,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nv_main_main);
         navigationView.setNavigationItemSelectedListener(this);
 
+        userId = drawerLayout.findViewById(R.id.tv_main_userid);
+        userClass = drawerLayout.findViewById(R.id.tv_main_userclass);
+
         View header = navigationView.getHeaderView(0);
-        ImageView profile = header.findViewById(R.id.profile_image);
+        profile = header.findViewById(R.id.profile_image);
         profile.setBackground(new ShapeDrawable(new OvalShape()));
         profile.setClipToOutline(true);
+        userId = header.findViewById(R.id.tv_main_userid);
+        userClass = header.findViewById(R.id.tv_main_userclass);
 
         setToolBar();
+
+        mainPresenter.onStarted();
     }
 
     @Override
@@ -77,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
@@ -91,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.item_navigation_setting:
                 break;
             case R.id.item_navigation_event:
@@ -118,14 +131,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawers();
         } else {
             super.onBackPressed();
         }
     }
 
-    public void setToolBar(){
+    public void setToolBar() {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
@@ -133,5 +146,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setHomeAsUpIndicator(R.drawable.ic_list);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setHomeButtonEnabled(true);
+    }
+
+    @Override
+    public void setUserInfo(String id, int classOf, int iconIndex) {
+
     }
 }

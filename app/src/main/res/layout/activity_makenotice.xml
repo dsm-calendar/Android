@@ -12,7 +12,7 @@
         android:id="@+id/cl_makeNotice_title"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/colorTitle"
+        android:background="@color/skyblue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -46,12 +46,12 @@
         android:id="@+id/cl_makeNotice_icons_background"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/view_circle_white_background"
+        android:layout_marginTop="80dp"
+        android:background="@android:color/white"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_makeNotice_title">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="80dp"
@@ -60,7 +60,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/view_circle_white_background"
             app:srcCompat="@drawable/ic_create" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -83,8 +82,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/ll_makeNotice_buttons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/fragment_schedule_background">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -94,7 +92,7 @@
                 android:id="@+id/iv_makeNotice_edits_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -122,8 +120,7 @@
             android:padding="20dp"
             android:textSize="12dp"
             android:hint="@string/no_notice_content"
-            android:inputType="textMultiLine"
-            android:background="@null"/>
+            android:inputType="textMultiLine" />
 
     </LinearLayout>
 
@@ -144,7 +141,7 @@
             android:background="@android:color/white"
             android:fontFamily="@font/nanumsquare_r"
             android:text="@string/cancel"
-            android:textColor="@color/colorTitle"
+            android:textColor="@color/skyblue"
             android:textSize="18dp" />
 
         <Button
@@ -152,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorTitle"
+            android:background="@color/skyblue"
             android:fontFamily="@font/nanumsquare_r"
             android:text="@string/send_request"
             android:textColor="@android:color/white"
