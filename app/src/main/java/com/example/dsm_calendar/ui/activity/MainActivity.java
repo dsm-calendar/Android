@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -145,5 +146,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         actionBar.setHomeAsUpIndicator(R.drawable.ic_list);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setHomeButtonEnabled(true);
+    }
+
+    @Override
+    public void setUserInfo(String id, int classOf, int iconIndex) {
+
     }
 }

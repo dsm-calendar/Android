@@ -4,7 +4,7 @@ import com.example.dsm_calendar.data.MainRepository;
 
 public interface MainContract {
     interface View{
-
+        void setUserInfo(String id, int classOf, int iconIndex);
     }
 
     interface Presenter {
