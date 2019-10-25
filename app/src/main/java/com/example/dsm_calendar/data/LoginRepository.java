@@ -51,13 +51,11 @@ public class LoginRepository implements LoginContract.Repository {
 
     @Override
     public void saveUserData(LoginUserInfo user) {
-        SharedPreferences userInfo = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor =   userInfo.edit();
-        editor.putInt("userID", user.getLoginUserId());
-        editor.putString("ID", user.getId());
-        editor.putInt("classOf", user.getClassOf());
-        editor.putInt("iconIndex", user.getIconIndex());
-        editor.putInt("myCalendarId", user.getMyCalendarId());
-        editor.apply();
+        UserPreference preference = UserPreference.getInstance(context);
+        preference.putUserID("userID", user.getLoginUserId());
+        preference.putID("ID", user.getId());
+        preference.putClassOf("classOf", user.getClassOf());
+        preference.putIconIndex("iconIndex", user.getIconIndex());
+        preference.putMyCalendarID("myCalendarID", user.getMyCalendarId());
     }
 }
