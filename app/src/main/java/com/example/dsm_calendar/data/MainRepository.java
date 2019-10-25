@@ -30,4 +30,10 @@ public class MainRepository implements MainContract.Repository {
             listener.onSuccess(id, classOf, iconIndex);
         }
     }
+
+    @Override
+    public void logout() {
+        UserPreference preference = UserPreference.getInstance(context);
+        preference.clear();
+    }
 }

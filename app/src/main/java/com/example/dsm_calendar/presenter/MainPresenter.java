@@ -18,7 +18,8 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onClickLogout() {
-
+        mainRepo.logout();
+        mainView.logout();
     }
 
     @Override

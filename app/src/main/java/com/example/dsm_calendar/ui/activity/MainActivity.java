@@ -176,6 +176,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toast.makeText(this, "유저 정보를 불러오는데 실패했습니다.", Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void logout() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+    }
+
     void setProfileImage(int iconIndex){
         switch (iconIndex){
             case 0:

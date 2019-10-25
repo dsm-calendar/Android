@@ -67,4 +67,9 @@ public class UserPreference {
     public int getMyCalendarID(){
         return pref.getInt("myCalendarID", -1);
     }
+
+    public void clear(){
+        editor.clear();
+        editor.apply();
+    }
 }
