@@ -8,8 +8,8 @@ public interface SignUpContract {
         String getPassword();
         int getStd_no();
 
-        void showMessageForSuccess();
-        void showMessageForFail(String message);
+        void onSuccess();
+        void onFail(String message);
     }
 
     interface Presenter{

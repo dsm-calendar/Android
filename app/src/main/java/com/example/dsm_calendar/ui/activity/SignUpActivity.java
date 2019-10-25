@@ -52,12 +52,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
     }
 
     @Override
-    public void showMessageForSuccess() {
-        Toast.makeText(this, "success!", Toast.LENGTH_SHORT).show();
+    public void onSuccess() {
+        Toast.makeText(this, "회원가입이 정상적으로 처리되었습니다.", Toast.LENGTH_LONG).show();
+        finish();
     }
 
     @Override
-    public void showMessageForFail(String message) {
-        Toast.makeText(this, "message: "+message, Toast.LENGTH_LONG).show();
+    public void onFail(String message) {
+        Toast.makeText(this, "회원가입 오류.\nmessage: "+ message, Toast.LENGTH_LONG).show();
     }
 }
