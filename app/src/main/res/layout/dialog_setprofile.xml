@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="260dp"
+    android:layout_height="310dp"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_setprofile_title"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#6cccde"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/button_setprofile_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@null"
+            android:src="@drawable/ic_cross_out"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bm_dohyun"
+            android:text="@string/set_profile"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_selected_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/view_circle_white_background"
+        android:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_setprofile_title">
+
+        <ImageView
+            android:id="@+id/iv_selectedImage"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_sprout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/button_ic_sprout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_circle_gray_background"
+        android:src="@drawable/ic_sprout"
+        app:layout_constraintTop_toBottomOf="@id/cl_selected_icon"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/button_ic_person_w"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_circle_gray_background"
+        android:src="@drawable/ic_person_w"
+        app:layout_constraintTop_toBottomOf="@id/cl_selected_icon"
+        app:layout_constraintEnd_toStartOf="@id/button_ic_person_m"
+        app:layout_constraintStart_toEndOf="@+id/button_ic_sprout" />
+
+    <ImageButton
+        android:id="@+id/button_ic_person_m"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_circle_gray_background"
+        android:src="@drawable/ic_person_m"
+        app:layout_constraintTop_toBottomOf="@id/cl_selected_icon"
+        app:layout_constraintEnd_toStartOf="@+id/button_ic_school"
+        app:layout_constraintStart_toEndOf="@id/button_ic_person_w"/>
+
+    <ImageButton
+        android:id="@+id/button_ic_school"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_circle_gray_background"
+        android:src="@drawable/ic_school"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_selected_icon" />
+
+    <ImageButton
+        android:id="@+id/button_setprofile_confirm"
+        app:layout_constraintTop_toBottomOf="@id/button_ic_sprout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_check_gray"
+        android:background="#e9e7e7"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

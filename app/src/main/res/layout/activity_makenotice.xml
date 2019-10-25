@@ -46,12 +46,13 @@
         android:id="@+id/cl_makeNotice_icons_background"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginTop="80dp"
-        android:background="@android:color/white"
+        android:layout_margin="20dp"
+        android:background="@drawable/view_circle_white_background"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/cl_makeNotice_title"
+        android:elevation="5dp">
 
         <ImageView
             android:layout_width="80dp"
@@ -60,6 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/view_circle_white_background"
             app:srcCompat="@drawable/ic_create" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -82,7 +84,8 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/ll_makeNotice_buttons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/fragment_schedule_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -92,7 +95,7 @@
                 android:id="@+id/iv_makeNotice_edits_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -120,7 +123,8 @@
             android:padding="20dp"
             android:textSize="12dp"
             android:hint="@string/no_notice_content"
-            android:inputType="textMultiLine" />
+            android:inputType="textMultiLine"
+            android:background="@null"/>
 
     </LinearLayout>
 

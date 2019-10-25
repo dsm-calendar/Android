@@ -25,6 +25,8 @@ import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
+import com.example.dsm_calendar.ui.dialog.SetProfileDialog;
+import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
+
+    private SetProfileDialog setProfileDialog;
 
     private MainPresenter mainPresenter;
 
@@ -70,10 +74,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         View header = navigationView.getHeaderView(0);
         profile = header.findViewById(R.id.profile_image);
-        profile.setBackground(new ShapeDrawable(new OvalShape()));
-        profile.setClipToOutline(true);
         userId = header.findViewById(R.id.tv_main_userid);
         userClass = header.findViewById(R.id.tv_main_userclass);
+
+        setProfileDialog = new SetProfileDialog(this);
+        setProfileDialog.setSetProfileDialogListener(iconIndex -> setProfileImage(iconIndex));
 
         setToolBar();
 
@@ -106,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.item_navigation_setting:
+                setProfileDialog.show();
                 break;
             case R.id.item_navigation_event:
                 Intent makeNoticeIntent = new Intent(MainActivity.this, MakeNoticeActivity.class);
@@ -150,6 +156,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void setUserInfo(String id, int classOf, int iconIndex) {
+        userId.setText(id);
+        userClass.setText(Integer.toString(classOf));
+        setProfileImage(iconIndex);
+    }
 
+    @Override
+    public void onFailGetUserInfo() {
+        Toast.makeText(this, "유저 정보를 불러오는데 실패했습니다.", Toast.LENGTH_LONG).show();
+    }
+
+    void setProfileImage(int iconIndex){
+        switch (iconIndex){
+            case 0:
+                profile.setImageResource(R.drawable.ic_sprout);
+                break;
+            case 1:
+                profile.setImageResource(R.drawable.ic_person_w);
+                break;
+            case 2:
+                profile.setImageResource(R.drawable.ic_person_m);
+                break;
+            case 3:
+                profile.setImageResource(R.drawable.ic_school);
+                break;
+        }
     }
 }

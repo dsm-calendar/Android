@@ -86,4 +86,5 @@
     <string name="no_notice_content">공지 상세 내용이 없습니다.</string>
     <string name="no_title_notice">제목 없는 공지</string>
     <string name="request_create_notice">공지사항 생성을 요청합니다</string>
+    <string name="set_profile">프로필 설정</string>
 </resources>

@@ -4,6 +4,10 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 public interface DialogListener {
 
+    interface SetProfileDialogListener {
+        void onConfirmClicked(int iconIndex);
+    }
+
     interface GroupAddDialogListener{
         void onConfirmClicked(String name);
     }
