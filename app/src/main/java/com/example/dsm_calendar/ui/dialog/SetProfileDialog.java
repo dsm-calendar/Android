@@ -42,6 +42,7 @@ public class SetProfileDialog extends Dialog implements View.OnClickListener {
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.dialog_setprofile);
+        setCanceledOnTouchOutside(true);
 
         offButton = findViewById(R.id.button_setprofile_off);
         selected = findViewById(R.id.iv_selectedImage);

@@ -41,6 +41,7 @@ public class ScheduleAddDialog extends Dialog implements View.OnClickListener{
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.dialog_addschedule);
+        setCanceledOnTouchOutside(true);
 
         title = findViewById(R.id.et_addschedule_title);
         content = findViewById(R.id.et_addschedule_content);

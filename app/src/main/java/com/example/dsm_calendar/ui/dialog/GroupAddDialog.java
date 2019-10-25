@@ -36,6 +36,7 @@ public class GroupAddDialog extends Dialog implements  View.OnClickListener{
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.dialog_addgroup);
+        setCanceledOnTouchOutside(true);
 
         editText = findViewById(R.id.et_addgroup_name);
         offButton = findViewById(R.id.button_addgroup_off);

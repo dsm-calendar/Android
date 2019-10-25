@@ -44,4 +44,8 @@ public interface DialogListener {
         void onClickMemberAuth();
         void onClickMemberKick();
     }
+
+    interface LogoutDialogListener{
+        void onConfirmClicked();
+    }
 }

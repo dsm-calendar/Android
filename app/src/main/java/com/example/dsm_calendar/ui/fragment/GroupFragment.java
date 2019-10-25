@@ -77,19 +77,16 @@ public class GroupFragment extends Fragment implements GroupContract.View {
                 Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
             }
         });
-        groupAddDialog.setCanceledOnTouchOutside(true);
 
         groupMenuDialog = new GroupMenuDialog();
         groupMenuDialog.setGroupMenuDialogListener(new DialogListener.GroupMenuDialogListener() {
             @Override
             public void onClickEditGroupTitle() {
-                Toast.makeText(getActivity(), "edit", Toast.LENGTH_SHORT).show();
                 groupNameEditDialog.show();
             }
 
             @Override
             public void onClickDeleteGroup() {
-                Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
                 groupDeleteDialog.show();
             }
         });
@@ -124,7 +121,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         return rootView;
     }
 
-    void checkList(){
+    private void checkList(){
         if (adapter.groupList.size() == 0){
             noListTextView.setVisibility(View.VISIBLE);
         } else {

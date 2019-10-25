@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
+import com.example.dsm_calendar.ui.dialog.LogoutDialog;
 import com.example.dsm_calendar.ui.dialog.SetProfileDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.navigation.NavigationView;
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TabLayout tabLayout;
 
     private SetProfileDialog setProfileDialog;
+    private LogoutDialog logoutDialog;
 
     private MainPresenter mainPresenter;
 
@@ -78,7 +81,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userClass = header.findViewById(R.id.tv_main_userclass);
 
         setProfileDialog = new SetProfileDialog(this);
-        setProfileDialog.setSetProfileDialogListener(iconIndex -> setProfileImage(iconIndex));
+        setProfileDialog.setSetProfileDialogListener(this::setProfileImage);
+        logoutDialog = new LogoutDialog(this);
+        logoutDialog.setLogoutDialogListener(new DialogListener.LogoutDialogListener() {
+            @Override
+            public void onConfirmClicked() {
+                mainPresenter.onClickLogout();
+            }
+        });
 
         setToolBar();
 
@@ -128,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.item_navigation_logout:
-                mainPresenter.onClickLogout();
+                logoutDialog.show();
                 break;
         }
         drawerLayout.closeDrawers();

@@ -30,6 +30,7 @@ public class GroupNameEditDialog extends Dialog implements View.OnClickListener{
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.dialog_groupname_edit);
+        setCanceledOnTouchOutside(true);
 
         offButton = findViewById(R.id.button_groupname_edit_off);
         editText = findViewById(R.id.et_groupname_edit_name);

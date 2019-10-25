@@ -108,7 +108,6 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
                 schedulePresenter.onAddSchedule(new SampleSchedule(title, date, content, day));
             }
         });
-        scheduleAddDialog.setCanceledOnTouchOutside(true);
     }
 
     private void setScheduleDecorate(){

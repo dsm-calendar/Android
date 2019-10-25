@@ -69,8 +69,6 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
                 Toast.makeText(groupInviteDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
             }
         });
-        groupInviteDialog.setCanceledOnTouchOutside(true);
-        messageDeleteDialog.setCanceledOnTouchOutside(true);
 
         noListTextView = findViewById(R.id.tv_no_list_message);
 
