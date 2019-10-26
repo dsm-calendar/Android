@@ -109,11 +109,12 @@
         app:layout_constraintStart_toStartOf="@id/view_whitespace"
         app:layout_constraintEnd_toEndOf="@id/view_whitespace"
         android:layout_margin="30dp"
-        android:inputType="text"
+        android:inputType="textMultiLine"
+        android:lines="3"
         android:textColor="#2898ad"
         android:textColorHint="#2898ad"
         android:textSize="12dp"
-        android:hint="일정 제목을 입력해 주세요"/>
+        android:hint="일정 내용을 입력해 주세요"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_addschedule_startday"

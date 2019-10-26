@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import com.example.dsm_calendar.ui.Decorator.EventDecorator;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
+import com.example.dsm_calendar.ui.activity.AddScheduleActivity;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -78,11 +80,9 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         }));
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
-        scheduleAddButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                //TODO: should start add schedule activity
-            }
+        scheduleAddButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddScheduleActivity.class);
+            startActivity(intent);
         });
 
         schedulePresenter.onStarted();
