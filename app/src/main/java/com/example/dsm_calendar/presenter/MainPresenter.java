@@ -36,4 +36,19 @@ public class MainPresenter implements MainContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void onProfileChanged(int iconIndex) {
+        mainRepo.changeProfile(iconIndex, new MainRepository.ChangeProfileListener() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
+    }
 }

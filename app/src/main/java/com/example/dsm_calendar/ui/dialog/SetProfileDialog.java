@@ -84,6 +84,7 @@ public class SetProfileDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.button_setprofile_confirm:
                 listener.onConfirmClicked(selectedIcon);
+                dismiss();
                 break;
         }
     }

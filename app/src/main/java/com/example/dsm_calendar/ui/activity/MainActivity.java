@@ -198,5 +198,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 profile.setImageResource(R.drawable.ic_school);
                 break;
         }
+        mainPresenter.onProfileChanged(iconIndex);
     }
 }

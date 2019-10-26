@@ -13,6 +13,11 @@ public class MainRepository implements MainContract.Repository {
         void onFail();
     }
 
+    public interface ChangeProfileListener{
+        void onSuccess();
+        void onFail();
+    }
+
     public MainRepository(Context context){
         this.context = context;
     }
@@ -29,6 +34,11 @@ public class MainRepository implements MainContract.Repository {
         } else {
             listener.onSuccess(id, classOf, iconIndex);
         }
+    }
+
+    @Override
+    public void changeProfile(int iconIndex, ChangeProfileListener listener) {
+
     }
 
     @Override
