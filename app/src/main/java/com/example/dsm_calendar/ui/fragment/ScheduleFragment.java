@@ -25,17 +25,13 @@ import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
-import com.example.dsm_calendar.ui.dialog.ScheduleAddDialog;
-import com.example.dsm_calendar.util.DialogListener;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.GregorianCalendar;
 
 public class ScheduleFragment extends Fragment implements ScheduleContract.View {
 
@@ -44,7 +40,6 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     private ScheduleRVAdapter adapter;
     private ImageButton scheduleAddButton;
     private MaterialCalendarView calendarView;
-    private ScheduleAddDialog scheduleAddDialog;
     private SchedulePresenter schedulePresenter = new SchedulePresenter(this, new ScheduleRepository());
 
     private String selectedDate;
@@ -67,8 +62,6 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         recyclerView.setAdapter(adapter);
         checkList();
 
-        setScheduleAddDialog();
-
         getScheduleDate();
         calendarView = rootView.findViewById(R.id.cv_schedule_calendar);
         calendarView.addDecorators(
@@ -85,7 +78,12 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         }));
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
-        scheduleAddButton.setOnClickListener( v -> schedulePresenter.onAddScheduleClicked(selectedDate,day));
+        scheduleAddButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //TODO: should start add schedule activity
+            }
+        });
 
         schedulePresenter.onStarted();
 
@@ -98,16 +96,6 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         } else {
             noListTextView.setVisibility(View.GONE);
         }
-    }
-
-    private void setScheduleAddDialog(){
-        scheduleAddDialog = new ScheduleAddDialog(getActivity());
-        scheduleAddDialog.setScheduleAddDialogListener(new DialogListener.ScheduleAddDialogListener() {
-            @Override
-            public void onClickConfirm(String title, String date, String content, CalendarDay day) {
-                schedulePresenter.onAddSchedule(new SampleSchedule(title, date, content, day));
-            }
-        });
     }
 
     private void setScheduleDecorate(){
@@ -126,12 +114,6 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void showScheduleAddDialog(String date, CalendarDay day) {
-        scheduleAddDialog.setDate(date, day);
-        scheduleAddDialog.show();
     }
 
     @Override

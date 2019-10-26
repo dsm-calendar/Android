@@ -50,30 +50,4 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
             }
         });
     }
-
-    @Override
-    public void onAddSchedule(SampleSchedule schedule) {
-        scheduleRepo.addSchedule(schedule, new ScheduleRepository.AddScheduleListener() {
-            @Override
-            public void onSuccess() {
-                scheduleView.showMessageForItemAdded();
-                scheduleView.addSchedule(schedule);
-            }
-
-            @Override
-            public void onFail() {
-
-            }
-        });
-    }
-
-    @Override
-    public void onAddScheduleClicked(String date, CalendarDay day) {
-        if (day == null){
-            scheduleView.showMessageForSelectDate();
-        } else {
-            scheduleView.showScheduleAddDialog(date, day);
-        }
-    }
-
 }
