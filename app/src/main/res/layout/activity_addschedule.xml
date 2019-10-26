@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_addschedule"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#6cccde"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/button_addschedule_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_cross_out"
+            android:background="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/add_schedule"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:fontFamily="@font/bm_dohyun"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_addschedule_logo"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        app:layout_constraintTop_toBottomOf="@id/cl_addschedule"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/view_circle_white_background"
+        android:layout_margin="10dp"
+        android:elevation="5dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_calendar"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_addschedule_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cl_addschedule_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"
+        android:text="@string/sample_date_text"
+        android:textSize="16dp"
+        android:textColor="#2898ad"
+        android:fontFamily="@font/nanumsquare_r"/>
+
+    <View
+        android:id="@+id/view_whitespace"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/fragment_schedule_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_addschedule_today"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <EditText
+        android:theme="@style/addSchedule"
+        android:id="@+id/et_addschedule_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_whitespace"
+        app:layout_constraintStart_toStartOf="@id/view_whitespace"
+        app:layout_constraintEnd_toEndOf="@id/view_whitespace"
+        android:layout_margin="30dp"
+        android:inputType="text"
+        android:textColor="#2898ad"
+        android:textColorHint="#2898ad"
+        android:textSize="15dp"
+        android:hint="일정 제목을 입력해 주세요"/>
+
+    <EditText
+        android:theme="@style/addSchedule"
+        android:id="@+id/et_addschedule_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/et_addschedule_title"
+        app:layout_constraintStart_toStartOf="@id/view_whitespace"
+        app:layout_constraintEnd_toEndOf="@id/view_whitespace"
+        android:layout_margin="30dp"
+        android:inputType="text"
+        android:textColor="#2898ad"
+        android:textColorHint="#2898ad"
+        android:textSize="12dp"
+        android:hint="일정 제목을 입력해 주세요"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_addschedule_startday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/et_addschedule_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="시작"
+            android:textSize="16dp"
+            android:textColor="#2898ad"
+            android:fontFamily="@font/nanumsquare_r"/>
+
+        <TextView
+            android:id="@+id/tv_addschedule_startday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/sample_date_text"
+            android:textSize="16dp"
+            android:textColor="#2898ad"
+            android:fontFamily="@font/nanumsquare_r"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_addschedule_endday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cl_addschedule_startday"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="종료"
+            android:textSize="16dp"
+            android:textColor="#2898ad"
+            android:fontFamily="@font/nanumsquare_r"/>
+
+        <TextView
+            android:id="@+id/tv_addschedule_endday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/sample_date_text"
+            android:textSize="16dp"
+            android:textColor="#2898ad"
+            android:fontFamily="@font/nanumsquare_r"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_addschedule_cancel"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_whitespace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/button_addschedule_confirm"
+        android:background="#FFFFFF"
+        android:text="취소"
+        android:textColor="#6cccde"
+        android:textSize="18dp"/>
+
+    <Button
+        android:id="@+id/button_addschedule_confirm"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/view_whitespace"
+        app:layout_constraintStart_toEndOf="@id/button_addschedule_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#6cccde"
+        android:text="저장"
+        android:textColor="#FFFFFF"
+        android:textSize="18dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
