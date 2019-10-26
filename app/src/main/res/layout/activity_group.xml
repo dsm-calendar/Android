@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@id/view_color_group_background"
         android:layout_marginTop="80dp"
         android:background="@drawable/button_group_main_background"
-        android:src="@drawable/ic_calendar"/>
+        android:src="@drawable/ic_calendar_black"/>
 
     <TextView
         android:id="@+id/tv_group_schedule"
