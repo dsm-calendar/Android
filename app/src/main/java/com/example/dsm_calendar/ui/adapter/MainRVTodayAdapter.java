@@ -13,37 +13,36 @@ import com.example.dsm_calendar.R;
 
 import java.util.ArrayList;
 
-public class MainRVAdapter extends RecyclerView.Adapter<MainRVAdapter.MainViewHolder> {
+public class MainRVTodayAdapter extends RecyclerView.Adapter<MainRVTodayAdapter.MainTodayViewHolder> {
 
-    public ArrayList<String> list = new ArrayList<>();
+    public ArrayList<String> today = new ArrayList<>();
     private Context context;
 
-    public MainRVAdapter(Context context){
+    public MainRVTodayAdapter(Context context){
         this.context = context;
     }
 
     @NonNull
     @Override
-    public MainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MainTodayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fragment_main, parent, false);
-        MainViewHolder holder = new MainViewHolder(item);
+        MainTodayViewHolder holder = new MainTodayViewHolder(item);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        String title = list.get(position);
-        holder.bind(title);
+    public void onBindViewHolder(@NonNull MainTodayViewHolder holder, int position) {
+        holder.bind(today.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return today.size();
     }
 
-    class MainViewHolder extends RecyclerView.ViewHolder{
+    class MainTodayViewHolder extends RecyclerView.ViewHolder{
         TextView tv;
-        MainViewHolder(@NonNull View itemView) {
+        MainTodayViewHolder(@NonNull View itemView) {
             super(itemView);
             tv = itemView.findViewById(R.id.main_rv_item_tv);
         }
