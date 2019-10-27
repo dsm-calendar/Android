@@ -18,7 +18,8 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onClickLogout() {
-
+        mainRepo.logout();
+        mainView.logout();
     }
 
     @Override
@@ -27,6 +28,21 @@ public class MainPresenter implements MainContract.Presenter {
             @Override
             public void onSuccess(String id, int classOf, int iconIndex) {
                 mainView.setUserInfo(id, classOf, iconIndex);
+            }
+
+            @Override
+            public void onFail() {
+                mainView.onFailGetUserInfo();
+            }
+        });
+    }
+
+    @Override
+    public void onProfileChanged(int iconIndex) {
+        mainRepo.changeProfile(iconIndex, new MainRepository.ChangeProfileListener() {
+            @Override
+            public void onSuccess() {
+
             }
 
             @Override

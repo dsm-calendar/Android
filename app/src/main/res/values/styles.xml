@@ -18,4 +18,9 @@
         <item name="android:textSize">15dp</item>
     </style>
 
+    <style name="addSchedule" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">#2898ad</item>
+        <item name="colorControlNormal">#2898ad</item>
+    </style>
+
 </resources>
