@@ -29,7 +29,7 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter {
 
             @Override
             public void onFail() {
-
+            mainView.showMessageForGetScheduleFail("msg");
             }
         });
 
@@ -41,7 +41,7 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter {
 
             @Override
             public void onFail() {
-
+                mainView.showMessageForGetNoticeFail("msg");
             }
         });
 
@@ -53,19 +53,19 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter {
 
             @Override
             public void onFail() {
-
+                mainView.ShowMessageForGetBannerFail("msg");
             }
         });
 
         mainRepo.getMyTimeTable(new MainFragmentRepository.GetMyTimeTableListener() {
             @Override
             public void onSuccess() {
-                //TODO: get schedule
+                mainView.getMyTimeTable();
             }
 
             @Override
             public void onFail() {
-
+                mainView.showMessageForGetTimeTableFail("msg");
             }
         });
     }

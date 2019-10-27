@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -115,9 +116,19 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     }
 
     @Override
+    public void showMessageForGetNoticeFail(String message) {
+        Toast.makeText(getActivity(), "failed to get notice\nmessage: "+message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void getSchedule(ArrayList<String> schedules) {
         mainRVTodayAdapter.today = schedules;
         mainRVTodayAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMessageForGetScheduleFail(String message) {
+        Toast.makeText(getActivity(), "failed to get schedule\nmessage: "+message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -127,7 +138,17 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     }
 
     @Override
+    public void ShowMessageForGetBannerFail(String message) {
+        Toast.makeText(getActivity(), "failed to get banner\nmessage: "+message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void getMyTimeTable() {
         //TODO: set text on time table
+    }
+
+    @Override
+    public void showMessageForGetTimeTableFail(String message) {
+        Toast.makeText(getActivity(), "failed to get timetable\nmessage: "+message, Toast.LENGTH_LONG).show();
     }
 }
