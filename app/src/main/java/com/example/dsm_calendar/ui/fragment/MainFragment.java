@@ -18,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.dsm_calendar.contract.MainFragmentContract;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
+import com.example.dsm_calendar.ui.activity.MainActivity;
 import com.example.dsm_calendar.ui.adapter.MainRVNoticeAdapter;
 import com.example.dsm_calendar.ui.adapter.MainRVTodayAdapter;
 import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
@@ -36,8 +37,11 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private PageIndicatorView pageIndicatorView;
 
     private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository());
+    private MainActivity rootActivity;
 
-    public MainFragment() {}
+    public MainFragment(MainActivity mainActivity) {
+        this.rootActivity = mainActivity;
+    }
 
     @Nullable
     @Override
@@ -47,8 +51,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         noListTextView = rootView.findViewById(R.id.tv_no_list_main);
 
         recyclerView = rootView.findViewById(R.id.rv_main_listBox);
-        mainRVTodayAdapter = new MainRVTodayAdapter(getActivity());
-        mainRVNoticeAdapter = new MainRVNoticeAdapter(getActivity());
+        mainRVTodayAdapter = new MainRVTodayAdapter(getActivity(), presenter);
+        mainRVNoticeAdapter = new MainRVNoticeAdapter(getActivity(), presenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         rootView.findViewById(R.id.button_main_notice).setOnClickListener(this);
@@ -150,5 +154,15 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public void showMessageForGetTimeTableFail(String message) {
         Toast.makeText(getActivity(), "failed to get timetable\nmessage: "+message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void startNoticeActivity() {
+        //TODO: start notice activity
+    }
+
+    @Override
+    public void moveToScheduleFragment() {
+        rootActivity.movePage(0);
     }
 }

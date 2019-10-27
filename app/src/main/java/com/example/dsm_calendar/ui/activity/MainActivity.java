@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager = findViewById(R.id.vp_main_main);
         tabLayout = findViewById(R.id.tl_main_main);
 
-        adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout);
+        adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout, this);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
 
@@ -181,6 +181,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+    }
+
+    public void movePage(int index){
+        viewPager.setCurrentItem(index);
     }
 
     void setProfileImage(int iconIndex){

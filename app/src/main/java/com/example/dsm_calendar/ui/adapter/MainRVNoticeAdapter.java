@@ -10,16 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.presenter.MainFragmentPresenter;
 
 import java.util.ArrayList;
 
 public class MainRVNoticeAdapter extends RecyclerView.Adapter<MainRVNoticeAdapter.MainNoticeViewHolder> {
 
     public ArrayList<String> notice = new ArrayList<>();
+    private MainFragmentPresenter presenter;
     private Context context;
 
-    public MainRVNoticeAdapter(Context context){
+    public MainRVNoticeAdapter(Context context, MainFragmentPresenter presenter){
         this.context = context;
+        this.presenter = presenter;
     }
 
     @NonNull
@@ -49,6 +52,7 @@ public class MainRVNoticeAdapter extends RecyclerView.Adapter<MainRVNoticeAdapte
 
         public void bind(String notice){
             textView.setText(notice);
+            itemView.setOnClickListener( v -> presenter.onClickNoticeItem());
         }
     }
 }

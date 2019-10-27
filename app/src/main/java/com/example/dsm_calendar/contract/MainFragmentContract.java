@@ -14,10 +14,14 @@ public interface MainFragmentContract {
         void ShowMessageForGetBannerFail(String message);
         void getMyTimeTable();
         void showMessageForGetTimeTableFail(String message);
+        void startNoticeActivity();
+        void moveToScheduleFragment();
     }
 
     interface Presenter{
         void onStarted();
+        void onClickNoticeItem();
+        void onClickScheduleItem();
     }
 
     interface Repository{

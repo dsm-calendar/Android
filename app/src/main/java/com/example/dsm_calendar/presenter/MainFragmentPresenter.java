@@ -69,4 +69,14 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void onClickNoticeItem() {
+        mainView.startNoticeActivity();
+    }
+
+    @Override
+    public void onClickScheduleItem() {
+        mainView.moveToScheduleFragment();
+    }
 }
