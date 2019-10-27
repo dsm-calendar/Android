@@ -1,7 +1,6 @@
 package com.example.dsm_calendar.data;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.example.dsm_calendar.contract.LoginContract;
 import com.example.dsm_calendar.data.DTO.Login;
@@ -18,6 +17,11 @@ public class LoginRepository implements LoginContract.Repository {
     public interface LoginListener{
         void onSuccess();
         void onFail(String message);
+    }
+
+    public interface CheckLoginListener{
+        void onLogin();
+        void onLogout();
     }
 
     public LoginRepository(Context context){
@@ -47,6 +51,17 @@ public class LoginRepository implements LoginContract.Repository {
                 listener.onFail(t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void checkLogIn(CheckLoginListener listener) {
+        UserPreference preference = UserPreference.getInstance(context);
+        String ID = preference.getID();
+        if (ID == null){
+            listener.onLogout();
+        } else{
+            listener.onLogin();
+        }
     }
 
     @Override
