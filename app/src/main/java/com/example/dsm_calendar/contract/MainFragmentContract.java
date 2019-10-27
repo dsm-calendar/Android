@@ -7,13 +7,21 @@ import java.util.ArrayList;
 public interface MainFragmentContract {
     interface View{
         void getNotice(ArrayList<String> notices);
+        void showMessageForGetNoticeFail(String message);
         void getSchedule(ArrayList<String> schedules);
+        void showMessageForGetScheduleFail(String message);
         void getBanners(ArrayList<Integer> banners);
+        void ShowMessageForGetBannerFail(String message);
         void getMyTimeTable();
+        void showMessageForGetTimeTableFail(String message);
+        void startNoticeActivity();
+        void moveToScheduleFragment();
     }
 
     interface Presenter{
         void onStarted();
+        void onClickNoticeItem();
+        void onClickScheduleItem();
     }
 
     interface Repository{

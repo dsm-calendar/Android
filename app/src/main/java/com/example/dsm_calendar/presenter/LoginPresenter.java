@@ -31,4 +31,19 @@ public class LoginPresenter implements LoginContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void onStarted() {
+        loginRepo.checkLogIn(new LoginRepository.CheckLoginListener() {
+            @Override
+            public void onLogin() {
+                loginView.startMainActivity();
+            }
+
+            @Override
+            public void onLogout() {
+
+            }
+        });
+    }
 }

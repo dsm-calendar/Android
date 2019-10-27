@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,7 +18,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.dsm_calendar.contract.MainFragmentContract;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
-import com.example.dsm_calendar.ui.adapter.MainRVAdapter;
+import com.example.dsm_calendar.ui.activity.MainActivity;
+import com.example.dsm_calendar.ui.adapter.MainRVNoticeAdapter;
+import com.example.dsm_calendar.ui.adapter.MainRVTodayAdapter;
 import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
 import com.example.dsm_calendar.R;
 import com.rd.PageIndicatorView;
@@ -27,16 +30,18 @@ import java.util.ArrayList;
 public class MainFragment extends Fragment implements RadioButton.OnClickListener, MainFragmentContract.View {
 
     private RecyclerView recyclerView;
-    private MainRVAdapter mainRVAdapter;
+    private MainRVTodayAdapter mainRVTodayAdapter;
+    private MainRVNoticeAdapter mainRVNoticeAdapter;
     private MainBannerAdapter mainBannerAdapter;
     private TextView noListTextView;
-    private ArrayList<String> noticeList = new ArrayList<>();
-    private ArrayList<String> todayList = new ArrayList<>();
     private PageIndicatorView pageIndicatorView;
 
     private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository());
+    private MainActivity rootActivity;
 
-    public MainFragment() {}
+    public MainFragment(MainActivity mainActivity) {
+        this.rootActivity = mainActivity;
+    }
 
     @Nullable
     @Override
@@ -46,7 +51,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         noListTextView = rootView.findViewById(R.id.tv_no_list_main);
 
         recyclerView = rootView.findViewById(R.id.rv_main_listBox);
-        mainRVAdapter = new MainRVAdapter(getActivity());
+        mainRVTodayAdapter = new MainRVTodayAdapter(getActivity(), presenter);
+        mainRVNoticeAdapter = new MainRVNoticeAdapter(getActivity(), presenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         rootView.findViewById(R.id.button_main_notice).setOnClickListener(this);
@@ -78,17 +84,11 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.button_main_notice){
-//            mainRVAdapter = new MainRVAdapter(getActivity(), noticeList);
-//            recyclerView.setAdapter(mainRVAdapter);
-            mainRVAdapter.list = noticeList;
-            mainRVAdapter.notifyDataSetChanged();
-            checkList();
+            recyclerView.setAdapter(mainRVNoticeAdapter);
+            checkList(mainRVNoticeAdapter.getItemCount());
         } else if(v.getId() == R.id.button_main_schedule){
-//            mainRVAdapter = new MainRVAdapter(getActivity(), todayList);
-//            recyclerView.setAdapter(mainRVAdapter);
-            mainRVAdapter.list = todayList;
-            mainRVAdapter.notifyDataSetChanged();
-            checkList();
+            recyclerView.setAdapter(mainRVTodayAdapter);
+            checkList(mainRVTodayAdapter.getItemCount());
         }
     }
 
@@ -101,14 +101,12 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     }
 
     private void setRecyclerView(){
-        mainRVAdapter.list = noticeList;
-        mainRVAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(mainRVAdapter);
-        checkList();
+        recyclerView.setAdapter(mainRVNoticeAdapter);
+        checkList(mainRVNoticeAdapter.getItemCount());
     }
 
-    private void checkList(){
-        if(mainRVAdapter.list.size() == 0){
+    private void checkList(int size){
+        if(size == 0){
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
@@ -117,12 +115,24 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
     @Override
     public void getNotice(ArrayList<String> notices) {
-        noticeList = notices;
+        mainRVNoticeAdapter.notice = notices;
+        mainRVNoticeAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMessageForGetNoticeFail(String message) {
+        Toast.makeText(getActivity(), "failed to get notice\nmessage: "+message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void getSchedule(ArrayList<String> schedules) {
-        todayList = schedules;
+        mainRVTodayAdapter.today = schedules;
+        mainRVTodayAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMessageForGetScheduleFail(String message) {
+        Toast.makeText(getActivity(), "failed to get schedule\nmessage: "+message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -132,7 +142,27 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     }
 
     @Override
+    public void ShowMessageForGetBannerFail(String message) {
+        Toast.makeText(getActivity(), "failed to get banner\nmessage: "+message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void getMyTimeTable() {
         //TODO: set text on time table
+    }
+
+    @Override
+    public void showMessageForGetTimeTableFail(String message) {
+        Toast.makeText(getActivity(), "failed to get timetable\nmessage: "+message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void startNoticeActivity() {
+        //TODO: start notice activity
+    }
+
+    @Override
+    public void moveToScheduleFragment() {
+        rootActivity.movePage(0);
     }
 }

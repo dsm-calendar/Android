@@ -15,10 +15,12 @@ public interface LoginContract {
 
     interface Presenter{
         void onClickConfirm();
+        void onStarted();
     }
 
     interface Repository{
         void Login(String ID, String password, LoginRepository.LoginListener listener);
+        void checkLogIn(LoginRepository.CheckLoginListener listener);
         void saveUserData(LoginUserInfo user);
     }
 }

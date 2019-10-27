@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         });
 
         confirm.setOnClickListener(v -> presenter.onClickConfirm());
+        presenter.onStarted();
     }
 
     @Override

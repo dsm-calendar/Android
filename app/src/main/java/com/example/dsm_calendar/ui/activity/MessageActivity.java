@@ -82,7 +82,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     }
 
     void checkList(){
-        //TODO: setVisibility to visible when adapter list size is 0
+        //TODO: setVisibility to visible when adapter today size is 0
     }
 
     @Override
