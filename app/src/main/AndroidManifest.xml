@@ -32,6 +32,7 @@
         <activity android:name=".ui.activity.BannerManageActivity"/>
         <activity android:name=".ui.activity.MakeNoticeActivity"/>
         <activity android:name=".ui.activity.AddScheduleActivity"/>
+        <activity android:name=".ui.activity.NoticeActivity"/>
     </application>
 
 </manifest>

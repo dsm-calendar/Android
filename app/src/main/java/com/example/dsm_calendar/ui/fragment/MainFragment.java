@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.example.dsm_calendar.contract.MainFragmentContract;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.MainActivity;
+import com.example.dsm_calendar.ui.activity.NoticeActivity;
 import com.example.dsm_calendar.ui.adapter.MainRVNoticeAdapter;
 import com.example.dsm_calendar.ui.adapter.MainRVTodayAdapter;
 import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
@@ -158,7 +160,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
     @Override
     public void startNoticeActivity() {
-        //TODO: start notice activity
+        Intent intent = new Intent(getActivity(), NoticeActivity.class);
+        startActivity(intent);
     }
 
     @Override

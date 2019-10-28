@@ -33,5 +33,7 @@ public class AddScheduleActivity extends AppCompatActivity {
         endDay = findViewById(R.id.cl_addschedule_endday);
         cancel = findViewById(R.id.button_addschedule_cancel);
         confirm = findViewById(R.id.button_addschedule_confirm);
+
+        addScheduleOff.setOnClickListener(v -> finish());
     }
 }

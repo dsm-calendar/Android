@@ -83,12 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setProfileDialog = new SetProfileDialog(this);
         setProfileDialog.setSetProfileDialogListener(this::setProfileImage);
         logoutDialog = new LogoutDialog(this);
-        logoutDialog.setLogoutDialogListener(new DialogListener.LogoutDialogListener() {
-            @Override
-            public void onConfirmClicked() {
-                mainPresenter.onClickLogout();
-            }
-        });
+        logoutDialog.setLogoutDialogListener(() -> mainPresenter.onClickLogout());
 
         setToolBar();
 
