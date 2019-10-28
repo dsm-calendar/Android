@@ -12,19 +12,18 @@ import com.example.dsm_calendar.R;
 public class TimeTableActivity extends AppCompatActivity {
 
     private ImageButton timeTableOff;
+    private ImageButton timeTableEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timetable);
 
-        //TODO: fix timetable layout
         timeTableOff = findViewById(R.id.button_timetable_off);
-        timeTableOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        timeTableOff.setOnClickListener(v -> finish());
+        timeTableEdit = findViewById(R.id.button_timetable_edit);
+        timeTableEdit.setOnClickListener(v -> {
+            //edit mode
         });
     }
 }
