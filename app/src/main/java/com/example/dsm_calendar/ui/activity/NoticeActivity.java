@@ -32,6 +32,16 @@ public class NoticeActivity extends AppCompatActivity {
         adapter = new NoticeRVAdapter(this);
         adapter.noticeList.add(new Notice("sample", "aldajksdnadkjanjkdniwnadjkw"));
         adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+
+
+
         noticeRecyclerView.setAdapter(adapter);
 
         offButton.setOnClickListener( v -> finish());
