@@ -2,6 +2,7 @@ package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
@@ -20,6 +21,8 @@ public class TimeTableActivity extends AppCompatActivity {
     private ImageButton timeTableOff;
     private ImageButton timeTableEdit;
     private ArrayList<EditText> tables;
+    private int curGrade = 1;
+    private int curClass = 1;
     private boolean isEditMode = false;
 
     @Override
@@ -61,5 +64,29 @@ public class TimeTableActivity extends AppCompatActivity {
     private void setTableText(ArrayList<String> texts) {
         for (int i = 0; i < tables.size(); ++i)
             tables.get(i).setText(texts.get(i));
+    }
+
+    private void setGrade(View v) {
+        String gradeStr = ((Button)v).getText().toString();
+        int nowGrade = Integer.parseInt(gradeStr);
+        setGrade(nowGrade);
+
+        // TODO setTableText
+    }
+
+    private void setClass(View v) {
+        String classStr = ((Button)v).getText().toString();
+        int nowClass = Integer.parseInt(classStr);
+        setGrade(nowClass);
+
+        // TODO setTableText
+    }
+
+    private void setGrade(int inGrade) {
+        curGrade = inGrade;
+    }
+
+    private void setClass(int inClass) {
+        curClass = inClass;
     }
 }
