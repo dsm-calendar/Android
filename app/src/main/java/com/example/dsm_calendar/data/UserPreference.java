@@ -70,6 +70,6 @@ public class UserPreference {
 
     public void clear(){
         editor.clear();
-        editor.apply();
+        editor.commit();
     }
 }

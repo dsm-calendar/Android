@@ -65,6 +65,7 @@
             android:textColor="#2898ad"
             android:fontFamily="@font/bm_dohyun"
             android:button="@null"
+            android:onClick="setGrade"
             android:text="1학년"/>
 
         <RadioButton
@@ -77,6 +78,7 @@
             android:textColor="#2898ad"
             android:fontFamily="@font/bm_dohyun"
             android:button="@null"
+            android:onClick="setGrade"
             android:text="2학년"/>
 
         <RadioButton
@@ -89,6 +91,7 @@
             android:textColor="#2898ad"
             android:fontFamily="@font/bm_dohyun"
             android:button="@null"
+            android:onClick="setGrade"
             android:text="3학년"/>
 
     </RadioGroup>
@@ -112,6 +115,7 @@
             android:background="@drawable/radio_states_time_table_class"
             android:checked="true"
             android:button="@null"
+            android:onClick="setClass"
             android:text="1반"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
@@ -127,6 +131,7 @@
             android:layout_weight="1"
             android:background="@drawable/radio_states_time_table_class"
             android:button="@null"
+            android:onClick="setClass"
             android:text="2반"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
@@ -142,6 +147,7 @@
             android:layout_weight="1"
             android:background="@drawable/radio_states_time_table_class"
             android:button="@null"
+            android:onClick="setClass"
             android:text="3반"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
@@ -156,6 +162,7 @@
             android:layout_weight="1"
             android:background="@drawable/radio_states_time_table_class"
             android:button="@null"
+            android:onClick="setClass"
             android:text="4반"
             android:gravity="center"
             android:fontFamily="@font/nanumsquare_r"
