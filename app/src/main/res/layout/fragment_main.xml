@@ -140,6 +140,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view_main_line" />
 
         <TableLayout
+            android:id="@+id/tl_main_table"
             android:layout_width="300dp"
             android:layout_height="320dp"
             android:layout_marginTop="20dp"
@@ -227,6 +228,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_11"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -237,6 +239,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -247,6 +250,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_13"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -257,6 +261,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_14"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -267,6 +272,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_15"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -290,6 +296,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_21"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -300,6 +307,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_22"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -310,6 +318,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_23"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -320,6 +329,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_24"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -330,6 +340,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_25"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -353,6 +364,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_31"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -363,6 +375,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_32"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -373,6 +386,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_33"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -383,6 +397,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_34"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -393,6 +408,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_35"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -416,6 +432,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_41"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -426,6 +443,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_42"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -436,6 +454,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_43"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -446,6 +465,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_44"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -456,6 +476,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_45"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -479,6 +500,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_51"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -489,6 +511,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_52"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -499,6 +522,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_53"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -509,6 +533,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_54"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -519,6 +544,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_55"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -542,6 +568,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_61"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -552,6 +579,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_62"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -562,6 +590,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_63"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -572,6 +601,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_64"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -582,6 +612,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_65"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -605,6 +636,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_71"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -615,6 +647,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_72"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -625,6 +658,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_73"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -635,6 +669,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_74"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -645,6 +680,7 @@
                     android:textColor="#2898ad"
                     android:fontFamily="@font/nanumsquare_r"/>
                 <TextView
+                    android:id="@+id/tv_main_table_75"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
