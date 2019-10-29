@@ -1,7 +1,6 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
@@ -21,9 +20,5 @@ public class TimeTableActivity extends AppCompatActivity {
 
         timeTableOff = findViewById(R.id.button_timetable_off);
         timeTableOff.setOnClickListener(v -> finish());
-        timeTableEdit = findViewById(R.id.button_timetable_edit);
-        timeTableEdit.setOnClickListener(v -> {
-            //edit mode
-        });
     }
 }
