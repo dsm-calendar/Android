@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/request_create_notice"
+        android:text="공지사항을 생성합니다"
         android:textSize="12dp"
         android:textColor="@color/colorNoticeHint"
         app:layout_constraintEnd_toEndOf="parent"
@@ -149,13 +149,13 @@
             android:textSize="18dp" />
 
         <Button
-            android:id="@+id/button_makeNotice_buttons_sendRequest"
+            android:id="@+id/button_makeNotice_buttons_makeNotice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/skyblue"
             android:fontFamily="@font/nanumsquare_r"
-            android:text="@string/send_request"
+            android:text="공지생성"
             android:textColor="@android:color/white"
             android:textSize="18dp" />
     </LinearLayout>

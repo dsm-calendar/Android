@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
@@ -40,10 +41,12 @@ public class NoticeActivity extends AppCompatActivity {
         adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
         adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
 
-
-
         noticeRecyclerView.setAdapter(adapter);
 
         offButton.setOnClickListener( v -> finish());
+        noticeAddButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MakeNoticeActivity.class);
+            startActivity(intent);
+        });
     }
 }
