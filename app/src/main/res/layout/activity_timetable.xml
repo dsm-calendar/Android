@@ -253,55 +253,70 @@
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_margin="0.1dp"
-            android:background="#FFFFFF"
-            android:gravity="center"
-            android:textSize="18dp"
-            android:textColor="#2898ad"
-            android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_11"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
+                android:text="창제\n헛갈림"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_12"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
+                android:text="영어\n대머리"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_13"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
+                android:text="미술\n마감충"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_14"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:layout_margin="0.1dp"
                 android:background="#FFFFFF"
                 android:gravity="center"
+                android:text="논술\n마감충"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
+                android:fontFamily="@font/nanumsquare_r"/>
+            <EditText
+                android:id="@+id/et_timetable_table_15"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="0.1dp"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:text="국사\n마리텔"
+                android:textSize="18dp"
+                android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
         <TableRow android:layout_weight="1">
@@ -316,7 +331,8 @@
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_21"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -325,8 +341,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_22"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -335,8 +353,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_23"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -345,8 +365,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_24"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -355,8 +377,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_25"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -365,6 +389,7 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
         <TableRow android:layout_weight="1">
@@ -379,7 +404,8 @@
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_31"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -388,8 +414,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_32"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -398,8 +426,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_33"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -408,8 +438,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_34"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -418,8 +450,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_35"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -428,6 +462,7 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
         <TableRow android:layout_weight="1">
@@ -442,7 +477,8 @@
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_41"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -451,8 +487,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_42"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -461,8 +499,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_43"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -471,8 +511,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_44"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -481,8 +523,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_45"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -491,6 +535,7 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
         <TableRow android:layout_weight="1">
@@ -505,7 +550,8 @@
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_51"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -514,8 +560,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_52"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -524,8 +572,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_53"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -534,8 +584,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_54"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -544,8 +596,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_55"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -554,6 +608,7 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
         <TableRow android:layout_weight="1">
@@ -568,7 +623,8 @@
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_61"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -577,8 +633,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_62"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -587,8 +645,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_63"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -597,8 +657,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_64"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -607,8 +669,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_65"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -617,6 +681,7 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
         <TableRow android:layout_weight="1">
@@ -631,7 +696,8 @@
                 android:textSize="18dp"
                 android:textColor="#2898ad"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_71"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -640,8 +706,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_72"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -650,8 +718,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_73"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -660,8 +730,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_74"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -670,8 +742,10 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
-            <TextView
+            <EditText
+                android:id="@+id/et_timetable_table_75"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -680,6 +754,7 @@
                 android:gravity="center"
                 android:textSize="18dp"
                 android:textColor="#2898ad"
+                android:enabled="false"
                 android:fontFamily="@font/nanumsquare_r"/>
         </TableRow>
     </TableLayout>

@@ -1,7 +1,6 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
@@ -20,11 +19,6 @@ public class TimeTableActivity extends AppCompatActivity {
 
         //TODO: fix timetable layout
         timeTableOff = findViewById(R.id.button_timetable_off);
-        timeTableOff.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        timeTableOff.setOnClickListener(v -> finish());
     }
 }
