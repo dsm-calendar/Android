@@ -172,9 +172,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void logout() {
-        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+        finish();
     }
 
     public void movePage(int index){

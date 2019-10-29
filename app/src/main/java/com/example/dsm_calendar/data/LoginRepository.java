@@ -57,7 +57,7 @@ public class LoginRepository implements LoginContract.Repository {
     public void checkLogIn(CheckLoginListener listener) {
         UserPreference preference = UserPreference.getInstance(context);
         String ID = preference.getID();
-        if (ID == null){
+        if (ID.equals("")){
             listener.onLogout();
         } else{
             listener.onLogin();
