@@ -47,7 +47,6 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         adapter = new GroupMemberRVAdapter(this, presenter);
         rvMember.setAdapter(adapter);
         rvMember.setLayoutManager(new LinearLayoutManager(this));
-        checkList();
 
         groupMemberBack.setOnClickListener(v -> presenter.onClickBack());
         addMemberButton.setOnClickListener(v -> presenter.onClickAdd());
@@ -66,6 +65,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         });
 
         presenter.onStarted();
+        checkList();
     }
 
     private void checkList(){

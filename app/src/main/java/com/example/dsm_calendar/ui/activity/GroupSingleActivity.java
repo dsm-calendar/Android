@@ -29,20 +29,14 @@ public class GroupSingleActivity extends AppCompatActivity {
         showMember = findViewById(R.id.button_group_member);
         groupImage = findViewById(R.id.iv_group_image);
 
-        showSchedule.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GroupSingleActivity.this, GroupScheduleActivity.class);
-                startActivity(intent);
-            }
+        showSchedule.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSingleActivity.this, GroupScheduleActivity.class);
+            startActivity(intent);
         });
 
-        showMember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GroupSingleActivity.this, GroupMemberActivity.class);
-                startActivity(intent);
-            }
+        showMember.setOnClickListener(v -> {
+            Intent intent = new Intent(GroupSingleActivity.this, GroupMemberActivity.class);
+            startActivity(intent);
         });
     }
 }
