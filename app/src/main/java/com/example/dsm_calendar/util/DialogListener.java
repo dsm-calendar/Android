@@ -24,6 +24,10 @@ public interface DialogListener {
         void onNoClicked();
     }
 
+    interface  AddGroupMemberDialogListener{
+        void onInviteClicked(String ID);
+    }
+
     interface MessageDeleteDialogListener{
         void onYesClicked();
         void onNoClicked();

@@ -17,6 +17,7 @@ import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;
+import com.example.dsm_calendar.ui.dialog.GroupMemberAddDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMemberMenuDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -31,6 +32,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     private GroupMemberRVAdapter adapter;
     private FloatingActionButton addMemberButton;
     private GroupMemberMenuDialog groupMemberMenuDialog;
+    private GroupMemberAddDialog groupMemberAddDialog;
 
     private GroupMemberPresenter presenter = new GroupMemberPresenter(this, new GroupMemberRepository());
 
@@ -48,8 +50,16 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         rvMember.setAdapter(adapter);
         rvMember.setLayoutManager(new LinearLayoutManager(this));
 
-        groupMemberBack.setOnClickListener(v -> presenter.onClickBack());
-        addMemberButton.setOnClickListener(v -> presenter.onClickAdd());
+        groupMemberAddDialog = new GroupMemberAddDialog(this);
+        groupMemberAddDialog.setAddGroupMemberDialogListener(new DialogListener.AddGroupMemberDialogListener() {
+            @Override
+            public void onInviteClicked(String ID) {
+                presenter.onInviteClicked(ID);
+            }
+        });
+
+        groupMemberBack.setOnClickListener(v -> finish());
+        addMemberButton.setOnClickListener(v -> groupMemberAddDialog.show());
 
         groupMemberMenuDialog = new GroupMemberMenuDialog();
         groupMemberMenuDialog.setListener(new DialogListener.GroupMemberMenuDialogListener() {
@@ -82,12 +92,22 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     }
 
     @Override
-    public void finishActivity() {
-        finish();
+    public void addItems(ArrayList<Student> students) {
+        adapter.students = students;
     }
 
     @Override
-    public void addItems(ArrayList<Student> students) {
-        adapter.students = students;
+    public void dismissInviteDialog() {
+        groupMemberAddDialog.dismiss();
+    }
+
+    @Override
+    public void showMessageForInviteSuccess() {
+        Toast.makeText(this, "invited!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessageForInviteFail(String message) {
+        Toast.makeText(this, "invite fail\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 }

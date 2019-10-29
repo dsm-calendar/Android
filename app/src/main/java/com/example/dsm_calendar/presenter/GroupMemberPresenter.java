@@ -25,18 +25,7 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
-    public void onClickAdd() {
-        //TODO: show memberAdd dialog
-    }
-
-    @Override
-    public void onClickBack() {
-        groupMemberView.finishActivity();
-    }
-
-    @Override
     public void onStarted() {
-
         groupMemberRepo.getMemberList(new GroupMemberRepository.GetMemberListListener() {
             @Override
             public void onSuccess(ArrayList<Student> students) {
@@ -46,6 +35,22 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
             @Override
             public void onFail() {
 
+            }
+        });
+    }
+
+    @Override
+    public void onInviteClicked(String ID) {
+        groupMemberRepo.inviteMember(new GroupMemberRepository.InviteMemberListener() {
+            @Override
+            public void onSuccess() {
+                groupMemberView.dismissInviteDialog();
+                groupMemberView.showMessageForInviteSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                groupMemberView.showMessageForInviteFail(message);
             }
         });
     }

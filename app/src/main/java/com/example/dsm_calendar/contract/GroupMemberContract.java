@@ -8,18 +8,20 @@ public interface GroupMemberContract {
 
     interface View{
         void showGroupMemberDetailDialog();
-        void finishActivity();
         void addItems(ArrayList<Student> students);
+        void dismissInviteDialog();
+        void showMessageForInviteSuccess();
+        void showMessageForInviteFail(String message);
     }
 
     interface Presenter{
         void onClickDetail();
-        void onClickAdd();
-        void onClickBack();
         void onStarted();
+        void onInviteClicked(String ID);
     }
 
     interface Repository{
         void getMemberList(GroupMemberRepository.GetMemberListListener listener);
+        void inviteMember(GroupMemberRepository.InviteMemberListener listener);
     }
 }

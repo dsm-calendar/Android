@@ -12,6 +12,11 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
         void onFail();
     }
 
+    public interface InviteMemberListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
     @Override
     public void getMemberList(GetMemberListListener listener) {
         ArrayList<Student> students = new ArrayList<>();
@@ -31,5 +36,10 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
         students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
 
         listener.onSuccess(students);
+    }
+
+    @Override
+    public void inviteMember(InviteMemberListener listener) {
+        listener.onSuccess();
     }
 }
