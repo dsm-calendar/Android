@@ -119,8 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setProfileDialog.show();
                 break;
             case R.id.item_navigation_event:
-                Intent makeNoticeIntent = new Intent(MainActivity.this, MakeNoticeActivity.class);
-                startActivity(makeNoticeIntent);
+                //TODO: make banner require activity
                 break;
             case R.id.item_navigation_timeTable:
                 Intent timeTableIntent = new Intent(MainActivity.this, TimeTableActivity.class);
