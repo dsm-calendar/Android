@@ -54,4 +54,20 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void onMemberAuthChanged(int authCode) {
+        groupMemberRepo.changeMemberAuth(new GroupMemberRepository.ChangeMemberAuthListener() {
+            @Override
+            public void onSuccess() {
+                groupMemberView.dismissGroupMemberAuthDialog();
+                groupMemberView.showMessageForAuthChangeSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                groupMemberView.showMessageForAuthChangeFail(message);
+            }
+        });
+    }
 }

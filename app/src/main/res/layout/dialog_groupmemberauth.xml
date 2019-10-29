@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="260dp"
+    android:layout_height="380dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_groupmemberauth"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#6cccde">
+
+        <ImageButton
+            android:id="@+id/button_groupmemberauth_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/ic_cross_out"
+            android:background="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="권한수정"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:fontFamily="@font/bm_dohyun"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_groupmemberauth_background"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintTop_toBottomOf="@id/cl_groupmemberauth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/view_circle_white_background"
+        android:layout_margin="30dp"
+        android:elevation="3dp">
+
+        <ImageView
+            android:id="@+id/iv_selectedmember"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_sprout"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_selectedmember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cl_groupmemberauth_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:text="@string/sample_string"
+        android:textSize="15dp"
+        android:textColor="#737373"
+        android:fontFamily="@font/nanumsquare_r"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_selectedmember"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/button_groupmemberauth_admin"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_groupmemberauth_writer"
+            android:button="@null"
+            android:checked="true"
+            android:background="@drawable/radio_states_groupmemberauth"
+            android:drawableTop="@drawable/ic_admin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/button_groupmemberauth_admin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/button_groupmemberauth_admin"
+            app:layout_constraintEnd_toEndOf="@id/button_groupmemberauth_admin"
+            android:text="관리자 권한"
+            android:textSize="12dp"
+            android:textColor="#929191"
+            android:fontFamily="@font/nanumsquare_r"/>
+
+        <RadioButton
+            android:id="@+id/button_groupmemberauth_writer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_groupmemberauth_admin"
+            app:layout_constraintEnd_toStartOf="@id/button_groupmemberauth_reader"
+            android:button="@null"
+            android:checked="false"
+            android:background="@drawable/radio_states_groupmemberauth"
+            android:drawableTop="@drawable/ic_writer"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/button_groupmemberauth_admin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/button_groupmemberauth_writer"
+            app:layout_constraintEnd_toEndOf="@id/button_groupmemberauth_writer"
+            android:text="쓰기 권한"
+            android:textSize="12dp"
+            android:textColor="#929191"
+            android:fontFamily="@font/nanumsquare_r"/>
+
+        <RadioButton
+            android:id="@+id/button_groupmemberauth_reader"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_groupmemberauth_writer"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:button="@null"
+            android:checked="false"
+            android:background="@drawable/radio_states_groupmemberauth"
+            android:drawableTop="@drawable/ic_read"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/button_groupmemberauth_admin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/button_groupmemberauth_reader"
+            app:layout_constraintEnd_toEndOf="@id/button_groupmemberauth_reader"
+            android:text="읽기 권한"
+            android:textSize="12dp"
+            android:textColor="#929191"
+            android:fontFamily="@font/nanumsquare_r"/>
+
+    </RadioGroup>
+
+    <ImageButton
+        android:id="@+id/button_groupmemberauth_check"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#e9e7e7"
+        android:src="@drawable/ic_check_gray"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

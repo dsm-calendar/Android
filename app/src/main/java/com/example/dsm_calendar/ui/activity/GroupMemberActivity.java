@@ -18,6 +18,7 @@ import com.example.dsm_calendar.data.GroupMemberRepository;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupMemberAddDialog;
+import com.example.dsm_calendar.ui.dialog.GroupMemberAuthDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMemberMenuDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,6 +34,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     private FloatingActionButton addMemberButton;
     private GroupMemberMenuDialog groupMemberMenuDialog;
     private GroupMemberAddDialog groupMemberAddDialog;
+    private GroupMemberAuthDialog groupMemberAuthDialog;
 
     private GroupMemberPresenter presenter = new GroupMemberPresenter(this, new GroupMemberRepository());
 
@@ -51,12 +53,10 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         rvMember.setLayoutManager(new LinearLayoutManager(this));
 
         groupMemberAddDialog = new GroupMemberAddDialog(this);
-        groupMemberAddDialog.setAddGroupMemberDialogListener(new DialogListener.AddGroupMemberDialogListener() {
-            @Override
-            public void onInviteClicked(String ID) {
-                presenter.onInviteClicked(ID);
-            }
-        });
+        groupMemberAddDialog.setAddGroupMemberDialogListener(ID -> presenter.onInviteClicked(ID));
+
+        groupMemberAuthDialog = new GroupMemberAuthDialog(this);
+        groupMemberAuthDialog.setGroupMemberAuthDialogListener(authCode -> presenter.onMemberAuthChanged(authCode));
 
         groupMemberBack.setOnClickListener(v -> finish());
         addMemberButton.setOnClickListener(v -> groupMemberAddDialog.show());
@@ -65,7 +65,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         groupMemberMenuDialog.setListener(new DialogListener.GroupMemberMenuDialogListener() {
             @Override
             public void onClickMemberAuth() {
-                Toast.makeText(getApplicationContext(), "auth", Toast.LENGTH_SHORT).show();
+                groupMemberAuthDialog.show();
             }
 
             @Override
@@ -102,6 +102,11 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     }
 
     @Override
+    public void dismissGroupMemberAuthDialog() {
+        groupMemberAuthDialog.dismiss();
+    }
+
+    @Override
     public void showMessageForInviteSuccess() {
         Toast.makeText(this, "invited!", Toast.LENGTH_SHORT).show();
     }
@@ -109,5 +114,15 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     @Override
     public void showMessageForInviteFail(String message) {
         Toast.makeText(this, "invite fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForAuthChangeSuccess() {
+        Toast.makeText(this, "changed!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessageForAuthChangeFail(String message) {
+        Toast.makeText(this, "change fail\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 }

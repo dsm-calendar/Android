@@ -28,6 +28,10 @@ public interface DialogListener {
         void onInviteClicked(String ID);
     }
 
+    interface GroupMemberAuthDialogListener{
+        void onClickCheck(int authCode);
+    }
+
     interface MessageDeleteDialogListener{
         void onYesClicked();
         void onNoClicked();
