@@ -29,6 +29,7 @@ public class GroupDeleteDialog extends Dialog implements View.OnClickListener{
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.dialog_deletegroup);
+        setCanceledOnTouchOutside(true);
 
         offButton = findViewById(R.id.button_deletegroup_off);
         yesButton = findViewById(R.id.button_deletegroup_yes);

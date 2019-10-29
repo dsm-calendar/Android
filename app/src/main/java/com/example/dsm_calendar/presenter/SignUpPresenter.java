@@ -21,12 +21,12 @@ public class SignUpPresenter implements SignUpContract.Presenter {
         signInRepo.SignUp(signInView.getStd_no(), signInView.getID(), signInView.getPassword(), new SignUpRepository.SignUpListener() {
             @Override
             public void onSuccess() {
-                signInView.showMessageForSuccess();
+                signInView.onSuccess();
             }
 
             @Override
             public void onFail(String message) {
-                signInView.showMessageForFail(message);
+                signInView.onFail(message);
             }
         });
     }

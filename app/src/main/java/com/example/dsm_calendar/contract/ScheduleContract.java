@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public interface ScheduleContract {
 
     interface View{
-        void showScheduleAddDialog(String date, CalendarDay day);
         void showMessageForDeleteSchedule();
         void showMessageForItemAdded();
         void showMessageForSelectDate();
@@ -21,8 +20,6 @@ public interface ScheduleContract {
     interface Presenter{
         void onStarted();
         void onItemDeleteClicked(int index);
-        void onAddScheduleClicked(String date, CalendarDay day);
-        void onAddSchedule(SampleSchedule schedule);
     }
 
     interface Repository{

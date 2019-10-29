@@ -36,15 +36,25 @@
         app:layout_constraintStart_toStartOf="@id/view_color_group_background"
         app:layout_constraintTop_toBottomOf="@id/view_group_line" />
 
-    <ImageView
-        android:id="@+id/iv_group_image"
+    <View
+        android:id="@+id/view_group_ivbackgroud"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/sample_people"
         app:layout_constraintEnd_toEndOf="@id/view_color_group_background"
         app:layout_constraintStart_toStartOf="@id/view_color_group_background"
-        app:layout_constraintTop_toBottomOf="@id/tv_group_name" />
+        app:layout_constraintTop_toBottomOf="@id/tv_group_name"
+        android:background="@drawable/view_circle_white_background"/>
+
+    <ImageView
+        android:id="@+id/iv_group_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_sprout"
+        app:layout_constraintEnd_toEndOf="@id/view_group_ivbackgroud"
+        app:layout_constraintStart_toStartOf="@id/view_group_ivbackgroud"
+        app:layout_constraintTop_toTopOf="@id/view_group_ivbackgroud"
+        app:layout_constraintBottom_toBottomOf="@id/view_group_ivbackgroud"/>
 
     <ImageButton
         android:id="@+id/button_group_schedule"
@@ -55,7 +65,7 @@
         app:layout_constraintTop_toBottomOf="@id/view_color_group_background"
         android:layout_marginTop="80dp"
         android:background="@drawable/button_group_main_background"
-        android:src="@drawable/ic_calendar"/>
+        android:src="@drawable/ic_calendar_black"/>
 
     <TextView
         android:id="@+id/tv_group_schedule"

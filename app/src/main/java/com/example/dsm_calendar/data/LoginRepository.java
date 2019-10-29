@@ -1,7 +1,6 @@
 package com.example.dsm_calendar.data;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.example.dsm_calendar.contract.LoginContract;
 import com.example.dsm_calendar.data.DTO.Login;
@@ -18,6 +17,11 @@ public class LoginRepository implements LoginContract.Repository {
     public interface LoginListener{
         void onSuccess();
         void onFail(String message);
+    }
+
+    public interface CheckLoginListener{
+        void onLogin();
+        void onLogout();
     }
 
     public LoginRepository(Context context){
@@ -50,14 +54,23 @@ public class LoginRepository implements LoginContract.Repository {
     }
 
     @Override
+    public void checkLogIn(CheckLoginListener listener) {
+        UserPreference preference = UserPreference.getInstance(context);
+        String ID = preference.getID();
+        if (ID == null){
+            listener.onLogout();
+        } else{
+            listener.onLogin();
+        }
+    }
+
+    @Override
     public void saveUserData(LoginUserInfo user) {
-        SharedPreferences userInfo = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor =   userInfo.edit();
-        editor.putInt("userID", user.getLoginUserId());
-        editor.putString("ID", user.getId());
-        editor.putInt("classOf", user.getClassOf());
-        editor.putInt("iconIndex", user.getIconIndex());
-        editor.putInt("myCalendarId", user.getMyCalendarId());
-        editor.apply();
+        UserPreference preference = UserPreference.getInstance(context);
+        preference.putUserID("userID", user.getLoginUserId());
+        preference.putID("ID", user.getId());
+        preference.putClassOf("classOf", user.getClassOf());
+        preference.putIconIndex("iconIndex", user.getIconIndex());
+        preference.putMyCalendarID("myCalendarID", user.getMyCalendarId());
     }
 }

@@ -35,6 +35,8 @@ public class GroupInviteDialog extends Dialog implements View.OnClickListener {
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.dialog_invitegroup);
+        setCanceledOnTouchOutside(true);
+
         offButton = findViewById(R.id.button_invitegroup_off);
         yesButton = findViewById(R.id.button_invitegroup_yes);
         noButton = findViewById(R.id.button_invitegroup_no);

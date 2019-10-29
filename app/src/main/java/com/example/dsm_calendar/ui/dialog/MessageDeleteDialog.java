@@ -35,6 +35,7 @@ public class MessageDeleteDialog extends Dialog implements View.OnClickListener 
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.dialog_deletemessage);
+        setCanceledOnTouchOutside(true);
 
         offButton = findViewById(R.id.button_deletemessage_off);
         yesButton = findViewById(R.id.button_deletemessage_yes);

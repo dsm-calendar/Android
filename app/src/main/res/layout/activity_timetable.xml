@@ -36,6 +36,17 @@
         android:textColor="#FFFFFF"
         android:fontFamily="@font/bm_dohyun"/>
 
+    <ImageButton
+        android:id="@+id/button_timetable_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/view_timetable_background"
+        app:layout_constraintBottom_toBottomOf="@id/view_timetable_background"
+        app:layout_constraintEnd_toEndOf="@id/view_timetable_background"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_pencil_white"
+        android:background="@null"/>
+
     <RadioGroup
         android:id="@+id/rg_timetable_grade"
         android:layout_width="match_parent"

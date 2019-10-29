@@ -1,8 +1,10 @@
 package com.example.dsm_calendar.util;
 
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-
 public interface DialogListener {
+
+    interface SetProfileDialogListener {
+        void onConfirmClicked(int iconIndex);
+    }
 
     interface GroupAddDialogListener{
         void onConfirmClicked(String name);
@@ -27,8 +29,8 @@ public interface DialogListener {
         void onNoClicked();
     }
 
-    interface ScheduleAddDialogListener{
-        void onClickConfirm(String title, String date, String content, CalendarDay day);
+    interface SelectDateDialogListener{
+        void onClickConfirm();
     }
 
     interface GroupMenuDialogListener {
@@ -39,5 +41,9 @@ public interface DialogListener {
     interface GroupMemberMenuDialogListener{
         void onClickMemberAuth();
         void onClickMemberKick();
+    }
+
+    interface LogoutDialogListener{
+        void onConfirmClicked();
     }
 }

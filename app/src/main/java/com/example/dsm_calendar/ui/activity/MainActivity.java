@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -25,6 +26,9 @@ import com.example.dsm_calendar.contract.MainContract;
 import com.example.dsm_calendar.data.MainRepository;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
+import com.example.dsm_calendar.ui.dialog.LogoutDialog;
+import com.example.dsm_calendar.ui.dialog.SetProfileDialog;
+import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -41,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
+    private SetProfileDialog setProfileDialog;
+    private LogoutDialog logoutDialog;
+
     private MainPresenter mainPresenter;
 
     @Override
@@ -53,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewPager = findViewById(R.id.vp_main_main);
         tabLayout = findViewById(R.id.tl_main_main);
 
-        adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout);
+        adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout, this);
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(1);
 
@@ -70,10 +77,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         View header = navigationView.getHeaderView(0);
         profile = header.findViewById(R.id.profile_image);
-        profile.setBackground(new ShapeDrawable(new OvalShape()));
-        profile.setClipToOutline(true);
         userId = header.findViewById(R.id.tv_main_userid);
         userClass = header.findViewById(R.id.tv_main_userclass);
+
+        setProfileDialog = new SetProfileDialog(this);
+        setProfileDialog.setSetProfileDialogListener(this::setProfileImage);
+        logoutDialog = new LogoutDialog(this);
+        logoutDialog.setLogoutDialogListener(() -> mainPresenter.onClickLogout());
 
         setToolBar();
 
@@ -106,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.item_navigation_setting:
+                setProfileDialog.show();
                 break;
             case R.id.item_navigation_event:
                 Intent makeNoticeIntent = new Intent(MainActivity.this, MakeNoticeActivity.class);
@@ -122,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.item_navigation_logout:
-                mainPresenter.onClickLogout();
+                logoutDialog.show();
                 break;
         }
         drawerLayout.closeDrawers();
@@ -150,6 +161,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void setUserInfo(String id, int classOf, int iconIndex) {
+        userId.setText(id);
+        userClass.setText(Integer.toString(classOf));
+        setProfileImage(iconIndex);
+    }
 
+    @Override
+    public void onFailGetUserInfo() {
+        Toast.makeText(this, "유저 정보를 불러오는데 실패했습니다.", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void logout() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+    }
+
+    public void movePage(int index){
+        viewPager.setCurrentItem(index);
+    }
+
+    void setProfileImage(int iconIndex){
+        switch (iconIndex){
+            case 0:
+                profile.setImageResource(R.drawable.ic_sprout);
+                break;
+            case 1:
+                profile.setImageResource(R.drawable.ic_person_w);
+                break;
+            case 2:
+                profile.setImageResource(R.drawable.ic_person_m);
+                break;
+            case 3:
+                profile.setImageResource(R.drawable.ic_school);
+                break;
+        }
+        mainPresenter.onProfileChanged(iconIndex);
     }
 }
