@@ -22,6 +22,11 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
         void onFail(String message);
     }
 
+    public interface KickMemberListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
     @Override
     public void getMemberList(GetMemberListListener listener) {
         ArrayList<Student> students = new ArrayList<>();
@@ -52,4 +57,11 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     public void changeMemberAuth(ChangeMemberAuthListener listener) {
         listener.onSuccess();
     }
+
+    @Override
+    public void kickMember(KickMemberListener listener) {
+        listener.onSuccess();
+    }
+
+
 }

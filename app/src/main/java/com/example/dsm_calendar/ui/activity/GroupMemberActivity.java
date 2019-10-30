@@ -19,6 +19,7 @@ import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupMemberAddDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMemberAuthDialog;
+import com.example.dsm_calendar.ui.dialog.GroupMemberKickDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMemberMenuDialog;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +36,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     private GroupMemberMenuDialog groupMemberMenuDialog;
     private GroupMemberAddDialog groupMemberAddDialog;
     private GroupMemberAuthDialog groupMemberAuthDialog;
+    private GroupMemberKickDialog groupMemberKickDialog;
 
     private GroupMemberPresenter presenter = new GroupMemberPresenter(this, new GroupMemberRepository());
 
@@ -58,6 +60,19 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         groupMemberAuthDialog = new GroupMemberAuthDialog(this);
         groupMemberAuthDialog.setGroupMemberAuthDialogListener(authCode -> presenter.onMemberAuthChanged(authCode));
 
+        groupMemberKickDialog = new GroupMemberKickDialog(this);
+        groupMemberKickDialog.setGroupMemberKickDialogListener(new DialogListener.GroupMemberKickDialogListener() {
+            @Override
+            public void onYesClicked() {
+                presenter.onMemberKickClicked();
+            }
+
+            @Override
+            public void onNoClicked() {
+                groupMemberKickDialog.dismiss();
+            }
+        });
+
         groupMemberBack.setOnClickListener(v -> finish());
         addMemberButton.setOnClickListener(v -> groupMemberAddDialog.show());
 
@@ -70,7 +85,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
 
             @Override
             public void onClickMemberKick() {
-                Toast.makeText(getApplicationContext(), "kick", Toast.LENGTH_SHORT).show();
+                groupMemberKickDialog.show();
             }
         });
 
@@ -136,5 +151,15 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     @Override
     public void showMessageForAuthChangeFail(String message) {
         Toast.makeText(this, "change fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForKickSuccess() {
+        Toast.makeText(this, "kick success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForKickFail(String message) {
+        Toast.makeText(this, "kick failed\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 }

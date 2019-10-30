@@ -56,12 +56,27 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
+    public void onMemberKickClicked() {
+        groupMemberRepo.kickMember(new GroupMemberRepository.KickMemberListener() {
+            @Override
+            public void onSuccess() {
+                groupMemberView.showMessageForKickSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                groupMemberView.showMessageForKickFail(message);
+            }
+        });
+    }
+
+    @Override
     public void onMemberAuthChanged(int authCode) {
         groupMemberRepo.changeMemberAuth(new GroupMemberRepository.ChangeMemberAuthListener() {
             @Override
             public void onSuccess() {
                 groupMemberView.dismissGroupMemberAuthDialog();
-                groupMemberView.showMessageForAuthChangeSuccess();
+                groupMemberView.showMessageForAuthChangeSuccess(authCode);
             }
 
             @Override
