@@ -12,6 +12,21 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
         void onFail();
     }
 
+    public interface InviteMemberListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
+    public interface ChangeMemberAuthListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
+    public interface KickMemberListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
     @Override
     public void getMemberList(GetMemberListListener listener) {
         ArrayList<Student> students = new ArrayList<>();
@@ -32,4 +47,21 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
 
         listener.onSuccess(students);
     }
+
+    @Override
+    public void inviteMember(InviteMemberListener listener) {
+        listener.onSuccess();
+    }
+
+    @Override
+    public void changeMemberAuth(ChangeMemberAuthListener listener) {
+        listener.onSuccess();
+    }
+
+    @Override
+    public void kickMember(KickMemberListener listener) {
+        listener.onSuccess();
+    }
+
+
 }

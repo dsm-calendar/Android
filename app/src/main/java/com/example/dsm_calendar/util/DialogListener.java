@@ -6,44 +6,62 @@ public interface DialogListener {
         void onConfirmClicked(int iconIndex);
     }
 
-    interface GroupAddDialogListener{
+    interface GroupAddDialogListener {
         void onConfirmClicked(String name);
     }
 
-    interface GroupNameEditDialogListener{
+    interface GroupNameEditDialogListener {
         void onConfirmClicked(String name);
     }
 
-    interface GroupDeleteDialogListener{
+    interface GroupDeleteDialogListener {
+        void onYesClicked();
+
+        void onNoClicked();
+    }
+
+    interface GroupInviteDialogListener {
+        void onYesClicked();
+
+        void onNoClicked();
+    }
+
+    interface AddGroupMemberDialogListener {
+        void onInviteClicked(String ID);
+    }
+
+    interface GroupMemberAuthDialogListener {
+        void onClickCheck(int authCode);
+    }
+
+    interface GroupMemberKickDialogListener {
         void onYesClicked();
         void onNoClicked();
     }
 
-    interface GroupInviteDialogListener{
+    interface MessageDeleteDialogListener {
         void onYesClicked();
+
         void onNoClicked();
     }
 
-    interface MessageDeleteDialogListener{
-        void onYesClicked();
-        void onNoClicked();
-    }
-
-    interface SelectDateDialogListener{
+    interface SelectDateDialogListener {
         void onClickConfirm();
     }
 
     interface GroupMenuDialogListener {
         void onClickEditGroupTitle();
+
         void onClickDeleteGroup();
     }
 
-    interface GroupMemberMenuDialogListener{
+    interface GroupMemberMenuDialogListener {
         void onClickMemberAuth();
+
         void onClickMemberKick();
     }
 
-    interface LogoutDialogListener{
+    interface LogoutDialogListener {
         void onConfirmClicked();
     }
 }
