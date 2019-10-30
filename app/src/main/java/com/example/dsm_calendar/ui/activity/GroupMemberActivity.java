@@ -78,8 +78,8 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         checkList();
     }
 
-    private void checkList(){
-        if (adapter.students.size() == 0){
+    private void checkList() {
+        if (adapter.students.size() == 0) {
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
@@ -117,8 +117,20 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     }
 
     @Override
-    public void showMessageForAuthChangeSuccess() {
-        Toast.makeText(this, "changed!", Toast.LENGTH_SHORT).show();
+    public void showMessageForAuthChangeSuccess(int authCode) {
+        String auth = null;
+        switch (authCode) {
+            case 1:
+                auth = "admin";
+                break;
+            case 2:
+                auth = "writer";
+                break;
+            case 3:
+                auth = "reader";
+                break;
+        }
+        Toast.makeText(this, "user authorization: " + auth, Toast.LENGTH_LONG).show();
     }
 
     @Override

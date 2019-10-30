@@ -13,7 +13,7 @@ public interface GroupMemberContract {
         void dismissGroupMemberAuthDialog();
         void showMessageForInviteSuccess();
         void showMessageForInviteFail(String message);
-        void showMessageForAuthChangeSuccess();
+        void showMessageForAuthChangeSuccess(int authCode);
         void showMessageForAuthChangeFail(String message);
     }
 

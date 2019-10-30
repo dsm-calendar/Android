@@ -19,6 +19,7 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
     private ImageButton offButton;
     private ImageView imageView;
     private TextView textView;
+    private TextView userAuth;
     private ImageButton check;
 
     private int authCode;
@@ -43,6 +44,7 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
         offButton = findViewById(R.id.button_groupmemberauth_off);
         imageView = findViewById(R.id.iv_selectedmember);
         textView = findViewById(R.id.tv_selectedmember);
+        userAuth = findViewById(R.id.tv_userauth);
         check = findViewById(R.id.button_groupmemberauth_check);
 
         findViewById(R.id.button_groupmemberauth_admin).setOnClickListener(this);
@@ -57,12 +59,15 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
         switch (v.getId()){
             case R.id.button_groupmemberauth_admin:
                 authCode = 1;
+                userAuth.setText("관리자 권한");
                 break;
             case R.id.button_groupmemberauth_writer:
                 authCode = 2;
+                userAuth.setText("쓰기 권한");
                 break;
             case R.id.button_groupmemberauth_reader:
                 authCode = 3;
+                userAuth.setText("읽기 권한");
                 break;
             case R.id.button_groupmemberauth_off:
                 dismiss();
