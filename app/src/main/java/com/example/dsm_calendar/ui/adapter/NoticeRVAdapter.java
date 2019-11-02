@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.DTO.Notice;
+import com.example.dsm_calendar.presenter.NoticePresenter;
 
 import java.util.ArrayList;
 
@@ -22,8 +23,11 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
     public ArrayList<Notice> noticeList = new ArrayList<>();
     private Context context;
 
-    public NoticeRVAdapter(Context context){
+    private NoticePresenter noticePresenter;
+
+    public NoticeRVAdapter(Context context, NoticePresenter noticePresenter){
         this.context = context;
+        this.noticePresenter = noticePresenter;
     }
 
     @NonNull
@@ -37,6 +41,7 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
     @Override
     public void onBindViewHolder(@NonNull NoticeViewHolder holder, int position) {
         holder.bind(noticeList.get(position));
+        holder.itemView.setOnClickListener(v -> noticePresenter.onClickItem());
     }
 
     @Override
