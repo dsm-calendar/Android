@@ -33,6 +33,7 @@
         <activity android:name=".ui.activity.MakeNoticeActivity"/>
         <activity android:name=".ui.activity.AddScheduleActivity"/>
         <activity android:name=".ui.activity.NoticeActivity"/>
+        <activity android:name=".ui.activity.NoticeDetailActivity"/>
     </application>
 
 </manifest>
