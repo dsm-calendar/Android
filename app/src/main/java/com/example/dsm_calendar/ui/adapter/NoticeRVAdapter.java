@@ -57,6 +57,7 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
         public NoticeViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.tv_noticeactivity_title);
+            contentText = itemView.findViewById(R.id.tv_noticedetail_content);
             delete = itemView.findViewById(R.id.button_noticeactivity_delete);
         }
 

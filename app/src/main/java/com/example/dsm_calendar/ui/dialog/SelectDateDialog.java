@@ -7,19 +7,27 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.util.DialogListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import java.util.Date;
 
 public class SelectDateDialog extends Dialog implements View.OnClickListener {
 
+    private Context context;
     private ImageButton offButton;
     private TextView titleTextView;
     private MaterialCalendarView calendarView;
     private ImageButton confirm;
+
+    private CalendarDay selectedDate;
 
     private DialogListener.SelectDateDialogListener listener;
     private boolean created = false;
@@ -28,7 +36,7 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
 
     public SelectDateDialog(@NonNull Context context) {
         super(context);
-
+        this.context = context;
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         layoutParams.dimAmount = 0.8f;
@@ -43,6 +51,9 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
 
         offButton.setOnClickListener(this);
         confirm.setOnClickListener(this);
+
+        calendarView.setSelectedDate(new Date());
+        calendarView.setOnDateChangedListener((widget, date, selected) -> selectedDate = date);
     }
 
     @Override
@@ -50,6 +61,7 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         created = !created;
         titleTextView.setText(title);
+        calendarView.setSelectedDate(new Date());
     }
 
     public void setSelectDateDialogListener(DialogListener.SelectDateDialogListener listener){
@@ -70,7 +82,11 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
                 dismiss();
                 break;
             case R.id.button_selectdate_confirm:
-                listener.onClickConfirm();
+                if (selectedDate == null){
+                    Toast.makeText(context, "선택된 날짜가 없습니다.", Toast.LENGTH_LONG).show();
+                } else {
+                    listener.onClickConfirm(selectedDate);
+                }
                 dismiss();
                 break;
         }

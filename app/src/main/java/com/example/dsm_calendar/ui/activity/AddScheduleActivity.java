@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,8 +14,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.ui.dialog.SelectDateDialog;
 import com.example.dsm_calendar.util.DialogListener;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
-public class AddScheduleActivity extends AppCompatActivity {
+public class AddScheduleActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton addScheduleOff;
     private EditText title;
@@ -23,6 +25,11 @@ public class AddScheduleActivity extends AppCompatActivity {
     private ConstraintLayout endDay;
     private Button cancel;
     private Button confirm;
+
+    private CalendarDay startDate;
+    private CalendarDay endDate;
+    private String scheduleTitle;
+    private String scheduleContent;
 
     private SelectDateDialog selectDateDialog;
 
@@ -42,21 +49,40 @@ public class AddScheduleActivity extends AppCompatActivity {
         selectDateDialog = new SelectDateDialog(this);
 
         addScheduleOff.setOnClickListener(v -> finish());
-        startDay.setOnClickListener(v -> {
-            selectDateDialog.setSelectDateDialogListener(() -> {
-                //TODO: get selected start date here
-                Toast.makeText(this, "start day", Toast.LENGTH_LONG).show();
-            });
-            selectDateDialog.setDialogTitle("시작일");
-            selectDateDialog.show();
-        });
-        endDay.setOnClickListener(v -> {
-            selectDateDialog.setSelectDateDialogListener(() -> {
-                //TODO: get selected end date here
-                Toast.makeText(this, "end day", Toast.LENGTH_LONG).show();
-            });
-            selectDateDialog.setDialogTitle("종료일");
-            selectDateDialog.show();
-        });
+        startDay.setOnClickListener(this);
+        endDay.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cl_addschedule_startday:
+                selectDateDialog.setSelectDateDialogListener(date -> {
+                    //TODO: get selected start date here
+                    startDate = date;
+                    Toast.makeText(AddScheduleActivity.this, "start day", Toast.LENGTH_LONG).show();
+                });
+                selectDateDialog.setDialogTitle("시작일");
+                selectDateDialog.show();
+                break;
+            case R.id.cl_addschedule_endday:
+                selectDateDialog.setSelectDateDialogListener(date -> {
+                    //TODO: get selected end date here
+                    endDate = date;
+                    Toast.makeText(AddScheduleActivity.this, "end day", Toast.LENGTH_LONG).show();
+                });
+                selectDateDialog.setDialogTitle("종료일");
+                selectDateDialog.show();
+                break;
+            case R.id.button_addschedule_cancel:
+            case R.id.button_addschedule_off:
+                finish();
+                break;
+            case R.id.button_addschedule_confirm:
+                scheduleTitle = title.getText().toString();
+                scheduleContent = content.getText().toString();
+                finish();
+                break;
+        }
     }
 }
