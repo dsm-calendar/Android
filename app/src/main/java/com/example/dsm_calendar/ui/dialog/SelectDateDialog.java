@@ -53,6 +53,7 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
         offButton.setOnClickListener(this);
         confirm.setOnClickListener(this);
 
+        //TODO: set selected to nothing when started
         calendarView.setOnDateChangedListener((widget, date, selected) -> selectedDate = date);
     }
 

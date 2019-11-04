@@ -61,7 +61,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
 
         selectDateDialog = new SelectDateDialog(this);
 
-        today.setText(dateFormat.format(date));
+        today.setText(String.format("오늘: %s", dateFormat.format(date)));
 
         addScheduleOff.setOnClickListener(this);
         cancel.setOnClickListener(this);
@@ -97,9 +97,7 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.button_addschedule_confirm:
                 scheduleTitle = title.getText().toString();
-                //not return null when not filled
                 scheduleContent = content.getText().toString();
-                //not return null when not filled
                 if (isAllChecked()) {
                     finish();
                 } else {
@@ -110,6 +108,6 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
     }
 
     private boolean isAllChecked() {
-        return scheduleTitle != null && scheduleContent != null && startDate != null && endDate != null;
+        return !scheduleTitle.equals("") && !scheduleContent.equals("") && startDate != null && endDate != null;
     }
 }
