@@ -28,6 +28,7 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
     private ImageButton confirm;
 
     private CalendarDay selectedDate;
+    private Date date = new Date();
 
     private DialogListener.SelectDateDialogListener listener;
     private boolean created = false;
@@ -52,7 +53,6 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
         offButton.setOnClickListener(this);
         confirm.setOnClickListener(this);
 
-        calendarView.setSelectedDate(new Date());
         calendarView.setOnDateChangedListener((widget, date, selected) -> selectedDate = date);
     }
 
@@ -61,7 +61,7 @@ public class SelectDateDialog extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         created = !created;
         titleTextView.setText(title);
-        calendarView.setSelectedDate(new Date());
+        calendarView.setSelectedDate(date);
     }
 
     public void setSelectDateDialogListener(DialogListener.SelectDateDialogListener listener){
