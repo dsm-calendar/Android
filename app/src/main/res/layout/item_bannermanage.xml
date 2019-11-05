@@ -56,6 +56,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_garbage_gray"/>
+        android:src="@drawable/ic_big_trashcan"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
