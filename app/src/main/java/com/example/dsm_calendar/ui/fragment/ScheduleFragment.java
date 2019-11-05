@@ -17,32 +17,30 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.contract.ScheduleContract;
+import com.example.dsm_calendar.contract.ScheduleFragmentContract;
 import com.example.dsm_calendar.data.SampleSchedule;
-import com.example.dsm_calendar.data.ScheduleRepository;
-import com.example.dsm_calendar.presenter.SchedulePresenter;
+import com.example.dsm_calendar.data.ScheduleFragmentRepository;
+import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.Decorator.EventDecorator;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.activity.AddScheduleActivity;
-import com.example.dsm_calendar.ui.adapter.ScheduleRVAdapter;
+import com.example.dsm_calendar.ui.adapter.ScheduleFragmentRVAdapter;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
-public class ScheduleFragment extends Fragment implements ScheduleContract.View {
+public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
 
     private TextView noListTextView;
     private RecyclerView recyclerView;
-    private ScheduleRVAdapter adapter;
+    private ScheduleFragmentRVAdapter adapter;
     private ImageButton scheduleAddButton;
     private MaterialCalendarView calendarView;
-    private SchedulePresenter schedulePresenter = new SchedulePresenter(this, new ScheduleRepository());
+    private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository());
 
     private String selectedDate;
     private CalendarDay day;
@@ -59,7 +57,7 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         noListTextView = rootView.findViewById(R.id.tv_no_list_my_schedule);
 
         recyclerView = rootView.findViewById(R.id.rv_schedule_schedule);
-        adapter = new ScheduleRVAdapter(getActivity(), schedulePresenter);
+        adapter = new ScheduleFragmentRVAdapter(getActivity(), scheduleFragmentPresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
@@ -81,7 +79,7 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
             startActivity(intent);
         });
 
-        schedulePresenter.onStarted();
+        scheduleFragmentPresenter.onStarted();
         checkList();
         setScheduleDecorate();
 

@@ -7,9 +7,13 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.ui.adapter.SchoolScheduleAdapter;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class SchoolScheduleActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,6 +22,8 @@ public class SchoolScheduleActivity extends AppCompatActivity implements View.On
     private MaterialCalendarView calendarView;
     private RecyclerView recyclerView;
     private ImageButton addSchedule;
+
+    private SchoolScheduleAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +37,18 @@ public class SchoolScheduleActivity extends AppCompatActivity implements View.On
 
         offButton.setOnClickListener(this);
         addSchedule.setOnClickListener(this);
+
+        adapter = new SchoolScheduleAdapter();
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         addSchedule.setVisibility(View.GONE);
     }
