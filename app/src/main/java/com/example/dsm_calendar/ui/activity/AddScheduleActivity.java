@@ -13,15 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.AddScheduleContract;
+import com.example.dsm_calendar.data.AddScheduleRepository;
+import com.example.dsm_calendar.presenter.AddSchedulePresenter;
 import com.example.dsm_calendar.ui.dialog.SelectDateDialog;
-import com.example.dsm_calendar.util.DialogListener;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddScheduleActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddScheduleActivity extends AppCompatActivity implements AddScheduleContract.View, View.OnClickListener {
 
     private ImageButton addScheduleOff;
     private TextView today;
@@ -40,6 +42,8 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
     private String scheduleContent;
     private Date date = new Date();
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA);
+
+    private AddSchedulePresenter presenter = new AddSchedulePresenter(this, new AddScheduleRepository());
 
     private SelectDateDialog selectDateDialog;
 
@@ -71,6 +75,16 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
+    public void showMessageForSuccess() {
+        Toast.makeText(this, "success!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessageForFail(String message) {
+        Toast.makeText(this, "fail!\n" + message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cl_addschedule_startday:
@@ -99,6 +113,8 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
                 scheduleTitle = title.getText().toString();
                 scheduleContent = content.getText().toString();
                 if (isAllChecked()) {
+                    presenter.onSaveClicked(scheduleTitle, scheduleContent, startDate.getDate().toString(), endDate.getDate().toString());
+                    Toast.makeText(this, startDate.getDate().toString() + "\n" + startDate.getDate().toString(), Toast.LENGTH_SHORT);
                     finish();
                 } else {
                     Toast.makeText(this, "모든 칸이 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
@@ -110,4 +126,5 @@ public class AddScheduleActivity extends AppCompatActivity implements View.OnCli
     private boolean isAllChecked() {
         return !scheduleTitle.equals("") && !scheduleContent.equals("") && startDate != null && endDate != null;
     }
+
 }

@@ -1,10 +1,10 @@
 package com.example.dsm_calendar.data;
 
-import com.example.dsm_calendar.contract.GroupContract;
+import com.example.dsm_calendar.contract.GroupFragmentContract;
 
 import java.util.ArrayList;
 
-public class GroupRepository implements GroupContract.Repository {
+public class GroupFragmentRepository implements GroupFragmentContract.Repository {
 
     public interface GetGroupListListener{
         void onSuccess(ArrayList<String> testGroup);

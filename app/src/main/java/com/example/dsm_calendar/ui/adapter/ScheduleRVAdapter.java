@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.SampleSchedule;
-import com.example.dsm_calendar.presenter.SchedulePresenter;
+import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -22,11 +22,11 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
 
     public ArrayList<SampleSchedule> list = new ArrayList<>();
     private Context context;
-    private SchedulePresenter schedulePresenter;
+    private ScheduleFragmentPresenter scheduleFragmentPresenter;
 
-    public ScheduleRVAdapter(Context context, SchedulePresenter schedulePresenter){
+    public ScheduleRVAdapter(Context context, ScheduleFragmentPresenter scheduleFragmentPresenter){
         this.context = context;
-        this.schedulePresenter = schedulePresenter;
+        this.scheduleFragmentPresenter = scheduleFragmentPresenter;
     }
 
     @NonNull
@@ -82,7 +82,7 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
             tv_title.setText(schedule.getTitle());
             tv_date.setText(schedule.getDate());
             tv_content.setText(schedule.getContent());
-            delete.setOnClickListener(v -> schedulePresenter.onItemDeleteClicked(getAdapterPosition()));
+            delete.setOnClickListener(v -> scheduleFragmentPresenter.onItemDeleteClicked(getAdapterPosition()));
         }
     }
 }

@@ -1,11 +1,9 @@
 package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -13,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.presenter.GroupPresenter;
+import com.example.dsm_calendar.presenter.GroupFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -21,11 +19,11 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
 
     public ArrayList<String> groupList = new ArrayList<>();
     private Context context;
-    private GroupPresenter groupPresenter;
+    private GroupFragmentPresenter groupFragmentPresenter;
 
-    public GroupRVAdapter(Context context, GroupPresenter groupPresenter){
+    public GroupRVAdapter(Context context, GroupFragmentPresenter groupFragmentPresenter){
         this.context = context;
-        this.groupPresenter = groupPresenter;
+        this.groupFragmentPresenter = groupFragmentPresenter;
     }
 
     @NonNull
@@ -60,8 +58,8 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
         private void bind(String groupName, String name){
             //TODO: give groupInfo instead of name
             tv_group_name.setText(groupName);
-            itemView.setOnClickListener(v -> groupPresenter.onClickItems(name));
-            menu.setOnClickListener(v -> groupPresenter.onClickItemMenu(name));
+            itemView.setOnClickListener(v -> groupFragmentPresenter.onClickItems(name));
+            menu.setOnClickListener(v -> groupFragmentPresenter.onClickItemMenu(name));
         }
     }
 }
