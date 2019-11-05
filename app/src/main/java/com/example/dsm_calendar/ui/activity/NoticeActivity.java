@@ -10,15 +10,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.NoticeContract;
 import com.example.dsm_calendar.data.DTO.Notice;
+import com.example.dsm_calendar.data.NoticeRepository;
+import com.example.dsm_calendar.presenter.NoticePresenter;
 import com.example.dsm_calendar.ui.adapter.NoticeRVAdapter;
 
-public class NoticeActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class NoticeActivity extends AppCompatActivity implements NoticeContract.View {
 
     private ImageButton offButton;
     private RecyclerView noticeRecyclerView;
     private NoticeRVAdapter adapter;
     private ImageButton noticeAddButton;
+
+    private NoticePresenter noticePresenter = new NoticePresenter(this, new NoticeRepository());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,16 +37,7 @@ public class NoticeActivity extends AppCompatActivity {
         noticeAddButton = findViewById(R.id.button_notice_add);
 
         noticeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new NoticeRVAdapter(this);
-        adapter.noticeList.add(new Notice("sample", "aldajksdnadkjanjkdniwnadjkw"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
-        adapter.noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
+        adapter = new NoticeRVAdapter(this, noticePresenter);
 
         noticeRecyclerView.setAdapter(adapter);
 
@@ -48,5 +46,18 @@ public class NoticeActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MakeNoticeActivity.class);
             startActivity(intent);
         });
+
+        noticePresenter.onStarted();
+    }
+
+    @Override
+    public void addItems(ArrayList<Notice> noticeList) {
+        adapter.noticeList = noticeList;
+    }
+
+    @Override
+    public void startNoticeDetailActivity() {
+        Intent intent = new Intent(NoticeActivity.this, NoticeDetailActivity.class);
+        startActivity(intent);
     }
 }
