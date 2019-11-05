@@ -127,7 +127,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(timeTableIntent);
                 break;
             case R.id.item_navigation_calendar_school:
-                Toast.makeText(this, "schoolCalendar", Toast.LENGTH_SHORT).show();
+                Intent schoolScheduleActivityIntent = new Intent(MainActivity.this, SchoolScheduleActivity.class);
+                startActivity(schoolScheduleActivityIntent);
                 break;
             case R.id.item_navigation_calendar_my:
                 viewPager.setCurrentItem(0);

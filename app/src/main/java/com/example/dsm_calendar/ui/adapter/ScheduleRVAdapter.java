@@ -75,7 +75,7 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
 
         private void bind(SampleSchedule schedule) {
             boolean expended = schedule.getExpended();
-            Toast.makeText(context, expended+"", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, expended+"", Toast.LENGTH_SHORT).show();
             content.setVisibility(expended ? View.VISIBLE : View.GONE);
             delete.setVisibility(expended ? View.VISIBLE : View.GONE);
 

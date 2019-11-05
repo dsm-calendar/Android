@@ -62,7 +62,6 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         adapter = new ScheduleRVAdapter(getActivity(), schedulePresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-        checkList();
 
         getScheduleDate();
         calendarView = rootView.findViewById(R.id.cv_schedule_calendar);
@@ -71,12 +70,9 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
                 new SundayDecorator(),
                 new OnDayDecorator(),
                 new EventDecorator(Color.RED, scheduleDayList));
-        calendarView.setOnDateChangedListener((new OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                selectedDate = date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay();
-                day = date;
-            }
+        calendarView.setOnDateChangedListener(((widget, date, selected) -> {
+            selectedDate = date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay();
+            day = date;
         }));
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
@@ -86,11 +82,13 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
         });
 
         schedulePresenter.onStarted();
+        checkList();
+        setScheduleDecorate();
 
         return rootView;
     }
 
-    void checkList(){
+    private void checkList(){
         if(adapter.list.size() == 0){
             noListTextView.setVisibility(View.VISIBLE);
         } else {
@@ -139,12 +137,7 @@ public class ScheduleFragment extends Fragment implements ScheduleContract.View 
     @Override
     public void addSchedule(SampleSchedule schedule) {
         adapter.list.add(schedule);
-        Collections.sort(adapter.list, new Comparator<SampleSchedule>() {
-            @Override
-            public int compare(SampleSchedule o1, SampleSchedule o2) {
-                return o1.getDate().compareTo(o2.getDate());
-            }
-        });
+        Collections.sort(adapter.list, (o1, o2) -> o1.getDate().compareTo(o2.getDate()));
         adapter.notifyDataSetChanged();
         setScheduleDecorate();
     }

@@ -26,6 +26,9 @@ public class ScheduleRepository implements ScheduleContract.Repository {
     public void getScheduleList(GetScheduleListListener listener) {
         ArrayList<SampleSchedule> testSchedule = new ArrayList<>();
 
+        testSchedule.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        //month should be -1 to decorate correctly
+
         listener.onSuccess(testSchedule);
     }
 
