@@ -108,7 +108,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:inputType="textPersonName"
-                android:text="@string/no_title_notice"
+                android:hint="@string/no_title_notice"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/iv_makeNotice_edits_icon"
                 android:background="@null"/>
