@@ -56,4 +56,5 @@ public class BannerDetailActivity extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
+
 }

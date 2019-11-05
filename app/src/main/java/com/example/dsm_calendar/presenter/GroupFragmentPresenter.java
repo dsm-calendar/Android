@@ -1,18 +1,18 @@
 package com.example.dsm_calendar.presenter;
 
-import com.example.dsm_calendar.contract.GroupContract;
-import com.example.dsm_calendar.data.GroupRepository;
+import com.example.dsm_calendar.contract.GroupFragmentContract;
+import com.example.dsm_calendar.data.GroupFragmentRepository;
 
 import java.util.ArrayList;
 
-public class GroupPresenter implements GroupContract.Presenter {
+public class GroupFragmentPresenter implements GroupFragmentContract.Presenter {
 
-    private GroupContract.View groupView;
-    private GroupContract.Repository groupRepo;
+    private GroupFragmentContract.View groupView;
+    private GroupFragmentContract.Repository groupRepo;
 
-    public GroupPresenter(
-            GroupContract.View groupView,
-            GroupContract.Repository groupRepo
+    public GroupFragmentPresenter(
+            GroupFragmentContract.View groupView,
+            GroupFragmentContract.Repository groupRepo
     ){
         this.groupView = groupView;
         this.groupRepo = groupRepo;
@@ -35,7 +35,7 @@ public class GroupPresenter implements GroupContract.Presenter {
 
     @Override
     public void onStarted() {
-        groupRepo.getGroupList(new GroupRepository.GetGroupListListener() {
+        groupRepo.getGroupList(new GroupFragmentRepository.GetGroupListListener() {
             @Override
             public void onSuccess(ArrayList<String> testGroup) {
                 groupView.addItems(testGroup);

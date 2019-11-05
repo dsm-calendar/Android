@@ -1,12 +1,11 @@
 package com.example.dsm_calendar.contract;
 
 import com.example.dsm_calendar.data.SampleSchedule;
-import com.example.dsm_calendar.data.ScheduleRepository;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.example.dsm_calendar.data.ScheduleFragmentRepository;
 
 import java.util.ArrayList;
 
-public interface ScheduleContract {
+public interface ScheduleFragmentContract {
 
     interface View{
         void showMessageForDeleteSchedule();
@@ -23,8 +22,8 @@ public interface ScheduleContract {
     }
 
     interface Repository{
-        void getScheduleList(ScheduleRepository.GetScheduleListListener listener);
-        void addSchedule(SampleSchedule schedule, ScheduleRepository.AddScheduleListener listener);
-        void deleteSchedule(ScheduleRepository.DeleteScheduleListener listener);
+        void getScheduleList(ScheduleFragmentRepository.GetScheduleListListener listener);
+        void addSchedule(SampleSchedule schedule, ScheduleFragmentRepository.AddScheduleListener listener);
+        void deleteSchedule(ScheduleFragmentRepository.DeleteScheduleListener listener);
     }
 }

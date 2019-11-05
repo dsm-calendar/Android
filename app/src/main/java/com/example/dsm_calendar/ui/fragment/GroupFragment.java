@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.contract.GroupContract;
-import com.example.dsm_calendar.data.GroupRepository;
-import com.example.dsm_calendar.presenter.GroupPresenter;
+import com.example.dsm_calendar.contract.GroupFragmentContract;
+import com.example.dsm_calendar.data.GroupFragmentRepository;
+import com.example.dsm_calendar.presenter.GroupFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.GroupSingleActivity;
 import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
@@ -29,7 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class GroupFragment extends Fragment implements GroupContract.View {
+public class GroupFragment extends Fragment implements GroupFragmentContract.View {
 
     private TextView noListTextView;
     private RecyclerView recyclerView;
@@ -39,7 +39,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
     private GroupNameEditDialog groupNameEditDialog;
     private GroupDeleteDialog groupDeleteDialog;
     private FloatingActionButton fab_add;
-    private GroupPresenter groupPresenter = new GroupPresenter(this, new GroupRepository());
+    private GroupFragmentPresenter groupFragmentPresenter = new GroupFragmentPresenter(this, new GroupFragmentRepository());
 
     public GroupFragment(){}
 
@@ -51,7 +51,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         noListTextView = rootView.findViewById(R.id.tv_no_list_group);
 
         recyclerView = rootView.findViewById(R.id.rv_group_view);
-        adapter = new GroupRVAdapter(getActivity(), groupPresenter);
+        adapter = new GroupRVAdapter(getActivity(), groupFragmentPresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
@@ -113,9 +113,9 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         });
 
         fab_add = rootView.findViewById(R.id.fab_group_actionButton);
-        fab_add.setOnClickListener(v -> groupPresenter.onClickAddGroup());
+        fab_add.setOnClickListener(v -> groupFragmentPresenter.onClickAddGroup());
 
-        groupPresenter.onStarted();
+        groupFragmentPresenter.onStarted();
         checkList();
 
         return rootView;

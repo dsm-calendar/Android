@@ -1,19 +1,18 @@
 package com.example.dsm_calendar.presenter;
 
-import com.example.dsm_calendar.contract.ScheduleContract;
+import com.example.dsm_calendar.contract.ScheduleFragmentContract;
 import com.example.dsm_calendar.data.SampleSchedule;
-import com.example.dsm_calendar.data.ScheduleRepository;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.example.dsm_calendar.data.ScheduleFragmentRepository;
 
 import java.util.ArrayList;
 
-public class SchedulePresenter implements ScheduleContract.Presenter {
-    private ScheduleContract.View scheduleView;
-    private ScheduleContract.Repository scheduleRepo;
+public class ScheduleFragmentPresenter implements ScheduleFragmentContract.Presenter {
+    private ScheduleFragmentContract.View scheduleView;
+    private ScheduleFragmentContract.Repository scheduleRepo;
 
-    public SchedulePresenter(
-            ScheduleContract.View scheduleView,
-            ScheduleContract.Repository scheduleRepo
+    public ScheduleFragmentPresenter(
+            ScheduleFragmentContract.View scheduleView,
+            ScheduleFragmentContract.Repository scheduleRepo
     ){
         this.scheduleView = scheduleView;
         this.scheduleRepo = scheduleRepo;
@@ -22,7 +21,7 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
 
     @Override
     public void onStarted() {
-        scheduleRepo.getScheduleList(new ScheduleRepository.GetScheduleListListener() {
+        scheduleRepo.getScheduleList(new ScheduleFragmentRepository.GetScheduleListListener() {
             @Override
             public void onSuccess(ArrayList<SampleSchedule> testSchedule) {
                 scheduleView.getItems(testSchedule);
@@ -37,7 +36,7 @@ public class SchedulePresenter implements ScheduleContract.Presenter {
 
     @Override
     public void onItemDeleteClicked(int index) {
-        scheduleRepo.deleteSchedule(new ScheduleRepository.DeleteScheduleListener() {
+        scheduleRepo.deleteSchedule(new ScheduleFragmentRepository.DeleteScheduleListener() {
             @Override
             public void onSuccess() {
                 scheduleView.showMessageForDeleteSchedule();
