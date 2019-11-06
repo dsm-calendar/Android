@@ -1,10 +1,10 @@
 package com.example.dsm_calendar.contract;
 
-import com.example.dsm_calendar.data.GroupRepository;
+import com.example.dsm_calendar.data.GroupFragmentRepository;
 
 import java.util.ArrayList;
 
-public interface GroupContract {
+public interface GroupFragmentContract {
     interface View{
         void showGroupAddDialog();
         void showGroupMenuDialog(String name);
@@ -20,6 +20,6 @@ public interface GroupContract {
     }
 
     interface Repository{
-        void getGroupList(GroupRepository.GetGroupListListener listener);
+        void getGroupList(GroupFragmentRepository.GetGroupListListener listener);
     }
 }

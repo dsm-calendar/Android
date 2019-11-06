@@ -39,4 +39,5 @@ public class BannerDetailActivity extends AppCompatActivity {
 
         offButton.setOnClickListener(v -> finish());
     }
+
 }

@@ -1,5 +1,7 @@
 package com.example.dsm_calendar.util;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+
 public interface DialogListener {
 
     interface SetProfileDialogListener {
@@ -46,7 +48,7 @@ public interface DialogListener {
     }
 
     interface SelectDateDialogListener {
-        void onClickConfirm();
+        void onClickConfirm(CalendarDay date);
     }
 
     interface GroupMenuDialogListener {
