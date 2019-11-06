@@ -114,7 +114,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 scheduleContent = content.getText().toString();
                 if (isAllChecked()) {
                     presenter.onSaveClicked(scheduleTitle, scheduleContent, startDate.getDate().toString(), endDate.getDate().toString());
-                    Toast.makeText(this, startDate.getDate().toString() + "\n" + startDate.getDate().toString(), Toast.LENGTH_SHORT);
+                    Toast.makeText(this, startDate.getDate().toString() + "\n" + startDate.getDate().toString(), Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     Toast.makeText(this, "모든 칸이 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
@@ -126,5 +126,4 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
     private boolean isAllChecked() {
         return !scheduleTitle.equals("") && !scheduleContent.equals("") && startDate != null && endDate != null;
     }
-
 }
