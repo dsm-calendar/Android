@@ -9,18 +9,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.BannerManageContract;
+import com.example.dsm_calendar.data.BannerManageRepository;
 import com.example.dsm_calendar.data.SampleBanner;
+import com.example.dsm_calendar.presenter.BannerManagePresenter;
 import com.example.dsm_calendar.ui.adapter.BannerManageAdapter;
 
 import java.util.ArrayList;
 
-public class BannerManageActivity extends AppCompatActivity {
+public class BannerManageActivity extends AppCompatActivity implements BannerManageContract.View {
 
     private ImageButton offButton;
     private RecyclerView recyclerView;
     private BannerManageAdapter adapter;
 
     private ArrayList<SampleBanner> sample = new ArrayList<>();
+    private BannerManagePresenter presenter = new BannerManagePresenter(this, new BannerManageRepository());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,5 +52,10 @@ public class BannerManageActivity extends AppCompatActivity {
 
     public void addItems(ArrayList<SampleBanner> bannerList){
         adapter.bannerList = bannerList;
+    }
+
+    @Override
+    public void showBanners() {
+
     }
 }
