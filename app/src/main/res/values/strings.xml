@@ -87,4 +87,6 @@
 <string name="logout">로그아웃</string>
 <string name="confirm">확인</string>
 <string name="cancel">취소</string>
+    <string name="require_banner">배너 요청하기</string>
+    <string name="school_schedule">학교 일정</string>
 </resources>

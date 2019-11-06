@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.data;
 
 import com.example.dsm_calendar.contract.ScheduleFragmentContract;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,9 @@ public class ScheduleFragmentRepository implements ScheduleFragmentContract.Repo
     @Override
     public void getScheduleList(GetScheduleListListener listener) {
         ArrayList<SampleSchedule> testSchedule = new ArrayList<>();
+
+        testSchedule.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        //month should be -1 to decorate correctly
 
         listener.onSuccess(testSchedule);
     }

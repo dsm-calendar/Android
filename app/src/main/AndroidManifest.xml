@@ -30,8 +30,10 @@
         <activity android:name=".ui.activity.GroupMemberActivity"/>
         <activity android:name=".ui.activity.BannerDetailActivity"/>
         <activity android:name=".ui.activity.BannerManageActivity"/>
+        <activity android:name=".ui.activity.BannerRequireActivity"/>
         <activity android:name=".ui.activity.MakeNoticeActivity"/>
         <activity android:name=".ui.activity.AddScheduleActivity"/>
+        <activity android:name=".ui.activity.SchoolScheduleActivity"/>
         <activity android:name=".ui.activity.NoticeActivity"/>
         <activity android:name=".ui.activity.NoticeDetailActivity"/>
     </application>

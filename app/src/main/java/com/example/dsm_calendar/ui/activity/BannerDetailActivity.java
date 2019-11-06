@@ -13,12 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dsm_calendar.R;
 
-public class BannerDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class BannerDetailActivity extends AppCompatActivity {
 
     private ImageView image;
     private TextView summary;
     private ImageButton offButton;
-    private ImageButton editButton;
     int bannerImage;
 
     @Override
@@ -29,7 +28,6 @@ public class BannerDetailActivity extends AppCompatActivity implements View.OnCl
         image = findViewById(R.id.iv_bannerDetail_image);
         summary = findViewById(R.id.tv_bannerDetail_summary);
         offButton = findViewById(R.id.button_bannerDetail_off);
-        editButton = findViewById(R.id.button_bannerDetail_change);
 
         Intent intent = getIntent();
         bannerImage = intent.getIntExtra("image", 0);
@@ -39,22 +37,7 @@ public class BannerDetailActivity extends AppCompatActivity implements View.OnCl
             image.setImageResource(bannerImage);
         }
 
-        offButton.setOnClickListener(this);
-        editButton.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.button_bannerDetail_off:
-                finish();
-                break;
-            case R.id.button_bannerDetail_change:
-                //TODO: set visible, invisible due to user's authorization
-                Intent intent = new Intent(BannerDetailActivity.this, BannerManageActivity.class);
-                startActivity(intent);
-                break;
-        }
+        offButton.setOnClickListener(v -> finish());
     }
 
 }

@@ -119,14 +119,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setProfileDialog.show();
                 break;
             case R.id.item_navigation_event:
-                //TODO: make banner require activity
+                Intent requireBannerIntent = new Intent(MainActivity.this, BannerRequireActivity.class);
+                startActivity(requireBannerIntent);
                 break;
             case R.id.item_navigation_timeTable:
                 Intent timeTableIntent = new Intent(MainActivity.this, TimeTableActivity.class);
                 startActivity(timeTableIntent);
                 break;
             case R.id.item_navigation_calendar_school:
-                Toast.makeText(this, "schoolCalendar", Toast.LENGTH_SHORT).show();
+                Intent schoolScheduleActivityIntent = new Intent(MainActivity.this, SchoolScheduleActivity.class);
+                startActivity(schoolScheduleActivityIntent);
                 break;
             case R.id.item_navigation_calendar_my:
                 viewPager.setCurrentItem(0);
