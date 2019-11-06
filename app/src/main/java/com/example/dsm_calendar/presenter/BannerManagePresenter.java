@@ -2,6 +2,9 @@ package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.BannerManageContract;
 import com.example.dsm_calendar.data.BannerManageRepository;
+import com.example.dsm_calendar.data.SampleBanner;
+
+import java.util.ArrayList;
 
 public class BannerManagePresenter implements BannerManageContract.Presenter {
 
@@ -20,8 +23,8 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
     public void onStarted() {
         bannerManageRepo.getBanners(new BannerManageRepository.GetBannerListener() {
             @Override
-            public void onSuccess() {
-                bannerManageView.showBanners();
+            public void onSuccess(ArrayList<SampleBanner> banners) {
+                bannerManageView.addBannerList(banners);
             }
 
             @Override
@@ -32,11 +35,11 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
     }
 
     @Override
-    public void onAccept() {
-        bannerManageRepo.addBanners(0, new BannerManageRepository.AddBannerListener() {
+    public void onAccept(int id, int position) {
+        bannerManageRepo.addBanners(id, new BannerManageRepository.AddBannerListener() {
             @Override
             public void onSuccess() {
-
+                bannerManageView.deleteBanner(position);
             }
 
             @Override
@@ -47,11 +50,11 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
     }
 
     @Override
-    public void onReject() {
-        bannerManageRepo.deleteBanners(0, new BannerManageRepository.DeleteBannerListener() {
+    public void onReject(int id, int position) {
+        bannerManageRepo.deleteBanners(id, new BannerManageRepository.DeleteBannerListener() {
             @Override
             public void onSuccess() {
-
+                bannerManageView.deleteBanner(position);
             }
 
             @Override

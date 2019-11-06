@@ -23,7 +23,6 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
     private RecyclerView recyclerView;
     private BannerManageAdapter adapter;
 
-    private ArrayList<SampleBanner> sample = new ArrayList<>();
     private BannerManagePresenter presenter = new BannerManagePresenter(this, new BannerManageRepository());
 
     @Override
@@ -34,7 +33,7 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
         offButton = findViewById(R.id.button_bannermanage_off);
         offButton.setOnClickListener(v -> finish());
 
-        adapter = new BannerManageAdapter();
+        adapter = new BannerManageAdapter(this, presenter);
 
         recyclerView = findViewById(R.id.rv_bannermanage);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -42,12 +41,7 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-        sample.add(new SampleBanner(R.drawable.sample_car, "asdjkasndasnkdjnakdnwunadjndwnadnadjk"));
-        sample.add(new SampleBanner(R.drawable.sample_universe, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
-        sample.add(new SampleBanner(R.drawable.sample_ocean, "kokokokokokokokokokokokokokoko"));
-        sample.add(new SampleBanner(R.drawable.sample_sportscar, "asdjkasndasnwifwenjvjenjdjk"));
-
-        addItems(sample);
+        presenter.onStarted();
     }
 
     public void addItems(ArrayList<SampleBanner> bannerList){
@@ -55,7 +49,14 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
     }
 
     @Override
-    public void showBanners() {
+    public void addBannerList(ArrayList<SampleBanner> banners) {
+        adapter.bannerList = banners;
+        adapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public void deleteBanner(int position) {
+        adapter.bannerList.remove(position);
+        adapter.notifyDataSetChanged();
     }
 }

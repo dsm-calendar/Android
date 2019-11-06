@@ -1,16 +1,20 @@
 package com.example.dsm_calendar.contract;
 
 import com.example.dsm_calendar.data.BannerManageRepository;
+import com.example.dsm_calendar.data.SampleBanner;
+
+import java.util.ArrayList;
 
 public interface BannerManageContract {
     interface View{
-        void showBanners();
+        void addBannerList(ArrayList<SampleBanner> banners);
+        void deleteBanner(int position);
     }
 
     interface Presenter{
         void onStarted();
-        void onAccept();
-        void onReject();
+        void onAccept(int id, int position);
+        void onReject(int id, int position);
     }
 
     interface Repository{
