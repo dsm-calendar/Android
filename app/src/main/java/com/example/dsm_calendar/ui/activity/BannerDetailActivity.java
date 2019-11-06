@@ -18,6 +18,7 @@ public class BannerDetailActivity extends AppCompatActivity {
     private ImageView image;
     private TextView summary;
     private ImageButton offButton;
+    private ImageButton manageButton;
     int bannerImage;
 
     @Override
@@ -28,6 +29,7 @@ public class BannerDetailActivity extends AppCompatActivity {
         image = findViewById(R.id.iv_bannerDetail_image);
         summary = findViewById(R.id.tv_bannerDetail_summary);
         offButton = findViewById(R.id.button_bannerDetail_off);
+        manageButton = findViewById(R.id.button_bannerDetail_manage);
 
         Intent intent = getIntent();
         bannerImage = intent.getIntExtra("image", 0);
@@ -38,6 +40,9 @@ public class BannerDetailActivity extends AppCompatActivity {
         }
 
         offButton.setOnClickListener(v -> finish());
+        manageButton.setOnClickListener(v -> {
+            Intent managePageIntent = new Intent(BannerDetailActivity.this, BannerManageActivity.class);
+            startActivity(managePageIntent);
+        });
     }
-
 }

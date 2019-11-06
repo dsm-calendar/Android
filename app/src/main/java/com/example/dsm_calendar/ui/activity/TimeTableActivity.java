@@ -66,18 +66,18 @@ public class TimeTableActivity extends AppCompatActivity {
             tables.get(i).setText(texts.get(i));
     }
 
-    private void setGrade(View v) {
+    public void setGrade(View v) {
         String gradeStr = ((Button)v).getText().toString();
-        int nowGrade = Integer.parseInt(gradeStr);
+        int nowGrade = gradeStr.charAt(0) - '0';
         setGrade(nowGrade);
 
         // TODO setTableText
     }
 
-    private void setClass(View v) {
+    public void setClass(View v) {
         String classStr = ((Button)v).getText().toString();
-        int nowClass = Integer.parseInt(classStr);
-        setGrade(nowClass);
+        int nowClass = classStr.charAt(0) - '0';
+        setClass(nowClass);
 
         // TODO setTableText
     }
