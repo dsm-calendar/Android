@@ -2,6 +2,7 @@ package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,5 +59,25 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
     public void deleteBanner(int position) {
         adapter.bannerList.remove(position);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showMessageForBannerAcceptSuccess() {
+        Toast.makeText(this, "Banner Accept Success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForBannerAcceptFail(String message) {
+        Toast.makeText(this, "Banner Accept Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForBannerRejectSuccess() {
+        Toast.makeText(this, "Banner Reject Success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForBannerRejectFail(String message) {
+        Toast.makeText(this, "Banner Reject Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 }

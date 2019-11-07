@@ -40,11 +40,12 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
             @Override
             public void onSuccess() {
                 bannerManageView.deleteBanner(position);
+                bannerManageView.showMessageForBannerAcceptSuccess();
             }
 
             @Override
             public void onFail(String message) {
-
+                bannerManageView.showMessageForBannerAcceptFail(message);
             }
         });
     }
@@ -55,11 +56,12 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
             @Override
             public void onSuccess() {
                 bannerManageView.deleteBanner(position);
+                bannerManageView.showMessageForBannerRejectSuccess();
             }
 
             @Override
             public void onFail(String message) {
-
+                bannerManageView.showMessageForBannerRejectFail(message);
             }
         });
     }
