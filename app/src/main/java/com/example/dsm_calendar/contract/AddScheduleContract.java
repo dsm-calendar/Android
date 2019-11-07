@@ -6,6 +6,7 @@ public interface AddScheduleContract {
     interface View{
         void showMessageForSuccess();
         void showMessageForFail(String message);
+        void finishActivity();
     }
 
     interface Presenter{

@@ -1,4 +1,6 @@
-package com.example.dsm_calendar.data;
+package com.example.dsm_calendar.data.Singleton;
+
+import com.example.dsm_calendar.data.RetrofitService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

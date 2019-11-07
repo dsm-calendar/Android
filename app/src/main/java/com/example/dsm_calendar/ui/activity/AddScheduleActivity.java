@@ -15,9 +15,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.AddScheduleContract;
 import com.example.dsm_calendar.data.AddScheduleRepository;
+import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.AddSchedulePresenter;
 import com.example.dsm_calendar.ui.dialog.SelectDateDialog;
+import com.example.dsm_calendar.util.ScheduleEvent;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.squareup.otto.Bus;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -85,13 +88,18 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
     }
 
     @Override
+    public void finishActivity() {
+        BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.EVENT.SCHEDULE_ADD));
+        finish();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cl_addschedule_startday:
                 selectDateDialog.setSelectDateDialogListener(date -> {
                     startDate = date;
                     startDateText.setText(dateFormat.format(startDate.getDate()));
-                    Toast.makeText(AddScheduleActivity.this, "start day", Toast.LENGTH_LONG).show();
                 });
                 selectDateDialog.setDialogTitle("시작일");
                 selectDateDialog.show();
@@ -100,13 +108,13 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 selectDateDialog.setSelectDateDialogListener(date -> {
                     endDate = date;
                     endDateText.setText(dateFormat.format(endDate.getDate()));
-                    Toast.makeText(AddScheduleActivity.this, "end day", Toast.LENGTH_LONG).show();
                 });
                 selectDateDialog.setDialogTitle("종료일");
                 selectDateDialog.show();
                 break;
             case R.id.button_addschedule_cancel:
             case R.id.button_addschedule_off:
+                BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.EVENT.JUST_FINISHED));
                 finish();
                 break;
             case R.id.button_addschedule_confirm:
@@ -114,8 +122,6 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 scheduleContent = content.getText().toString();
                 if (isAllChecked()) {
                     presenter.onSaveClicked(scheduleTitle, scheduleContent, startDate.getDate().toString(), endDate.getDate().toString());
-                    Toast.makeText(this, startDate.getDate().toString() + "\n" + startDate.getDate().toString(), Toast.LENGTH_SHORT).show();
-                    finish();
                 } else {
                     Toast.makeText(this, "모든 칸이 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
                 }

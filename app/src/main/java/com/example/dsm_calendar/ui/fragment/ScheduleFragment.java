@@ -20,6 +20,7 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.ScheduleFragmentContract;
 import com.example.dsm_calendar.data.SampleSchedule;
 import com.example.dsm_calendar.data.ScheduleFragmentRepository;
+import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.Decorator.EventDecorator;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
@@ -27,11 +28,14 @@ import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.activity.AddScheduleActivity;
 import com.example.dsm_calendar.ui.adapter.ScheduleFragmentRVAdapter;
+import com.example.dsm_calendar.util.ScheduleEvent;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
 
@@ -47,12 +51,15 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private ArrayList<CalendarDay> scheduleDayList = new ArrayList<>();
 
 
-    public ScheduleFragment() {}
+    public ScheduleFragment() {
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
+
+        BusProvider.getInstance().register(this);
 
         noListTextView = rootView.findViewById(R.id.tv_no_list_my_schedule);
 
@@ -69,7 +76,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 new OnDayDecorator(),
                 new EventDecorator(Color.RED, scheduleDayList));
         calendarView.setOnDateChangedListener(((widget, date, selected) -> {
-            selectedDate = date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay();
+            selectedDate = date.getYear() + "-" + (date.getMonth() + 1) + "-" + date.getDay();
             day = date;
         }));
 
@@ -86,25 +93,39 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         return rootView;
     }
 
-    private void checkList(){
-        if(adapter.list.size() == 0){
+    @Override
+    public void onDestroy() {
+        BusProvider.getInstance().unregister(this);
+        super.onDestroy();
+    }
+
+    private void checkList() {
+        if (adapter.list.size() == 0) {
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
         }
     }
 
-    private void setScheduleDecorate(){
+    private void setScheduleDecorate() {
         getScheduleDate();
         calendarView.addDecorator(new EventDecorator(Color.RED, scheduleDayList));
     }
 
-    private void getScheduleDate(){
-        if(adapter.list != null){
-            for(int i = 0; i < adapter.getItemCount(); ++i){
+    private void getScheduleDate() {
+        if (adapter.list != null) {
+            for (int i = 0; i < adapter.getItemCount(); ++i) {
                 scheduleDayList.add(adapter.list.get(i).getDay());
             }
         }
+    }
+
+    @Subscribe
+    public void getNewScheduleList(ScheduleEvent status) {
+        if (status.getStatus() == ScheduleEvent.EVENT.SCHEDULE_ADD) {
+            scheduleFragmentPresenter.onStarted();
+        }
+        Toast.makeText(getActivity(), "Event Bus", Toast.LENGTH_SHORT).show();
     }
 
     @Override
