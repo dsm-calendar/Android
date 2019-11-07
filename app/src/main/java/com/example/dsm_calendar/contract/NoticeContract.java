@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public interface NoticeContract {
     interface View {
         void addItems(ArrayList<Notice> noticeList);
-        void startNoticeDetailActivity();
+        void startNoticeDetailActivity(String title, String content);
     }
 
     interface Presenter {
         void onStarted();
-        void onClickItem();
+        void onClickItem(String title, String content);
     }
 
     interface Repository {
