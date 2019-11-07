@@ -19,11 +19,6 @@ public class GroupFragmentPresenter implements GroupFragmentContract.Presenter {
     }
 
     @Override
-    public void onClickAddGroup() {
-        groupView.showGroupAddDialog();
-    }
-
-    @Override
     public void onClickItems(String name) {
         groupView.startGroupActivity(name);
     }
