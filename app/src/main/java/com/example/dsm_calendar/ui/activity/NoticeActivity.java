@@ -56,8 +56,10 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
     }
 
     @Override
-    public void startNoticeDetailActivity() {
+    public void startNoticeDetailActivity(String title, String content) {
         Intent intent = new Intent(NoticeActivity.this, NoticeDetailActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
         startActivity(intent);
     }
 }

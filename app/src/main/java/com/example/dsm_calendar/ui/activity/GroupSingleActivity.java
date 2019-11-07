@@ -17,7 +17,6 @@ public class GroupSingleActivity extends AppCompatActivity {
     private TextView groupTitle;
     private ImageButton showSchedule;
     private ImageButton showMember;
-    private ImageView groupImage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,7 +26,6 @@ public class GroupSingleActivity extends AppCompatActivity {
         groupTitle = findViewById(R.id.tv_group_name);
         showSchedule = findViewById(R.id.button_group_schedule);
         showMember = findViewById(R.id.button_group_member);
-        groupImage = findViewById(R.id.iv_group_image);
 
         showSchedule.setOnClickListener(v -> {
             Intent intent = new Intent(GroupSingleActivity.this, GroupScheduleActivity.class);

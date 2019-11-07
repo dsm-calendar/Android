@@ -2,6 +2,7 @@ package com.example.dsm_calendar.data;
 
 import com.example.dsm_calendar.contract.SignUpContract;
 import com.example.dsm_calendar.data.DTO.Student;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
 
 import retrofit2.Call;
 import retrofit2.Callback;

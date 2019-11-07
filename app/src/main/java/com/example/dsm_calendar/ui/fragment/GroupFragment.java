@@ -113,7 +113,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
         });
 
         fab_add = rootView.findViewById(R.id.fab_group_actionButton);
-        fab_add.setOnClickListener(v -> groupFragmentPresenter.onClickAddGroup());
+        fab_add.setOnClickListener(v -> groupAddDialog.show());
 
         groupFragmentPresenter.onStarted();
         checkList();
@@ -132,11 +132,6 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void showGroupAddDialog() {
-        groupAddDialog.show();
     }
 
     @Override

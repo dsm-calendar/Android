@@ -3,6 +3,7 @@ package com.example.dsm_calendar.data;
 import android.content.Context;
 
 import com.example.dsm_calendar.contract.MainContract;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 public class MainRepository implements MainContract.Repository {
 

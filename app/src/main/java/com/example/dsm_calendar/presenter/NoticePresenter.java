@@ -35,7 +35,7 @@ public class NoticePresenter implements NoticeContract.Presenter {
     }
 
     @Override
-    public void onClickItem() {
-        noticeView.startNoticeDetailActivity();
+    public void onClickItem(String title, String content) {
+        noticeView.startNoticeDetailActivity(title, content);
     }
 }

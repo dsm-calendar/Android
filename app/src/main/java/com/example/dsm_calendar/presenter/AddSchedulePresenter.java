@@ -23,6 +23,7 @@ public class AddSchedulePresenter implements AddScheduleContract.Presenter {
             @Override
             public void onSuccess() {
                 addScheduleActivity.showMessageForSuccess();
+                addScheduleActivity.finishActivity();
             }
 
             @Override

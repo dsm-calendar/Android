@@ -40,8 +40,9 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
 
     @Override
     public void onBindViewHolder(@NonNull NoticeViewHolder holder, int position) {
+        Notice notice = noticeList.get(position);
         holder.bind(noticeList.get(position));
-        holder.itemView.setOnClickListener(v -> noticePresenter.onClickItem());
+        holder.itemView.setOnClickListener(v -> noticePresenter.onClickItem(notice.getTitle(), notice.getContent()));
     }
 
     @Override

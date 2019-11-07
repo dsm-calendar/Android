@@ -45,11 +45,11 @@ public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupVie
         return groupList.size();
     }
 
-    public class GroupViewHolder extends RecyclerView.ViewHolder {
+    class GroupViewHolder extends RecyclerView.ViewHolder {
         TextView tv_group_name ;
         ImageButton menu;
 
-        public GroupViewHolder(@NonNull View itemView) {
+        GroupViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_group_name = itemView.findViewById(R.id.tv_item_group_name);
             menu = itemView.findViewById(R.id.button_item_group_menu);

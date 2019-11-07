@@ -1,4 +1,4 @@
-package com.example.dsm_calendar.data;
+package com.example.dsm_calendar.data.Singleton;
 
 import android.content.Context;
 import android.content.SharedPreferences;

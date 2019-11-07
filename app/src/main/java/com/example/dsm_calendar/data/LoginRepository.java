@@ -5,6 +5,8 @@ import android.content.Context;
 import com.example.dsm_calendar.contract.LoginContract;
 import com.example.dsm_calendar.data.DTO.Login;
 import com.example.dsm_calendar.data.DTO.LoginUserInfo;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 import retrofit2.Call;
 import retrofit2.Callback;

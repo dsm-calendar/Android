@@ -13,5 +13,4 @@ public class AddScheduleRepository implements AddScheduleContract.Repository {
     public void addSchedule(String title, String content, String startDay, String endDay, AddScheduleListener lister) {
         lister.onSuccess();
     }
-
 }

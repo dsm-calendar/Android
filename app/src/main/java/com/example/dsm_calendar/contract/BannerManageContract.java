@@ -9,6 +9,10 @@ public interface BannerManageContract {
     interface View{
         void addBannerList(ArrayList<SampleBanner> banners);
         void deleteBanner(int position);
+        void showMessageForBannerAcceptSuccess();
+        void showMessageForBannerAcceptFail(String message);
+        void showMessageForBannerRejectSuccess();
+        void showMessageForBannerRejectFail(String message);
     }
 
     interface Presenter{
