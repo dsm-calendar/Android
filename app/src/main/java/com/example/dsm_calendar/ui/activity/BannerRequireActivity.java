@@ -14,18 +14,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.BannerRquireContract;
+import com.example.dsm_calendar.data.BannerRequireRepository;
+import com.example.dsm_calendar.presenter.BannerRequirePresenter;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public class BannerRequireActivity extends AppCompatActivity implements View.OnClickListener{
+public class BannerRequireActivity extends AppCompatActivity implements BannerRquireContract.View, View.OnClickListener{
 
     private ImageButton offButton;
     private ImageView selectedImage;
@@ -38,6 +42,8 @@ public class BannerRequireActivity extends AppCompatActivity implements View.OnC
     private final int PICK_FROM_ALBUM = 1;
     private File tempFile;
     private String path;
+
+    private BannerRequirePresenter presenter = new BannerRequirePresenter(this, new BannerRequireRepository());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +91,21 @@ public class BannerRequireActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
+    public void showMessageForBannerRequireSuccess() {
+        Toast.makeText(this, "Banner Require Success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForBannerRequireFail(String message) {
+        Toast.makeText(this, "Banner Require Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void finishActivity() {
+        finish();
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button_bannerrequire_off:
@@ -98,8 +119,7 @@ public class BannerRequireActivity extends AppCompatActivity implements View.OnC
                 startActivityForResult(intent, PICK_FROM_ALBUM);
                 break;
             case R.id.button_bannerrequire_buttons_requirebanner:
-                selectedImage.getDrawable();
-                bannerContents.getText().toString();
+                presenter.onRequireClicked();
                 break;
         }
     }
