@@ -62,19 +62,10 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
                 break;
             case R.id.button_school_schedule_add:
                 Intent intent = new Intent(this, AddScheduleActivity.class);
+                intent.putExtra("schedule code", "school");
                 startActivity(intent);
                 break;
         }
-    }
-
-    @Override
-    public void showMessageForAddSuccess() {
-        Toast.makeText(this, "Add success", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void showMessageForAddFail(String message) {
-        Toast.makeText(this, "Add Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public interface SchoolScheduleContract {
     interface View{
-        void showMessageForAddSuccess();
-        void showMessageForAddFail(String message);
         void showMessageForDeleteSuccess();
         void showMessageForDeleteFail(String message);
         void showMessageForGetScheduleFail(String message);

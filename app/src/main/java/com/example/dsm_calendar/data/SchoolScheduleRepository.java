@@ -23,7 +23,7 @@ public class SchoolScheduleRepository implements SchoolScheduleContract.Reposito
 
         list.add((new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
                 CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1))));
-        list.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+        list.add(new SampleSchedule("sample title", "2019-11-16", "2019-11-16", "sample content",
                 CalendarDay.from(2019, 10, 16), CalendarDay.from(2019, 10, 16)));
 
         listener.onSuccess(list);

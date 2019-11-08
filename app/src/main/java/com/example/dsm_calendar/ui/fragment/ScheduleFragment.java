@@ -94,6 +94,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
         scheduleAddButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), AddScheduleActivity.class);
+            intent.putExtra("schedule code", "private");
             startActivity(intent);
         });
 

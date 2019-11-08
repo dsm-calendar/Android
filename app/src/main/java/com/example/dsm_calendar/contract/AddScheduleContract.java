@@ -10,7 +10,7 @@ public interface AddScheduleContract {
     }
 
     interface Presenter{
-        void onSaveClicked(String title, String content, String startDay, String endDay);
+        void onSaveClicked(String scheduleCode, String title, String content, String startDay, String endDay);
     }
 
     interface Repository{
