@@ -5,28 +5,40 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 public class SampleSchedule {
 
     String title;
-    String date;
+    String startDate;
+    String endDate;
     String content;
     Boolean expended = false;
-    CalendarDay day;
+    CalendarDay startDay;
+    CalendarDay endDay;
 
-    public SampleSchedule(String title, String date, String content, CalendarDay day){
+    public SampleSchedule(String title, String startDate, String endDate, String content, CalendarDay startDay, CalendarDay endDay) {
         this.title = title;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.content = content;
-        this.day = day;
+        this.startDay = startDay;
+        this.endDay = endDay;
     }
 
-    public CalendarDay getDay() {
-        return day;
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public CalendarDay getStartDay() {
+        return startDay;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getDate() {
-        return date;
+    public String getStartDate() {
+        return startDate;
     }
 
     public String getContent() {
@@ -37,16 +49,16 @@ public class SampleSchedule {
         return expended;
     }
 
-    public void setDay(CalendarDay day) {
-        this.day = day;
+    public void setStartDay(CalendarDay startDay) {
+        this.startDay = startDay;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
     public void setContent(String content) {

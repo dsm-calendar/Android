@@ -39,13 +39,20 @@ public class SchoolScheduleActivity extends AppCompatActivity implements View.On
         addSchedule.setOnClickListener(this);
 
         adapter = new SchoolScheduleAdapter();
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "sample content", CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
+        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
+                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
