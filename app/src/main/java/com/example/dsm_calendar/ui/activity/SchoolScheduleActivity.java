@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.SchoolScheduleContract;
 import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.SchoolScheduleRepository;
+import com.example.dsm_calendar.presenter.SchoolSchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.SchoolScheduleAdapter;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-public class SchoolScheduleActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class SchoolScheduleActivity extends AppCompatActivity implements SchoolScheduleContract.View, View.OnClickListener {
 
     private ImageButton offButton;
     private MaterialCalendarView calendarView;
@@ -24,6 +30,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements View.On
     private ImageButton addSchedule;
 
     private SchoolScheduleAdapter adapter;
+    private SchoolSchedulePresenter presenter = new SchoolSchedulePresenter(this, new SchoolScheduleRepository());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,26 +45,13 @@ public class SchoolScheduleActivity extends AppCompatActivity implements View.On
         offButton.setOnClickListener(this);
         addSchedule.setOnClickListener(this);
 
-        adapter = new SchoolScheduleAdapter();
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
-                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
-                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
-                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
-                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
-                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
-                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
-        adapter.scheduleList.add(new SampleSchedule("sample title", "2019-11-1", "2019-11-1", "sample content",
-                CalendarDay.from(2019, 10, 1), CalendarDay.from(2019, 10, 1)));
+        adapter = new SchoolScheduleAdapter(presenter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        addSchedule.setVisibility(View.GONE);
+//        addSchedule.setVisibility(View.GONE);
+        presenter.onStarted();
     }
 
     @Override
@@ -71,5 +65,35 @@ public class SchoolScheduleActivity extends AppCompatActivity implements View.On
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void showMessageForAddSuccess() {
+        Toast.makeText(this, "Add success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForAddFail(String message) {
+        Toast.makeText(this, "Add Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForDeleteSuccess() {
+        Toast.makeText(this, "Delete success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForDeleteFail(String message) {
+        Toast.makeText(this, "Delete Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForGetScheduleFail(String message) {
+        Toast.makeText(this, "Loading schedule Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void getItems(ArrayList<SampleSchedule> list) {
+        adapter.scheduleList = list;
     }
 }

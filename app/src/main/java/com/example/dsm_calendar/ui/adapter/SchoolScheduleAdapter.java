@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.presenter.SchoolSchedulePresenter;
 import com.example.dsm_calendar.ui.viewHolder.ScheduleViewHolder;
 
 import java.util.ArrayList;
@@ -19,18 +20,18 @@ import java.util.ArrayList;
 public class SchoolScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
     public ArrayList<SampleSchedule> scheduleList = new ArrayList<>();
+    private SchoolSchedulePresenter presenter;
     private int position;
+
+    public SchoolScheduleAdapter(SchoolSchedulePresenter presenter){
+        this.presenter = presenter;
+    }
 
     @NonNull
     @Override
     public ScheduleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fragment_schedule, parent, false);
-        ScheduleViewHolder viewHolder = new ScheduleViewHolder(view, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        ScheduleViewHolder viewHolder = new ScheduleViewHolder(view, v -> presenter.onDeleteClicked());
         return viewHolder;
     }
 

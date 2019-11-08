@@ -28,6 +28,8 @@ import java.util.Locale;
 
 public class AddScheduleActivity extends AppCompatActivity implements AddScheduleContract.View, View.OnClickListener {
 
+    //TODO: enum class for identify group, school, private
+
     private ImageButton addScheduleOff;
     private TextView today;
     private EditText title;
