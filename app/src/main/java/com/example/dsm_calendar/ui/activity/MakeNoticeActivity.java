@@ -11,8 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.MakeNoticeContract;
+import com.example.dsm_calendar.data.MakeNoticeRepository;
+import com.example.dsm_calendar.presenter.MakeNoticePresenter;
 
-public class MakeNoticeActivity extends AppCompatActivity implements View.OnClickListener{
+public class MakeNoticeActivity extends AppCompatActivity implements MakeNoticeContract.View, View.OnClickListener{
 
     private ImageButton offButton;
     private Button cancelButton;
@@ -22,6 +25,8 @@ public class MakeNoticeActivity extends AppCompatActivity implements View.OnClic
 
     private String title;
     private String content;
+
+    private MakeNoticePresenter presenter = new MakeNoticePresenter(this, new MakeNoticeRepository());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,7 +55,7 @@ public class MakeNoticeActivity extends AppCompatActivity implements View.OnClic
                 title = titleEditText.getText().toString();
                 content = contentsEditText.getText().toString();
                 if (isAllFilled()){
-                    //TODO: call presenter
+                    presenter.onMakeNoticeClicked(title, content);
                 } else {
                     Toast.makeText(this, "비어있는 입력창이 있습니다.", Toast.LENGTH_LONG).show();
                 }
@@ -60,5 +65,20 @@ public class MakeNoticeActivity extends AppCompatActivity implements View.OnClic
 
     private boolean isAllFilled(){
         return title != null && content != null;
+    }
+
+    @Override
+    public void showMessageForMakeNoticeSuccess() {
+        Toast.makeText(this, "Make Notice Success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForMakeNoticeFail(String message) {
+        Toast.makeText(this, "Failed\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void finishActivity() {
+        finish();
     }
 }
