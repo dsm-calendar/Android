@@ -11,7 +11,22 @@ public class MessageRepository implements MessageContract.Repository {
 
     public interface GetMessageListListener{
         void onSuccess(ArrayList<String> testMessage, ArrayList<String> testDate);
-        void onFail();
+        void onFail(String message);
+    }
+
+    public interface AcceptInviteListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
+    public interface RejectInviteListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
+    public interface DeleteMessageListener{
+        void onSuccess();
+        void onFail(String message);
     }
 
     @Override
@@ -31,5 +46,20 @@ public class MessageRepository implements MessageContract.Repository {
         testDate.add("2019.06.29");
         testDate.add("2019.07.02");
         listener.onSuccess(testMessage, testDate);
+    }
+
+    @Override
+    public void acceptInvite(AcceptInviteListener listener) {
+        listener.onSuccess();
+    }
+
+    @Override
+    public void rejectInvite(RejectInviteListener listener) {
+        listener.onSuccess();
+    }
+
+    @Override
+    public void deleteMessage(DeleteMessageListener listener) {
+        listener.onSuccess();
     }
 }

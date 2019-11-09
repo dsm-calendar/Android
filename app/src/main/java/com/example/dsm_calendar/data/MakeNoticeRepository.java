@@ -11,6 +11,6 @@ public class MakeNoticeRepository implements MakeNoticeContract.Repository {
 
     @Override
     public void makeNotice(String title, String content, MakeNoticeListener listener) {
-
+        listener.onSuccess();
     }
 }
