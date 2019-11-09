@@ -31,6 +31,6 @@ public class SchoolScheduleRepository implements SchoolScheduleContract.Reposito
 
     @Override
     public void deleteSchedule(DeleteScheduleListener listener) {
-
+        listener.onSuccess();
     }
 }
