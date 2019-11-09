@@ -50,11 +50,13 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
             @Override
             public void onYesClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
+                messagePresenter.onAcceptInviteClicked();
             }
 
             @Override
             public void onNoClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
+                messagePresenter.onRejectInviteClicked();
             }
         });
         messageDeleteDialog = new MessageDeleteDialog(this);
@@ -62,6 +64,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
             @Override
             public void onYesClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
+                messagePresenter.onDeleteMessageClicked();
             }
 
             @Override
@@ -87,10 +90,9 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
