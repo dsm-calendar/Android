@@ -3,6 +3,7 @@ package com.example.dsm_calendar.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +49,16 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
         });
 
         noticePresenter.onStarted();
+    }
+
+    @Override
+    public void showMessageForDeleteNoticeSuccess() {
+        Toast.makeText(this, "Notice Deleted", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForDeleteNoticeFail(String message) {
+        Toast.makeText(this, "Delete Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 
     @Override

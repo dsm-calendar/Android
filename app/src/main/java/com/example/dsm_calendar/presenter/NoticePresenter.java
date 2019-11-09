@@ -38,4 +38,19 @@ public class NoticePresenter implements NoticeContract.Presenter {
     public void onClickItem(String title, String content) {
         noticeView.startNoticeDetailActivity(title, content);
     }
+
+    @Override
+    public void onClickItemDelete(int position) {
+        noticeRepo.deleteNotice(new NoticeRepository.DeleteNoticeListener() {
+            @Override
+            public void onSuccess() {
+                noticeView.showMessageForDeleteNoticeSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                noticeView.showMessageForDeleteNoticeFail(message);
+            }
+        });
+    }
 }

@@ -14,6 +14,11 @@ public class NoticeRepository implements NoticeContract.Repository {
         void onFail();
     }
 
+    public interface DeleteNoticeListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
     @Override
     public void getNoticeList(GetNoticeListener listener) {
         noticeList.add(new Notice("sample", "aldajksdnadkjanjkdniwnadjkw"));
@@ -27,5 +32,10 @@ public class NoticeRepository implements NoticeContract.Repository {
         noticeList.add(new Notice("sample??", "iqwdjnioqwnfoadmamwdkadmald"));
 
         listener.onSuccess(noticeList);
+    }
+
+    @Override
+    public void deleteNotice(DeleteNoticeListener listener) {
+        listener.onSuccess();
     }
 }

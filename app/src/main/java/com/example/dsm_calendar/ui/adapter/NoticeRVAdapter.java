@@ -41,7 +41,7 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
     @Override
     public void onBindViewHolder(@NonNull NoticeViewHolder holder, int position) {
         Notice notice = noticeList.get(position);
-        holder.bind(noticeList.get(position));
+        holder.bind(position);
         holder.itemView.setOnClickListener(v -> noticePresenter.onClickItem(notice.getTitle(), notice.getContent()));
     }
 
@@ -62,8 +62,10 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
             delete = itemView.findViewById(R.id.button_noticeactivity_delete);
         }
 
-        public void bind(Notice notice){
-            this.titleText.setText(notice.getTitle());
+        public void bind(int position){
+            this.titleText.setText(noticeList.get(position).getTitle());
+
+            delete.setOnClickListener(v -> noticePresenter.onClickItemDelete(position));
         }
     }
 }
