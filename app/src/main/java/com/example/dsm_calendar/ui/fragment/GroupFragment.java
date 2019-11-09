@@ -19,7 +19,7 @@ import com.example.dsm_calendar.contract.GroupFragmentContract;
 import com.example.dsm_calendar.data.GroupFragmentRepository;
 import com.example.dsm_calendar.presenter.GroupFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.GroupSingleActivity;
-import com.example.dsm_calendar.ui.adapter.GroupRVAdapter;
+import com.example.dsm_calendar.ui.adapter.GroupFragmentRVAdapter;
 import com.example.dsm_calendar.ui.dialog.GroupAddDialog;
 import com.example.dsm_calendar.ui.dialog.GroupDeleteDialog;
 import com.example.dsm_calendar.ui.dialog.GroupMenuDialog;
@@ -33,7 +33,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
 
     private TextView noListTextView;
     private RecyclerView recyclerView;
-    private GroupRVAdapter adapter;
+    private GroupFragmentRVAdapter adapter;
     private GroupAddDialog groupAddDialog;
     private GroupMenuDialog groupMenuDialog;
     private GroupNameEditDialog groupNameEditDialog;
@@ -51,7 +51,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
         noListTextView = rootView.findViewById(R.id.tv_no_list_group);
 
         recyclerView = rootView.findViewById(R.id.rv_group_view);
-        adapter = new GroupRVAdapter(getActivity(), groupFragmentPresenter);
+        adapter = new GroupFragmentRVAdapter(getActivity(), groupFragmentPresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
@@ -143,6 +143,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     @Override
     public void startGroupActivity(String name) {
         Intent intent = new Intent(getActivity(), GroupSingleActivity.class);
+        intent.putExtra("name", name);
         startActivity(intent);
     }
 

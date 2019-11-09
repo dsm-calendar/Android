@@ -17,24 +17,30 @@ public class GroupSingleActivity extends AppCompatActivity {
     private TextView groupTitle;
     private ImageButton showSchedule;
     private ImageButton showMember;
+    private String groupName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
 
+        Intent intent = getIntent();
+        groupName = intent.getStringExtra("name");
+
         groupTitle = findViewById(R.id.tv_group_name);
         showSchedule = findViewById(R.id.button_group_schedule);
         showMember = findViewById(R.id.button_group_member);
 
         showSchedule.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupSingleActivity.this, GroupScheduleActivity.class);
-            startActivity(intent);
+            Intent scheduleIntent = new Intent(GroupSingleActivity.this, GroupScheduleActivity.class);
+            startActivity(scheduleIntent);
         });
 
         showMember.setOnClickListener(v -> {
-            Intent intent = new Intent(GroupSingleActivity.this, GroupMemberActivity.class);
-            startActivity(intent);
+            Intent memberIntent = new Intent(GroupSingleActivity.this, GroupMemberActivity.class);
+            startActivity(memberIntent);
         });
+
+        groupTitle.setText(groupName);
     }
 }
