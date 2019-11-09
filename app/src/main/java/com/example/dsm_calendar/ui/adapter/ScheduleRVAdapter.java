@@ -80,7 +80,7 @@ public class ScheduleRVAdapter extends RecyclerView.Adapter<ScheduleRVAdapter.Sc
             delete.setVisibility(expended ? View.VISIBLE : View.GONE);
 
             tv_title.setText(schedule.getTitle());
-            tv_date.setText(schedule.getDate());
+            tv_date.setText(schedule.getStartDate());
             tv_content.setText(schedule.getContent());
             delete.setOnClickListener(v -> scheduleFragmentPresenter.onItemDeleteClicked(getAdapterPosition()));
         }

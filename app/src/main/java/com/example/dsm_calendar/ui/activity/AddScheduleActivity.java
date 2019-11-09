@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,8 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
 
     private SelectDateDialog selectDateDialog;
 
+    private String scheduleCode;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +78,9 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
         confirm.setOnClickListener(this);
         startDay.setOnClickListener(this);
         endDay.setOnClickListener(this);
+
+        Intent intent = getIntent();
+        scheduleCode = intent.getStringExtra("schedule code");
     }
 
     @Override
@@ -121,7 +127,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 scheduleTitle = title.getText().toString();
                 scheduleContent = content.getText().toString();
                 if (isAllChecked()) {
-                    presenter.onSaveClicked(scheduleTitle, scheduleContent, startDate.getDate().toString(), endDate.getDate().toString());
+                    presenter.onSaveClicked(scheduleCode, scheduleTitle, scheduleContent, startDate.getDate().toString(), endDate.getDate().toString());
                 } else {
                     Toast.makeText(this, "모든 칸이 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
                 }

@@ -15,13 +15,13 @@ import com.example.dsm_calendar.presenter.GroupFragmentPresenter;
 
 import java.util.ArrayList;
 
-public class GroupRVAdapter extends RecyclerView.Adapter<GroupRVAdapter.GroupViewHolder> {
+public class GroupFragmentRVAdapter extends RecyclerView.Adapter<GroupFragmentRVAdapter.GroupViewHolder> {
 
     public ArrayList<String> groupList = new ArrayList<>();
     private Context context;
     private GroupFragmentPresenter groupFragmentPresenter;
 
-    public GroupRVAdapter(Context context, GroupFragmentPresenter groupFragmentPresenter){
+    public GroupFragmentRVAdapter(Context context, GroupFragmentPresenter groupFragmentPresenter){
         this.context = context;
         this.groupFragmentPresenter = groupFragmentPresenter;
     }

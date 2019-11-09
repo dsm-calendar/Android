@@ -18,18 +18,35 @@ public class AddSchedulePresenter implements AddScheduleContract.Presenter {
     }
 
     @Override
-    public void onSaveClicked(String title, String content, String startDay, String endDay) {
-        addScheduleRepository.addSchedule(title, content, startDay, endDay, new AddScheduleRepository.AddScheduleListener() {
-            @Override
-            public void onSuccess() {
-                addScheduleActivity.showMessageForSuccess();
-                addScheduleActivity.finishActivity();
-            }
+    public void onSaveClicked(String scheduleCode, String title, String content, String startDay, String endDay) {
+        if (scheduleCode.equals("private")){
+            addScheduleRepository.addSchedule(title, content, startDay, endDay, new AddScheduleRepository.AddScheduleListener() {
+                @Override
+                public void onSuccess() {
+                    addScheduleActivity.showMessageForSuccess();
+                    addScheduleActivity.finishActivity();
+                }
 
-            @Override
-            public void onFail(String message) {
-                addScheduleActivity.showMessageForFail(message);
-            }
-        });
+                @Override
+                public void onFail(String message) {
+                    addScheduleActivity.showMessageForFail(message);
+                }
+            });
+        } else if(scheduleCode.equals("school")){
+            addScheduleRepository.addSchedule(title, content, startDay, endDay, new AddScheduleRepository.AddScheduleListener() {
+                @Override
+                public void onSuccess() {
+                    addScheduleActivity.showMessageForSuccess();
+                    addScheduleActivity.finishActivity();
+                }
+
+                @Override
+                public void onFail(String message) {
+                    addScheduleActivity.showMessageForFail(message);
+                }
+            });
+        } else if (scheduleCode.equals("group")){
+            //TODO: group add schedule may contain group id
+        }
     }
 }

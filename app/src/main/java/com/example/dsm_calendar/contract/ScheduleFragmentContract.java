@@ -9,10 +9,7 @@ public interface ScheduleFragmentContract {
 
     interface View{
         void showMessageForDeleteSchedule();
-        void showMessageForItemAdded();
-        void showMessageForSelectDate();
         void getItems(ArrayList<SampleSchedule> testSchedule);
-        void addSchedule(SampleSchedule schedule);
         void deleteSchedule(int position);
     }
 
@@ -23,7 +20,6 @@ public interface ScheduleFragmentContract {
 
     interface Repository{
         void getScheduleList(ScheduleFragmentRepository.GetScheduleListListener listener);
-        void addSchedule(SampleSchedule schedule, ScheduleFragmentRepository.AddScheduleListener listener);
         void deleteSchedule(ScheduleFragmentRepository.DeleteScheduleListener listener);
     }
 }
