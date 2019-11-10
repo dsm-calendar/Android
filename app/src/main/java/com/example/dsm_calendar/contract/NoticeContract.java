@@ -16,11 +16,11 @@ public interface NoticeContract {
     interface Presenter {
         void onStarted();
         void onClickItem(String title, String content);
-        void onClickItemDelete(int position);
+        void onClickItemDelete(int noticeId);
     }
 
     interface Repository {
         void getNoticeList(NoticeRepository.GetNoticeListener listener);
-        void deleteNotice(NoticeRepository.DeleteNoticeListener listener);
+        void deleteNotice(int noticeId, NoticeRepository.DeleteNoticeListener listener);
     }
 }

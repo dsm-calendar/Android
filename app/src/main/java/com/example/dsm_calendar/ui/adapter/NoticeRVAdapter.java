@@ -64,8 +64,9 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
 
         public void bind(int position){
             this.titleText.setText(noticeList.get(position).getTitle());
+            int noticeId = noticeList.get(position).getNoticeId();
 
-            delete.setOnClickListener(v -> noticePresenter.onClickItemDelete(position));
+            delete.setOnClickListener(v -> noticePresenter.onClickItemDelete(noticeId));
         }
     }
 }
