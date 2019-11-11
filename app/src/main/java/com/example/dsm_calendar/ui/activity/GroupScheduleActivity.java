@@ -57,7 +57,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
     }
 
     @Override
-    public void showMessageForDeleteSchedule() {
+    public void showMessageForDeleteSuccess() {
         Toast.makeText(this, "delete Success", Toast.LENGTH_LONG).show();
     }
 

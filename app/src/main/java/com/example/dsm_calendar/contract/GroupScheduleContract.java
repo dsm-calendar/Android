@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface GroupScheduleContract {
     interface View{
-        void showMessageForDeleteSchedule();
+        void showMessageForDeleteSuccess();
         void showMessageForDeleteFail(String message);
         void showMessageForGetScheduleFail(String message);
         void getList(ArrayList<SampleSchedule> schedules);

@@ -40,7 +40,7 @@ public class ScheduleFragmentPresenter implements ScheduleFragmentContract.Prese
             @Override
             public void onSuccess() {
                 scheduleView.deleteSchedule(index);
-                scheduleView.showMessageForDeleteSchedule();
+                scheduleView.showMessageForDeleteSuccess();
             }
 
             @Override

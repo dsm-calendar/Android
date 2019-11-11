@@ -87,4 +87,11 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
     public void getItems(ArrayList<SampleSchedule> list) {
         adapter.scheduleList = list;
     }
+
+    @Override
+    public void deleteSchedule(int position) {
+        adapter.scheduleList.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+    }
 }

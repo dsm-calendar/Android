@@ -39,7 +39,7 @@ public class GroupSchedulePresenter implements GroupScheduleContract.Presenter {
         groupScheduleRepo.deleteSchedule(new GroupScheduleRepository.DeleteScheduleListener() {
             @Override
             public void onSuccess() {
-                groupScheduleView.showMessageForDeleteSchedule();
+                groupScheduleView.showMessageForDeleteSuccess();
             }
 
             @Override
