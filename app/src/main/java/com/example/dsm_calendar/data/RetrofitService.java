@@ -24,6 +24,15 @@ public interface RetrofitService {
     @POST("auth/login")
     Call<LoginUserInfo> login(@Body Login login);
 
+    @POST("calendar/addSchedule/{scheduleId}")
+    Call<Void> addSchedule(@Path("scheduleId") int scheduleId, @Body SampleSchedule schedule);
+
+    @GET("calendar/{scheduleId}")
+    Call<ArrayList<SampleSchedule>> getCalendar(@Path("scheduleId") int scheduleId);
+
+    @DELETE("calendar/deleteSchedule/{scheduleId}")
+    Call<Void> deleteCalendar(@Path("scheduleId") int scheduleId);
+
     @POST("notice/")
     Call<ArrayList<Notice>> getNoticeList();
 

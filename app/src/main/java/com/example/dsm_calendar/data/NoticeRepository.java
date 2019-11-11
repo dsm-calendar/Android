@@ -12,8 +12,6 @@ import retrofit2.Response;
 
 public class NoticeRepository implements NoticeContract.Repository {
 
-    private ArrayList<Notice> noticeList = new ArrayList<>();
-
     public interface GetNoticeListener{
         void onSuccess(ArrayList<Notice> noticeList);
         void onFail(String message);
