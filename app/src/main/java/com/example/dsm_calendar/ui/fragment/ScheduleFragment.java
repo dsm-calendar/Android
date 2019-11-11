@@ -145,8 +145,18 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     @Override
-    public void showMessageForDeleteSchedule() {
+    public void showMessageForDeleteSuccess() {
         Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessageForDeleteFail(String message) {
+        Toast.makeText(getActivity(), "delete fail\nmessage: " + message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessageForGetScheduleFail(String message) {
+        Toast.makeText(getActivity(), "loading fail\nmessage: " + message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

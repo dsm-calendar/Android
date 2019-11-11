@@ -28,7 +28,7 @@ public class NoticePresenter implements NoticeContract.Presenter {
             }
 
             @Override
-            public void onFail() {
+            public void onFail(String message) {
 
             }
         });
@@ -37,5 +37,20 @@ public class NoticePresenter implements NoticeContract.Presenter {
     @Override
     public void onClickItem(String title, String content) {
         noticeView.startNoticeDetailActivity(title, content);
+    }
+
+    @Override
+    public void onClickItemDelete(int noticeId) {
+        noticeRepo.deleteNotice(noticeId, new NoticeRepository.DeleteNoticeListener() {
+            @Override
+            public void onSuccess() {
+                noticeView.showMessageForDeleteNoticeSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                noticeView.showMessageForDeleteNoticeFail(message);
+            }
+        });
     }
 }

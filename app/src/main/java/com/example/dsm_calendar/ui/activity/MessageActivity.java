@@ -50,11 +50,13 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
             @Override
             public void onYesClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
+                messagePresenter.onAcceptInviteClicked();
             }
 
             @Override
             public void onNoClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
+                messagePresenter.onRejectInviteClicked();
             }
         });
         messageDeleteDialog = new MessageDeleteDialog(this);
@@ -62,6 +64,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
             @Override
             public void onYesClicked() {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
+                messagePresenter.onDeleteMessageClicked();
             }
 
             @Override
@@ -87,10 +90,9 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -103,6 +105,36 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     @Override
     public void showDeleteDialog() {
         messageDeleteDialog.show();
+    }
+
+    @Override
+    public void showMessageForAcceptInviteSuccess() {
+        Toast.makeText(this, "Invite Accepted", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForAcceptInviteFail(String message) {
+        Toast.makeText(this, "Accept Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForRejectInviteSuccess() {
+        Toast.makeText(this, "Invite Rejected", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForRejectInviteFail(String message) {
+        Toast.makeText(this, "Reject Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForDeleteSuccess() {
+        Toast.makeText(this, "Message Deleted", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForDeleteFail(String message) {
+        Toast.makeText(this, "Delete Failed\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 
     @Override

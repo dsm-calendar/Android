@@ -35,10 +35,11 @@ public class SchoolSchedulePresenter implements SchoolScheduleContract.Presenter
     }
 
     @Override
-    public void onDeleteClicked() {
+    public void onDeleteClicked(int index) {
         schoolScheduleRepo.deleteSchedule(new SchoolScheduleRepository.DeleteScheduleListener() {
             @Override
             public void onSuccess() {
+                schoolScheduleView.deleteSchedule(index);
                 schoolScheduleView.showMessageForDeleteSuccess();
             }
 

@@ -29,6 +29,51 @@ public class MessagePresenter implements MessageContract.Presenter {
     }
 
     @Override
+    public void onAcceptInviteClicked() {
+        messageRepo.acceptInvite(new MessageRepository.AcceptInviteListener() {
+            @Override
+            public void onSuccess() {
+                messageView.showMessageForAcceptInviteSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                messageView.showMessageForAcceptInviteFail(message);
+            }
+        });
+    }
+
+    @Override
+    public void onRejectInviteClicked() {
+        messageRepo.rejectInvite(new MessageRepository.RejectInviteListener() {
+            @Override
+            public void onSuccess() {
+                messageView.showMessageForRejectInviteSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                messageView.showMessageForRejectInviteFail(message);
+            }
+        });
+    }
+
+    @Override
+    public void onDeleteMessageClicked() {
+        messageRepo.deleteMessage(new MessageRepository.DeleteMessageListener() {
+            @Override
+            public void onSuccess() {
+                messageView.showMessageForDeleteSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                messageView.showMessageForDeleteFail(message);
+            }
+        });
+    }
+
+    @Override
     public void onStarted() {
         messageRepo.getMessageList(new MessageRepository.GetMessageListListener() {
             @Override
@@ -37,7 +82,7 @@ public class MessagePresenter implements MessageContract.Presenter {
             }
 
             @Override
-            public void onFail() {
+            public void onFail(String message) {
 
             }
         });

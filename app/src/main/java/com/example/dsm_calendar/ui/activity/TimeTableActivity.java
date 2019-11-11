@@ -7,16 +7,20 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.contract.TimeTableContract;
+import com.example.dsm_calendar.data.TimeTableRepository;
+import com.example.dsm_calendar.presenter.TimeTablePresenter;
 
 import java.util.ArrayList;
 
-public class TimeTableActivity extends AppCompatActivity {
+public class TimeTableActivity extends AppCompatActivity implements TimeTableContract.View {
 
     private ImageButton timeTableOff;
     private ImageButton timeTableEdit;
@@ -24,6 +28,8 @@ public class TimeTableActivity extends AppCompatActivity {
     private int curGrade = 1;
     private int curClass = 1;
     private boolean isEditMode = false;
+
+    private TimeTablePresenter presenter = new TimeTablePresenter(this, new TimeTableRepository());
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +43,9 @@ public class TimeTableActivity extends AppCompatActivity {
 
         timeTableOff.setOnClickListener(v -> finish());
         timeTableEdit.setOnClickListener(v -> {
+            if (isEditMode){
+                presenter.onEditSaveClicked();
+            }
             isEditMode = !isEditMode;
             timeTableEdit.setImageDrawable(ContextCompat.getDrawable(this,
                     isEditMode ? R.drawable.ic_check_gray : R.drawable.ic_pencil_white));
@@ -44,6 +53,8 @@ public class TimeTableActivity extends AppCompatActivity {
             for (EditText table : tables)
                 table.setEnabled(isEditMode);
         });
+
+        presenter.onStarted();
     }
 
     private void initTableArray() {
@@ -88,5 +99,25 @@ public class TimeTableActivity extends AppCompatActivity {
 
     private void setClass(int inClass) {
         curClass = inClass;
+    }
+
+    @Override
+    public void setTimeTable() {
+        //TODO set Table Text
+    }
+
+    @Override
+    public void showMessageForLoadFail(String message) {
+        Toast.makeText(this, "Loading Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForEditSaveSuccess() {
+        Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForEditSaveFail(String message) {
+        Toast.makeText(this, "Saving Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 }

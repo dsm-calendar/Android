@@ -11,11 +11,12 @@ public interface SchoolScheduleContract {
         void showMessageForDeleteFail(String message);
         void showMessageForGetScheduleFail(String message);
         void getItems(ArrayList<SampleSchedule> list);
+        void deleteSchedule(int position);
     }
 
     interface Presenter{
         void onStarted();
-        void onDeleteClicked();
+        void onDeleteClicked(int index);
     }
 
     interface Repository{

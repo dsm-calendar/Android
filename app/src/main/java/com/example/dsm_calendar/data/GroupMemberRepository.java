@@ -62,6 +62,4 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     public void kickMember(KickMemberListener listener) {
         listener.onSuccess();
     }
-
-
 }

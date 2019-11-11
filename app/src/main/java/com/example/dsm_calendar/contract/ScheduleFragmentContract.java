@@ -8,7 +8,9 @@ import java.util.ArrayList;
 public interface ScheduleFragmentContract {
 
     interface View{
-        void showMessageForDeleteSchedule();
+        void showMessageForDeleteSuccess();
+        void showMessageForDeleteFail(String message);
+        void showMessageForGetScheduleFail(String message);
         void getItems(ArrayList<SampleSchedule> testSchedule);
         void deleteSchedule(int position);
     }
