@@ -16,6 +16,7 @@ public class ScheduleDecorator implements DayViewDecorator {
 
     private TreeSet<Schedule> list;
     private Context context;
+    private int count;
 
     public ScheduleDecorator(TreeSet<Schedule> list, Context context) {
         this.list = new TreeSet<>(list);
@@ -24,12 +25,20 @@ public class ScheduleDecorator implements DayViewDecorator {
 
     @Override
     public boolean shouldDecorate(CalendarDay day) {
-        return getContainNum(day) > 0;
+        count = getContainNum(day);
+        return count > 0;
     }
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_dot_background));
+        switch (count){
+            case 1: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_dot_background));
+            break;
+            case 2: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_blue_background));
+            break;
+            case 3: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_darkblue_background));
+            break;
+        }
     }
 
     private int getContainNum(CalendarDay day) {

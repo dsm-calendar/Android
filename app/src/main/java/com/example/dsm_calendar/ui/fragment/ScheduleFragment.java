@@ -32,6 +32,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.TreeSet;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
@@ -72,11 +73,13 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 new ScheduleDecorator(new TreeSet<>(schedules), getActivity()));
 
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
-            for (Schedule schedule : schedules)
+            todayList.clear();
+            for (Schedule schedule : schedules){
                 if (date.isInRange(schedule.getStartDay(), schedule.getEndDay()))
                     todayList.add(schedule);
-
-            adapter.list = todayList;
+            }
+            adapter.list.clear();
+            adapter.list.addAll(todayList);
             adapter.notifyDataSetChanged();
             checkList();
         });
@@ -88,6 +91,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
+
+        calendarView.setSelectedDate(new Date());
         checkList();
 
         return rootView;
@@ -136,8 +141,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     @Override
-    public void getItems(ArrayList<Schedule> testSchedule) {
-        schedules = testSchedule;
+    public void getItems(ArrayList<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         delete.setVisibility(expended ? View.VISIBLE : View.GONE);
 
         tv_title.setText(schedule.getTitle());
-        tv_date.setText(String.format("%s~%s", schedule.getStartDate(), schedule.getEndDate()));
+        tv_date.setText(String.format("%s ~ %s", schedule.getStartDate(), schedule.getEndDate()));
         tv_content.setText(schedule.getContent());
         delete.setOnClickListener(listener);
     }
