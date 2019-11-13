@@ -18,7 +18,6 @@ public class ScheduleFragmentPresenter implements ScheduleFragmentContract.Prese
         this.scheduleRepo = scheduleRepo;
     }
 
-
     @Override
     public void onStarted() {
         scheduleRepo.getScheduleList(new ScheduleFragmentRepository.GetScheduleListListener() {

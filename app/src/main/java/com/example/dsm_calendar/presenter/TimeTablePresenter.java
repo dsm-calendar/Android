@@ -1,7 +1,10 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.TimeTableContract;
+import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.TimeTableRepository;
+
+import java.util.ArrayList;
 
 public class TimeTablePresenter implements TimeTableContract.Presenter {
 
@@ -20,8 +23,8 @@ public class TimeTablePresenter implements TimeTableContract.Presenter {
     public void onStarted() {
         timeTableRepo.getTimeTable(new TimeTableRepository.GetTimeTableListener() {
             @Override
-            public void onSuccess() {
-                timeTableView.setTimeTable();
+            public void onSuccess(ArrayList<TimeTableUnit> tableUnits) {
+                timeTableView.setTimeTable(tableUnits);
             }
 
             @Override

@@ -1,7 +1,6 @@
 package com.example.dsm_calendar.ui.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,20 +21,19 @@ import com.example.dsm_calendar.data.SampleSchedule;
 import com.example.dsm_calendar.data.ScheduleFragmentRepository;
 import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
-import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
+import com.example.dsm_calendar.ui.Decorator.Period;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
-import com.example.dsm_calendar.ui.Decorator.SingleScheduleDecorator;
+import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.activity.AddScheduleActivity;
 import com.example.dsm_calendar.ui.adapter.ScheduleFragmentRVAdapter;
 import com.example.dsm_calendar.util.ScheduleEvent;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
 
@@ -46,13 +44,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private MaterialCalendarView calendarView;
     private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository());
 
-    private String selectedDate;
-    private CalendarDay day;
-    private ArrayList<CalendarDay> scheduleDayList = new ArrayList<>();
-    private ArrayList<CalendarDay> selectedDateScheduleList = new ArrayList<>();
-
-    private SampleSchedule sample = new SampleSchedule("sample", "2019-11-5", "2019-11-18", "sample",
-            CalendarDay.from(2019, 10, 5), CalendarDay.from(2019, 10, 18));
+    private ArrayList<SampleSchedule> schedules = new ArrayList<>();
+    private ArrayList<SampleSchedule> todayList = new ArrayList<>();
 
     public ScheduleFragment() {
     }
@@ -63,8 +56,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         BusProvider.getInstance().register(this);
-
-        scheduleDayList.add(CalendarDay.from(2019, 10, 1));
+        scheduleFragmentPresenter.onStarted();
 
         noListTextView = rootView.findViewById(R.id.tv_no_list_my_schedule);
 
@@ -78,17 +70,16 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 new SaturdayDecorator(),
                 new SundayDecorator(),
                 new OnDayDecorator(),
-//                new SingleScheduleDecorator(Color.RED, scheduleDayList),
-                new ScheduleDecorator(scheduleDayList, getActivity()));
-        calendarView.setOnDateChangedListener(((widget, date, selected) -> {
-            selectedDate = date.getYear() + "-" + (date.getMonth() + 1) + "-" + date.getDay();
-            day = date;
-        }));
-        calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
-            @Override
-            public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected){
-                //get selected date's schedule
-            }
+                new ScheduleDecorator(getPeriodFromSchedule(), getActivity()));
+
+        calendarView.setOnDateChangedListener((widget, date, selected) -> {
+            for (SampleSchedule schedule : schedules)
+                if (date.isInRange(schedule.getStartDay(), schedule.getEndDay()))
+                    todayList.add(schedule);
+
+            adapter.list = todayList;
+            adapter.notifyDataSetChanged();
+            checkList();
         });
 
         scheduleAddButton = rootView.findViewById(R.id.button_schedule_add);
@@ -98,7 +89,6 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
-        scheduleFragmentPresenter.onStarted();
         checkList();
 
         return rootView;
@@ -115,19 +105,6 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
-        }
-    }
-
-    private void setScheduleDecorate() {
-        getScheduleDate();
-        calendarView.addDecorator(new SingleScheduleDecorator(Color.RED, scheduleDayList));
-    }
-
-    private void getScheduleDate() {
-        if (adapter.list != null) {
-            for (int i = 0; i < adapter.getItemCount(); ++i) {
-                scheduleDayList.add(adapter.list.get(i).getStartDay());
-            }
         }
     }
 
@@ -161,7 +138,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
 
     @Override
     public void getItems(ArrayList<SampleSchedule> testSchedule) {
-        adapter.list = testSchedule;
+        schedules = testSchedule;
     }
 
     @Override
@@ -169,5 +146,14 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         adapter.list.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+    }
+
+    private TreeSet<Period> getPeriodFromSchedule() {
+        TreeSet<Period> ret = new TreeSet<>();
+
+        for (SampleSchedule schedule : schedules)
+            ret.add(new Period(schedule.getStartDay(), schedule.getEndDay()));
+
+        return ret;
     }
 }

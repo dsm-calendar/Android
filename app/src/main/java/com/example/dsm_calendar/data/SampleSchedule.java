@@ -2,6 +2,10 @@ package com.example.dsm_calendar.data;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class SampleSchedule {
 
     String title;
@@ -12,13 +16,24 @@ public class SampleSchedule {
     CalendarDay startDay;
     CalendarDay endDay;
 
-    public SampleSchedule(String title, String startDate, String endDate, String content, CalendarDay startDay, CalendarDay endDay) {
+    public SampleSchedule(String title, String startDateString, String endDateString, String content) {
         this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = startDateString;
+        this.endDate = endDateString;
         this.content = content;
-        this.startDay = startDay;
-        this.endDay = endDay;
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date startDate = format.parse(startDateString);
+            startDay = CalendarDay.from(startDate);
+
+            Date endDate = format.parse(endDateString);
+            endDay = CalendarDay.from(endDate);
+        }
+        catch (ParseException e) {
+            // TODO Handle exception
+        }
     }
 
     public String getEndDate() {
@@ -31,6 +46,10 @@ public class SampleSchedule {
 
     public CalendarDay getStartDay() {
         return startDay;
+    }
+
+    public CalendarDay getEndDay() {
+        return endDay;
     }
 
     public String getTitle() {

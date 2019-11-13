@@ -1,10 +1,13 @@
 package com.example.dsm_calendar.contract;
 
+import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.TimeTableRepository;
+
+import java.util.ArrayList;
 
 public interface TimeTableContract {
     interface View{
-        void setTimeTable();
+        void setTimeTable(ArrayList<TimeTableUnit> tableUnits);
         void showMessageForLoadFail(String message);
         void showMessageForEditSaveSuccess();
         void showMessageForEditSaveFail(String message);
