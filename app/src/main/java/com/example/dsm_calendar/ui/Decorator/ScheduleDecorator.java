@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.core.content.ContextCompat;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.Schedule;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -13,10 +14,10 @@ import java.util.TreeSet;
 
 public class ScheduleDecorator implements DayViewDecorator {
 
-    private TreeSet<Period> list;
+    private TreeSet<Schedule> list;
     private Context context;
 
-    public ScheduleDecorator(TreeSet<Period> list, Context context) {
+    public ScheduleDecorator(TreeSet<Schedule> list, Context context) {
         this.list = new TreeSet<>(list);
         this.context = context;
     }
@@ -34,11 +35,11 @@ public class ScheduleDecorator implements DayViewDecorator {
     private int getContainNum(CalendarDay day) {
         int ret = 0;
 
-        for (Period period : list) {
-            if (period.getStart().isAfter(day))
+        for (Schedule schedule : list) {
+            if (schedule.getStartDay().isAfter(day))
                 break;
 
-            if (period.contain(day))
+            if (schedule.contain(day))
                 ++ret;
         }
 

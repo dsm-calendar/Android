@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 
 public class ScheduleViewHolder extends RecyclerView.ViewHolder{
 
@@ -35,13 +35,13 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         this.listener = listener;
     }
 
-    public void bind(SampleSchedule schedule) {
+    public void bind(Schedule schedule) {
         boolean expended = schedule.getExpended();
         content.setVisibility(expended ? View.VISIBLE : View.GONE);
         delete.setVisibility(expended ? View.VISIBLE : View.GONE);
 
         tv_title.setText(schedule.getTitle());
-        tv_date.setText(schedule.getStartDate());
+        tv_date.setText(String.format("%s~%s", schedule.getStartDate(), schedule.getEndDate()));
         tv_content.setText(schedule.getContent());
         delete.setOnClickListener(listener);
     }

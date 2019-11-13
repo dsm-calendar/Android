@@ -2,7 +2,7 @@ package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.GroupScheduleContract;
 import com.example.dsm_calendar.data.GroupScheduleRepository;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class GroupSchedulePresenter implements GroupScheduleContract.Presenter {
     public void onStarted() {
         groupScheduleRepo.getSchedule(new GroupScheduleRepository.GetScheduleListener() {
             @Override
-            public void onSuccess(ArrayList<SampleSchedule> schedules) {
+            public void onSuccess(ArrayList<Schedule> schedules) {
                 groupScheduleView.getList(schedules);
             }
 

@@ -17,12 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.ScheduleFragmentContract;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.data.ScheduleFragmentRepository;
 import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
-import com.example.dsm_calendar.ui.Decorator.Period;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
@@ -44,8 +43,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private MaterialCalendarView calendarView;
     private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository());
 
-    private ArrayList<SampleSchedule> schedules = new ArrayList<>();
-    private ArrayList<SampleSchedule> todayList = new ArrayList<>();
+    private ArrayList<Schedule> schedules = new ArrayList<>();
+    private ArrayList<Schedule> todayList = new ArrayList<>();
 
     public ScheduleFragment() {
     }
@@ -70,10 +69,10 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 new SaturdayDecorator(),
                 new SundayDecorator(),
                 new OnDayDecorator(),
-                new ScheduleDecorator(getPeriodFromSchedule(), getActivity()));
+                new ScheduleDecorator(new TreeSet<>(schedules), getActivity()));
 
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
-            for (SampleSchedule schedule : schedules)
+            for (Schedule schedule : schedules)
                 if (date.isInRange(schedule.getStartDay(), schedule.getEndDay()))
                     todayList.add(schedule);
 
@@ -137,7 +136,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     @Override
-    public void getItems(ArrayList<SampleSchedule> testSchedule) {
+    public void getItems(ArrayList<Schedule> testSchedule) {
         schedules = testSchedule;
     }
 
@@ -146,14 +145,5 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         adapter.list.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, adapter.getItemCount());
-    }
-
-    private TreeSet<Period> getPeriodFromSchedule() {
-        TreeSet<Period> ret = new TreeSet<>();
-
-        for (SampleSchedule schedule : schedules)
-            ret.add(new Period(schedule.getStartDay(), schedule.getEndDay()));
-
-        return ret;
     }
 }

@@ -3,15 +3,12 @@ package com.example.dsm_calendar.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.presenter.SchoolSchedulePresenter;
 import com.example.dsm_calendar.ui.viewHolder.ScheduleViewHolder;
 
@@ -19,7 +16,7 @@ import java.util.ArrayList;
 
 public class SchoolScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
-    public ArrayList<SampleSchedule> scheduleList = new ArrayList<>();
+    public ArrayList<Schedule> scheduleList = new ArrayList<>();
     private SchoolSchedulePresenter presenter;
     private int position;
 
@@ -38,7 +35,7 @@ public class SchoolScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHold
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
         this.position = position;
-        SampleSchedule schedule = scheduleList.get(position);
+        Schedule schedule = scheduleList.get(position);
         holder.bind(schedule);
 
         holder.itemView.setOnClickListener( v -> {

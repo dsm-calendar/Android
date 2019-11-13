@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.presenter.GroupSchedulePresenter;
 import com.example.dsm_calendar.ui.viewHolder.ScheduleViewHolder;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class GroupScheduleRVAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
-    public ArrayList<SampleSchedule> schedules = new ArrayList<>();
+    public ArrayList<Schedule> schedules = new ArrayList<>();
     private int position;
     private GroupSchedulePresenter presenter;
 
@@ -35,12 +35,12 @@ public class GroupScheduleRVAdapter extends RecyclerView.Adapter<ScheduleViewHol
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
         this.position = position;
-        SampleSchedule sampleSchedule = schedules.get(position);
-        holder.bind(sampleSchedule);
+        Schedule schedule = schedules.get(position);
+        holder.bind(schedule);
 
         holder.itemView.setOnClickListener( v -> {
-            boolean expanded = sampleSchedule.getExpended();
-            sampleSchedule.setExpended(!expanded);
+            boolean expanded = schedule.getExpended();
+            schedule.setExpended(!expanded);
             notifyItemChanged(position);
         });
     }

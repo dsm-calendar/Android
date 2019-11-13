@@ -13,11 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.SchoolScheduleContract;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.data.SchoolScheduleRepository;
 import com.example.dsm_calendar.presenter.SchoolSchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.SchoolScheduleAdapter;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
     }
 
     @Override
-    public void getItems(ArrayList<SampleSchedule> list) {
+    public void getItems(ArrayList<Schedule> list) {
         adapter.scheduleList = list;
     }
 

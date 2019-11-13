@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupScheduleContract;
 import com.example.dsm_calendar.data.GroupScheduleRepository;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.presenter.GroupSchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.GroupScheduleRVAdapter;
-import com.example.dsm_calendar.ui.adapter.ScheduleFragmentRVAdapter;
-import com.google.android.material.textfield.TextInputLayout;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.ArrayList;
@@ -72,7 +70,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
     }
 
     @Override
-    public void getList(ArrayList<SampleSchedule> schedules) {
+    public void getList(ArrayList<Schedule> schedules) {
         adapter.schedules = schedules;
     }
 
