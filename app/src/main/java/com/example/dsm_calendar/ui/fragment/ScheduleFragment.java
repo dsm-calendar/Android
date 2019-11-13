@@ -121,11 +121,6 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
     public void showMessageForDeleteSuccess() {
         Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
     }

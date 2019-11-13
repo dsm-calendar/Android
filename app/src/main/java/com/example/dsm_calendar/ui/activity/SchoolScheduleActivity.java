@@ -15,9 +15,12 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.SchoolScheduleContract;
 import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.data.SchoolScheduleRepository;
+import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.SchoolSchedulePresenter;
 import com.example.dsm_calendar.ui.adapter.SchoolScheduleAdapter;
+import com.example.dsm_calendar.util.ScheduleEvent;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
@@ -35,6 +38,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schoolcalendar);
+        BusProvider.getInstance().register(this);
 
         offButton = findViewById(R.id.button_school_schedule_back);
         calendarView = findViewById(R.id.cv_school_calendar);
@@ -45,12 +49,18 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         addSchedule.setOnClickListener(this);
 
         adapter = new SchoolScheduleAdapter(presenter);
+        presenter.onStarted();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
 //        addSchedule.setVisibility(View.GONE);
-        presenter.onStarted();
+    }
+
+    @Override
+    protected void onDestroy() {
+        BusProvider.getInstance().unregister(this);
+        super.onDestroy();
     }
 
     @Override
@@ -65,6 +75,14 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Subscribe
+    public void getNewScheduleList(ScheduleEvent status) {
+        if (status.getStatus() == ScheduleEvent.EVENT.SCHEDULE_ADD) {
+            presenter.onStarted();
+        }
+        Toast.makeText(this, "Event Bus", Toast.LENGTH_SHORT).show();
     }
 
     @Override
