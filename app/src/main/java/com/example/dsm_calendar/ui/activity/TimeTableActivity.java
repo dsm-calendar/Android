@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.TimeTableContract;
+import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.TimeTableRepository;
 import com.example.dsm_calendar.presenter.TimeTablePresenter;
 
@@ -102,7 +103,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
     }
 
     @Override
-    public void setTimeTable() {
+    public void setTimeTable(ArrayList<TimeTableUnit> tableUnits) {
         //TODO set Table Text
     }
 

@@ -2,7 +2,7 @@ package com.example.dsm_calendar.data.DTO;
 
 public class TimeTableUnit {
 	private String subject;
-	private String index;
+	private int index;
 
 	public void setSubject(String subject){
 		this.subject = subject;
@@ -12,11 +12,11 @@ public class TimeTableUnit {
 		return subject;
 	}
 
-	public void setIndex(String index){
+	public void setIndex(int index){
 		this.index = index;
 	}
 
-	public String getIndex(){
+	public int getIndex(){
 		return index;
 	}
 
