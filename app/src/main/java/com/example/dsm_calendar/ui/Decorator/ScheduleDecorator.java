@@ -32,11 +32,13 @@ public class ScheduleDecorator implements DayViewDecorator {
     @Override
     public void decorate(DayViewFacade view) {
         switch (count){
-            case 1: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_dot_background));
+            case 1: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_blue_background));
             break;
-            case 2: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_blue_background));
+            case 2: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_darkblue_background));
             break;
-            case 3: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_darkblue_background));
+//            case 3: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_darkblue_background));
+//            break;
+            default: view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_dot_background));
             break;
         }
     }
