@@ -21,7 +21,6 @@ import com.example.dsm_calendar.presenter.AddSchedulePresenter;
 import com.example.dsm_calendar.ui.dialog.SelectDateDialog;
 import com.example.dsm_calendar.util.ScheduleEvent;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.squareup.otto.Bus;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class GroupScheduleRepository implements GroupScheduleContract.Repository {
 
     public interface GetScheduleListener{
-        void onSuccess(ArrayList<SampleSchedule> schedules);
+        void onSuccess(ArrayList<Schedule> schedules);
         void onFail(String message);
     }
 
@@ -18,7 +18,7 @@ public class GroupScheduleRepository implements GroupScheduleContract.Repository
 
     @Override
     public void getSchedule(GetScheduleListener listener) {
-        ArrayList<SampleSchedule> sample = new ArrayList<>();
+        ArrayList<Schedule> sample = new ArrayList<>();
 
         listener.onSuccess(sample);
     }

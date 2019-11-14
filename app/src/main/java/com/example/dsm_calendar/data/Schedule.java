@@ -6,17 +6,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SampleSchedule {
+public class Schedule implements Comparable<Schedule> {
 
-    String title;
-    String startDate;
-    String endDate;
-    String content;
-    Boolean expended = false;
-    CalendarDay startDay;
-    CalendarDay endDay;
+    private String title;
+    private String startDate;
+    private String endDate;
+    private String content;
+    private Boolean expended = false;
+    private CalendarDay startDay;
+    private CalendarDay endDay;
 
-    public SampleSchedule(String title, String startDateString, String endDateString, String content) {
+    public Schedule(String title, String startDateString, String endDateString, String content) {
         this.title = title;
         this.startDate = startDateString;
         this.endDate = endDateString;
@@ -38,10 +38,6 @@ public class SampleSchedule {
 
     public String getEndDate() {
         return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
     }
 
     public CalendarDay getStartDay() {
@@ -68,23 +64,16 @@ public class SampleSchedule {
         return expended;
     }
 
-    public void setStartDay(CalendarDay startDay) {
-        this.startDay = startDay;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public void setExpended(Boolean expended) {
         this.expended = expended;
+    }
+
+    public boolean contain(CalendarDay day) {
+        return day.isInRange(startDay, endDay);
+    }
+
+    @Override
+    public int compareTo(Schedule o) {
+        return startDay.isBefore(o.startDay) ? -1 : startDay.isAfter(o.startDay) ? 1 : 0;
     }
 }

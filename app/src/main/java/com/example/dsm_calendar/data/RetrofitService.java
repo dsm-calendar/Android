@@ -25,10 +25,10 @@ public interface RetrofitService {
     Call<LoginUserInfo> login(@Body Login login);
 
     @POST("calendar/addSchedule/{scheduleId}")
-    Call<Void> addSchedule(@Path("scheduleId") int scheduleId, @Body SampleSchedule schedule);
+    Call<Void> addSchedule(@Path("scheduleId") int scheduleId, @Body Schedule schedule);
 
     @GET("calendar/{scheduleId}")
-    Call<ArrayList<SampleSchedule>> getCalendar(@Path("scheduleId") int scheduleId);
+    Call<ArrayList<Schedule>> getCalendar(@Path("scheduleId") int scheduleId);
 
     @DELETE("calendar/deleteSchedule/{scheduleId}")
     Call<Void> deleteCalendar(@Path("scheduleId") int scheduleId);

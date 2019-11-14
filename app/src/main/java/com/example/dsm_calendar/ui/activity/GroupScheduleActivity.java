@@ -1,10 +1,13 @@
 package com.example.dsm_calendar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,14 +16,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupScheduleContract;
 import com.example.dsm_calendar.data.GroupScheduleRepository;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.presenter.GroupSchedulePresenter;
+import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
+import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
+import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
+import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.adapter.GroupScheduleRVAdapter;
-import com.example.dsm_calendar.ui.adapter.ScheduleFragmentRVAdapter;
-import com.google.android.material.textfield.TextInputLayout;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TreeSet;
 
 public class GroupScheduleActivity extends AppCompatActivity implements GroupScheduleContract.View {
 
@@ -32,12 +41,15 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
     private GroupScheduleRVAdapter adapter;
 
     private GroupSchedulePresenter presenter = new GroupSchedulePresenter(this, new GroupScheduleRepository());
+    private ArrayList<Schedule> schedules = new ArrayList<>();
+    private ArrayList<Schedule> todayList = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_group_schedule);
+        presenter.onStarted();
 
         backButton = findViewById(R.id.button_group_schedule_back);
         calendarView = findViewById(R.id.cv_group_calendar);
@@ -49,11 +61,42 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        //TODO: add decorator to calendar
+
+        calendarView.addDecorators(
+                new SaturdayDecorator(),
+                new SundayDecorator(),
+                new OnDayDecorator(),
+                new ScheduleDecorator(new TreeSet<>(schedules), this));
+
+        calendarView.setOnDateChangedListener((widget, date, selected) -> {
+            todayList.clear();
+            for (Schedule schedule : schedules){
+                if (date.isInRange(schedule.getStartDay(), schedule.getEndDay()))
+                    todayList.add(schedule);
+            }
+            adapter.schedules.clear();
+            adapter.schedules.addAll(todayList);
+            adapter.notifyDataSetChanged();
+            checkList();
+        });
+
+        backButton.setOnClickListener(v -> finish());
+        addButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddScheduleActivity.class);
+            intent.putExtra("schedule code", "group");
+            startActivity(intent);
+        });
+
+        calendarView.setSelectedDate(new Date());
+        checkList();
     }
 
     private void checkList(){
-        //TODO: add adapter and set visibility;
+        if (adapter.getItemCount() == 0){
+            noListTextView.setVisibility(View.VISIBLE);
+        } else {
+            noListTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -72,8 +115,8 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
     }
 
     @Override
-    public void getList(ArrayList<SampleSchedule> schedules) {
-        adapter.schedules = schedules;
+    public void getList(ArrayList<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
     @Override

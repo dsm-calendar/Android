@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.viewHolder.ScheduleViewHolder;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ScheduleFragmentRVAdapter extends RecyclerView.Adapter<ScheduleViewHolder> {
 
-    public ArrayList<SampleSchedule> list = new ArrayList<>();
+    public ArrayList<Schedule> list = new ArrayList<>();
     private Context context;
     private ScheduleFragmentPresenter scheduleFragmentPresenter;
 
@@ -39,7 +39,7 @@ public class ScheduleFragmentRVAdapter extends RecyclerView.Adapter<ScheduleView
     @Override
     public void onBindViewHolder(@NonNull ScheduleViewHolder holder, int position) {
         this.position = position;
-        SampleSchedule schedule = list.get(position);
+        Schedule schedule = list.get(position);
         holder.bind(schedule);
 
         holder.itemView.setOnClickListener( v -> {

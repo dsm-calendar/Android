@@ -1,7 +1,7 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.SchoolScheduleContract;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.data.SchoolScheduleRepository;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class SchoolSchedulePresenter implements SchoolScheduleContract.Presenter
     public void onStarted() {
         schoolScheduleRepo.getSchedules(new SchoolScheduleRepository.GetSchedulesListener() {
             @Override
-            public void onSuccess(ArrayList<SampleSchedule> list) {
+            public void onSuccess(ArrayList<Schedule> list) {
                 schoolScheduleView.getItems(list);
             }
 

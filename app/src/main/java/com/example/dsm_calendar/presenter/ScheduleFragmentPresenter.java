@@ -1,7 +1,7 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.ScheduleFragmentContract;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.data.ScheduleFragmentRepository;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class ScheduleFragmentPresenter implements ScheduleFragmentContract.Prese
     public void onStarted() {
         scheduleRepo.getScheduleList(new ScheduleFragmentRepository.GetScheduleListListener() {
             @Override
-            public void onSuccess(ArrayList<SampleSchedule> testSchedule) {
+            public void onSuccess(ArrayList<Schedule> testSchedule) {
                 scheduleView.getItems(testSchedule);
             }
 

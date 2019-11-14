@@ -17,12 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.ScheduleFragmentContract;
-import com.example.dsm_calendar.data.SampleSchedule;
+import com.example.dsm_calendar.data.Schedule;
 import com.example.dsm_calendar.data.ScheduleFragmentRepository;
 import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
-import com.example.dsm_calendar.ui.Decorator.Period;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
@@ -33,6 +32,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.TreeSet;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
@@ -44,8 +44,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private MaterialCalendarView calendarView;
     private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository());
 
-    private ArrayList<SampleSchedule> schedules = new ArrayList<>();
-    private ArrayList<SampleSchedule> todayList = new ArrayList<>();
+    private ArrayList<Schedule> schedules = new ArrayList<>();
+    private ArrayList<Schedule> todayList = new ArrayList<>();
 
     public ScheduleFragment() {
     }
@@ -70,14 +70,16 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 new SaturdayDecorator(),
                 new SundayDecorator(),
                 new OnDayDecorator(),
-                new ScheduleDecorator(getPeriodFromSchedule(), getActivity()));
+                new ScheduleDecorator(new TreeSet<>(schedules), getActivity()));
 
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
-            for (SampleSchedule schedule : schedules)
+            todayList.clear();
+            for (Schedule schedule : schedules){
                 if (date.isInRange(schedule.getStartDay(), schedule.getEndDay()))
                     todayList.add(schedule);
-
-            adapter.list = todayList;
+            }
+            adapter.list.clear();
+            adapter.list.addAll(todayList);
             adapter.notifyDataSetChanged();
             checkList();
         });
@@ -89,6 +91,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
+        calendarView.setSelectedDate(new Date());
         checkList();
 
         return rootView;
@@ -101,7 +104,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     private void checkList() {
-        if (adapter.list.size() == 0) {
+        if (adapter.getItemCount() == 0) {
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
@@ -114,11 +117,6 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             scheduleFragmentPresenter.onStarted();
         }
         Toast.makeText(getActivity(), "Event Bus", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -137,8 +135,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     @Override
-    public void getItems(ArrayList<SampleSchedule> testSchedule) {
-        schedules = testSchedule;
+    public void getItems(ArrayList<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
     @Override
@@ -146,14 +144,5 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         adapter.list.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, adapter.getItemCount());
-    }
-
-    private TreeSet<Period> getPeriodFromSchedule() {
-        TreeSet<Period> ret = new TreeSet<>();
-
-        for (SampleSchedule schedule : schedules)
-            ret.add(new Period(schedule.getStartDay(), schedule.getEndDay()));
-
-        return ret;
     }
 }
