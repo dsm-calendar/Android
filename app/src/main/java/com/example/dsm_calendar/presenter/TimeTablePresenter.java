@@ -24,7 +24,7 @@ public class TimeTablePresenter implements TimeTableContract.Presenter {
         timeTableRepo.getTimeTable(new TimeTableRepository.GetTimeTableListener() {
             @Override
             public void onSuccess(ArrayList<TimeTableUnit> tableUnits) {
-                timeTableView.setTimeTable(tableUnits);
+                timeTableView.getTimeTable(tableUnits);
             }
 
             @Override

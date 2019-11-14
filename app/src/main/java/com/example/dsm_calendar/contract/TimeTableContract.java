@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface TimeTableContract {
     interface View{
-        void setTimeTable(ArrayList<TimeTableUnit> tableUnits);
+        void getTimeTable(ArrayList<TimeTableUnit> tableUnits);
         void showMessageForLoadFail(String message);
         void showMessageForEditSaveSuccess();
         void showMessageForEditSaveFail(String message);

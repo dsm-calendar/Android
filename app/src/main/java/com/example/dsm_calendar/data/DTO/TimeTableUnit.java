@@ -4,6 +4,11 @@ public class TimeTableUnit {
 	private String subject;
 	private int index;
 
+	public TimeTableUnit(String subject, int index) {
+		this.subject = subject;
+		this.index = index;
+	}
+
 	public void setSubject(String subject){
 		this.subject = subject;
 	}
