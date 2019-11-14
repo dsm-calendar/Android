@@ -91,7 +91,6 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
-
         calendarView.setSelectedDate(new Date());
         checkList();
 
@@ -105,7 +104,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     private void checkList() {
-        if (adapter.list.size() == 0) {
+        if (adapter.getItemCount() == 0) {
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
