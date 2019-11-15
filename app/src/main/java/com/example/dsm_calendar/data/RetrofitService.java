@@ -51,8 +51,17 @@ public interface RetrofitService {
     Call<ArrayList<TimeTableUnit>> getTimeTable(@Header("Authorization") int token);
 
     @GET("message")
-    Call<ArrayList<Message>> getMessage();
+    Call<ArrayList<Message>> getMessage(@Header("Authorization") int token);
+
+    @POST("message/{messageId}")
+    Call<Void> decideMessage(@Header("Authorization") int token, @Path("messageId") int messageId, @Body String messageStatus);
 
     @DELETE("message/{messageId}")
-    Call<Void> deleteMessage(@Path("messageId") int messageId);
+    Call<Void> deleteMessage(@Header("Authorization") int token, @Path("messageId") int messageId);
+
+    @GET("myPage")
+    Call<Void> getIcon(@Header("Authorization") int token);
+
+    @PUT("myPage")
+    Call<Integer> changeIcon(@Header("Authorization") int token, int iconIndex);
 }
