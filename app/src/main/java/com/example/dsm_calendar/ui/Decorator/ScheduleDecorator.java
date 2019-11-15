@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.core.content.ContextCompat;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.data.Schedule;
+import com.example.dsm_calendar.data.DTO.Schedule;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;

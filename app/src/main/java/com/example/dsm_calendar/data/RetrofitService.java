@@ -4,6 +4,7 @@ import com.example.dsm_calendar.data.DTO.Login;
 import com.example.dsm_calendar.data.DTO.LoginUserInfo;
 import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.DTO.Notice;
+import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 

@@ -7,7 +7,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,16 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupScheduleContract;
 import com.example.dsm_calendar.data.GroupScheduleRepository;
-import com.example.dsm_calendar.data.Schedule;
+import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.presenter.GroupSchedulePresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.adapter.GroupScheduleRVAdapter;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Date;

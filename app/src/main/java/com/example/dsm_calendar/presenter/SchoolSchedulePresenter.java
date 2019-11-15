@@ -1,7 +1,7 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.SchoolScheduleContract;
-import com.example.dsm_calendar.data.Schedule;
+import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.data.SchoolScheduleRepository;
 
 import java.util.ArrayList;
