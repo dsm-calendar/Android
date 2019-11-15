@@ -25,12 +25,14 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
 
     private ImageButton timeTableOff;
     private ImageButton timeTableEdit;
+    private TableLayout table;
     private ArrayList<EditText> tables;
     private int curGrade = 1;
     private int curClass = 1;
     private boolean isEditMode = false;
 
     private TimeTablePresenter presenter = new TimeTablePresenter(this, new TimeTableRepository());
+    private ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
     }
 
     private void initTableArray() {
-        TableLayout table = findViewById(R.id.tl_timetable_table);
+        table = findViewById(R.id.tl_timetable_table);
         tables = new ArrayList<>();
 
         for(int i = 0; i < table.getChildCount(); ++i){
@@ -74,7 +76,10 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
     }
 
     private void setTableText(ArrayList<String> texts) {
-        for (int i = 0; i < tables.size(); ++i)
+        for (EditText table : tables)
+            table.setText("");
+
+        for (int i = 0; i < Math.min(tables.size(), texts.size()); ++i)
             tables.get(i).setText(texts.get(i));
     }
 
@@ -83,7 +88,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         int nowGrade = gradeStr.charAt(0) - '0';
         setGrade(nowGrade);
 
-        // TODO setTableText
+        setTableText(getCurrentTable(curGrade, curClass));
     }
 
     public void setClass(View v) {
@@ -91,7 +96,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         int nowClass = classStr.charAt(0) - '0';
         setClass(nowClass);
 
-        // TODO setTableText
+        setTableText(getCurrentTable(curGrade, curClass));
     }
 
     private void setGrade(int inGrade) {
@@ -102,9 +107,22 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         curClass = inClass;
     }
 
+    private ArrayList<String> getCurrentTable(int nowGrade, int nowClass){
+        ArrayList<String> timeTable = new ArrayList<>();
+
+        for(TimeTableUnit unit : timeTableUnits){
+            //TODO error in here
+            if (Integer.toString(unit.getIndex()).startsWith(Integer.toString(nowGrade)+ nowClass)){
+                timeTable.add(unit.getSubject());
+            }
+        }
+        return timeTable;
+    }
+
     @Override
-    public void setTimeTable(ArrayList<TimeTableUnit> tableUnits) {
-        //TODO set Table Text
+    public void getTimeTable(ArrayList<TimeTableUnit> tableUnits) {
+        this.timeTableUnits = tableUnits;
+        setTableText(getCurrentTable(curGrade, curClass));
     }
 
     @Override
