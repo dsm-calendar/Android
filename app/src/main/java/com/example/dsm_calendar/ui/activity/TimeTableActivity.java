@@ -76,7 +76,10 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
     }
 
     private void setTableText(ArrayList<String> texts) {
-        for (int i = 0; i < tables.size(); ++i)
+        for (EditText table : tables)
+            table.setText("");
+
+        for (int i = 0; i < Math.min(tables.size(), texts.size()); ++i)
             tables.get(i).setText(texts.get(i));
     }
 
@@ -106,6 +109,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
 
     private ArrayList<String> getCurrentTable(int nowGrade, int nowClass){
         ArrayList<String> timeTable = new ArrayList<>();
+
         for(TimeTableUnit unit : timeTableUnits){
             //TODO error in here
             if (Integer.toString(unit.getIndex()).startsWith(Integer.toString(nowGrade)+ nowClass)){
