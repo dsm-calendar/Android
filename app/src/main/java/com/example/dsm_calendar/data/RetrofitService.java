@@ -14,6 +14,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -43,11 +44,11 @@ public interface RetrofitService {
     @DELETE("notice/delete/{noticeId}")
     Call<Void> deleteNotice(@Path("noticeId") int noticeId);
 
-    @PUT("timetable/updateTimetable")
-    Call<Void> updateTimetable(@Body TimeTableUnit timeTableUnit);
+    @POST("timetable")
+    Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("Authorization") int token, @Body ArrayList<TimeTableUnit> timeTableUnits);
 
-    @GET("timetable/")
-    Call<ArrayList<TimeTableUnit>> getTimeTalbe();
+    @GET("timetable")
+    Call<ArrayList<TimeTableUnit>> getTimeTable(@Header("Authorization") int token);
 
     @GET("message")
     Call<ArrayList<Message>> getMessage();

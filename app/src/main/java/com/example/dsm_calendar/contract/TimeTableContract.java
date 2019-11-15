@@ -15,11 +15,11 @@ public interface TimeTableContract {
 
     interface Presenter{
         void onStarted();
-        void onEditSaveClicked();
+        void onEditSaveClicked(ArrayList<TimeTableUnit> tableUnits);
     }
 
     interface Repository{
         void getTimeTable(TimeTableRepository.GetTimeTableListener listener);
-        void editSave(TimeTableRepository.EditSaveListener listener);
+        void editSave(ArrayList<TimeTableUnit> timeTableUnits, TimeTableRepository.EditSaveListener listener);
     }
 }

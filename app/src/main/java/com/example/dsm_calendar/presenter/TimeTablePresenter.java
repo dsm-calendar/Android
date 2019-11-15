@@ -35,10 +35,11 @@ public class TimeTablePresenter implements TimeTableContract.Presenter {
     }
 
     @Override
-    public void onEditSaveClicked() {
-        timeTableRepo.editSave(new TimeTableRepository.EditSaveListener() {
+    public void onEditSaveClicked(ArrayList<TimeTableUnit> timeTableUnits) {
+        timeTableRepo.editSave(timeTableUnits, new TimeTableRepository.EditSaveListener() {
             @Override
-            public void onSuccess() {
+            public void onSuccess(ArrayList<TimeTableUnit> tableUnits) {
+                timeTableView.getTimeTable(tableUnits);
                 timeTableView.showMessageForEditSaveSuccess();
             }
 

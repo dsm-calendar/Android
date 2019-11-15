@@ -1,11 +1,25 @@
 package com.example.dsm_calendar.data;
 
+import android.content.Context;
+
 import com.example.dsm_calendar.contract.TimeTableContract;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class TimeTableRepository implements TimeTableContract.Repository {
+
+    private Context context;
+
+    public TimeTableRepository(Context context){
+        this.context = context;
+    }
 
     public interface GetTimeTableListener{
         void onSuccess(ArrayList<TimeTableUnit> tableUnits);
@@ -13,28 +27,55 @@ public class TimeTableRepository implements TimeTableContract.Repository {
     }
 
     public interface EditSaveListener{
-        void onSuccess();
+        void onSuccess(ArrayList<TimeTableUnit> timeTableUnits);
         void onFail(String message);
     }
 
     @Override
     public void getTimeTable(GetTimeTableListener listener) {
-        ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
+        int token = UserPreference.getInstance(context).getMyCalendarID();
 
-        timeTableUnits.add(new TimeTableUnit("체육", "장필준", 1111));
-        timeTableUnits.add(new TimeTableUnit("문학", "장보현", 1211));
-        timeTableUnits.add(new TimeTableUnit("미술", "강래형", 1311));
-        timeTableUnits.add(new TimeTableUnit("영어", "임채홍", 1411));
-        timeTableUnits.add(new TimeTableUnit("네트", "이경희", 2111));
-        timeTableUnits.add(new TimeTableUnit("DB", "안현수", 2211));
-        timeTableUnits.add(new TimeTableUnit("자바", "신요셉", 2311));
-        timeTableUnits.add(new TimeTableUnit("수학", "설은선", 2411));
+        Call<ArrayList<TimeTableUnit>> call =  CalendarRetrofit.getInstance().getService().getTimeTable(token);
+        call.enqueue(new Callback<ArrayList<TimeTableUnit>>() {
+            @Override
+            public void onResponse(Call<ArrayList<TimeTableUnit>> call, Response<ArrayList<TimeTableUnit>> response) {
+                if (response.code() == 200){
+                    listener.onSuccess(response.body());
+                } else if(response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
 
-        listener.onSuccess(timeTableUnits);
+            @Override
+            public void onFailure(Call<ArrayList<TimeTableUnit>> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override
-    public void editSave(EditSaveListener listener) {
-        listener.onSuccess();
+    public void editSave(ArrayList<TimeTableUnit> timeTableUnits, EditSaveListener listener) {
+        int token = UserPreference.getInstance(context).getMyCalendarID();
+
+        Call<ArrayList<TimeTableUnit>> call = CalendarRetrofit.getInstance().getService().updateTimetable(token, timeTableUnits);
+        call.enqueue(new Callback<ArrayList<TimeTableUnit>>() {
+            @Override
+            public void onResponse(Call<ArrayList<TimeTableUnit>> call, Response<ArrayList<TimeTableUnit>> response) {
+                if (response.code() == 200){
+                    listener.onSuccess(response.body());
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<TimeTableUnit>> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 }

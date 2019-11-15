@@ -33,7 +33,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
     private int curClass = 1;
     private boolean isEditMode = false;
 
-    private TimeTablePresenter presenter = new TimeTablePresenter(this, new TimeTableRepository());
+    private TimeTablePresenter presenter = new TimeTablePresenter(this, new TimeTableRepository(this));
     private ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
 
     @Override
@@ -51,7 +51,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         timeTableOff.setOnClickListener(v -> finish());
         timeTableEdit.setOnClickListener(v -> {
             if (isEditMode){
-                presenter.onEditSaveClicked();
+                presenter.onEditSaveClicked(timeTableUnits);
             }
             isEditMode = !isEditMode;
             timeTableEdit.setImageDrawable(ContextCompat.getDrawable(this,
