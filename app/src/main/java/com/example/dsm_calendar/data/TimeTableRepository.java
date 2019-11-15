@@ -33,7 +33,7 @@ public class TimeTableRepository implements TimeTableContract.Repository {
 
     @Override
     public void getTimeTable(GetTimeTableListener listener) {
-        int token = UserPreference.getInstance(context).getMyCalendarID();
+        int token = UserPreference.getInstance(context).getUserID();
 
         Call<ArrayList<TimeTableUnit>> call =  CalendarRetrofit.getInstance().getService().getTimeTable(token);
         call.enqueue(new Callback<ArrayList<TimeTableUnit>>() {
@@ -57,7 +57,7 @@ public class TimeTableRepository implements TimeTableContract.Repository {
 
     @Override
     public void editSave(ArrayList<TimeTableUnit> timeTableUnits, EditSaveListener listener) {
-        int token = UserPreference.getInstance(context).getMyCalendarID();
+        int token = UserPreference.getInstance(context).getUserID();
 
         Call<ArrayList<TimeTableUnit>> call = CalendarRetrofit.getInstance().getService().updateTimetable(token, timeTableUnits);
         call.enqueue(new Callback<ArrayList<TimeTableUnit>>() {
