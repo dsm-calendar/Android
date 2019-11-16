@@ -2,6 +2,7 @@ package com.example.dsm_calendar.ui.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     private MessageDeleteDialog messageDeleteDialog;
     private MessagePresenter messagePresenter = new MessagePresenter(this, new MessageRepository(this));
 
+    private ArrayList<Message> messageList = new ArrayList<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,8 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_cross_out);
+
+        messagePresenter.onStarted();
 
         groupInviteDialog = new GroupInviteDialog(this);
         groupInviteDialog.setInviteDialogListener(new DialogListener.GroupInviteDialogListener() {
@@ -77,16 +82,18 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         noListTextView = findViewById(R.id.tv_no_list_message);
 
         recyclerView = findViewById(R.id.rv_message_message);
-        adapter = new MessageRVAdapter(this, messagePresenter);
+        adapter = new MessageRVAdapter(this, messagePresenter, messageList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         checkList();
-
-        messagePresenter.onStarted();
     }
 
     void checkList(){
-        //TODO: setVisibility to visible when adapter today size is 0
+        if (adapter.getItemCount() == 0){
+            noListTextView.setVisibility(View.VISIBLE);
+        } else {
+            noListTextView.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -147,6 +154,6 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
 
     @Override
     public void addItems(ArrayList<Message> messageList) {
-        adapter.messageList = messageList;
+        this.messageList = messageList;
     }
 }
