@@ -1,4 +1,4 @@
-package com.example.dsm_calendar.data;
+package com.example.dsm_calendar.data.DTO;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 

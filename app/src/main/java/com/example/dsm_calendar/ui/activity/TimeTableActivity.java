@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,13 +26,14 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
 
     private ImageButton timeTableOff;
     private ImageButton timeTableEdit;
+    private TextView tableTitle;
     private TableLayout table;
     private ArrayList<EditText> tables;
     private int curGrade = 1;
     private int curClass = 1;
     private boolean isEditMode = false;
 
-    private TimeTablePresenter presenter = new TimeTablePresenter(this, new TimeTableRepository());
+    private TimeTablePresenter presenter = new TimeTablePresenter(this, new TimeTableRepository(this));
     private ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
 
     @Override
@@ -41,13 +43,15 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
 
         timeTableOff = findViewById(R.id.button_timetable_off);
         timeTableEdit = findViewById(R.id.button_timetable_edit);
+        tableTitle = findViewById(R.id.tv_timetable_tableTitle);
+        tableTitle.setText(String.format("%d학년%d반 시간표", curGrade, curClass));
 
         initTableArray();
 
         timeTableOff.setOnClickListener(v -> finish());
         timeTableEdit.setOnClickListener(v -> {
             if (isEditMode){
-                presenter.onEditSaveClicked();
+                presenter.onEditSaveClicked(timeTableUnits);
             }
             isEditMode = !isEditMode;
             timeTableEdit.setImageDrawable(ContextCompat.getDrawable(this,
@@ -87,6 +91,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         String gradeStr = ((Button)v).getText().toString();
         int nowGrade = gradeStr.charAt(0) - '0';
         setGrade(nowGrade);
+        tableTitle.setText(String.format("%d학년%d반 시간표", curGrade, curClass));
 
         setTableText(getCurrentTable(curGrade, curClass));
     }
@@ -95,6 +100,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         String classStr = ((Button)v).getText().toString();
         int nowClass = classStr.charAt(0) - '0';
         setClass(nowClass);
+        tableTitle.setText(String.format("%d학년%d반 시간표", curGrade, curClass));
 
         setTableText(getCurrentTable(curGrade, curClass));
     }
@@ -111,9 +117,8 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         ArrayList<String> timeTable = new ArrayList<>();
 
         for(TimeTableUnit unit : timeTableUnits){
-            //TODO error in here
             if (Integer.toString(unit.getIndex()).startsWith(Integer.toString(nowGrade)+ nowClass)){
-                timeTable.add(unit.getSubject());
+                timeTable.add(unit.getSubject()+"\n"+unit.getTeacher());
             }
         }
         return timeTable;

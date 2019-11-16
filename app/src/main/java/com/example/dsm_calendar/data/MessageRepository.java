@@ -1,16 +1,30 @@
 package com.example.dsm_calendar.data;
 
+import android.content.Context;
+
 import com.example.dsm_calendar.contract.MessageContract;
+import com.example.dsm_calendar.data.DTO.Message;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MessageRepository implements MessageContract.Repository {
 
-    private ArrayList<String> testMessage = new ArrayList<>();
-    private ArrayList<String> testDate = new ArrayList<>();
+    private Context context;
+    private int token;
+
+    public MessageRepository(Context context){
+        this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
+    }
 
     public interface GetMessageListListener{
-        void onSuccess(ArrayList<String> testMessage, ArrayList<String> testDate);
+        void onSuccess(ArrayList<Message> messageList);
         void onFail(String message);
     }
 
@@ -31,35 +45,90 @@ public class MessageRepository implements MessageContract.Repository {
 
     @Override
     public void getMessageList(GetMessageListListener listener) {
-        testMessage.add("동휘님이 게임만들기 프로젝트에 당신을 초대하셨습니다");
-        testMessage.add("윤성님이 야구그룹에 당신을 초대하셨습니다");
-        testMessage.add("승민님이 헬스장에 당신을 초대하셨습니다");
-        testMessage.add("하경님이 이상한 곳에 당신을 초대하셨습니다");
-        testMessage.add("누군가가 대마고에 당신을 초대하셨습니다");
-        testMessage.add("경고: 당신은 사람입니다");
-        testMessage.add("안녕하세요 dsm-calendar에 오신 것을 환영합니다");
-        testDate.add("2019.01.03");
-        testDate.add("2019.02.14");
-        testDate.add("2019.02.22");
-        testDate.add("2019.05.05");
-        testDate.add("2019.05.10");
-        testDate.add("2019.06.29");
-        testDate.add("2019.07.02");
-        listener.onSuccess(testMessage, testDate);
+        Call<ArrayList<Message>> call = CalendarRetrofit.getInstance().getService().getMessage(token);
+        call.enqueue(new Callback<ArrayList<Message>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Message>> call, Response<ArrayList<Message>> response) {
+                if (response.code() == 200){
+                    listener.onSuccess(response.body());
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Message>> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override
-    public void acceptInvite(AcceptInviteListener listener) {
-        listener.onSuccess();
+    public void acceptInvite(int messageId, AcceptInviteListener listener) {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().decideMessage(token, messageId, true);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override
-    public void rejectInvite(RejectInviteListener listener) {
-        listener.onSuccess();
+    public void rejectInvite(int messageId, RejectInviteListener listener) {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().decideMessage(token, messageId, false);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override
-    public void deleteMessage(DeleteMessageListener listener) {
-        listener.onSuccess();
+    public void deleteMessage(int messageId, DeleteMessageListener listener) {
+        int token = UserPreference.getInstance(context).getUserID();
+        Call<Void> call = CalendarRetrofit.getInstance().getService().deleteMessage(token, messageId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 }

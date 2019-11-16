@@ -1,7 +1,6 @@
 package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.presenter.MessagePresenter;
 import com.example.dsm_calendar.ui.dialog.MessageDeleteDialog;
 import com.example.dsm_calendar.ui.dialog.GroupInviteDialog;
@@ -20,14 +20,14 @@ import java.util.ArrayList;
 
 public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.MessageViewHolder> {
 
-    public ArrayList<String> messageList;
-    public ArrayList<String> dateList;
+    public ArrayList<Message> messageList;
     private Context context;
     private MessagePresenter messagePresenter;
 
-    public MessageRVAdapter(Context context, MessagePresenter messagePresenter){
+    public MessageRVAdapter(Context context, MessagePresenter messagePresenter, ArrayList<Message> messageList){
         this.context = context;
         this.messagePresenter = messagePresenter;
+        this.messageList = messageList;
     }
 
     @NonNull
@@ -41,10 +41,9 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
-        String message = messageList.get(position);
-        String date = dateList.get(position);
+        Message message = messageList.get(position);
 
-        holder.bind(message, date);
+        holder.bind(message);
     }
 
     @Override
@@ -63,12 +62,15 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
             tv_date = itemView.findViewById(R.id.tv_message_date);
         }
 
-        void bind(String message, String date){
-            tv_message.setText(message);
+        void bind(Message message){
+            String date = message.getSendDateNow();
+            String content = message.getEventId() + "님이 당신을 그룹에 초대하였습니다.";
+
+            tv_message.setText(content);
             tv_date.setText(date);
-            itemView.setOnClickListener(v -> messagePresenter.onClickItem());
+            itemView.setOnClickListener(v -> messagePresenter.onClickItem(message.getMessageId()));
             itemView.setOnLongClickListener(v -> {
-                messagePresenter.onLongClickItem();
+                messagePresenter.onLongClickItem(message.getMessageId());
                 return true;
             });
         }

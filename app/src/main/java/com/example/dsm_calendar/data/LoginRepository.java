@@ -43,7 +43,9 @@ public class LoginRepository implements LoginContract.Repository {
                     saveUserData(response.body());
                 } else if(response.code() == 404) {
                     listener.onFail("계정을 찾을 수 없습니다.");
-                } else {
+                } else if(response.code() == 500) {
+                    listener.onFail("server error");
+                }else {
                     listener.onFail(Integer.toString(response.code()));
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.data;
 
 import com.example.dsm_calendar.contract.GroupScheduleContract;
+import com.example.dsm_calendar.data.DTO.Schedule;
 
 import java.util.ArrayList;
 

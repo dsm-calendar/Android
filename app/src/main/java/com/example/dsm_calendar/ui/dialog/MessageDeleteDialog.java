@@ -20,6 +20,8 @@ public class MessageDeleteDialog extends Dialog implements View.OnClickListener 
     private Button noButton;
     private DialogListener.MessageDeleteDialogListener listener;
 
+    private int messageId;
+
     public MessageDeleteDialog(@NonNull Context context) {
         super(context);
     }
@@ -53,7 +55,7 @@ public class MessageDeleteDialog extends Dialog implements View.OnClickListener 
                 dismiss();
                 break;
             case R.id.button_deletemessage_yes:
-                listener.onYesClicked();
+                listener.onYesClicked(messageId);
                 dismiss();
                 break;
             case R.id.button_deletemessage_no:
@@ -65,5 +67,9 @@ public class MessageDeleteDialog extends Dialog implements View.OnClickListener 
 
     public void setMessageDeleteDialogListener(DialogListener.MessageDeleteDialogListener listener){
         this.listener = listener;
+    }
+
+    public void setMessageId(int messageId){
+        this.messageId = messageId;
     }
 }

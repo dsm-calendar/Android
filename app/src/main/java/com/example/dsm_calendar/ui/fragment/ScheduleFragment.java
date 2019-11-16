@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.ScheduleFragmentContract;
-import com.example.dsm_calendar.data.Schedule;
+import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.data.ScheduleFragmentRepository;
 import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
