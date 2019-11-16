@@ -42,8 +42,7 @@ public interface DialogListener {
     }
 
     interface MessageDeleteDialogListener {
-        void onYesClicked();
-
+        void onYesClicked(int messageId);
         void onNoClicked();
     }
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MessageContract;
+import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.MessageRepository;
 import com.example.dsm_calendar.presenter.MessagePresenter;
 import com.example.dsm_calendar.ui.adapter.MessageRVAdapter;
@@ -30,7 +31,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     private MessageRVAdapter adapter;
     private GroupInviteDialog groupInviteDialog;
     private MessageDeleteDialog messageDeleteDialog;
-    private MessagePresenter messagePresenter = new MessagePresenter(this, new MessageRepository());
+    private MessagePresenter messagePresenter = new MessagePresenter(this, new MessageRepository(this));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,9 +63,9 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         messageDeleteDialog = new MessageDeleteDialog(this);
         messageDeleteDialog.setMessageDeleteDialogListener(new DialogListener.MessageDeleteDialogListener() {
             @Override
-            public void onYesClicked() {
+            public void onYesClicked(int messageId) {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
-                messagePresenter.onDeleteMessageClicked();
+                messagePresenter.onDeleteMessageClicked(messageId);
             }
 
             @Override
@@ -98,12 +99,13 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     }
 
     @Override
-    public void showInviteDialog() {
+    public void showInviteDialog(int messageId) {
         groupInviteDialog.show();
     }
 
     @Override
-    public void showDeleteDialog() {
+    public void showDeleteDialog(int messageId) {
+        messageDeleteDialog.setMessageId(messageId);
         messageDeleteDialog.show();
     }
 
@@ -138,8 +140,12 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     }
 
     @Override
-    public void addItems(ArrayList<String> testMessage, ArrayList<String> testDate) {
-        adapter.messageList = testMessage;
-        adapter.dateList = testDate;
+    public void showMessageForLoadingFail(String message) {
+        Toast.makeText(this, "Loading Failed\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void addItems(ArrayList<Message> messageList) {
+        adapter.messageList = messageList;
     }
 }

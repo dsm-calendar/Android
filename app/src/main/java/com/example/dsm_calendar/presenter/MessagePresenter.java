@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.MessageContract;
+import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.MessageRepository;
 
 import java.util.ArrayList;
@@ -19,13 +20,13 @@ public class MessagePresenter implements MessageContract.Presenter {
     }
 
     @Override
-    public void onClickItem() {
-        messageView.showInviteDialog();
+    public void onClickItem(int messageId) {
+        messageView.showInviteDialog(messageId);
     }
 
     @Override
-    public void onLongClickItem() {
-        messageView.showDeleteDialog();
+    public void onLongClickItem(int messageId) {
+        messageView.showDeleteDialog(messageId);
     }
 
     @Override
@@ -59,8 +60,8 @@ public class MessagePresenter implements MessageContract.Presenter {
     }
 
     @Override
-    public void onDeleteMessageClicked() {
-        messageRepo.deleteMessage(new MessageRepository.DeleteMessageListener() {
+    public void onDeleteMessageClicked(int messageId) {
+        messageRepo.deleteMessage(messageId, new MessageRepository.DeleteMessageListener() {
             @Override
             public void onSuccess() {
                 messageView.showMessageForDeleteSuccess();
@@ -77,13 +78,13 @@ public class MessagePresenter implements MessageContract.Presenter {
     public void onStarted() {
         messageRepo.getMessageList(new MessageRepository.GetMessageListListener() {
             @Override
-            public void onSuccess(ArrayList<String> testMessage, ArrayList<String> testDate) {
-                messageView.addItems(testMessage, testDate);
+            public void onSuccess(ArrayList<Message> messageList) {
+                messageView.addItems(messageList);
             }
 
             @Override
             public void onFail(String message) {
-
+                messageView.showMessageForLoadingFail(message);
             }
         });
     }
