@@ -18,14 +18,12 @@ public interface DialogListener {
 
     interface GroupDeleteDialogListener {
         void onYesClicked();
-
         void onNoClicked();
     }
 
     interface GroupInviteDialogListener {
-        void onYesClicked();
-
-        void onNoClicked();
+        void onYesClicked(int messageId);
+        void onNoClicked(int messageId);
     }
 
     interface AddGroupMemberDialogListener {
@@ -52,13 +50,11 @@ public interface DialogListener {
 
     interface GroupMenuDialogListener {
         void onClickEditGroupTitle();
-
         void onClickDeleteGroup();
     }
 
     interface GroupMemberMenuDialogListener {
         void onClickMemberAuth();
-
         void onClickMemberKick();
     }
 

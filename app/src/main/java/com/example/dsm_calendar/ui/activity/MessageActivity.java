@@ -49,15 +49,15 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         groupInviteDialog = new GroupInviteDialog(this);
         groupInviteDialog.setInviteDialogListener(new DialogListener.GroupInviteDialogListener() {
             @Override
-            public void onYesClicked() {
+            public void onYesClicked(int messageId) {
                 Toast.makeText(groupInviteDialog.getContext(), "yes!", Toast.LENGTH_SHORT).show();
-                messagePresenter.onAcceptInviteClicked();
+                messagePresenter.onAcceptInviteClicked(messageId);
             }
 
             @Override
-            public void onNoClicked() {
+            public void onNoClicked(int messageId) {
                 Toast.makeText(groupInviteDialog.getContext(), "no....", Toast.LENGTH_SHORT).show();
-                messagePresenter.onRejectInviteClicked();
+                messagePresenter.onRejectInviteClicked(messageId);
             }
         });
         messageDeleteDialog = new MessageDeleteDialog(this);
@@ -100,6 +100,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
 
     @Override
     public void showInviteDialog(int messageId) {
+        groupInviteDialog.setMessageId(messageId);
         groupInviteDialog.show();
     }
 

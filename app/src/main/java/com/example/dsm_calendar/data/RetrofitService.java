@@ -54,7 +54,7 @@ public interface RetrofitService {
     Call<ArrayList<Message>> getMessage(@Header("Authorization") int token);
 
     @POST("message/{messageId}")
-    Call<Void> decideMessage(@Header("Authorization") int token, @Path("messageId") int messageId, @Body String messageStatus);
+    Call<Void> decideMessage(@Header("Authorization") int token, @Path("messageId") int messageId, @Body boolean messageStatus);
 
     @DELETE("message/{messageId}")
     Call<Void> deleteMessage(@Header("Authorization") int token, @Path("messageId") int messageId);

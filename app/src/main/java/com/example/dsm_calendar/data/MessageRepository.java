@@ -16,9 +16,11 @@ import retrofit2.Response;
 public class MessageRepository implements MessageContract.Repository {
 
     private Context context;
+    private int token;
 
     public MessageRepository(Context context){
         this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
     }
 
     public interface GetMessageListListener{
@@ -43,7 +45,6 @@ public class MessageRepository implements MessageContract.Repository {
 
     @Override
     public void getMessageList(GetMessageListListener listener) {
-        int token = UserPreference.getInstance(context).getUserID();
         Call<ArrayList<Message>> call = CalendarRetrofit.getInstance().getService().getMessage(token);
         call.enqueue(new Callback<ArrayList<Message>>() {
             @Override
@@ -65,13 +66,47 @@ public class MessageRepository implements MessageContract.Repository {
     }
 
     @Override
-    public void acceptInvite(AcceptInviteListener listener) {
-        listener.onSuccess();
+    public void acceptInvite(int messageId, AcceptInviteListener listener) {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().decideMessage(token, messageId, true);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override
-    public void rejectInvite(RejectInviteListener listener) {
-        listener.onSuccess();
+    public void rejectInvite(int messageId, RejectInviteListener listener) {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().decideMessage(token, messageId, false);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail("code: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override

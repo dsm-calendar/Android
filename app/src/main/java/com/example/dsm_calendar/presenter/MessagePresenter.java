@@ -30,8 +30,8 @@ public class MessagePresenter implements MessageContract.Presenter {
     }
 
     @Override
-    public void onAcceptInviteClicked() {
-        messageRepo.acceptInvite(new MessageRepository.AcceptInviteListener() {
+    public void onAcceptInviteClicked(int messageId) {
+        messageRepo.acceptInvite(messageId, new MessageRepository.AcceptInviteListener() {
             @Override
             public void onSuccess() {
                 messageView.showMessageForAcceptInviteSuccess();
@@ -45,8 +45,8 @@ public class MessagePresenter implements MessageContract.Presenter {
     }
 
     @Override
-    public void onRejectInviteClicked() {
-        messageRepo.rejectInvite(new MessageRepository.RejectInviteListener() {
+    public void onRejectInviteClicked(int messageId) {
+        messageRepo.rejectInvite(messageId, new MessageRepository.RejectInviteListener() {
             @Override
             public void onSuccess() {
                 messageView.showMessageForRejectInviteSuccess();

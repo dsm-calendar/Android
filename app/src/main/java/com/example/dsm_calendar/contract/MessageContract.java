@@ -22,16 +22,16 @@ public interface MessageContract {
     interface Presenter{
         void onClickItem(int messageId);
         void onLongClickItem(int messageId);
-        void onAcceptInviteClicked();
-        void onRejectInviteClicked();
+        void onAcceptInviteClicked(int messageId);
+        void onRejectInviteClicked(int messageId);
         void onDeleteMessageClicked(int messageId);
         void onStarted();
     }
 
     interface Repository{
         void getMessageList(MessageRepository.GetMessageListListener listener);
-        void acceptInvite(MessageRepository.AcceptInviteListener listener);
-        void rejectInvite(MessageRepository.RejectInviteListener listener);
+        void acceptInvite(int messageId, MessageRepository.AcceptInviteListener listener);
+        void rejectInvite(int messageId, MessageRepository.RejectInviteListener listener);
         void deleteMessage(int messageId, MessageRepository.DeleteMessageListener listener);
     }
 }
