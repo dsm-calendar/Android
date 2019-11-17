@@ -26,14 +26,17 @@ public interface RetrofitService {
     @POST("auth/login")
     Call<LoginUserInfo> login(@Body Login login);
 
-    @POST("calendar/addSchedule/{scheduleId}")
-    Call<Void> addSchedule(@Path("scheduleId") int scheduleId, @Body Schedule schedule);
+    @POST("schedule/{calendarId}")
+    Call<Void> addSchedule(@Path("calendarId") int calendarId, @Header("Authorization") int token, @Body Schedule schedule);
 
-    @GET("calendar/{scheduleId}")
-    Call<ArrayList<Schedule>> getCalendar(@Path("scheduleId") int scheduleId);
+    @GET("myCalendar")
+    Call<ArrayList<Schedule>> getCalendar(@Header("Authorization") int token);
 
     @DELETE("calendar/deleteSchedule/{scheduleId}")
-    Call<Void> deleteCalendar(@Path("scheduleId") int scheduleId);
+    Call<Void> deleteCalendar(@Header("Authorization") int token, @Path("scheduleId") int scheduleId);
+
+    @GET("schoolCalendar")
+    Call<ArrayList<Schedule>> getSchoolCalendar(@Header("Authorization") int token);
 
     @POST("notice/")
     Call<ArrayList<Notice>> getNoticeList();

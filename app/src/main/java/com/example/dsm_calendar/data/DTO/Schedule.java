@@ -8,19 +8,21 @@ import java.util.Date;
 
 public class Schedule implements Comparable<Schedule> {
 
-    private String title;
+    private String scheduleTitle;
     private String startDate;
     private String endDate;
-    private String content;
+    private String scheduleContent;
+    private int calendarId;
+    private int scheduleId;
     private Boolean expended = false;
     private CalendarDay startDay;
     private CalendarDay endDay;
 
-    public Schedule(String title, String startDateString, String endDateString, String content) {
-        this.title = title;
+    public Schedule(String scheduleTitle, String startDateString, String endDateString, String scheduleContent) {
+        this.scheduleTitle = scheduleTitle;
         this.startDate = startDateString;
         this.endDate = endDateString;
-        this.content = content;
+        this.scheduleContent = scheduleContent;
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -30,10 +32,17 @@ public class Schedule implements Comparable<Schedule> {
 
             Date endDate = format.parse(endDateString);
             endDay = CalendarDay.from(endDate);
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             // TODO Handle exception
         }
+    }
+
+    public int getCalendarId() {
+        return calendarId;
+    }
+
+    public int getScheduleId() {
+        return scheduleId;
     }
 
     public String getEndDate() {
@@ -48,16 +57,16 @@ public class Schedule implements Comparable<Schedule> {
         return endDay;
     }
 
-    public String getTitle() {
-        return title;
+    public String getScheduleTitle() {
+        return scheduleTitle;
     }
 
     public String getStartDate() {
         return startDate;
     }
 
-    public String getContent() {
-        return content;
+    public String getScheduleContent() {
+        return scheduleContent;
     }
 
     public Boolean getExpended() {
