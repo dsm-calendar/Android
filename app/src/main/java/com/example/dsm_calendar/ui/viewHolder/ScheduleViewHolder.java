@@ -29,7 +29,7 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         tv_date = itemView.findViewById(R.id.tv_schedule_date);
         tv_content = itemView.findViewById(R.id.tv_schedule_content);
         item = itemView.findViewById(R.id.schedule_rv_item);
-        content = itemView.findViewById(R.id.content);
+        content = itemView.findViewById(R.id.ll_schedule_content);
         delete = itemView.findViewById(R.id.button_my_schedule_delete);
 
         this.listener = listener;
