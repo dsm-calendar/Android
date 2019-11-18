@@ -5,6 +5,7 @@ import com.example.dsm_calendar.data.DTO.LoginUserInfo;
 import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.DTO.Schedule;
+import com.example.dsm_calendar.data.DTO.SchoolSchedule;
 import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 
@@ -36,7 +37,7 @@ public interface RetrofitService {
     Call<Void> deleteCalendar(@Header("Authorization") int token, @Path("scheduleId") int scheduleId);
 
     @GET("schoolCalendar")
-    Call<ArrayList<Schedule>> getSchoolCalendar(@Header("Authorization") int token);
+    Call<SchoolSchedule> getSchoolCalendar(@Header("Authorization") int token);
 
     @POST("notice/")
     Call<ArrayList<Notice>> getNoticeList();
