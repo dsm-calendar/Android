@@ -16,9 +16,11 @@ import retrofit2.Response;
 public class TimeTableRepository implements TimeTableContract.Repository {
 
     private Context context;
+    private int token;
 
     public TimeTableRepository(Context context){
         this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
     }
 
     public interface GetTimeTableListener{
@@ -33,8 +35,6 @@ public class TimeTableRepository implements TimeTableContract.Repository {
 
     @Override
     public void getTimeTable(GetTimeTableListener listener) {
-        int token = UserPreference.getInstance(context).getUserID();
-
         Call<ArrayList<TimeTableUnit>> call =  CalendarRetrofit.getInstance().getService().getTimeTable(token);
         call.enqueue(new Callback<ArrayList<TimeTableUnit>>() {
             @Override
@@ -57,8 +57,6 @@ public class TimeTableRepository implements TimeTableContract.Repository {
 
     @Override
     public void editSave(ArrayList<TimeTableUnit> timeTableUnits, EditSaveListener listener) {
-        int token = UserPreference.getInstance(context).getUserID();
-
         Call<ArrayList<TimeTableUnit>> call = CalendarRetrofit.getInstance().getService().updateTimetable(token, timeTableUnits);
         call.enqueue(new Callback<ArrayList<TimeTableUnit>>() {
             @Override

@@ -16,9 +16,11 @@ import retrofit2.Response;
 public class ScheduleFragmentRepository implements ScheduleFragmentContract.Repository {
 
     private Context context;
+    private int token;
 
     public ScheduleFragmentRepository(Context context){
         this.context  = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
     }
 
     public interface GetScheduleListListener{
@@ -41,7 +43,6 @@ public class ScheduleFragmentRepository implements ScheduleFragmentContract.Repo
 //        testSchedule.add(new Schedule("sample title4", "2019-11-10", "2019-11-10", "sample content4"));
 //        //month should be -1 to decorate correctly
 
-        int token = UserPreference.getInstance(context).getUserID();
         Call<ArrayList<Schedule>> call = CalendarRetrofit.getInstance().getService().getCalendar(token);
         call.enqueue(new Callback<ArrayList<Schedule>>() {
             @Override
@@ -65,7 +66,6 @@ public class ScheduleFragmentRepository implements ScheduleFragmentContract.Repo
 
     @Override
     public void deleteSchedule(int scheduleId, DeleteScheduleListener listener) {
-        int token = UserPreference.getInstance(context).getUserID();
         Call<Void> call = CalendarRetrofit.getInstance().getService().deleteCalendar(token, scheduleId);
         call.enqueue(new Callback<Void>() {
             @Override
