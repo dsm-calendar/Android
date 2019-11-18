@@ -3,10 +3,14 @@ package com.example.dsm_calendar.data;
 import com.example.dsm_calendar.data.DTO.Login;
 import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.DTO.Notice;
+import com.example.dsm_calendar.data.DTO.Room;
+import com.example.dsm_calendar.data.DTO.RoomInfo;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.data.DTO.SchoolSchedule;
 import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
+import com.example.dsm_calendar.data.DTO.User;
 
 import java.util.ArrayList;
 
@@ -50,10 +54,10 @@ public interface RetrofitService {
     @DELETE("notice/delete/{noticeId}")
     Call<Void> deleteNotice(@Path("noticeId") int noticeId);
 
-    @POST("timetable")
+    @POST("timeTable")
     Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTableUnits);
 
-    @GET("timetable")
+    @GET("timeTable")
     Call<ArrayList<TimeTableUnit>> getTimeTable(@Header("loginUserId") int token);
 
     @GET("message")
@@ -69,5 +73,23 @@ public interface RetrofitService {
     Call<Void> getIcon(@Header("loginUserId") int token);
 
     @PUT("myPage")
-    Call<Integer> changeIcon(@Header("loginUserId") int token, Student student);
+    Call<Integer> changeIcon(@Header("loginUserId") int token, @Body Student student);
+
+    @GET("room")
+    Call<ArrayList<Room>> getRoomList(@Header("loginUserId") int token);
+
+    @POST("room")
+    Call<ArrayList<Room>> createRoom(@Header("loginUserId") int token, @Body Room room);
+
+    @GET("room/{roomId}")
+    Call<RoomInfo> getRoomInfo(@Header("loginUserId") int token, @Path("roomId") int roomId);
+
+    @POST("room/{roomId}")
+    Call<Void> inviteMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body User user);
+
+    @PUT("room/{roomId}")
+    Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body RoomMember roomMember);
+
+    @DELETE("room/{roomId}")
+    Call<Void> deleteRoom(@Header("loginUserInfo") int token, @Path("roomId") int roomId);
 }
