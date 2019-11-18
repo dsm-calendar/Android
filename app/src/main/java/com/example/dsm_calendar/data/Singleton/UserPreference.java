@@ -3,6 +3,8 @@ package com.example.dsm_calendar.data.Singleton;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.dsm_calendar.data.DTO.Student;
+
 public class UserPreference {
     private static final String PREFERENCE_NAME = "userInfo";
     private static UserPreference preference = null;
@@ -22,6 +24,8 @@ public class UserPreference {
         }
         return preference;
     }
+
+
 
     public void putUserID(String key, int userId){
         editor.putInt(key, userId);

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.dsm_calendar.contract.LoginContract;
 import com.example.dsm_calendar.data.DTO.Login;
-import com.example.dsm_calendar.data.DTO.LoginUserInfo;
+import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
 import com.example.dsm_calendar.data.Singleton.UserPreference;
 
@@ -34,10 +34,10 @@ public class LoginRepository implements LoginContract.Repository {
     public void Login(String ID, String password, LoginListener listener) {
         Login login = new Login(ID, password);
 
-        Call<LoginUserInfo> call = CalendarRetrofit.getInstance().getService().login(login);
-        call.enqueue(new Callback<LoginUserInfo>() {
+        Call<Student> call = CalendarRetrofit.getInstance().getService().login(login);
+        call.enqueue(new Callback<Student>() {
             @Override
-            public void onResponse(Call<LoginUserInfo> call, Response<LoginUserInfo> response) {
+            public void onResponse(Call<Student> call, Response<Student> response) {
                 if (response.code() == 200){
                     listener.onSuccess();
                     saveUserData(response.body());
@@ -51,7 +51,7 @@ public class LoginRepository implements LoginContract.Repository {
             }
 
             @Override
-            public void onFailure(Call<LoginUserInfo> call, Throwable t) {
+            public void onFailure(Call<Student> call, Throwable t) {
                 listener.onFail(t.getMessage());
             }
         });
@@ -69,12 +69,12 @@ public class LoginRepository implements LoginContract.Repository {
     }
 
     @Override
-    public void saveUserData(LoginUserInfo user) {
+    public void saveUserData(Student student) {
         UserPreference preference = UserPreference.getInstance(context);
-        preference.putUserID("userID", user.getLoginUserId());
-        preference.putID("ID", user.getId());
-        preference.putClassOf("classOf", user.getClassOf());
-        preference.putIconIndex("iconIndex", user.getIconIndex());
-        preference.putMyCalendarID("myCalendarID", user.getMyCalendarId());
+        preference.putUserID("userID", student.getLoginUserId());
+        preference.putID("ID", student.getId());
+        preference.putClassOf("classOf", student.getClassOf());
+        preference.putIconIndex("iconIndex", student.getIconIndex());
+        preference.putMyCalendarID("myCalendarID", student.getMyCalendarId());
     }
 }

@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.MainContract;
+import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.MainRepository;
 
 public class MainPresenter implements MainContract.Presenter {
@@ -18,8 +19,17 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onClickLogout() {
-        mainRepo.logout();
-        mainView.logout();
+        mainRepo.logout(new MainRepository.LogoutListener() {
+            @Override
+            public void onSuccess() {
+                mainView.logout();
+            }
+
+            @Override
+            public void onFail(String message) {
+                mainView.showMessageForLogoutFail(message);
+            }
+        });
     }
 
     @Override
@@ -31,23 +41,23 @@ public class MainPresenter implements MainContract.Presenter {
             }
 
             @Override
-            public void onFail() {
-                mainView.onFailGetUserInfo();
+            public void onFail(String message) {
+                mainView.showMessageForGetUserInfoFail();
             }
         });
     }
 
     @Override
-    public void onProfileChanged(int iconIndex) {
-        mainRepo.changeProfile(iconIndex, new MainRepository.ChangeProfileListener() {
+    public void onProfileChanged(Student student) {
+        mainRepo.changeProfile(student, new MainRepository.ChangeProfileListener() {
             @Override
             public void onSuccess() {
-
+                mainView.setProfileImage(student.getIconIndex());
             }
 
             @Override
-            public void onFail() {
-
+            public void onFail(String message) {
+                mainView.showMessageForChangeProfileFail(message);
             }
         });
     }

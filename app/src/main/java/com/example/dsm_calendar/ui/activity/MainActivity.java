@@ -23,7 +23,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MainContract;
+import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.MainRepository;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.MainPresenter;
 import com.example.dsm_calendar.ui.adapter.MainPagerAdapter;
 import com.example.dsm_calendar.ui.dialog.LogoutDialog;
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userClass = header.findViewById(R.id.tv_main_userclass);
 
         setProfileDialog = new SetProfileDialog(this);
-        setProfileDialog.setSetProfileDialogListener(this::setProfileImage);
+        setProfileDialog.setSetProfileDialogListener(iconIndex -> mainPresenter.onProfileChanged(new Student(null, null, 0, 0, 0,0)));
         logoutDialog = new LogoutDialog(this);
         logoutDialog.setLogoutDialogListener(() -> mainPresenter.onClickLogout());
 
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onFailGetUserInfo() {
+    public void showMessageForGetUserInfoFail() {
         Toast.makeText(this, "유저 정보를 불러오는데 실패했습니다.", Toast.LENGTH_LONG).show();
     }
 
@@ -180,11 +182,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         finish();
     }
 
+    @Override
+    public void showMessageForLogoutFail(String message) {
+        Toast.makeText(this, "로그아웃에 실패했습니다.\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForChangeProfileFail(String message) {
+        Toast.makeText(this, "프로필 변경에 실패했습니다.\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
     public void movePage(int index){
         viewPager.setCurrentItem(index);
     }
 
-    void setProfileImage(int iconIndex){
+    @Override
+    public void setProfileImage(int iconIndex){
         switch (iconIndex){
             case 0:
                 profile.setImageResource(R.drawable.ic_sprout);
@@ -199,6 +212,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 profile.setImageResource(R.drawable.ic_school);
                 break;
         }
-        mainPresenter.onProfileChanged(iconIndex);
     }
 }

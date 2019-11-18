@@ -3,7 +3,13 @@ package com.example.dsm_calendar.data;
 import android.content.Context;
 
 import com.example.dsm_calendar.contract.MainContract;
+import com.example.dsm_calendar.data.DTO.Student;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
 import com.example.dsm_calendar.data.Singleton.UserPreference;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainRepository implements MainContract.Repository {
 
@@ -11,12 +17,17 @@ public class MainRepository implements MainContract.Repository {
 
     public interface GetUserInfoListener{
         void onSuccess(String id, int classOf, int iconIndex);
-        void onFail();
+        void onFail(String message);
     }
 
     public interface ChangeProfileListener{
         void onSuccess();
-        void onFail();
+        void onFail(String message);
+    }
+
+    public interface LogoutListener{
+        void onSuccess();
+        void onFail(String message);
     }
 
     public MainRepository(Context context){
@@ -31,20 +42,53 @@ public class MainRepository implements MainContract.Repository {
         int iconIndex = preferences.getIconIndex();
 
         if(id.equals("")){
-            listener.onFail();
+            listener.onFail("loading fail");
         } else {
             listener.onSuccess(id, classOf, iconIndex);
         }
     }
 
     @Override
-    public void changeProfile(int iconIndex, ChangeProfileListener listener) {
+    public void changeProfile(Student student, ChangeProfileListener listener) {
+        int token = UserPreference.getInstance(context).getUserID();
+        Call<Integer> call = CalendarRetrofit.getInstance().getService().changeIcon(token, student);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override
-    public void logout() {
-        UserPreference preference = UserPreference.getInstance(context);
-        preference.clear();
+    public void logout(LogoutListener listener) {
+        int token = UserPreference.getInstance(context).getUserID();
+        Call<Void> call = CalendarRetrofit.getInstance().getService().logout(token);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    UserPreference preference = UserPreference.getInstance(context);
+                    preference.clear();
+                    listener.onSuccess();
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 }

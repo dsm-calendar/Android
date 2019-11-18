@@ -29,7 +29,7 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         tv_date = itemView.findViewById(R.id.tv_schedule_date);
         tv_content = itemView.findViewById(R.id.tv_schedule_content);
         item = itemView.findViewById(R.id.schedule_rv_item);
-        content = itemView.findViewById(R.id.content);
+        content = itemView.findViewById(R.id.ll_schedule_content);
         delete = itemView.findViewById(R.id.button_my_schedule_delete);
 
         this.listener = listener;
@@ -40,9 +40,9 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         content.setVisibility(expended ? View.VISIBLE : View.GONE);
         delete.setVisibility(expended ? View.VISIBLE : View.GONE);
 
-        tv_title.setText(schedule.getTitle());
+        tv_title.setText(schedule.getScheduleTitle());
         tv_date.setText(String.format("%s ~ %s", schedule.getStartDate(), schedule.getEndDate()));
-        tv_content.setText(schedule.getContent());
+        tv_content.setText(schedule.getScheduleContent());
         delete.setOnClickListener(listener);
     }
 }
