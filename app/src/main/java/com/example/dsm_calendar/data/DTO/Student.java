@@ -6,13 +6,19 @@ public class Student{
 	private int classOf;
 	private int iconIndex;
 	private int myCalendarId;
+	private int loginUserId;
 
-	public Student(String pw, String id, int classOf, int iconIndex, int myCalendarId) {
+	public Student(String pw, String id, int classOf, int iconIndex, int myCalendarId, int loginUserId) {
 		this.pw = pw;
 		this.id = id;
 		this.classOf = classOf;
 		this.iconIndex = iconIndex;
 		this.myCalendarId = myCalendarId;
+		this.loginUserId = loginUserId;
+	}
+
+	public int getLoginUserId() {
+		return loginUserId;
 	}
 
 	public void setPw(String pw){

@@ -31,19 +31,19 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     public void getMemberList(GetMemberListListener listener) {
         ArrayList<Student> students = new ArrayList<>();
 
-        students.add(new Student("김동휘", "2학년 2반 3번", 1111, 0, 0));
-        students.add(new Student("신윤성", "2학년 2반 ??번", 1111, 0, 0));
-        students.add(new Student("최승민", "2학년 2반 18번", 1111, 0, 0));
-        students.add(new Student("권하경", "2학년 2반 ??번", 1111, 0, 0));
-        students.add(new Student("정재훈", "2학년 2반 17번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0));
+        students.add(new Student("김동휘", "2학년 2반 3번", 1111, 0, 0, 0));
+        students.add(new Student("신윤성", "2학년 2반 ??번", 1111, 0, 0, 0));
+        students.add(new Student("최승민", "2학년 2반 18번", 1111, 0, 0, 0));
+        students.add(new Student("권하경", "2학년 2반 ??번", 1111, 0, 0, 0));
+        students.add(new Student("정재훈", "2학년 2반 17번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
+        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
 
         listener.onSuccess(students);
     }

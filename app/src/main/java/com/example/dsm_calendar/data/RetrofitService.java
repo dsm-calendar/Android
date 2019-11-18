@@ -1,7 +1,6 @@
 package com.example.dsm_calendar.data;
 
 import com.example.dsm_calendar.data.DTO.Login;
-import com.example.dsm_calendar.data.DTO.LoginUserInfo;
 import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.DTO.Schedule;
@@ -21,23 +20,26 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RetrofitService {
-    @POST("auth/resister")
+    @POST("join")
     Call<Void> signUp(@Body Student student);
 
-    @POST("auth/login")
-    Call<LoginUserInfo> login(@Body Login login);
+    @POST("loginUser")
+    Call<Student> login(@Body Login login);
+
+    @GET("logout")
+    Call<Void> logout(@Header("loginUserId") int token);
 
     @POST("schedule/{calendarId}")
-    Call<Void> addSchedule(@Path("calendarId") int calendarId, @Header("Authorization") int token, @Body Schedule schedule);
+    Call<Void> addSchedule(@Path("calendarId") int calendarId, @Header("loginUserId") int token, @Body Schedule schedule);
 
     @GET("myCalendar")
-    Call<ArrayList<Schedule>> getCalendar(@Header("Authorization") int token);
+    Call<ArrayList<Schedule>> getCalendar(@Header("loginUserId") int token);
 
     @DELETE("calendar/deleteSchedule/{scheduleId}")
-    Call<Void> deleteCalendar(@Header("Authorization") int token, @Path("scheduleId") int scheduleId);
+    Call<Void> deleteCalendar(@Header("loginUserId") int token, @Path("scheduleId") int scheduleId);
 
     @GET("schoolCalendar")
-    Call<SchoolSchedule> getSchoolCalendar(@Header("Authorization") int token);
+    Call<SchoolSchedule> getSchoolCalendar(@Header("loginUserId") int token);
 
     @POST("notice/")
     Call<ArrayList<Notice>> getNoticeList();
@@ -49,23 +51,23 @@ public interface RetrofitService {
     Call<Void> deleteNotice(@Path("noticeId") int noticeId);
 
     @POST("timetable")
-    Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("Authorization") int token, @Body ArrayList<TimeTableUnit> timeTableUnits);
+    Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTableUnits);
 
     @GET("timetable")
-    Call<ArrayList<TimeTableUnit>> getTimeTable(@Header("Authorization") int token);
+    Call<ArrayList<TimeTableUnit>> getTimeTable(@Header("loginUserId") int token);
 
     @GET("message")
-    Call<ArrayList<Message>> getMessage(@Header("Authorization") int token);
+    Call<ArrayList<Message>> getMessage(@Header("loginUserId") int token);
 
     @POST("message/{messageId}")
-    Call<Void> decideMessage(@Header("Authorization") int token, @Path("messageId") int messageId, @Body boolean messageStatus);
+    Call<Void> decideMessage(@Header("loginUserId") int token, @Path("messageId") int messageId, @Body boolean messageStatus);
 
     @DELETE("message/{messageId}")
-    Call<Void> deleteMessage(@Header("Authorization") int token, @Path("messageId") int messageId);
+    Call<Void> deleteMessage(@Header("loginUserId") int token, @Path("messageId") int messageId);
 
     @GET("myPage")
-    Call<Void> getIcon(@Header("Authorization") int token);
+    Call<Void> getIcon(@Header("loginUserId") int token);
 
     @PUT("myPage")
-    Call<Integer> changeIcon(@Header("Authorization") int token, int iconIndex);
+    Call<Integer> changeIcon(@Header("loginUserId") int token, Student student);
 }
