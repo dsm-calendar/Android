@@ -42,7 +42,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private ScheduleFragmentRVAdapter adapter;
     private ImageButton scheduleAddButton;
     private MaterialCalendarView calendarView;
-    private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository());
+    private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository(getActivity()));
 
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();

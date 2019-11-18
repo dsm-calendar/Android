@@ -17,11 +17,11 @@ public interface ScheduleFragmentContract {
 
     interface Presenter{
         void onStarted();
-        void onItemDeleteClicked(int index);
+        void onItemDeleteClicked(int calendarId);
     }
 
     interface Repository{
         void getScheduleList(ScheduleFragmentRepository.GetScheduleListListener listener);
-        void deleteSchedule(ScheduleFragmentRepository.DeleteScheduleListener listener);
+        void deleteSchedule(int scheduleId, ScheduleFragmentRepository.DeleteScheduleListener listener);
     }
 }
