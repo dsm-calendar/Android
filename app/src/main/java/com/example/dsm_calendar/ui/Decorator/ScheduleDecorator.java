@@ -41,17 +41,17 @@ public class ScheduleDecorator implements DayViewDecorator {
 
     @Override
     public void decorate(DayViewFacade view) {
-        Integer boxCount = countQueue.poll();
-        int count = boxCount;
-        int color = Color.BLACK;
-
-        if (count <= 3) {
-            color = (0x29 - (0xD * count) * 10000) +
-                    (0x6D - (0x24 * count) * 100) + (0x98 - (0x32 * count));
-        }
+//        Integer boxCount = countQueue.poll();
+//        int count = boxCount;
+//        int color = Color.BLACK;
+//
+//        if (count <= 3) {
+//            color = (0x29 - (0xD * count) * 10000) +
+//                    (0x6D - (0x24 * count) * 100) + (0x98 - (0x32 * count));
+//        }
 
         Drawable d = ContextCompat.getDrawable(context, R.drawable.view_round_blue_background);
-        d.setTint(color);
+//        d.setTint(color);
         view.setBackgroundDrawable(d);
     }
 
