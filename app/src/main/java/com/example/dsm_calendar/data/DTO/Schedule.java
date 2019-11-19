@@ -1,5 +1,7 @@
 package com.example.dsm_calendar.data.DTO;
 
+import android.util.Log;
+
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import java.text.ParseException;
@@ -23,7 +25,9 @@ public class Schedule implements Comparable<Schedule> {
         this.startDate = startDateString;
         this.endDate = endDateString;
         this.scheduleContent = scheduleContent;
+    }
 
+    public void setCalendarDay(String startDateString, String endDateString){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         try {

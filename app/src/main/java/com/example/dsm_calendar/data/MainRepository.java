@@ -14,6 +14,7 @@ import retrofit2.Response;
 public class MainRepository implements MainContract.Repository {
 
     private Context context;
+    private int token;
 
     public interface GetUserInfoListener{
         void onSuccess(String id, int classOf, int iconIndex);
@@ -32,6 +33,7 @@ public class MainRepository implements MainContract.Repository {
 
     public MainRepository(Context context){
         this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
     }
 
     @Override
@@ -50,7 +52,6 @@ public class MainRepository implements MainContract.Repository {
 
     @Override
     public void changeProfile(Student student, ChangeProfileListener listener) {
-        int token = UserPreference.getInstance(context).getUserID();
         Call<Integer> call = CalendarRetrofit.getInstance().getService().changeIcon(token, student);
         call.enqueue(new Callback<Integer>() {
             @Override
@@ -71,7 +72,6 @@ public class MainRepository implements MainContract.Repository {
 
     @Override
     public void logout(LogoutListener listener) {
-        int token = UserPreference.getInstance(context).getUserID();
         Call<Void> call = CalendarRetrofit.getInstance().getService().logout(token);
         call.enqueue(new Callback<Void>() {
             @Override

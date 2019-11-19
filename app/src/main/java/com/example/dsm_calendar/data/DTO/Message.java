@@ -3,65 +3,79 @@ package com.example.dsm_calendar.data.DTO;
 public class Message{
 	private int eventId;
 	private boolean haveDialog;
-	private int messageId;
-	private int roomId;
 	private String sendDateNow;
-	private String toUserId;
+	private int messageId;
 	private int type;
+	private String toUserId;
+	private int roomId;
 
-	public int getEventId() {
-		return eventId;
-	}
-
-	public void setEventId(int eventId) {
+	public void setEventId(int eventId){
 		this.eventId = eventId;
 	}
 
-	public boolean isHaveDialog() {
-		return haveDialog;
+	public int getEventId(){
+		return eventId;
 	}
 
-	public void setHaveDialog(boolean haveDialog) {
+	public void setHaveDialog(boolean haveDialog){
 		this.haveDialog = haveDialog;
 	}
 
-	public int getMessageId() {
-		return messageId;
+	public boolean isHaveDialog(){
+		return haveDialog;
 	}
 
-	public void setMessageId(int messageId) {
-		this.messageId = messageId;
-	}
-
-	public int getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
-	}
-
-	public String getSendDateNow() {
-		return sendDateNow;
-	}
-
-	public void setSendDateNow(String sendDateNow) {
+	public void setSendDateNow(String sendDateNow){
 		this.sendDateNow = sendDateNow;
 	}
 
-	public String getToUserId() {
-		return toUserId;
+	public String getSendDateNow(){
+		return sendDateNow;
 	}
 
-	public void setToUserId(String toUserId) {
-		this.toUserId = toUserId;
+	public void setMessageId(int messageId){
+		this.messageId = messageId;
 	}
 
-	public int getType() {
+	public int getMessageId(){
+		return messageId;
+	}
+
+	public void setType(int type){
+		this.type = type;
+	}
+
+	public int getType(){
 		return type;
 	}
 
-	public void setType(int type) {
-		this.type = type;
+	public void setToUserId(String toUserId){
+		this.toUserId = toUserId;
 	}
+
+	public String getToUserId(){
+		return toUserId;
+	}
+
+	public void setRoomId(int roomId){
+		this.roomId = roomId;
+	}
+
+	public int getRoomId(){
+		return roomId;
+	}
+
+	@Override
+ 	public String toString(){
+		return 
+			"Message{" + 
+			"eventId = '" + eventId + '\'' + 
+			",haveDialog = '" + haveDialog + '\'' + 
+			",sendDateNow = '" + sendDateNow + '\'' + 
+			",messageId = '" + messageId + '\'' + 
+			",type = '" + type + '\'' + 
+			",toUserId = '" + toUserId + '\'' + 
+			",roomId = '" + roomId + '\'' + 
+			"}";
+		}
 }

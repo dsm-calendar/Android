@@ -27,24 +27,24 @@ public class ScheduleFragmentPresenter implements ScheduleFragmentContract.Prese
             }
 
             @Override
-            public void onFail() {
-
+            public void onFail(String message) {
+                scheduleView.showMessageForGetScheduleFail(message);
             }
         });
     }
 
     @Override
-    public void onItemDeleteClicked(int index) {
-        scheduleRepo.deleteSchedule(new ScheduleFragmentRepository.DeleteScheduleListener() {
+    public void onItemDeleteClicked(int scheduleId) {
+        scheduleRepo.deleteSchedule(scheduleId, new ScheduleFragmentRepository.DeleteScheduleListener() {
             @Override
             public void onSuccess() {
-                scheduleView.deleteSchedule(index);
+                scheduleView.deleteSchedule(scheduleId);
                 scheduleView.showMessageForDeleteSuccess();
             }
 
             @Override
-            public void onFail() {
-
+            public void onFail(String message) {
+                scheduleView.showMessageForDeleteFail(message);
             }
         });
     }

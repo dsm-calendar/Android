@@ -32,7 +32,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collection;
 import java.util.TreeSet;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
@@ -42,7 +42,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private ScheduleFragmentRVAdapter adapter;
     private ImageButton scheduleAddButton;
     private MaterialCalendarView calendarView;
-    private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository());
+    private ScheduleFragmentPresenter scheduleFragmentPresenter = new ScheduleFragmentPresenter(this, new ScheduleFragmentRepository(getActivity()));
 
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
@@ -69,12 +69,11 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         calendarView.addDecorators(
                 new SaturdayDecorator(),
                 new SundayDecorator(),
-                new OnDayDecorator(),
-                new ScheduleDecorator(new TreeSet<>(schedules), getActivity()));
+                new OnDayDecorator());
 
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
             todayList.clear();
-            for (Schedule schedule : schedules){
+            for (Schedule schedule : schedules) {
                 if (date.isInRange(schedule.getStartDay(), schedule.getEndDay()))
                     todayList.add(schedule);
             }
@@ -91,8 +90,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
-        calendarView.setSelectedDate(new Date());
-        checkList();
+//        checkList();
 
         return rootView;
     }
@@ -111,12 +109,15 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         }
     }
 
+    private void refreshScheduleDecorators(Collection<Schedule> schedules) {
+        calendarView.addDecorators(new ScheduleDecorator(new TreeSet<>(schedules), getActivity()));
+    }
+
     @Subscribe
     public void getNewScheduleList(ScheduleEvent status) {
         if (status.getStatus() == ScheduleEvent.EVENT.SCHEDULE_ADD) {
             scheduleFragmentPresenter.onStarted();
         }
-        Toast.makeText(getActivity(), "Event Bus", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -137,6 +138,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     @Override
     public void getItems(ArrayList<Schedule> schedules) {
         this.schedules = schedules;
+        refreshScheduleDecorators(schedules);
+        checkList();
     }
 
     @Override

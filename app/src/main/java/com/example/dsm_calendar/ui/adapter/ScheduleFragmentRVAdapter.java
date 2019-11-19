@@ -32,7 +32,7 @@ public class ScheduleFragmentRVAdapter extends RecyclerView.Adapter<ScheduleView
     @Override
     public ScheduleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fragment_schedule, parent, false);
-        ScheduleViewHolder holder = new ScheduleViewHolder(item, v -> scheduleFragmentPresenter.onItemDeleteClicked(position));
+        ScheduleViewHolder holder = new ScheduleViewHolder(item, v -> scheduleFragmentPresenter.onItemDeleteClicked(list.get(position).getScheduleId()));
         return holder;
     }
 
