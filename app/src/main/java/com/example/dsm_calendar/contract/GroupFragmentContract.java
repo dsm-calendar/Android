@@ -1,19 +1,21 @@
 package com.example.dsm_calendar.contract;
 
+import com.example.dsm_calendar.data.DTO.Room;
 import com.example.dsm_calendar.data.GroupFragmentRepository;
 
 import java.util.ArrayList;
 
 public interface GroupFragmentContract {
     interface View{
-        void showGroupMenuDialog(String name);
-        void startGroupActivity(String name);
-        void addItems(ArrayList<String> testGroup);
+        void showGroupMenuDialog(Room room);
+        void startGroupActivity(Room room);
+        void showMessageForGetGroupListFail(String message);
+        void addItems(ArrayList<Room> rooms);
     }
 
     interface Presenter{
-        void onClickItems(String name);
-        void onClickItemMenu(String name);
+        void onClickItems(Room room);
+        void onClickItemMenu(Room room);
         void onStarted();
     }
 

@@ -1,32 +1,52 @@
 package com.example.dsm_calendar.data;
 
+import android.content.Context;
+
 import com.example.dsm_calendar.contract.GroupFragmentContract;
+import com.example.dsm_calendar.data.DTO.Room;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class GroupFragmentRepository implements GroupFragmentContract.Repository {
 
+    private Context context;
+    private int token;
+
     public interface GetGroupListListener{
-        void onSuccess(ArrayList<String> testGroup);
-        void onFail();
+        void onSuccess(ArrayList<Room> rooms);
+        void onFail(String message);
+    }
+
+    public GroupFragmentRepository(Context context) {
+        this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
     }
 
     @Override
     public void getGroupList(GetGroupListListener listener) {
-        ArrayList<String> testGroup = new ArrayList<>();
+        Call<ArrayList<Room>> call = CalendarRetrofit.getInstance().getService().getRoomList(token);
+        call.enqueue(new Callback<ArrayList<Room>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Room>> call, Response<ArrayList<Room>> response) {
+                if (response.code() == 200){
+                    listener.onSuccess(response.body());
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
 
-        testGroup.add("동휘와 함께하는 게임 만들기");
-        testGroup.add("윤성이와 함께하는 디자인");
-        testGroup.add("승민이와 함께하는 안드로이드");
-        testGroup.add("하경이와 함께하는 서버만들기");
-        testGroup.add("담임쌤과 함께하는 \"코아\"개념 배우기");
-        testGroup.add("희명이와 함께하는 탈모갤러리");
-        testGroup.add("민트니스가 함께하는 근성장 팩토리");
-        testGroup.add("채홍이와 함께하는 인생파탄내기");
-        testGroup.add("이제는 쓸게없어 막쓰는 그룹");
-        testGroup.add("hello world!");
-        testGroup.add("Tlqkf");
-
-        listener.onSuccess(testGroup);
+            @Override
+            public void onFailure(Call<ArrayList<Room>> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 }
