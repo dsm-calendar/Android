@@ -39,7 +39,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
     private ImageButton addSchedule;
 
     private SchoolScheduleAdapter adapter;
-    private SchoolSchedulePresenter presenter = new SchoolSchedulePresenter(this, new SchoolScheduleRepository());
+    private SchoolSchedulePresenter presenter = new SchoolSchedulePresenter(this, new SchoolScheduleRepository(this));
 
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
