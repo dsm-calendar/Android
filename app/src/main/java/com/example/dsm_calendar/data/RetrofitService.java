@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.data;
 
 import com.example.dsm_calendar.data.DTO.Login;
+import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.DTO.Room;
@@ -32,6 +33,9 @@ public interface RetrofitService {
 
     @GET("logout")
     Call<Void> logout(@Header("loginUserId") int token);
+
+    @GET("main")
+    Call<MainResponse> loadMainPage(@Header("loginUserId") int token);
 
     @POST("schedule/{calendarId}")
     Call<Void> addSchedule(@Path("calendarId") int calendarId, @Header("loginUserId") int token, @Body Schedule schedule);

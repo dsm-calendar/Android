@@ -19,12 +19,7 @@ public class SchoolScheduleRepository implements SchoolScheduleContract.Reposito
 
     @Override
     public void getSchedules(GetSchedulesListener listener) {
-        ArrayList<Schedule> list = new ArrayList<>();
-
-        list.add(new Schedule("sample title", "2019-11-1", "2019-11-1", "sample content"));
-        list.add(new Schedule("sample title", "2019-11-16", "2019-11-16", "sample content"));
-
-        listener.onSuccess(list);
+        
     }
 
     @Override

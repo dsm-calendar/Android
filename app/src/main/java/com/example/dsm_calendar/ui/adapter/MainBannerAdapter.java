@@ -2,6 +2,9 @@ package com.example.dsm_calendar.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +14,20 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.ui.activity.BannerDetailActivity;
 import com.example.dsm_calendar.ui.activity.MainActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class MainBannerAdapter extends PagerAdapter {
 
     Context context;
     LayoutInflater inflater;
-    public ArrayList<Integer> bannerList = new ArrayList<>();
+    public ArrayList<Event> bannerList = new ArrayList<>();
 
     public MainBannerAdapter(Context context){
         this.context = context;
@@ -38,14 +44,13 @@ public class MainBannerAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.main_vp_banner_image_view, null);
         ImageView imageView = view.findViewById(R.id.vp_adapter);
-        imageView.setImageResource(bannerList.get(position));
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, BannerDetailActivity.class);
-                intent.putExtra("image", bannerList.get(position));
-                context.startActivity(intent);
-            }
+        Glide.with(context).load(bannerList.get(position).getEventPoster()).into(imageView);
+        imageView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, BannerDetailActivity.class);
+            Bitmap bmp = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.PNG, 50, baos);
+            context.startActivity(intent);
         });
 
         ViewPager vp = (ViewPager) container;

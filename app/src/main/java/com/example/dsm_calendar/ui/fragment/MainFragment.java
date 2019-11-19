@@ -17,6 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.dsm_calendar.contract.MainFragmentContract;
+import com.example.dsm_calendar.data.DTO.MainResponse;
+import com.example.dsm_calendar.data.DTO.Notice;
+import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.MainActivity;
@@ -38,8 +41,9 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private TextView noListTextView;
     private PageIndicatorView pageIndicatorView;
 
-    private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository());
+    private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository(getActivity()));
     private MainActivity rootActivity;
+    private ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
 
     public MainFragment(MainActivity mainActivity) {
         this.rootActivity = mainActivity;
@@ -116,46 +120,15 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     }
 
     @Override
-    public void getNotice(ArrayList<String> notices) {
-        mainRVNoticeAdapter.notice = notices;
-        mainRVNoticeAdapter.notifyDataSetChanged();
+    public void setMainFragment(MainResponse response) {
+        mainRVNoticeAdapter.notice = response.getNotices();
+        mainBannerAdapter.bannerList = response.getEventList();
+        timeTableUnits = response.getTimeTables();
     }
 
     @Override
-    public void showMessageForGetNoticeFail(String message) {
-        Toast.makeText(getActivity(), "failed to get notice\nmessage: "+message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void getSchedule(ArrayList<String> schedules) {
-        mainRVTodayAdapter.today = schedules;
-        mainRVTodayAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showMessageForGetScheduleFail(String message) {
-        Toast.makeText(getActivity(), "failed to get schedule\nmessage: "+message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void getBanners(ArrayList<Integer> banners) {
-        mainBannerAdapter.bannerList = banners;
-        mainBannerAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void ShowMessageForGetBannerFail(String message) {
-        Toast.makeText(getActivity(), "failed to get banner\nmessage: "+message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void getMyTimeTable() {
-        //TODO: set text on time table
-    }
-
-    @Override
-    public void showMessageForGetTimeTableFail(String message) {
-        Toast.makeText(getActivity(), "failed to get timetable\nmessage: "+message, Toast.LENGTH_LONG).show();
+    public void showMessageForLoadMainPageFail(String message) {
+        Toast.makeText(getActivity(), "error: " + message, Toast.LENGTH_LONG).show();
     }
 
     @Override
