@@ -39,12 +39,11 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
     private Button cancel;
     private Button confirm;
 
-    private CalendarDay startDate;
-    private CalendarDay endDate;
     private String scheduleTitle;
     private String scheduleContent;
-    private Date date = new Date();
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA);
+    private boolean startDateChecked = false;
+    private boolean endDateChecked = false;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 
     private AddSchedulePresenter presenter = new AddSchedulePresenter(this, new AddScheduleRepository(this));
 
@@ -70,7 +69,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
 
         selectDateDialog = new SelectDateDialog(this);
 
-        today.setText(String.format("오늘: %s", dateFormat.format(date)));
+        today.setText(String.format("오늘: %s", dateFormat.format(new Date())));
 
         addScheduleOff.setOnClickListener(this);
         cancel.setOnClickListener(this);
@@ -103,16 +102,16 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
         switch (v.getId()) {
             case R.id.cl_addschedule_startday:
                 selectDateDialog.setSelectDateDialogListener(date -> {
-                    startDate = date;
-                    startDateText.setText(dateFormat.format(startDate.getDate()));
+                    startDateText.setText(dateFormat.format(date.getDate()));
+                    startDateChecked = true;
                 });
                 selectDateDialog.setDialogTitle("시작일");
                 selectDateDialog.show();
                 break;
             case R.id.cl_addschedule_endday:
                 selectDateDialog.setSelectDateDialogListener(date -> {
-                    endDate = date;
-                    endDateText.setText(dateFormat.format(endDate.getDate()));
+                    endDateText.setText(dateFormat.format(date.getDate()));
+                    endDateChecked = true;
                 });
                 selectDateDialog.setDialogTitle("종료일");
                 selectDateDialog.show();
@@ -126,7 +125,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 scheduleTitle = title.getText().toString();
                 scheduleContent = content.getText().toString();
                 if (isAllChecked()) {
-                    presenter.onSaveClicked(scheduleCode, scheduleTitle, scheduleContent, startDate.getDate().toString(), endDate.getDate().toString());
+                    presenter.onSaveClicked(scheduleCode, scheduleTitle, scheduleContent, startDateText.getText().toString(), endDateText.getText().toString());
                 } else {
                     Toast.makeText(this, "모든 칸이 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
                 }
@@ -135,6 +134,6 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
     }
 
     private boolean isAllChecked() {
-        return !scheduleTitle.equals("") && !scheduleContent.equals("") && startDate != null && endDate != null;
+        return !scheduleTitle.equals("") && !scheduleContent.equals("") && startDateChecked && endDateChecked;
     }
 }
