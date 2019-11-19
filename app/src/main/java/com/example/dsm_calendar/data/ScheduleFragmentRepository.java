@@ -48,8 +48,14 @@ public class ScheduleFragmentRepository implements ScheduleFragmentContract.Repo
             @Override
             public void onResponse(Call<ArrayList<Schedule>> call, Response<ArrayList<Schedule>> response) {
                 if (response.code() == 200){
-                    listener.onSuccess(response.body());
-                    UserPreference.getInstance(context).putCalendarID("calendarID", response.body().get(0).getCalendarId());
+                    ArrayList<Schedule> schedules = response.body();
+                    if (response.body() != null){
+                        for (int i = 0; i < schedules.size(); ++i){
+                            schedules.get(i).setExpended(false);
+                            schedules.get(i).setCalendarDay(schedules.get(i).getStartDate(), schedules.get(i).getEndDate());
+                        }
+                    }
+                    listener.onSuccess(schedules);
                 } else if(response.code() == 500){
                     listener.onFail("server error");
                 } else {

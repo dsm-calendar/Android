@@ -29,7 +29,7 @@ public class AddScheduleRepository implements AddScheduleContract.Repository {
     @Override
     public void addSchedule(String title, String content, String startDay, String endDay, AddScheduleListener lister) {
         Schedule schedule = new Schedule(title, startDay, endDay, content);
-        int calendarId = UserPreference.getInstance(context).getCalendarID();
+        int calendarId = UserPreference.getInstance(context).getMyCalendarID();
         Call<Void> call = CalendarRetrofit.getInstance().getService().addSchedule(calendarId, token, schedule);
         call.enqueue(new Callback<Void>() {
             @Override

@@ -52,11 +52,6 @@ public class UserPreference {
         editor.apply();
     }
 
-    public void putCalendarID(String key, int calendarID){
-        editor.putInt(key, calendarID);
-        editor.apply();
-    }
-
     public int getUserID(){
         return pref.getInt("userID", -1);
     }
@@ -75,10 +70,6 @@ public class UserPreference {
 
     public int getMyCalendarID(){
         return pref.getInt("myCalendarID", -1);
-    }
-
-    public int getCalendarID(){
-        return pref.getInt("calendarID", -1);
     }
 
     public void clear(){
