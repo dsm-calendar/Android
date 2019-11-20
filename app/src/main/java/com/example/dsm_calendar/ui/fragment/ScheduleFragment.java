@@ -33,6 +33,8 @@ import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.TreeSet;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
@@ -47,6 +49,10 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
 
+    private ArrayList<Schedule> schedules1 = new ArrayList<>();
+    private ArrayList<Schedule> schedules2 = new ArrayList<>();
+    private ArrayList<Schedule> schedules3 = new ArrayList<>();
+
     public ScheduleFragment() {
     }
 
@@ -57,6 +63,8 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
 
         BusProvider.getInstance().register(this);
         scheduleFragmentPresenter.onStarted();
+
+        setScheduleCount();
 
         noListTextView = rootView.findViewById(R.id.tv_no_list_my_schedule);
 
@@ -147,5 +155,26 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         adapter.list.remove(position-1);
         adapter.notifyItemRemoved(position-1);
         adapter.notifyItemRangeChanged(position-1, adapter.getItemCount());
+    }
+
+    private void setScheduleCount() {
+        Map<Schedule, Integer> scheduleMap = new LinkedHashMap<>();
+
+        for (Schedule schedule : schedules) {
+            if (!scheduleMap.containsKey(schedule)) {
+                scheduleMap.put(schedule, 1);
+                continue;
+            }
+
+            Integer oldVal = scheduleMap.get(schedule);
+            scheduleMap.put(schedule, oldVal + 1);
+        }
+
+        for (Map.Entry<Schedule, Integer> schedule : scheduleMap.entrySet()) {
+            int n = schedule.getValue();
+            if (n == 1) schedules1.add(schedule.getKey());
+            if (n == 2) schedules2.add(schedule.getKey());
+            if (n >= 3) schedules3.add(schedule.getKey());
+        }
     }
 }
