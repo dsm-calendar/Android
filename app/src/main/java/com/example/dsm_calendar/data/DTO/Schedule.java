@@ -27,7 +27,7 @@ public class Schedule implements Comparable<Schedule> {
         this.scheduleContent = scheduleContent;
     }
 
-    public void setCalendarDay(String startDateString, String endDateString){
+    public void setCalendarDay(String startDateString, String endDateString) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
@@ -39,6 +39,38 @@ public class Schedule implements Comparable<Schedule> {
         } catch (ParseException e) {
             // TODO Handle exception
         }
+    }
+
+    public void setScheduleTitle(String scheduleTitle) {
+        this.scheduleTitle = scheduleTitle;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setScheduleContent(String scheduleContent) {
+        this.scheduleContent = scheduleContent;
+    }
+
+    public void setCalendarId(int calendarId) {
+        this.calendarId = calendarId;
+    }
+
+    public void setScheduleId(int scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
+    public void setStartDay(CalendarDay startDay) {
+        this.startDay = startDay;
+    }
+
+    public void setEndDay(CalendarDay endDay) {
+        this.endDay = endDay;
     }
 
     public int getCalendarId() {

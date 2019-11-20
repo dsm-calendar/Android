@@ -43,7 +43,7 @@ public interface RetrofitService {
     @GET("myCalendar")
     Call<ArrayList<Schedule>> getCalendar(@Header("loginUserId") int token);
 
-    @DELETE("calendar/deleteSchedule/{scheduleId}")
+    @DELETE("schedule/{scheduleId}")
     Call<Void> deleteCalendar(@Header("loginUserId") int token, @Path("scheduleId") int scheduleId);
 
     @GET("schoolCalendar")
@@ -77,7 +77,7 @@ public interface RetrofitService {
     Call<Void> getIcon(@Header("loginUserId") int token);
 
     @PUT("myPage")
-    Call<Integer> changeIcon(@Header("loginUserId") int token, @Body Student student);
+    Call<Void> changeIcon(@Header("loginUserId") int token, @Body Student student);
 
     @GET("room")
     Call<ArrayList<Room>> getRoomList(@Header("loginUserId") int token);
