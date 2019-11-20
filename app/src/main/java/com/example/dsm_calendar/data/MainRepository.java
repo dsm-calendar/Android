@@ -52,19 +52,20 @@ public class MainRepository implements MainContract.Repository {
 
     @Override
     public void changeProfile(Student student, ChangeProfileListener listener) {
-        Call<Integer> call = CalendarRetrofit.getInstance().getService().changeIcon(token, student);
-        call.enqueue(new Callback<Integer>() {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().changeIcon(token, student);
+        call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.code() == 200){
                     listener.onSuccess();
+                    UserPreference.getInstance(context).putIconIndex("iconIndex", student.getIconIndex());
                 } else {
                     listener.onFail(response.code() + "");
                 }
             }
 
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 listener.onFail(t.getMessage());
             }
         });

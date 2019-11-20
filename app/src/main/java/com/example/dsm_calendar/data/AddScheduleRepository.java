@@ -27,9 +27,16 @@ public class AddScheduleRepository implements AddScheduleContract.Repository {
     }
 
     @Override
-    public void addSchedule(String title, String content, String startDay, String endDay, AddScheduleListener lister) {
+    public void addSchedule(String code, String title, String content, String startDay, String endDay, AddScheduleListener lister) {
         Schedule schedule = new Schedule(title, startDay, endDay, content);
-        int calendarId = UserPreference.getInstance(context).getMyCalendarID();
+        int calendarId = -1;
+        if (code.equals("private")){
+            calendarId = UserPreference.getInstance(context).getMyCalendarID();
+        } else if (code.equals("school")){
+            calendarId = UserPreference.getInstance(context).getSchoolCalendarId();
+        } else if (code.equals("group")){
+            //TODO get group calendar Id
+        }
         Call<Void> call = CalendarRetrofit.getInstance().getService().addSchedule(calendarId, token, schedule);
         call.enqueue(new Callback<Void>() {
             @Override

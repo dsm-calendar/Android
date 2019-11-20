@@ -19,34 +19,17 @@ public class AddSchedulePresenter implements AddScheduleContract.Presenter {
 
     @Override
     public void onSaveClicked(String scheduleCode, String title, String content, String startDay, String endDay) {
-        if (scheduleCode.equals("private")){
-            addScheduleRepository.addSchedule(title, content, startDay, endDay, new AddScheduleRepository.AddScheduleListener() {
-                @Override
-                public void onSuccess() {
-                    addScheduleActivity.showMessageForSuccess();
-                    addScheduleActivity.finishActivity();
-                }
+        addScheduleRepository.addSchedule(scheduleCode, title, content, startDay, endDay, new AddScheduleRepository.AddScheduleListener() {
+            @Override
+            public void onSuccess() {
+                addScheduleActivity.showMessageForSuccess();
+                addScheduleActivity.finishActivity();
+            }
 
-                @Override
-                public void onFail(String message) {
-                    addScheduleActivity.showMessageForFail(message);
-                }
-            });
-        } else if(scheduleCode.equals("school")){
-            addScheduleRepository.addSchedule(title, content, startDay, endDay, new AddScheduleRepository.AddScheduleListener() {
-                @Override
-                public void onSuccess() {
-                    addScheduleActivity.showMessageForSuccess();
-                    addScheduleActivity.finishActivity();
-                }
-
-                @Override
-                public void onFail(String message) {
-                    addScheduleActivity.showMessageForFail(message);
-                }
-            });
-        } else if (scheduleCode.equals("group")){
-            //TODO: group add schedule may contain group id
-        }
+            @Override
+            public void onFail(String message) {
+                addScheduleActivity.showMessageForFail(message);
+            }
+        });
     }
 }

@@ -83,7 +83,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userClass = header.findViewById(R.id.tv_main_userclass);
 
         setProfileDialog = new SetProfileDialog(this);
-        setProfileDialog.setSetProfileDialogListener(iconIndex -> mainPresenter.onProfileChanged(new Student(null, null, 0, 0, 0,0)));
+        setProfileDialog.setSetProfileDialogListener(iconIndex -> mainPresenter.onProfileChanged(
+                new Student(null, null, 0, iconIndex, 0, UserPreference.getInstance(this).getUserID())));
         logoutDialog = new LogoutDialog(this);
         logoutDialog.setLogoutDialogListener(() -> mainPresenter.onClickLogout());
 
@@ -165,6 +166,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void setUserInfo(String id, int classOf, int iconIndex) {
         userId.setText(id);
+        switch (iconIndex){
+            case 0: profile.setImageResource(R.drawable.ic_sprout);
+            break;
+            case 1:profile.setImageResource(R.drawable.ic_person_w);
+                break;
+            case 2:profile.setImageResource(R.drawable.ic_person_m);
+                break;
+            case 3:profile.setImageResource(R.drawable.ic_school);
+                break;
+        }
         userClass.setText(Integer.toString(classOf));
         setProfileImage(iconIndex);
     }

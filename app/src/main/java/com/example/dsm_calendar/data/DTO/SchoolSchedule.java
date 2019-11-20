@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class SchoolSchedule {
     private ArrayList<Schedule> scheduleList;
-    private int scheduleId;
+    private int schoolCalendarId;
 
-    public SchoolSchedule(ArrayList<Schedule> schedules, int scheduleId) {
+    public SchoolSchedule(ArrayList<Schedule> schedules, int schoolCalendarId) {
         this.scheduleList = schedules;
-        this.scheduleId = scheduleId;
+        this.schoolCalendarId = schoolCalendarId;
     }
 
     public ArrayList<Schedule> getSchedules() {
         return scheduleList;
     }
 
-    public int getScheduleId() {
-        return scheduleId;
+    public int getSchoolCalendarId() {
+        return schoolCalendarId;
     }
 }

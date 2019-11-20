@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.MainFragmentContract;
+import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 
 import java.util.ArrayList;
@@ -20,52 +21,15 @@ public class MainFragmentPresenter implements MainFragmentContract.Presenter {
 
     @Override
     public void onStarted() {
-        mainRepo.getTodaySchedule(new MainFragmentRepository.GetTodayScheduleListener() {
-
+        mainRepo.getMainResponse(new MainFragmentRepository.GetMainResponseListener() {
             @Override
-            public void onSuccess(ArrayList<String> todayList) {
-                mainView.getSchedule(todayList);
+            public void onSuccess(MainResponse response) {
+                mainView.setMainFragment(response);
             }
 
             @Override
-            public void onFail() {
-            mainView.showMessageForGetScheduleFail("msg");
-            }
-        });
-
-        mainRepo.getNoticeList(new MainFragmentRepository.GetNoticeListListener() {
-            @Override
-            public void onSuccess(ArrayList<String> noticeList) {
-                mainView.getNotice(noticeList);
-            }
-
-            @Override
-            public void onFail() {
-                mainView.showMessageForGetNoticeFail("msg");
-            }
-        });
-
-        mainRepo.getBanner(new MainFragmentRepository.GetBannerListener() {
-            @Override
-            public void onSuccess(ArrayList<Integer> bannerList) {
-                mainView.getBanners(bannerList);
-            }
-
-            @Override
-            public void onFail() {
-                mainView.ShowMessageForGetBannerFail("msg");
-            }
-        });
-
-        mainRepo.getMyTimeTable(new MainFragmentRepository.GetMyTimeTableListener() {
-            @Override
-            public void onSuccess() {
-                mainView.getMyTimeTable();
-            }
-
-            @Override
-            public void onFail() {
-                mainView.showMessageForGetTimeTableFail("msg");
+            public void onFail(String message) {
+                mainView.showMessageForLoadMainPageFail(message);
             }
         });
     }

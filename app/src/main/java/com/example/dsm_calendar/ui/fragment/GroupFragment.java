@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupFragmentContract;
+import com.example.dsm_calendar.data.DTO.Room;
 import com.example.dsm_calendar.data.GroupFragmentRepository;
 import com.example.dsm_calendar.presenter.GroupFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.GroupSingleActivity;
@@ -39,7 +40,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     private GroupNameEditDialog groupNameEditDialog;
     private GroupDeleteDialog groupDeleteDialog;
     private FloatingActionButton fab_add;
-    private GroupFragmentPresenter groupFragmentPresenter = new GroupFragmentPresenter(this, new GroupFragmentRepository());
+    private GroupFragmentPresenter groupFragmentPresenter = new GroupFragmentPresenter(this, new GroupFragmentRepository(getActivity()));
 
     public GroupFragment(){}
 
@@ -135,20 +136,25 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     }
 
     @Override
-    public void showGroupMenuDialog(String name) {
-        groupMenuDialog.setName(name);
+    public void showGroupMenuDialog(Room room) {
+        groupMenuDialog.setName(room.getRoomTitle());
         groupMenuDialog.show(getFragmentManager(), "bottomSheet");
     }
 
     @Override
-    public void startGroupActivity(String name) {
+    public void startGroupActivity(Room room) {
         Intent intent = new Intent(getActivity(), GroupSingleActivity.class);
-        intent.putExtra("name", name);
+        // TODO put room extra to intent
         startActivity(intent);
     }
 
     @Override
-    public void addItems(ArrayList<String> testGroup) {
-        adapter.groupList = testGroup;
+    public void showMessageForGetGroupListFail(String message) {
+        Toast.makeText(getActivity(), "error: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void addItems(ArrayList<Room> rooms) {
+        adapter.groupList = rooms;
     }
 }

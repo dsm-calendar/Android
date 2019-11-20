@@ -11,13 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.Room;
 import com.example.dsm_calendar.presenter.GroupFragmentPresenter;
 
 import java.util.ArrayList;
 
 public class GroupFragmentRVAdapter extends RecyclerView.Adapter<GroupFragmentRVAdapter.GroupViewHolder> {
 
-    public ArrayList<String> groupList = new ArrayList<>();
+    public ArrayList<Room> groupList = new ArrayList<>();
     private Context context;
     private GroupFragmentPresenter groupFragmentPresenter;
 
@@ -36,8 +37,8 @@ public class GroupFragmentRVAdapter extends RecyclerView.Adapter<GroupFragmentRV
 
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
-        String name = groupList.get(position);
-        holder.bind(name, name);
+        Room room = groupList.get(position);
+        holder.bind(room);
     }
 
     @Override
@@ -55,11 +56,11 @@ public class GroupFragmentRVAdapter extends RecyclerView.Adapter<GroupFragmentRV
             menu = itemView.findViewById(R.id.button_item_group_menu);
         }
 
-        private void bind(String groupName, String name){
+        private void bind(Room room){
             //TODO: give groupInfo instead of name
-            tv_group_name.setText(groupName);
-            itemView.setOnClickListener(v -> groupFragmentPresenter.onClickItems(name));
-            menu.setOnClickListener(v -> groupFragmentPresenter.onClickItemMenu(name));
+            tv_group_name.setText(room.getRoomTitle());
+            itemView.setOnClickListener(v -> groupFragmentPresenter.onClickItems(room));
+            menu.setOnClickListener(v -> groupFragmentPresenter.onClickItemMenu(room));
         }
     }
 }

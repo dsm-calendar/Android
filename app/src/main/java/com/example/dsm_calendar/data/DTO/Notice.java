@@ -1,66 +1,69 @@
 package com.example.dsm_calendar.data.DTO;
 
-public class Notice {
+public class Notice{
+	private String noticeContent;
+	private String endDate;
+	private int noticeId;
+	private String noticeTitle;
+	private String startDate;
+	private boolean expanded;
 
-    private int noticeId;
-    private String title;
-    private String content;
-    private String startDate;
-    private String endDate;
-    private Boolean expended = false;
+	public Notice(String noticeContent, String endDate, String noticeTitle, String startDate) {
+		this.noticeContent = noticeContent;
+		this.endDate = endDate;
+		this.noticeTitle = noticeTitle;
+		this.startDate = startDate;
+	}
 
-    public Notice(String title, String content, String startDate, String endDate) {
-        this.title = title;
-        this.content = content;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+	public void setNoticeContent(String noticeContent){
+		this.noticeContent = noticeContent;
+	}
 
-    public int getNoticeId() {
-        return noticeId;
-    }
+	public String getNoticeContent(){
+		return noticeContent;
+	}
 
-    public void setNoticeId(int noticeId) {
-        this.noticeId = noticeId;
-    }
+	public void setEndDate(String endDate){
+		this.endDate = endDate;
+	}
 
-    public String getStartDate() {
-        return startDate;
-    }
+	public String getEndDate(){
+		return endDate;
+	}
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
+	public void setNoticeId(int noticeId){
+		this.noticeId = noticeId;
+	}
 
-    public String getEndDate() {
-        return endDate;
-    }
+	public int getNoticeId(){
+		return noticeId;
+	}
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
+	public void setNoticeTitle(String noticeTitle){
+		this.noticeTitle = noticeTitle;
+	}
 
-    public Boolean getExpended() {
-        return expended;
-    }
+	public String getNoticeTitle(){
+		return noticeTitle;
+	}
 
-    public void setExpended(Boolean expended) {
-        this.expended = expended;
-    }
+	public void setStartDate(String startDate){
+		this.startDate = startDate;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getStartDate(){
+		return startDate;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
+	@Override
+ 	public String toString(){
+		return 
+			"Notice{" + 
+			"noticeContent = '" + noticeContent + '\'' + 
+			",endDate = '" + endDate + '\'' + 
+			",noticeId = '" + noticeId + '\'' + 
+			",noticeTitle = '" + noticeTitle + '\'' + 
+			",startDate = '" + startDate + '\'' + 
+			"}";
+		}
 }

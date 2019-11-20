@@ -1,75 +1,53 @@
 package com.example.dsm_calendar.data;
 
+import android.content.Context;
+
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MainFragmentContract;
+import com.example.dsm_calendar.data.DTO.MainResponse;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainFragmentRepository implements MainFragmentContract.Repository {
 
-    public interface GetTodayScheduleListener{
-        void onSuccess(ArrayList<String> todayList);
-        void onFail();
+    private Context context;
+    private int token;
+
+    public interface GetMainResponseListener{
+        void onSuccess(MainResponse response);
+        void onFail(String message);
     }
 
-    public interface GetNoticeListListener{
-        void onSuccess(ArrayList<String> noticeList);
-        void onFail();
-    }
-
-    public interface GetBannerListener{
-        void onSuccess(ArrayList<Integer> bannerList);
-        void onFail();
-    }
-
-    public interface GetMyTimeTableListener{
-        void onSuccess();
-        void onFail();
+    public MainFragmentRepository(Context context) {
+        this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
     }
 
     @Override
-    public void getTodaySchedule(GetTodayScheduleListener listener) {
-        ArrayList<String> todayList = new ArrayList<>();
+    public void getMainResponse(GetMainResponseListener listener) {
+        Call<MainResponse> call = CalendarRetrofit.getInstance().getService().loadMainPage(token);
+        call.enqueue(new Callback<MainResponse>() {
+            @Override
+            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                if (response.code() == 200){
+                    listener.onSuccess(response.body());
+                } else if(response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
 
-//        todayList.add("do laundry");
-//        todayList.add("homework");
-//        todayList.add("buy some beer");
-//        todayList.add("sleep like a boss");
-//        todayList.add("buy a box of monster energy");
-//        todayList.add("goto bank");
-
-        listener.onSuccess(todayList);
-    }
-
-    @Override
-    public void getNoticeList(GetNoticeListListener listListener) {
-        ArrayList<String> noticeList = new ArrayList<>();
-
-        noticeList.add("sample");
-        noticeList.add("sample2");
-        noticeList.add("sample3");
-        noticeList.add("long long long long long long sample");
-        noticeList.add("short sample?");
-        noticeList.add("sample what?");
-
-        listListener.onSuccess(noticeList);
-    }
-
-    @Override
-    public void getBanner(GetBannerListener listener) {
-        ArrayList<Integer> bannerList = new ArrayList<>();
-
-        bannerList.add(R.drawable.sample_sportscar);
-        bannerList.add(R.drawable.sample_rainbow);
-        bannerList.add(R.drawable.sample_ocean);
-        bannerList.add(R.drawable.sample_universe);
-        bannerList.add(R.drawable.sample_car);
-
-        listener.onSuccess(bannerList);
-    }
-
-    @Override
-    public void getMyTimeTable(GetMyTimeTableListener listener) {
-
+            @Override
+            public void onFailure(Call<MainResponse> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 }

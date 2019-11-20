@@ -22,8 +22,8 @@ public class ScheduleFragmentPresenter implements ScheduleFragmentContract.Prese
     public void onStarted() {
         scheduleRepo.getScheduleList(new ScheduleFragmentRepository.GetScheduleListListener() {
             @Override
-            public void onSuccess(ArrayList<Schedule> testSchedule) {
-                scheduleView.getItems(testSchedule);
+            public void onSuccess(ArrayList<Schedule> schedules) {
+                scheduleView.getItems(schedules);
             }
 
             @Override

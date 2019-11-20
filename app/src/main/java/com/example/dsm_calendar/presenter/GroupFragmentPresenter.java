@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.GroupFragmentContract;
+import com.example.dsm_calendar.data.DTO.Room;
 import com.example.dsm_calendar.data.GroupFragmentRepository;
 
 import java.util.ArrayList;
@@ -19,26 +20,26 @@ public class GroupFragmentPresenter implements GroupFragmentContract.Presenter {
     }
 
     @Override
-    public void onClickItems(String name) {
-        groupView.startGroupActivity(name);
+    public void onClickItems(Room room) {
+        groupView.startGroupActivity(room);
     }
 
     @Override
-    public void onClickItemMenu(String name) {
-        groupView.showGroupMenuDialog(name);
+    public void onClickItemMenu(Room room) {
+        groupView.showGroupMenuDialog(room);
     }
 
     @Override
     public void onStarted() {
         groupRepo.getGroupList(new GroupFragmentRepository.GetGroupListListener() {
             @Override
-            public void onSuccess(ArrayList<String> testGroup) {
-                groupView.addItems(testGroup);
+            public void onSuccess(ArrayList<Room> rooms) {
+                groupView.addItems(rooms);
             }
 
             @Override
-            public void onFail() {
-
+            public void onFail(String message) {
+                groupView.showMessageForGetGroupListFail(message);
             }
         });
     }

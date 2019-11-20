@@ -14,6 +14,6 @@ public interface AddScheduleContract {
     }
 
     interface Repository{
-        void addSchedule(String title, String content, String startDay, String endDay, AddScheduleRepository.AddScheduleListener lister);
+        void addSchedule(String code, String title, String content, String startDay, String endDay, AddScheduleRepository.AddScheduleListener lister);
     }
 }

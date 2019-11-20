@@ -76,5 +76,6 @@ public class LoginRepository implements LoginContract.Repository {
         preference.putClassOf("classOf", student.getClassOf());
         preference.putIconIndex("iconIndex", student.getIconIndex());
         preference.putMyCalendarID("myCalendarID", student.getMyCalendarId());
+        preference.putIsAdmin("isAdmin", student.isAdmin());
     }
 }

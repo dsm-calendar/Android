@@ -52,6 +52,16 @@ public class UserPreference {
         editor.apply();
     }
 
+    public void putIsAdmin(String key, boolean isAdmin){
+        editor.putBoolean(key, isAdmin);
+        editor.apply();
+    }
+
+    public void putSchoolCalendarId(String key, int schoolCalendarId){
+        editor.putInt(key, schoolCalendarId);
+        editor.apply();
+    }
+
     public int getUserID(){
         return pref.getInt("userID", -1);
     }
@@ -70,6 +80,14 @@ public class UserPreference {
 
     public int getMyCalendarID(){
         return pref.getInt("myCalendarID", -1);
+    }
+
+    public boolean getIsAdmin(){
+        return pref.getBoolean("isAdmin", false);
+    }
+
+    public int getSchoolCalendarId(){
+        return pref.getInt("schoolCalendarId", -1);
     }
 
     public void clear(){

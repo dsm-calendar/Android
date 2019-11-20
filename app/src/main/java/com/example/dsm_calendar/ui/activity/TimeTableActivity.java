@@ -79,12 +79,12 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         }
     }
 
-    private void setTableText(ArrayList<String> texts) {
+    private void setTableText(ArrayList<TimeTableUnit> timeTableUnits) {
         for (EditText table : tables)
             table.setText("");
 
-        for (int i = 0; i < Math.min(tables.size(), texts.size()); ++i)
-            tables.get(i).setText(texts.get(i));
+        for (int i = 0; i < timeTableUnits.size(); ++i)
+            tables.get(i).setText(timeTableUnits.get(i).getSubject()+"\n"+timeTableUnits.get(i).getTeacher());
     }
 
     public void setGrade(View v) {
@@ -113,12 +113,12 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         curClass = inClass;
     }
 
-    private ArrayList<String> getCurrentTable(int nowGrade, int nowClass){
-        ArrayList<String> timeTable = new ArrayList<>();
+    private ArrayList<TimeTableUnit> getCurrentTable(int nowGrade, int nowClass){
+        ArrayList<TimeTableUnit> timeTable = new ArrayList<>();
 
         for(TimeTableUnit unit : timeTableUnits){
-            if (Integer.toString(unit.getIndex()).startsWith(Integer.toString(nowGrade)+ nowClass)){
-                timeTable.add(unit.getSubject()+"\n"+unit.getTeacher());
+            if (Integer.toString(unit.getTimeTableIndex()).startsWith(Integer.toString(nowGrade)+ nowClass)){
+                timeTable.add(unit);
             }
         }
         return timeTable;

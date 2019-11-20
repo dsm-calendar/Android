@@ -3,12 +3,12 @@ package com.example.dsm_calendar.data.DTO;
 public class TimeTableUnit {
     private String subject;
     private String teacher;
-    private int index;
+    private int timeTableIndex;
 
-    public TimeTableUnit(String subject, String teacher, int index) {
+    public TimeTableUnit(String subject, String teacher, int timeTableIndex) {
         this.subject = subject;
         this.teacher = teacher;
-        this.index = index;
+        this.timeTableIndex = timeTableIndex;
     }
 
     public void setSubject(String subject) {
@@ -27,12 +27,12 @@ public class TimeTableUnit {
         this.teacher = teacher;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setTimeTableIndex(int timeTableIndex) {
+        this.timeTableIndex = timeTableIndex;
     }
 
-    public int getIndex() {
-        return index;
+    public int getTimeTableIndex() {
+        return timeTableIndex;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class TimeTableUnit {
                 "TimeTableUnit{" +
                         "subject = '" + subject + '\'' +
                         "teacher ='" + teacher + '\'' +
-                        ",index = '" + index + '\'' +
+                        ",timeTableIndex = '" + timeTableIndex + '\'' +
                         "}";
     }
 }

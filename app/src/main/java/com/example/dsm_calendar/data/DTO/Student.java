@@ -1,75 +1,88 @@
 package com.example.dsm_calendar.data.DTO;
 
-public class Student{
-	private String pw;
-	private String id;
-	private int classOf;
-	private int iconIndex;
-	private int myCalendarId;
-	private int loginUserId;
+public class Student {
+    private String pw;
+    private String id;
+    private int classOf;
+    private int iconIndex;
+    private int myCalendarId;
+    private int loginUserId;
+    private boolean admin;
 
-	public Student(String pw, String id, int classOf, int iconIndex, int myCalendarId, int loginUserId) {
-		this.pw = pw;
-		this.id = id;
-		this.classOf = classOf;
-		this.iconIndex = iconIndex;
-		this.myCalendarId = myCalendarId;
-		this.loginUserId = loginUserId;
-	}
+    public Student(String pw, String id, int classOf, int iconIndex, int myCalendarId, int loginUserId) {
+        this.pw = pw;
+        this.id = id;
+        this.classOf = classOf;
+        this.iconIndex = iconIndex;
+        this.myCalendarId = myCalendarId;
+        this.loginUserId = loginUserId;
+    }
 
-	public int getLoginUserId() {
-		return loginUserId;
-	}
+    public void setLoginUserId(int loginUserId) {
+        this.loginUserId = loginUserId;
+    }
 
-	public void setPw(String pw){
-		this.pw = pw;
-	}
+    public boolean isAdmin() {
+        return admin;
+    }
 
-	public String getPw(){
-		return pw;
-	}
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 
-	public void setId(String id){
-		this.id = id;
-	}
+    public int getLoginUserId() {
+        return loginUserId;
+    }
 
-	public String getId(){
-		return id;
-	}
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
 
-	public void setClassOf(int classOf){
-		this.classOf = classOf;
-	}
+    public String getPw() {
+        return pw;
+    }
 
-	public int getClassOf(){
-		return classOf;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setIconIndex(int iconIndex){
-		this.iconIndex = iconIndex;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public int getIconIndex(){
-		return iconIndex;
-	}
+    public void setClassOf(int classOf) {
+        this.classOf = classOf;
+    }
 
-	public void setMyCalendarId(int myCalendarId){
-		this.myCalendarId = myCalendarId;
-	}
+    public int getClassOf() {
+        return classOf;
+    }
 
-	public int getMyCalendarId(){
-		return myCalendarId;
-	}
+    public void setIconIndex(int iconIndex) {
+        this.iconIndex = iconIndex;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"Student{" + 
-			"pw = '" + pw + '\'' + 
-			",id = '" + id + '\'' + 
-			",classOf = '" + classOf + '\'' + 
-			",iconIndex = '" + iconIndex + '\'' + 
-			",myCalendarId = '" + myCalendarId + '\'' + 
-			"}";
-		}
+    public int getIconIndex() {
+        return iconIndex;
+    }
+
+    public void setMyCalendarId(int myCalendarId) {
+        this.myCalendarId = myCalendarId;
+    }
+
+    public int getMyCalendarId() {
+        return myCalendarId;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "Student{" +
+                        "pw = '" + pw + '\'' +
+                        ",id = '" + id + '\'' +
+                        ",classOf = '" + classOf + '\'' +
+                        ",iconIndex = '" + iconIndex + '\'' +
+                        ",myCalendarId = '" + myCalendarId + '\'' +
+                        "}";
+    }
 }

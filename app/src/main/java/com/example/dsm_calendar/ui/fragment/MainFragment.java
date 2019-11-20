@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,15 +18,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MainFragmentContract;
+import com.example.dsm_calendar.data.DTO.MainResponse;
+import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.MainActivity;
 import com.example.dsm_calendar.ui.activity.NoticeActivity;
+import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
 import com.example.dsm_calendar.ui.adapter.MainRVNoticeAdapter;
 import com.example.dsm_calendar.ui.adapter.MainRVTodayAdapter;
-import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
-import com.example.dsm_calendar.R;
 import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
@@ -38,8 +42,14 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private TextView noListTextView;
     private PageIndicatorView pageIndicatorView;
 
-    private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository());
+    private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository(getActivity()));
     private MainActivity rootActivity;
+    private ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
+
+    private TableLayout table;
+    private ArrayList<TextView> tables;
+
+    private View rootView;
 
     public MainFragment(MainActivity mainActivity) {
         this.rootActivity = mainActivity;
@@ -48,7 +58,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         noListTextView = rootView.findViewById(R.id.tv_no_list_main);
 
@@ -80,6 +90,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         presenter.onStarted();
         setBanner(rootView);
         setRecyclerView();
+
         return rootView;
     }
 
@@ -116,46 +127,16 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     }
 
     @Override
-    public void getNotice(ArrayList<String> notices) {
-        mainRVNoticeAdapter.notice = notices;
-        mainRVNoticeAdapter.notifyDataSetChanged();
+    public void setMainFragment(MainResponse response) {
+        mainRVNoticeAdapter.notice = response.getNotices();
+        mainBannerAdapter.bannerList = response.getEventList();
+        timeTableUnits = response.getTimeTables();
+        setTimeTable();
     }
 
     @Override
-    public void showMessageForGetNoticeFail(String message) {
-        Toast.makeText(getActivity(), "failed to get notice\nmessage: "+message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void getSchedule(ArrayList<String> schedules) {
-        mainRVTodayAdapter.today = schedules;
-        mainRVTodayAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void showMessageForGetScheduleFail(String message) {
-        Toast.makeText(getActivity(), "failed to get schedule\nmessage: "+message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void getBanners(ArrayList<Integer> banners) {
-        mainBannerAdapter.bannerList = banners;
-        mainBannerAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void ShowMessageForGetBannerFail(String message) {
-        Toast.makeText(getActivity(), "failed to get banner\nmessage: "+message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void getMyTimeTable() {
-        //TODO: set text on time table
-    }
-
-    @Override
-    public void showMessageForGetTimeTableFail(String message) {
-        Toast.makeText(getActivity(), "failed to get timetable\nmessage: "+message, Toast.LENGTH_LONG).show();
+    public void showMessageForLoadMainPageFail(String message) {
+        Toast.makeText(getActivity(), "error: " + message, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -167,5 +148,23 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public void moveToScheduleFragment() {
         rootActivity.movePage(0);
+    }
+
+    private void setTimeTable() {
+        table = rootView.findViewById(R.id.tl_main_table);
+        tables = new ArrayList<>();
+
+        for(int i = 0; i < table.getChildCount(); ++i){
+            TableRow row = (TableRow)table.getChildAt(i);
+
+            for (int j = 0; j < row.getChildCount(); ++j) {
+                View view = row.getChildAt(j);
+                if (view.getId() != View.NO_ID)
+                    tables.add((TextView)view);
+            }
+        }
+
+        for (int i = 0; i < timeTableUnits.size(); ++i)
+            tables.get(i).setText(timeTableUnits.get(i).getSubject()+"\n"+timeTableUnits.get(i).getTeacher());
     }
 }
