@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -48,7 +47,9 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
 
     private TableLayout table;
-    private ArrayList<EditText> tables;
+    private ArrayList<TextView> tables;
+
+    private View rootView;
 
     public MainFragment(MainActivity mainActivity) {
         this.rootActivity = mainActivity;
@@ -57,7 +58,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         noListTextView = rootView.findViewById(R.id.tv_no_list_main);
 
@@ -89,8 +90,6 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         presenter.onStarted();
         setBanner(rootView);
         setRecyclerView();
-
-        setTimeTable(rootView);
 
         return rootView;
     }
@@ -132,6 +131,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         mainRVNoticeAdapter.notice = response.getNotices();
         mainBannerAdapter.bannerList = response.getEventList();
         timeTableUnits = response.getTimeTables();
+        setTimeTable();
     }
 
     @Override
@@ -150,7 +150,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         rootActivity.movePage(0);
     }
 
-    private void setTimeTable(View rootView) {
+    private void setTimeTable() {
         table = rootView.findViewById(R.id.tl_main_table);
         tables = new ArrayList<>();
 
@@ -159,8 +159,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
             for (int j = 0; j < row.getChildCount(); ++j) {
                 View view = row.getChildAt(j);
-                if (view instanceof EditText)
-                    tables.add((EditText)view);
+                if (view.getId() != View.NO_ID)
+                    tables.add((TextView)view);
             }
         }
 
