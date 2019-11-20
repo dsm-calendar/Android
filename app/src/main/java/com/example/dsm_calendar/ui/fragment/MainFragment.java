@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,18 +19,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MainFragmentContract;
 import com.example.dsm_calendar.data.DTO.MainResponse;
-import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.MainActivity;
 import com.example.dsm_calendar.ui.activity.NoticeActivity;
+import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
 import com.example.dsm_calendar.ui.adapter.MainRVNoticeAdapter;
 import com.example.dsm_calendar.ui.adapter.MainRVTodayAdapter;
-import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
-import com.example.dsm_calendar.R;
 import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
@@ -44,6 +46,9 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository(getActivity()));
     private MainActivity rootActivity;
     private ArrayList<TimeTableUnit> timeTableUnits = new ArrayList<>();
+
+    private TableLayout table;
+    private ArrayList<EditText> tables;
 
     public MainFragment(MainActivity mainActivity) {
         this.rootActivity = mainActivity;
@@ -84,6 +89,9 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         presenter.onStarted();
         setBanner(rootView);
         setRecyclerView();
+
+        setTimeTable(rootView);
+
         return rootView;
     }
 
@@ -140,5 +148,23 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public void moveToScheduleFragment() {
         rootActivity.movePage(0);
+    }
+
+    private void setTimeTable(View rootView) {
+        table = rootView.findViewById(R.id.tl_main_table);
+        tables = new ArrayList<>();
+
+        for(int i = 0; i < table.getChildCount(); ++i){
+            TableRow row = (TableRow)table.getChildAt(i);
+
+            for (int j = 0; j < row.getChildCount(); ++j) {
+                View view = row.getChildAt(j);
+                if (view instanceof EditText)
+                    tables.add((EditText)view);
+            }
+        }
+
+        for (int i = 0; i < timeTableUnits.size(); ++i)
+            tables.get(i).setText(timeTableUnits.get(i).getSubject()+"\n"+timeTableUnits.get(i).getTeacher());
     }
 }

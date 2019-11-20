@@ -83,7 +83,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         for (EditText table : tables)
             table.setText("");
 
-        for (int i = 0; i < Math.min(tables.size(), texts.size()); ++i)
+        for (int i = 0; i < texts.size(); ++i)
             tables.get(i).setText(texts.get(i));
     }
 
