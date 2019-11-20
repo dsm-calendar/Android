@@ -117,7 +117,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         ArrayList<TimeTableUnit> timeTable = new ArrayList<>();
 
         for(TimeTableUnit unit : timeTableUnits){
-            if (Integer.toString(unit.getIndex()).startsWith(Integer.toString(nowGrade)+ nowClass)){
+            if (Integer.toString(unit.getTimeTableIndex()).startsWith(Integer.toString(nowGrade)+ nowClass)){
                 timeTable.add(unit);
             }
         }
