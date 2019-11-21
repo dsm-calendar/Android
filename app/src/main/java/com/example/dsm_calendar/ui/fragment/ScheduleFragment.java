@@ -152,9 +152,10 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
 
     @Override
     public void deleteSchedule(int position) {
-        adapter.list.remove(position-1);
-        adapter.notifyItemRemoved(position-1);
-        adapter.notifyItemRangeChanged(position-1, adapter.getItemCount());
+        //TODO do not give schedule id, have to figure out how to erase it to todayList
+        adapter.list.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
     }
 
     private void setScheduleCount() {

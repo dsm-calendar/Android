@@ -34,11 +34,11 @@ public class ScheduleFragmentPresenter implements ScheduleFragmentContract.Prese
     }
 
     @Override
-    public void onItemDeleteClicked(int scheduleId) {
+    public void onItemDeleteClicked(int scheduleId, int position) {
         scheduleRepo.deleteSchedule(scheduleId, new ScheduleFragmentRepository.DeleteScheduleListener() {
             @Override
             public void onSuccess() {
-                scheduleView.deleteSchedule(scheduleId);
+                scheduleView.deleteSchedule(position);
                 scheduleView.showMessageForDeleteSuccess();
             }
 
