@@ -152,14 +152,22 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
 
     @Override
     public void deleteSchedule(int position) {
-        //TODO do not give schedule id, have to figure out how to erase it to todayList
+        for (int i = 0; i < schedules.size(); ++i){
+            if (schedules.get(i) == adapter.list.get(position)){
+                schedules.remove(i--);
+            }
+        }
         adapter.list.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+        setScheduleCount();
     }
 
     private void setScheduleCount() {
         Map<Schedule, Integer> scheduleMap = new LinkedHashMap<>();
+        schedules1.clear();
+        schedules2.clear();
+        schedules3.clear();
 
         for (Schedule schedule : schedules) {
             if (!scheduleMap.containsKey(schedule)) {
