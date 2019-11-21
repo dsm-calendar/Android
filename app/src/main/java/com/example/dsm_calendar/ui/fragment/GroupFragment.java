@@ -72,12 +72,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
         });
 
         groupAddDialog = new GroupAddDialog(getActivity());
-        groupAddDialog.setGroupAddDialogListener(new DialogListener.GroupAddDialogListener() {
-            @Override
-            public void onConfirmClicked(String name) {
-                Toast.makeText(getActivity(), name, Toast.LENGTH_SHORT).show();
-            }
-        });
+        groupAddDialog.setGroupAddDialogListener(name -> groupFragmentPresenter.onAddGroup(new Room(0, name, 0, 0)));
 
         groupMenuDialog = new GroupMenuDialog();
         groupMenuDialog.setGroupMenuDialogListener(new DialogListener.GroupMenuDialogListener() {
@@ -149,12 +144,23 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     }
 
     @Override
+    public void showMessageForAddGroupSuccess() {
+        Toast.makeText(getActivity(), "그룹이 성공적으로 만들어졌습니다", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void showMessageForGetGroupListFail(String message) {
+        Toast.makeText(getActivity(), "error: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForAddGroupFail(String message) {
         Toast.makeText(getActivity(), "error: " + message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void addItems(ArrayList<Room> rooms) {
         adapter.groupList = rooms;
+        adapter.notifyDataSetChanged();
     }
 }

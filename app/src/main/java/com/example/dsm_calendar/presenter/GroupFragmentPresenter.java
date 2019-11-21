@@ -43,4 +43,20 @@ public class GroupFragmentPresenter implements GroupFragmentContract.Presenter {
             }
         });
     }
+
+    @Override
+    public void onAddGroup(Room room) {
+        groupRepo.addGroup(room, new GroupFragmentRepository.AddGroupListener() {
+            @Override
+            public void onSuccess(ArrayList<Room> rooms) {
+                groupView.addItems(rooms);
+                groupView.showMessageForAddGroupSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                groupView.showMessageForAddGroupFail(message);
+            }
+        });
+    }
 }

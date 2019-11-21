@@ -23,6 +23,11 @@ public class GroupFragmentRepository implements GroupFragmentContract.Repository
         void onFail(String message);
     }
 
+    public interface AddGroupListener{
+        void onSuccess(ArrayList<Room> rooms);
+        void onFail(String message);
+    }
+
     public GroupFragmentRepository(Context context) {
         this.context = context;
         this.token = UserPreference.getInstance(this.context).getUserID();
@@ -31,6 +36,28 @@ public class GroupFragmentRepository implements GroupFragmentContract.Repository
     @Override
     public void getGroupList(GetGroupListListener listener) {
         Call<ArrayList<Room>> call = CalendarRetrofit.getInstance().getService().getRoomList(token);
+        call.enqueue(new Callback<ArrayList<Room>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Room>> call, Response<ArrayList<Room>> response) {
+                if (response.code() == 200){
+                    listener.onSuccess(response.body());
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Room>> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void addGroup(Room room, AddGroupListener listener) {
+        Call<ArrayList<Room>> call = CalendarRetrofit.getInstance().getService().createRoom(token, room);
         call.enqueue(new Callback<ArrayList<Room>>() {
             @Override
             public void onResponse(Call<ArrayList<Room>> call, Response<ArrayList<Room>> response) {
