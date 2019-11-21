@@ -82,7 +82,8 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
             }
 
             @Override
-            public void onClickDeleteGroup() {
+            public void onClickDeleteGroup(Room room, int position) {
+                groupDeleteDialog.setRoom(room, position);
                 groupDeleteDialog.show();
             }
         });
@@ -98,8 +99,8 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
         groupDeleteDialog = new GroupDeleteDialog(getActivity());
         groupDeleteDialog.setGroupDeleteDialogListener(new DialogListener.GroupDeleteDialogListener() {
             @Override
-            public void onYesClicked() {
-                //TODO: get item position to delete or get out of group
+            public void onYesClicked(int roomId, int position) {
+                groupFragmentPresenter.onDeleteGroup(roomId, position);
             }
 
             @Override
@@ -131,21 +132,26 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     }
 
     @Override
-    public void showGroupMenuDialog(Room room) {
-        groupMenuDialog.setName(room.getRoomTitle());
+    public void showGroupMenuDialog(Room room, int position) {
+        groupMenuDialog.setRoom(room, position);
         groupMenuDialog.show(getFragmentManager(), "bottomSheet");
     }
 
     @Override
     public void startGroupActivity(Room room) {
         Intent intent = new Intent(getActivity(), GroupSingleActivity.class);
-        // TODO put room extra to intent
+        intent.putExtra("roomId", room.getRoomId());
         startActivity(intent);
     }
 
     @Override
     public void showMessageForAddGroupSuccess() {
         Toast.makeText(getActivity(), "그룹이 성공적으로 만들어졌습니다", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForDeleteGroupSuccess() {
+        Toast.makeText(getActivity(), "그룹이 성공적으로 삭제되었습니다", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -159,8 +165,20 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     }
 
     @Override
+    public void showMessageForDeleteGroupFail(String message) {
+        Toast.makeText(getActivity(), "error: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void addItems(ArrayList<Room> rooms) {
         adapter.groupList = rooms;
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void deleteGroup(int position) {
+        adapter.groupList.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
     }
 }

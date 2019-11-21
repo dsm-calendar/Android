@@ -28,6 +28,11 @@ public class GroupFragmentRepository implements GroupFragmentContract.Repository
         void onFail(String message);
     }
 
+    public interface DeleteGroupListener{
+        void onSuccess();
+        void onFail(String message);
+    }
+
     public GroupFragmentRepository(Context context) {
         this.context = context;
         this.token = UserPreference.getInstance(this.context).getUserID();
@@ -72,6 +77,28 @@ public class GroupFragmentRepository implements GroupFragmentContract.Repository
 
             @Override
             public void onFailure(Call<ArrayList<Room>> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void deleteGroup(int roomId, DeleteGroupListener listener) {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().deleteRoom(token, roomId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if(response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 listener.onFail(t.getMessage());
             }
         });

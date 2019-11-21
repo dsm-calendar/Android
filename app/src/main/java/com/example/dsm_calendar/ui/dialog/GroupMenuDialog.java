@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.Room;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -23,7 +24,8 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
     private TextView groupName;
     private DialogListener.GroupMenuDialogListener listener;
 
-    private String name;
+    private Room room;
+    private int position;
 
     @Nullable
     @Override
@@ -38,7 +40,7 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
         offButton.setOnClickListener(this);
         editGroupName.setOnClickListener(this);
         deleteGroup.setOnClickListener(this);
-        groupName.setText(name);
+        groupName.setText(room.getRoomTitle());
 
         return view;
     }
@@ -54,7 +56,7 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
                 dismiss();
                 break;
             case R.id.cl_group_menu_delete_group:
-                listener.onClickDeleteGroup();
+                listener.onClickDeleteGroup(room, position);
                 dismiss();
                 break;
         }
@@ -64,7 +66,8 @@ public class GroupMenuDialog extends BottomSheetDialogFragment implements View.O
         this.listener = listener;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setRoom(Room room, int position){
+        this.room = room;
+        this.position = position;
     }
 }

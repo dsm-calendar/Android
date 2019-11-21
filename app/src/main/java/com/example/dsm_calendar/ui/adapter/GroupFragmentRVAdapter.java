@@ -38,7 +38,7 @@ public class GroupFragmentRVAdapter extends RecyclerView.Adapter<GroupFragmentRV
     @Override
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         Room room = groupList.get(position);
-        holder.bind(room);
+        holder.bind(room, position);
     }
 
     @Override
@@ -56,11 +56,10 @@ public class GroupFragmentRVAdapter extends RecyclerView.Adapter<GroupFragmentRV
             menu = itemView.findViewById(R.id.button_item_group_menu);
         }
 
-        private void bind(Room room){
-            //TODO: give groupInfo instead of name
+        private void bind(Room room, int position){
             tv_group_name.setText(room.getRoomTitle());
             itemView.setOnClickListener(v -> groupFragmentPresenter.onClickItems(room));
-            menu.setOnClickListener(v -> groupFragmentPresenter.onClickItemMenu(room));
+            menu.setOnClickListener(v -> groupFragmentPresenter.onClickItemMenu(room, position));
         }
     }
 }
