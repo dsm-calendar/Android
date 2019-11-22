@@ -20,7 +20,11 @@ import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.TimeTableRepository;
 import com.example.dsm_calendar.presenter.TimeTablePresenter;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Queue;
 
 public class TimeTableActivity extends AppCompatActivity implements TimeTableContract.View {
 
@@ -51,6 +55,7 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         timeTableOff.setOnClickListener(v -> finish());
         timeTableEdit.setOnClickListener(v -> {
             if (isEditMode){
+                syncTimeTable();
                 presenter.onEditSaveClicked(timeTableUnits);
             }
             isEditMode = !isEditMode;
@@ -77,6 +82,36 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
                     tables.add((EditText)view);
             }
         }
+    }
+
+    private void syncTimeTable() {
+        Queue<TimeTableUnit> unitQueue = new ArrayDeque<>();
+
+        for (int i = 0; i < tables.size(); ++i) {
+            String[] tableInfo = tables.get(i).getText().toString().split("\n");
+            int index = Integer.parseInt(String.format("%d%d%d%d", curGrade, curClass, i % 5, i / 5));
+            unitQueue.add(new TimeTableUnit(tableInfo[0], tableInfo[1], index));
+        }
+
+
+        int page = curGrade * 10 + curClass;
+        for (Iterator<TimeTableUnit> it = timeTableUnits.iterator(); it.hasNext();)
+             if (it.next().getTimeTableIndex() % 100 == page)
+                it.remove();
+
+        for (int index = getStartIndex(); !unitQueue.isEmpty(); ++index) {
+            timeTableUnits.add(index++, unitQueue.poll());
+        }
+    }
+
+    private int getStartIndex() {
+        int page = curGrade * 10 + curClass;
+        for (int index = 0; index < this.timeTableUnits.size(); ++index) {
+            if (this.timeTableUnits.get(index).getTimeTableIndex() / 100 == page)
+                return index;
+        }
+
+        return 0;
     }
 
     private void setTableText(ArrayList<TimeTableUnit> timeTableUnits) {
@@ -126,7 +161,8 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
 
     @Override
     public void getTimeTable(ArrayList<TimeTableUnit> tableUnits) {
-        this.timeTableUnits = tableUnits;
+        timeTableUnits = tableUnits;
+        Collections.sort(timeTableUnits, (o1, o2) -> Integer.compare(o1.getTimeTableIndex(), o2.getTimeTableIndex()));
         setTableText(getCurrentTable(curGrade, curClass));
     }
 
