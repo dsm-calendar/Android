@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 
@@ -21,7 +22,7 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
 
     private Context context;
     private GroupMemberPresenter presenter;
-    public ArrayList<Student> students = new ArrayList<>();
+    public ArrayList<RoomMember> members = new ArrayList<>();
 
     public GroupMemberRVAdapter(Context context, GroupMemberPresenter presenter){
         this.context = context;
@@ -38,13 +39,13 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
 
     @Override
     public void onBindViewHolder(@NonNull GroupMemberViewHolder holder, int position) {
-        Student student = students.get(position);
-        holder.bind(student);
+        RoomMember member = members.get(position);
+        holder.bind(member);
     }
 
     @Override
     public int getItemCount() {
-        return students.size();
+        return members.size();
     }
 
     class GroupMemberViewHolder extends RecyclerView.ViewHolder {
@@ -63,9 +64,9 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
             detail = itemView.findViewById(R.id.button_item_group_member_detail);
         }
 
-        public void bind(Student student){
-            std_no.setText(Integer.toString(student.getClassOf()));
-            name.setText(student.getId());
+        public void bind(RoomMember member){
+//            std_no.setText(Integer.toString(member.ge));
+            name.setText(member.getMemberId());
 
             detail.setOnClickListener(v -> presenter.onClickDetail());
         }

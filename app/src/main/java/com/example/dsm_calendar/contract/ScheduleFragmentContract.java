@@ -17,7 +17,7 @@ public interface ScheduleFragmentContract {
 
     interface Presenter{
         void onStarted();
-        void onItemDeleteClicked(int calendarId);
+        void onItemDeleteClicked(int calendarId, int position);
     }
 
     interface Repository{

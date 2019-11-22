@@ -1,6 +1,8 @@
 package com.example.dsm_calendar.contract;
 
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Student;
+import com.example.dsm_calendar.data.DTO.User;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 import java.util.ArrayList;
 
@@ -8,7 +10,7 @@ public interface GroupMemberContract {
 
     interface View{
         void showGroupMemberDetailDialog();
-        void addItems(ArrayList<Student> students);
+        void addItems(ArrayList<RoomMember> members);
         void dismissInviteDialog();
         void dismissGroupMemberAuthDialog();
         void showMessageForInviteSuccess();
@@ -22,15 +24,15 @@ public interface GroupMemberContract {
     interface Presenter{
         void onClickDetail();
         void onStarted();
-        void onInviteClicked(String ID);
+        void onInviteClicked(String userId, int roomId);
         void onMemberKickClicked();
-        void onMemberAuthChanged(int authCode);
+        void onMemberAuthChanged(int authCode, int roomId);
     }
 
     interface Repository{
         void getMemberList(GroupMemberRepository.GetMemberListListener listener);
-        void inviteMember(GroupMemberRepository.InviteMemberListener listener);
-        void changeMemberAuth(GroupMemberRepository.ChangeMemberAuthListener listener);
+        void inviteMember(int roomId, String user, GroupMemberRepository.InviteMemberListener listener);
+        void changeMemberAuth(int roomId, int authCode, GroupMemberRepository.ChangeMemberAuthListener listener);
         void kickMember(GroupMemberRepository.KickMemberListener listener);
     }
 }

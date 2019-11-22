@@ -6,6 +6,13 @@ public class Room{
 	private int roomId;
 	private int iconIndex;
 
+	public Room(int calendarId, String roomTitle, int roomId, int iconIndex) {
+		this.calendarId = calendarId;
+		this.roomTitle = roomTitle;
+		this.roomId = roomId;
+		this.iconIndex = iconIndex;
+	}
+
 	public void setCalendarId(int calendarId){
 		this.calendarId = calendarId;
 	}

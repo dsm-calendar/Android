@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.ui.Decorator;
 
 import android.content.Context;
+
 import androidx.core.content.ContextCompat;
 
 import com.example.dsm_calendar.R;
@@ -12,12 +13,12 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class ScheduleDecorator implements DayViewDecorator {
+public class Schedule1Decorator implements DayViewDecorator {
 
     private HashSet<Schedule> list;
     private Context context;
 
-    public ScheduleDecorator(Collection<Schedule> list, Context context) {
+    public Schedule1Decorator(Collection<Schedule> list, Context context) {
         this.list = new HashSet<>(list);
         this.context = context;
     }
@@ -29,6 +30,6 @@ public class ScheduleDecorator implements DayViewDecorator {
 
     @Override
     public void decorate(DayViewFacade view) {
-        view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_dot_background));
+        view.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.view_round_blue_background));
     }
 }

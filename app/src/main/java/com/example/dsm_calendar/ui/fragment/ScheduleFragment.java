@@ -23,6 +23,7 @@ import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
+import com.example.dsm_calendar.ui.Decorator.Schedule1Decorator;
 import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.activity.AddScheduleActivity;
@@ -63,7 +64,6 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
 
         BusProvider.getInstance().register(this);
         scheduleFragmentPresenter.onStarted();
-
         setScheduleCount();
 
         noListTextView = rootView.findViewById(R.id.tv_no_list_my_schedule);
@@ -77,7 +77,9 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         calendarView.addDecorators(
                 new SaturdayDecorator(),
                 new SundayDecorator(),
-                new OnDayDecorator());
+                new OnDayDecorator(),
+                new ScheduleDecorator(new TreeSet<>(schedules), getActivity()),
+                new Schedule1Decorator(new TreeSet<>(schedules1), getActivity()));
 
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
             todayList.clear();
@@ -98,8 +100,6 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
-//        checkList();
-
         return rootView;
     }
 
@@ -117,8 +117,9 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         }
     }
 
-    private void refreshScheduleDecorators(Collection<Schedule> schedules) {
+    private void refreshScheduleDecorators() {
         calendarView.addDecorators(new ScheduleDecorator(new TreeSet<>(schedules), getActivity()));
+        calendarView.addDecorators(new Schedule1Decorator(new TreeSet<>(schedules1), getActivity()));
     }
 
     @Subscribe
@@ -146,19 +147,29 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     @Override
     public void getItems(ArrayList<Schedule> schedules) {
         this.schedules = schedules;
-        refreshScheduleDecorators(schedules);
+//        refreshScheduleDecorators(schedules);
         checkList();
     }
 
     @Override
     public void deleteSchedule(int position) {
-        adapter.list.remove(position-1);
-        adapter.notifyItemRemoved(position-1);
-        adapter.notifyItemRangeChanged(position-1, adapter.getItemCount());
+        for (int i = 0; i < schedules.size(); ++i){
+            if (schedules.get(i) == adapter.list.get(position)){
+                schedules.remove(i--);
+            }
+        }
+        adapter.list.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+        setScheduleCount();
+        refreshScheduleDecorators();
     }
 
     private void setScheduleCount() {
         Map<Schedule, Integer> scheduleMap = new LinkedHashMap<>();
+        schedules1.clear();
+        schedules2.clear();
+        schedules3.clear();
 
         for (Schedule schedule : schedules) {
             if (!scheduleMap.containsKey(schedule)) {

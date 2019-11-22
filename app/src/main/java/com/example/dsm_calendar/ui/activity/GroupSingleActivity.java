@@ -25,7 +25,7 @@ public class GroupSingleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group);
 
         Intent intent = getIntent();
-        groupName = intent.getStringExtra("name");
+        groupName = intent.getStringExtra("roomId");
 
         groupTitle = findViewById(R.id.tv_group_name);
         showSchedule = findViewById(R.id.button_group_schedule);

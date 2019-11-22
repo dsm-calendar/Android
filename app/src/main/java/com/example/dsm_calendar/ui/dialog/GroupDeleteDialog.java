@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.Room;
 import com.example.dsm_calendar.util.DialogListener;
 
 public class GroupDeleteDialog extends Dialog implements View.OnClickListener{
@@ -18,6 +19,9 @@ public class GroupDeleteDialog extends Dialog implements View.OnClickListener{
     private Button yesButton;
     private Button noButton;
     private DialogListener.GroupDeleteDialogListener listener;
+
+    private Room room;
+    private int position;
 
     public GroupDeleteDialog(@NonNull Context context) {
         super(context);
@@ -47,7 +51,7 @@ public class GroupDeleteDialog extends Dialog implements View.OnClickListener{
                 dismiss();
                 break;
             case R.id.button_deletegroup_yes:
-                listener.onYesClicked();
+                listener.onYesClicked(room.getRoomId(), position);
                 dismiss();
                 break;
             case R.id.button_deletegroup_no:
@@ -59,5 +63,10 @@ public class GroupDeleteDialog extends Dialog implements View.OnClickListener{
 
     public void setGroupDeleteDialogListener(DialogListener.GroupDeleteDialogListener listener){
         this.listener = listener;
+    }
+
+    public void setRoom(Room room, int position){
+        this.room = room;
+        this.position = position;
     }
 }

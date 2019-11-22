@@ -25,8 +25,8 @@ public class GroupFragmentPresenter implements GroupFragmentContract.Presenter {
     }
 
     @Override
-    public void onClickItemMenu(Room room) {
-        groupView.showGroupMenuDialog(room);
+    public void onClickItemMenu(Room room, int position) {
+        groupView.showGroupMenuDialog(room, position);
     }
 
     @Override
@@ -40,6 +40,38 @@ public class GroupFragmentPresenter implements GroupFragmentContract.Presenter {
             @Override
             public void onFail(String message) {
                 groupView.showMessageForGetGroupListFail(message);
+            }
+        });
+    }
+
+    @Override
+    public void onAddGroup(Room room) {
+        groupRepo.addGroup(room, new GroupFragmentRepository.AddGroupListener() {
+            @Override
+            public void onSuccess(ArrayList<Room> rooms) {
+                groupView.addItems(rooms);
+                groupView.showMessageForAddGroupSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                groupView.showMessageForAddGroupFail(message);
+            }
+        });
+    }
+
+    @Override
+    public void onDeleteGroup(int roomId, int position) {
+        groupRepo.deleteGroup(roomId, new GroupFragmentRepository.DeleteGroupListener() {
+            @Override
+            public void onSuccess() {
+                groupView.deleteGroup(position);
+                groupView.showMessageForDeleteGroupSuccess();
+            }
+
+            @Override
+            public void onFail(String message) {
+                groupView.showMessageForDeleteGroupFail(message);
             }
         });
     }

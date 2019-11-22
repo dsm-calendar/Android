@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.util;
 
+import com.example.dsm_calendar.data.DTO.Room;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 public interface DialogListener {
@@ -17,7 +18,7 @@ public interface DialogListener {
     }
 
     interface GroupDeleteDialogListener {
-        void onYesClicked();
+        void onYesClicked(int roomId, int position);
         void onNoClicked();
     }
 
@@ -50,7 +51,7 @@ public interface DialogListener {
 
     interface GroupMenuDialogListener {
         void onClickEditGroupTitle();
-        void onClickDeleteGroup();
+        void onClickDeleteGroup(Room room, int position);
     }
 
     interface GroupMemberMenuDialogListener {
