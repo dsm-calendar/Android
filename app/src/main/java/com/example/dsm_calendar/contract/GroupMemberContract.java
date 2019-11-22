@@ -26,13 +26,13 @@ public interface GroupMemberContract {
         void onStarted();
         void onInviteClicked(String userId, int roomId);
         void onMemberKickClicked();
-        void onMemberAuthChanged(int authCode);
+        void onMemberAuthChanged(int authCode, int roomId);
     }
 
     interface Repository{
         void getMemberList(GroupMemberRepository.GetMemberListListener listener);
         void inviteMember(int roomId, String user, GroupMemberRepository.InviteMemberListener listener);
-        void changeMemberAuth(GroupMemberRepository.ChangeMemberAuthListener listener);
+        void changeMemberAuth(int roomId, int authCode, GroupMemberRepository.ChangeMemberAuthListener listener);
         void kickMember(GroupMemberRepository.KickMemberListener listener);
     }
 }

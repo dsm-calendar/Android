@@ -73,8 +73,8 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
-    public void onMemberAuthChanged(int authCode) {
-        groupMemberRepo.changeMemberAuth(new GroupMemberRepository.ChangeMemberAuthListener() {
+    public void onMemberAuthChanged(int authCode, int roomId) {
+        groupMemberRepo.changeMemberAuth(roomId, authCode, new GroupMemberRepository.ChangeMemberAuthListener() {
             @Override
             public void onSuccess() {
                 groupMemberView.dismissGroupMemberAuthDialog();

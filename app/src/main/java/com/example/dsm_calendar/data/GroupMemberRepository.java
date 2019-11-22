@@ -75,8 +75,27 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     }
 
     @Override
-    public void changeMemberAuth(ChangeMemberAuthListener listener) {
-        listener.onSuccess();
+    public void changeMemberAuth(int roomId, int authCode, ChangeMemberAuthListener listener) {
+        RoomMember member = new RoomMember();
+        member.setMemberRight(authCode);
+        Call<ArrayList<RoomMember>> call = CalendarRetrofit.getInstance().getService().updateMemberAuth(token, roomId, member);
+        call.enqueue(new Callback<ArrayList<RoomMember>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RoomMember>> call, Response<ArrayList<RoomMember>> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<RoomMember>> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override
