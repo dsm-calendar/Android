@@ -1,14 +1,32 @@
 package com.example.dsm_calendar.data;
 
+import android.content.Context;
+
 import com.example.dsm_calendar.contract.GroupMemberContract;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Student;
+import com.example.dsm_calendar.data.DTO.User;
+import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class GroupMemberRepository implements GroupMemberContract.Repository {
 
+    private Context context;
+    private int token;
+
+    public GroupMemberRepository(Context context) {
+        this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
+    }
+
     public interface GetMemberListListener{
-        void onSuccess(ArrayList<Student> students);
+        void onSuccess(ArrayList<RoomMember> members);
         void onFail();
     }
 
@@ -29,28 +47,31 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
 
     @Override
     public void getMemberList(GetMemberListListener listener) {
-        ArrayList<Student> students = new ArrayList<>();
-
-        students.add(new Student("김동휘", "2학년 2반 3번", 1111, 0, 0, 0));
-        students.add(new Student("신윤성", "2학년 2반 ??번", 1111, 0, 0, 0));
-        students.add(new Student("최승민", "2학년 2반 18번", 1111, 0, 0, 0));
-        students.add(new Student("권하경", "2학년 2반 ??번", 1111, 0, 0, 0));
-        students.add(new Student("정재훈", "2학년 2반 17번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-        students.add(new Student("강찬", "2학년 2반 1번", 1111, 0, 0, 0));
-
-        listener.onSuccess(students);
+        listener.onSuccess(new ArrayList<RoomMember>());
     }
 
     @Override
-    public void inviteMember(InviteMemberListener listener) {
-        listener.onSuccess();
+    public void inviteMember(int roomId, String userId, InviteMemberListener listener) {
+        User user = new User();
+        user.setId(userId);
+        Call<Void> call = CalendarRetrofit.getInstance().getService().inviteMember(token, roomId, user);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else {
+                    listener.onFail(response.code() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.GroupMemberContract;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Student;
+import com.example.dsm_calendar.data.DTO.User;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 
 import java.util.ArrayList;
@@ -28,8 +30,8 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     public void onStarted() {
         groupMemberRepo.getMemberList(new GroupMemberRepository.GetMemberListListener() {
             @Override
-            public void onSuccess(ArrayList<Student> students) {
-                groupMemberView.addItems(students);
+            public void onSuccess(ArrayList<RoomMember> members) {
+                groupMemberView.addItems(members);
             }
 
             @Override
@@ -40,8 +42,8 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
-    public void onInviteClicked(String ID) {
-        groupMemberRepo.inviteMember(new GroupMemberRepository.InviteMemberListener() {
+    public void onInviteClicked(String userId, int roomId) {
+        groupMemberRepo.inviteMember(roomId, userId, new GroupMemberRepository.InviteMemberListener() {
             @Override
             public void onSuccess() {
                 groupMemberView.dismissInviteDialog();

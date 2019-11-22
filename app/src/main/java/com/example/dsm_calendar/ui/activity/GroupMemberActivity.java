@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupMemberContract;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
@@ -38,7 +39,8 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     private GroupMemberAuthDialog groupMemberAuthDialog;
     private GroupMemberKickDialog groupMemberKickDialog;
 
-    private GroupMemberPresenter presenter = new GroupMemberPresenter(this, new GroupMemberRepository());
+    private GroupMemberPresenter presenter = new GroupMemberPresenter(this, new GroupMemberRepository(this));
+    private int roomId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         rvMember.setLayoutManager(new LinearLayoutManager(this));
 
         groupMemberAddDialog = new GroupMemberAddDialog(this);
-        groupMemberAddDialog.setAddGroupMemberDialogListener(ID -> presenter.onInviteClicked(ID));
+        groupMemberAddDialog.setAddGroupMemberDialogListener(ID -> presenter.onInviteClicked(ID, roomId));
 
         groupMemberAuthDialog = new GroupMemberAuthDialog(this);
         groupMemberAuthDialog.setGroupMemberAuthDialogListener(authCode -> presenter.onMemberAuthChanged(authCode));
@@ -94,7 +96,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     }
 
     private void checkList() {
-        if (adapter.students.size() == 0) {
+        if (adapter.members.size() == 0) {
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
@@ -107,8 +109,8 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     }
 
     @Override
-    public void addItems(ArrayList<Student> students) {
-        adapter.students = students;
+    public void addItems(ArrayList<RoomMember> members) {
+        adapter.members = members;
     }
 
     @Override
