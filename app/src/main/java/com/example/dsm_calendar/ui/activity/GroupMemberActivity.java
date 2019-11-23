@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -46,6 +47,9 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_member);
 
+        Intent intent = getIntent();
+        roomId = intent.getIntExtra("roomId", -1);
+
         noListTextView = findViewById(R.id.tv_no_list_group_member);
         groupMemberBack = findViewById(R.id.button_group_member_back);
         rvMember = findViewById(R.id.rv_group_member);
@@ -90,7 +94,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
             }
         });
 
-        presenter.onStarted();
+        presenter.onStarted(roomId);
         checkList();
     }
 
@@ -163,5 +167,10 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     @Override
     public void showMessageForKickFail(String message) {
         Toast.makeText(this, "kick failed\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForGetMembersFail(String message) {
+        Toast.makeText(this, "loading failed\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 }

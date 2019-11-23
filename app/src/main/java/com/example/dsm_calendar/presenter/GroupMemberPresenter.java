@@ -27,16 +27,16 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
-    public void onStarted() {
-        groupMemberRepo.getMemberList(new GroupMemberRepository.GetMemberListListener() {
+    public void onStarted(int roomId) {
+        groupMemberRepo.getMemberList(roomId, new GroupMemberRepository.GetMemberListListener() {
             @Override
             public void onSuccess(ArrayList<RoomMember> members) {
                 groupMemberView.addItems(members);
             }
 
             @Override
-            public void onFail() {
-
+            public void onFail(String message) {
+                groupMemberView.showMessageForGetMembersFail(message);
             }
         });
     }

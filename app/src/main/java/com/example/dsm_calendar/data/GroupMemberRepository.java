@@ -3,6 +3,7 @@ package com.example.dsm_calendar.data;
 import android.content.Context;
 
 import com.example.dsm_calendar.contract.GroupMemberContract;
+import com.example.dsm_calendar.data.DTO.RoomInfo;
 import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.DTO.User;
@@ -27,7 +28,7 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
 
     public interface GetMemberListListener{
         void onSuccess(ArrayList<RoomMember> members);
-        void onFail();
+        void onFail(String message);
     }
 
     public interface InviteMemberListener{
@@ -46,8 +47,25 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     }
 
     @Override
-    public void getMemberList(GetMemberListListener listener) {
-        listener.onSuccess(new ArrayList<RoomMember>());
+    public void getMemberList(int roomId, GetMemberListListener listener) {
+        Call<RoomInfo> call = CalendarRetrofit.getInstance().getService().getRoomInfo(token, roomId);
+        call.enqueue(new Callback<RoomInfo>() {
+            @Override
+            public void onResponse(Call<RoomInfo> call, Response<RoomInfo> response) {
+                if (response.code() == 200){
+                    listener.onSuccess(response.body().getRoomMembers());
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else{
+                    listener.onFail(response.code() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RoomInfo> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 
     @Override

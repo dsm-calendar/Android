@@ -40,6 +40,7 @@ public class GroupSingleActivity extends AppCompatActivity {
 
         showMember.setOnClickListener(v -> {
             Intent memberIntent = new Intent(GroupSingleActivity.this, GroupMemberActivity.class);
+            intent.putExtra("roomId", groupId);
             startActivity(memberIntent);
         });
 
