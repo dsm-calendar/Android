@@ -36,7 +36,7 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     }
 
     public interface ChangeMemberAuthListener{
-        void onSuccess();
+        void onSuccess(ArrayList<RoomMember> members);
         void onFail(String message);
     }
 
@@ -83,7 +83,7 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
             @Override
             public void onResponse(Call<ArrayList<RoomMember>> call, Response<ArrayList<RoomMember>> response) {
                 if (response.code() == 200){
-                    listener.onSuccess();
+                    listener.onSuccess(response.body());
                 } else if (response.code() == 500){
                     listener.onFail("server error");
                 } else {
