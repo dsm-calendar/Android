@@ -142,6 +142,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     public void startGroupActivity(Room room) {
         Intent intent = new Intent(getActivity(), GroupSingleActivity.class);
         intent.putExtra("roomId", room.getRoomId());
+        intent.putExtra("roomTitle", room.getRoomTitle());
         startActivity(intent);
     }
 

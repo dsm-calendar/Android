@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupMemberContract;
 import com.example.dsm_calendar.data.DTO.RoomMember;
-import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;

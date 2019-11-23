@@ -1,8 +1,6 @@
 package com.example.dsm_calendar.contract;
 
 import com.example.dsm_calendar.data.DTO.RoomMember;
-import com.example.dsm_calendar.data.DTO.Student;
-import com.example.dsm_calendar.data.DTO.User;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 import java.util.ArrayList;
 
