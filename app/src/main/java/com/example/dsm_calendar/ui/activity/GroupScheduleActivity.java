@@ -37,16 +37,21 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
     private ImageButton addButton;
     private GroupScheduleRVAdapter adapter;
 
-    private GroupSchedulePresenter presenter = new GroupSchedulePresenter(this, new GroupScheduleRepository());
+    private GroupSchedulePresenter presenter = new GroupSchedulePresenter(this, new GroupScheduleRepository(this));
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
+    private int roomId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_group_schedule);
-        presenter.onStarted();
+
+        Intent roomIntent = getIntent();
+        roomIntent.getIntExtra("roomId", -1);
+
+        presenter.onStarted(roomId);
 
         backButton = findViewById(R.id.button_group_schedule_back);
         calendarView = findViewById(R.id.cv_group_calendar);

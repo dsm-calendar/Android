@@ -15,12 +15,12 @@ public interface GroupScheduleContract {
     }
 
     interface Presenter{
-        void onStarted();
-        void onItemDeleteClicked(int index);
+        void onStarted(int roomId);
+        void onItemDeleteClicked(int scheduleId, int index);
     }
 
     interface Repository{
-        void getSchedule(GroupScheduleRepository.GetScheduleListener listener);
+        void getSchedule(int roomId, GroupScheduleRepository.GetScheduleListener listener);
         void deleteSchedule(GroupScheduleRepository.DeleteScheduleListener listener);
     }
 }

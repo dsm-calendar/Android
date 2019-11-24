@@ -35,6 +35,7 @@ public class GroupSingleActivity extends AppCompatActivity {
 
         showSchedule.setOnClickListener(v -> {
             Intent scheduleIntent = new Intent(GroupSingleActivity.this, GroupScheduleActivity.class);
+            intent.putExtra("roomId", groupId);
             startActivity(scheduleIntent);
         });
 
