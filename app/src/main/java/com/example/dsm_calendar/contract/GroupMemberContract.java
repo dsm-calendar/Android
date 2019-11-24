@@ -1,8 +1,6 @@
 package com.example.dsm_calendar.contract;
 
 import com.example.dsm_calendar.data.DTO.RoomMember;
-import com.example.dsm_calendar.data.DTO.Student;
-import com.example.dsm_calendar.data.DTO.User;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 import java.util.ArrayList;
 
@@ -19,18 +17,19 @@ public interface GroupMemberContract {
         void showMessageForAuthChangeFail(String message);
         void showMessageForKickSuccess();
         void showMessageForKickFail(String message);
+        void showMessageForGetMembersFail(String message);
     }
 
     interface Presenter{
         void onClickDetail();
-        void onStarted();
+        void onStarted(int roomId);
         void onInviteClicked(String userId, int roomId);
         void onMemberKickClicked();
         void onMemberAuthChanged(int authCode, int roomId);
     }
 
     interface Repository{
-        void getMemberList(GroupMemberRepository.GetMemberListListener listener);
+        void getMemberList(int roomId, GroupMemberRepository.GetMemberListListener listener);
         void inviteMember(int roomId, String user, GroupMemberRepository.InviteMemberListener listener);
         void changeMemberAuth(int roomId, int authCode, GroupMemberRepository.ChangeMemberAuthListener listener);
         void kickMember(GroupMemberRepository.KickMemberListener listener);

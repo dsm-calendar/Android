@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupMemberContract;
 import com.example.dsm_calendar.data.DTO.RoomMember;
-import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.GroupMemberRepository;
 import com.example.dsm_calendar.presenter.GroupMemberPresenter;
 import com.example.dsm_calendar.ui.adapter.GroupMemberRVAdapter;
@@ -46,6 +46,9 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group_member);
+
+        Intent intent = getIntent();
+        roomId = intent.getIntExtra("roomId", -1);
 
         noListTextView = findViewById(R.id.tv_no_list_group_member);
         groupMemberBack = findViewById(R.id.button_group_member_back);
@@ -91,7 +94,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
             }
         });
 
-        presenter.onStarted();
+        presenter.onStarted(roomId);
         checkList();
     }
 
@@ -111,6 +114,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     @Override
     public void addItems(ArrayList<RoomMember> members) {
         adapter.members = members;
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -163,5 +167,10 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     @Override
     public void showMessageForKickFail(String message) {
         Toast.makeText(this, "kick failed\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showMessageForGetMembersFail(String message) {
+        Toast.makeText(this, "loading failed\nmessage: " + message, Toast.LENGTH_LONG).show();
     }
 }

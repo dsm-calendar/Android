@@ -17,6 +17,7 @@ public class GroupSingleActivity extends AppCompatActivity {
     private TextView groupTitle;
     private ImageButton showSchedule;
     private ImageButton showMember;
+    private String groupId;
     private String groupName;
 
     @Override
@@ -25,7 +26,8 @@ public class GroupSingleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_group);
 
         Intent intent = getIntent();
-        groupName = intent.getStringExtra("roomId");
+        groupId = intent.getStringExtra("roomId");
+        groupName = intent.getStringExtra("roomTitle");
 
         groupTitle = findViewById(R.id.tv_group_name);
         showSchedule = findViewById(R.id.button_group_schedule);
@@ -38,6 +40,7 @@ public class GroupSingleActivity extends AppCompatActivity {
 
         showMember.setOnClickListener(v -> {
             Intent memberIntent = new Intent(GroupSingleActivity.this, GroupMemberActivity.class);
+            intent.putExtra("roomId", groupId);
             startActivity(memberIntent);
         });
 
