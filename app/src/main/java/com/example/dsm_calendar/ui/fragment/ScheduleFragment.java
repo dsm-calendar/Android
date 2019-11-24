@@ -24,6 +24,7 @@ import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.Schedule1Decorator;
+import com.example.dsm_calendar.ui.Decorator.Schedule2Decorator;
 import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.activity.AddScheduleActivity;
@@ -78,8 +79,9 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 new SaturdayDecorator(),
                 new SundayDecorator(),
                 new OnDayDecorator(),
-                new ScheduleDecorator(new TreeSet<>(schedules), getActivity()),
-                new Schedule1Decorator(new TreeSet<>(schedules1), getActivity()));
+                new ScheduleDecorator(schedules, getActivity()),
+                new Schedule1Decorator(schedules1, getActivity()),
+                new Schedule2Decorator(schedules2, getActivity()));
 
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
             todayList.clear();
@@ -118,8 +120,9 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     private void refreshScheduleDecorators() {
-        calendarView.addDecorators(new ScheduleDecorator(new TreeSet<>(schedules), getActivity()));
-        calendarView.addDecorators(new Schedule1Decorator(new TreeSet<>(schedules1), getActivity()));
+        calendarView.addDecorators(new ScheduleDecorator(schedules, getActivity()));
+        calendarView.addDecorators(new Schedule1Decorator(schedules1, getActivity()));
+        calendarView.addDecorators(new Schedule2Decorator(schedules2, getActivity()));
     }
 
     @Subscribe
