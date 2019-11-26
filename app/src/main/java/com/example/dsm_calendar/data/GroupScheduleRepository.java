@@ -36,12 +36,12 @@ public class GroupScheduleRepository implements GroupScheduleContract.Repository
 
     @Override
     public void getSchedule(int roomId, GetScheduleListener listener) {
-        Call<RoomInfo> call = CalendarRetrofit.getInstance().getService().getRoomInfo(token, roomId);
-        call.enqueue(new Callback<RoomInfo>() {
+        Call<ArrayList<Schedule>> call = CalendarRetrofit.getInstance().getService().getRoomSchedule(token, roomId);
+        call.enqueue(new Callback<ArrayList<Schedule>>() {
             @Override
-            public void onResponse(Call<RoomInfo> call, Response<RoomInfo> response) {
+            public void onResponse(Call<ArrayList<Schedule>> call, Response<ArrayList<Schedule>> response) {
                 if (response.code() == 200){
-                    listener.onSuccess(response.body().getRoomSchedule());
+                    listener.onSuccess(response.body());
                 } else if (response.code() == 500){
                     listener.onFail("server error");
                 } else {
@@ -50,7 +50,7 @@ public class GroupScheduleRepository implements GroupScheduleContract.Repository
             }
 
             @Override
-            public void onFailure(Call<RoomInfo> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Schedule>> call, Throwable t) {
                 listener.onFail(t.getMessage());
             }
         });

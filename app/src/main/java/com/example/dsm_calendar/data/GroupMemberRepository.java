@@ -5,7 +5,6 @@ import android.content.Context;
 import com.example.dsm_calendar.contract.GroupMemberContract;
 import com.example.dsm_calendar.data.DTO.RoomInfo;
 import com.example.dsm_calendar.data.DTO.RoomMember;
-import com.example.dsm_calendar.data.DTO.Student;
 import com.example.dsm_calendar.data.DTO.User;
 import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
 import com.example.dsm_calendar.data.Singleton.UserPreference;
@@ -48,12 +47,12 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
 
     @Override
     public void getMemberList(int roomId, GetMemberListListener listener) {
-        Call<RoomInfo> call = CalendarRetrofit.getInstance().getService().getRoomInfo(token, roomId);
-        call.enqueue(new Callback<RoomInfo>() {
+        Call<ArrayList<RoomMember>> call = CalendarRetrofit.getInstance().getService().getRoomMember(token, roomId);
+        call.enqueue(new Callback<ArrayList<RoomMember>>() {
             @Override
-            public void onResponse(Call<RoomInfo> call, Response<RoomInfo> response) {
+            public void onResponse(Call<ArrayList<RoomMember>> call, Response<ArrayList<RoomMember>> response) {
                 if (response.code() == 200){
-                    listener.onSuccess(response.body().getRoomMembers());
+                    listener.onSuccess(response.body());
                 } else if (response.code() == 500){
                     listener.onFail("server error");
                 } else{
@@ -62,7 +61,7 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
             }
 
             @Override
-            public void onFailure(Call<RoomInfo> call, Throwable t) {
+            public void onFailure(Call<ArrayList<RoomMember>> call, Throwable t) {
                 listener.onFail(t.getMessage());
             }
         });
