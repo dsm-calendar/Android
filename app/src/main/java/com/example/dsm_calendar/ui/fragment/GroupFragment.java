@@ -101,7 +101,6 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
             @Override
             public void onYesClicked(int roomId, int position) {
                 groupFragmentPresenter.onDeleteGroup(roomId, position);
-
             }
 
             @Override
@@ -175,6 +174,7 @@ public class GroupFragment extends Fragment implements GroupFragmentContract.Vie
     public void addItems(ArrayList<Room> rooms) {
         adapter.groupList = rooms;
         adapter.notifyDataSetChanged();
+        checkList();
     }
 
     @Override

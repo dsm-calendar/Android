@@ -49,7 +49,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
         setContentView(R.layout.activity_group_schedule);
 
         Intent roomIntent = getIntent();
-        roomIntent.getIntExtra("roomId", -1);
+        roomId = roomIntent.getIntExtra("roomId", -1);
 
         presenter.onStarted(roomId);
 

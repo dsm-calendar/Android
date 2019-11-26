@@ -66,7 +66,7 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
 
         public void bind(RoomMember member){
 //            std_no.setText(Integer.toString(member.ge));
-            name.setText(member.getMemberId());
+            name.setText(Integer.toString(member.getMemberId()));
 
             detail.setOnClickListener(v -> presenter.onClickDetail());
         }

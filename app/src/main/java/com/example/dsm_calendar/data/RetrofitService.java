@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.data;
 
+import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.data.DTO.Login;
 import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.DTO.Message;
@@ -95,5 +96,5 @@ public interface RetrofitService {
     Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body RoomMember roomMember);
 
     @DELETE("room/{roomId}")
-    Call<Void> deleteRoom(@Header("loginUserInfo") int token, @Path("roomId") int roomId);
+    Call<Void> deleteRoom(@Header("loginUserId") int token, @Path("roomId") int roomId);
 }

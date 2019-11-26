@@ -115,6 +115,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     public void addItems(ArrayList<RoomMember> members) {
         adapter.members = members;
         adapter.notifyDataSetChanged();
+        checkList();
     }
 
     @Override
