@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.data;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.dsm_calendar.contract.GroupMemberContract;
 import com.example.dsm_calendar.data.DTO.RoomInfo;
@@ -92,9 +93,10 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     }
 
     @Override
-    public void changeMemberAuth(int roomId, int authCode, ChangeMemberAuthListener listener) {
+    public void changeMemberAuth(int roomId, int memberId, int authCode, ChangeMemberAuthListener listener) {
         RoomMember member = new RoomMember();
         member.setMemberRight(authCode);
+        member.setMemberId(memberId);
         Call<ArrayList<RoomMember>> call = CalendarRetrofit.getInstance().getService().updateMemberAuth(token, roomId, member);
         call.enqueue(new Callback<ArrayList<RoomMember>>() {
             @Override
@@ -111,12 +113,30 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
             @Override
             public void onFailure(Call<ArrayList<RoomMember>> call, Throwable t) {
                 listener.onFail(t.getMessage());
+                Log.d("mydebug", t.getMessage());
             }
         });
     }
 
     @Override
-    public void kickMember(KickMemberListener listener) {
-        listener.onSuccess();
+    public void kickMember(int roomId, int memberId, KickMemberListener listener) {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().deleteRoomMember(token, roomId, memberId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200){
+                    listener.onSuccess();
+                } else if (response.code() == 500){
+                    listener.onFail("server error");
+                } else{
+                    listener.onFail(response.code() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                listener.onFail(t.getMessage());
+            }
+        });
     }
 }

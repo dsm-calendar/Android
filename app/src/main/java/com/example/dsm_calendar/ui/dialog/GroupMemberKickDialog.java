@@ -19,6 +19,9 @@ public class GroupMemberKickDialog extends Dialog implements View.OnClickListene
     private Button noButton;
     private DialogListener.GroupMemberKickDialogListener listener;
 
+    private int memberId;
+    private int position;
+
     public GroupMemberKickDialog(@NonNull Context context) {
         super(context);
 
@@ -47,7 +50,7 @@ public class GroupMemberKickDialog extends Dialog implements View.OnClickListene
                 dismiss();
                 break;
             case R.id.button_kickgroupmember_yes:
-                listener.onYesClicked();
+                listener.onYesClicked(memberId, position);
                 break;
             case R.id.button_kickgroupmember_no:
                 listener.onNoClicked();
@@ -57,5 +60,10 @@ public class GroupMemberKickDialog extends Dialog implements View.OnClickListene
 
     public void setGroupMemberKickDialogListener(DialogListener.GroupMemberKickDialogListener listener){
         this.listener = listener;
+    }
+
+    public void setMemberInfo(int memberId, int position){
+        this.memberId = memberId;
+        this.position = position;
     }
 }

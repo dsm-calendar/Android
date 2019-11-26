@@ -82,7 +82,7 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
         noListTextView = findViewById(R.id.tv_no_list_message);
 
         recyclerView = findViewById(R.id.rv_message_message);
-        adapter = new MessageRVAdapter(this, messagePresenter, messageList);
+        adapter = new MessageRVAdapter(this, messagePresenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         checkList();
@@ -154,6 +154,8 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
 
     @Override
     public void addItems(ArrayList<Message> messageList) {
-        this.messageList = messageList;
+        adapter.messageList = messageList;
+        adapter.notifyDataSetChanged();
+        checkList();
     }
 }

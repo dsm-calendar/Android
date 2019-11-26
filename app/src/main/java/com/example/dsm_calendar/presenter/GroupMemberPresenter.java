@@ -22,8 +22,8 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
-    public void onClickDetail() {
-        groupMemberView.showGroupMemberDetailDialog();
+    public void onClickDetail(int memberId, int position) {
+        groupMemberView.showGroupMemberDetailDialog(memberId, position);
     }
 
     @Override
@@ -58,11 +58,12 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
-    public void onMemberKickClicked() {
-        groupMemberRepo.kickMember(new GroupMemberRepository.KickMemberListener() {
+    public void onMemberKickClicked(int roomId, int memberId, int index) {
+        groupMemberRepo.kickMember(roomId, memberId, new GroupMemberRepository.KickMemberListener() {
             @Override
             public void onSuccess() {
                 groupMemberView.showMessageForKickSuccess();
+                groupMemberView.deleteItem(index);
             }
 
             @Override
@@ -73,8 +74,8 @@ public class GroupMemberPresenter implements GroupMemberContract.Presenter {
     }
 
     @Override
-    public void onMemberAuthChanged(int authCode, int roomId) {
-        groupMemberRepo.changeMemberAuth(roomId, authCode, new GroupMemberRepository.ChangeMemberAuthListener() {
+    public void onMemberAuthChanged(int authCode, int roomId, int memberId) {
+        groupMemberRepo.changeMemberAuth(roomId, memberId, authCode, new GroupMemberRepository.ChangeMemberAuthListener() {
             @Override
             public void onSuccess(ArrayList<RoomMember> members) {
                 groupMemberView.dismissGroupMemberAuthDialog();

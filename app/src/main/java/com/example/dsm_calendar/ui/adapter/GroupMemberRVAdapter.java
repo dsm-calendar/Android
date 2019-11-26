@@ -40,7 +40,7 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
     @Override
     public void onBindViewHolder(@NonNull GroupMemberViewHolder holder, int position) {
         RoomMember member = members.get(position);
-        holder.bind(member);
+        holder.bind(member, position);
     }
 
     @Override
@@ -64,11 +64,10 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
             detail = itemView.findViewById(R.id.button_item_group_member_detail);
         }
 
-        public void bind(RoomMember member){
+        public void bind(RoomMember member, int position){
 //            std_no.setText(Integer.toString(member.ge));
-            name.setText(Integer.toString(member.getMemberId()));
-
-            detail.setOnClickListener(v -> presenter.onClickDetail());
+            name.setText(member.getUserId());
+            detail.setOnClickListener(v -> presenter.onClickDetail(member.getMemberId(), position));
         }
     }
 }
