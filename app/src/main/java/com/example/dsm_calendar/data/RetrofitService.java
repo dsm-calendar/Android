@@ -60,7 +60,7 @@ public interface RetrofitService {
     Call<Void> deleteNotice(@Path("noticeId") int noticeId);
 
     @POST("timeTable")
-    Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTableUnits);
+    Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTable);
 
     @GET("timeTable")
     Call<ArrayList<TimeTableUnit>> getTimeTable(@Header("loginUserId") int token);
@@ -111,5 +111,5 @@ public interface RetrofitService {
     Call<Event> getEventDetail(@Header("loginUserId") int token, @Path("eventId") int eventId);
 
     @PUT("event/{eventId}")
-    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body Event event);
+    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body boolean eventStatus);
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.BannerManageContract;
 import com.example.dsm_calendar.data.BannerManageRepository;
+import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.data.SampleBanner;
 import com.example.dsm_calendar.presenter.BannerManagePresenter;
 import com.example.dsm_calendar.ui.adapter.BannerManageAdapter;
@@ -24,7 +25,7 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
     private RecyclerView recyclerView;
     private BannerManageAdapter adapter;
 
-    private BannerManagePresenter presenter = new BannerManagePresenter(this, new BannerManageRepository());
+    private BannerManagePresenter presenter = new BannerManagePresenter(this, new BannerManageRepository(this));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,39 +46,37 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
         presenter.onStarted();
     }
 
-    public void addItems(ArrayList<SampleBanner> bannerList){
-        adapter.bannerList = bannerList;
-    }
-
     @Override
-    public void addBannerList(ArrayList<SampleBanner> banners) {
+    public void addBannerList(ArrayList<Event> banners) {
         adapter.bannerList = banners;
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void deleteBanner(int position) {
+    public void manageBanner(int position, boolean eventStatus) {
         adapter.bannerList.remove(position);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void showMessageForBannerAcceptSuccess() {
-        Toast.makeText(this, "Banner Accept Success", Toast.LENGTH_LONG).show();
+    public void showMessageForBannerManageSuccess(boolean eventStatus) {
+        String manageStatus;
+        if (eventStatus){
+            manageStatus = "accept";
+        } else {
+            manageStatus = "reject";
+        }
+        Toast.makeText(this, String.format("Banner %s Success", manageStatus), Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void showMessageForBannerAcceptFail(String message) {
-        Toast.makeText(this, "Banner Accept Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void showMessageForBannerRejectSuccess() {
-        Toast.makeText(this, "Banner Reject Success", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void showMessageForBannerRejectFail(String message) {
-        Toast.makeText(this, "Banner Reject Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    public void showMessageForBannerManageFail(boolean eventStatus, String message) {
+        String manageStatus;
+        if (eventStatus){
+            manageStatus = "accept";
+        } else {
+            manageStatus = "reject";
+        }
+        Toast.makeText(this,  String.format("Banner %s Fail\nmessage: %s", manageStatus, message), Toast.LENGTH_LONG).show();
     }
 }

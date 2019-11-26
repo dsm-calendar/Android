@@ -9,22 +9,27 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 
 public class ScheduleDecorator implements DayViewDecorator {
 
-    private HashSet<Schedule> list;
+    private ArrayList<Schedule> list;
     private Context context;
 
     public ScheduleDecorator(Collection<Schedule> list, Context context) {
-        this.list = new HashSet<>(list);
+        this.list = new ArrayList<>(list);
         this.context = context;
     }
 
     @Override
     public boolean shouldDecorate(CalendarDay day) {
-        return list.contains(day);
+        for (Schedule unit : list){
+            if (unit.contain(day))
+                return true;
+        }
+        return false;
     }
 
     @Override

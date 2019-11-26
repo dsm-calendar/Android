@@ -2,6 +2,7 @@ package com.example.dsm_calendar.presenter;
 
 import com.example.dsm_calendar.contract.BannerManageContract;
 import com.example.dsm_calendar.data.BannerManageRepository;
+import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.data.SampleBanner;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
     public void onStarted() {
         bannerManageRepo.getBanners(new BannerManageRepository.GetBannerListener() {
             @Override
-            public void onSuccess(ArrayList<SampleBanner> banners) {
+            public void onSuccess(ArrayList<Event> banners) {
                 bannerManageView.addBannerList(banners);
             }
 
@@ -35,33 +36,17 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
     }
 
     @Override
-    public void onAccept(int id, int position) {
-        bannerManageRepo.addBanners(id, new BannerManageRepository.AddBannerListener() {
+    public void onManageButtonClicked(int id, boolean eventStatus, int position) {
+        bannerManageRepo.manageBanners(id, eventStatus, new BannerManageRepository.ManageBannerListener() {
             @Override
             public void onSuccess() {
-                bannerManageView.deleteBanner(position);
-                bannerManageView.showMessageForBannerAcceptSuccess();
+                bannerManageView.showMessageForBannerManageSuccess(eventStatus);
+                //TODO do something?
             }
 
             @Override
             public void onFail(String message) {
-                bannerManageView.showMessageForBannerAcceptFail(message);
-            }
-        });
-    }
-
-    @Override
-    public void onReject(int id, int position) {
-        bannerManageRepo.deleteBanners(id, new BannerManageRepository.DeleteBannerListener() {
-            @Override
-            public void onSuccess() {
-                bannerManageView.deleteBanner(position);
-                bannerManageView.showMessageForBannerRejectSuccess();
-            }
-
-            @Override
-            public void onFail(String message) {
-                bannerManageView.showMessageForBannerRejectFail(message);
+                bannerManageView.showMessageForBannerManageFail(eventStatus, message);
             }
         });
     }
