@@ -41,6 +41,13 @@ public class GroupScheduleRepository implements GroupScheduleContract.Repository
             @Override
             public void onResponse(Call<ArrayList<Schedule>> call, Response<ArrayList<Schedule>> response) {
                 if (response.code() == 200){
+                    ArrayList<Schedule> schedules = response.body();
+                    if (response.body() != null){
+                        for (int i = 0; i < schedules.size(); ++i){
+                            schedules.get(i).setExpended(false);
+                            schedules.get(i).setCalendarDay(schedules.get(i).getStartDate(), schedules.get(i).getEndDate());
+                        }
+                    }
                     listener.onSuccess(response.body());
                 } else if (response.code() == 500){
                     listener.onFail("server error");
