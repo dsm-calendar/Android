@@ -103,4 +103,13 @@ public interface RetrofitService {
 
     @DELETE("room/{roomId}")
     Call<Void> deleteRoom(@Header("loginUserId") int token, @Path("roomId") int roomId);
+
+    @GET("event")
+    Call<ArrayList<Event>> getEventList(@Header("loginUserId") int token);
+
+    @GET("event/{eventId}")
+    Call<Event> getEventDetail(@Header("loginUserId") int token, @Path("eventId") int eventId);
+
+    @PUT("event/{eventId}")
+    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body Event event);
 }
