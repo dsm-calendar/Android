@@ -1,5 +1,6 @@
 package com.example.dsm_calendar.data;
 
+import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.data.DTO.Login;
 import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.DTO.Message;
@@ -59,7 +60,7 @@ public interface RetrofitService {
     Call<Void> deleteNotice(@Path("noticeId") int noticeId);
 
     @POST("timeTable")
-    Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTableUnits);
+    Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTable);
 
     @GET("timeTable")
     Call<ArrayList<TimeTableUnit>> getTimeTable(@Header("loginUserId") int token);
@@ -86,7 +87,10 @@ public interface RetrofitService {
     Call<ArrayList<Room>> createRoom(@Header("loginUserId") int token, @Body Room room);
 
     @GET("room/{roomId}")
-    Call<RoomInfo> getRoomInfo(@Header("loginUserId") int token, @Path("roomId") int roomId);
+    Call<ArrayList<Schedule>> getRoomSchedule(@Header("loginUserId") int token, @Path("roomId") int roomId);
+
+    @GET("room/roomMember/{roomId}")
+    Call<ArrayList<RoomMember>> getRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId);
 
     @POST("room/{roomId}")
     Call<Void> inviteMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body User user);
@@ -94,6 +98,18 @@ public interface RetrofitService {
     @PUT("room/{roomId}")
     Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body RoomMember roomMember);
 
+    @DELETE("room/roomMember/{roomId}/{roomMemberUserId}")
+    Call<Void> deleteRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Path("roomMemberUserId") int memberId);
+
     @DELETE("room/{roomId}")
-    Call<Void> deleteRoom(@Header("loginUserInfo") int token, @Path("roomId") int roomId);
+    Call<Void> deleteRoom(@Header("loginUserId") int token, @Path("roomId") int roomId);
+
+    @GET("event")
+    Call<ArrayList<Event>> getEventList(@Header("loginUserId") int token);
+
+    @GET("event/{eventId}")
+    Call<Event> getEventDetail(@Header("loginUserId") int token, @Path("eventId") int eventId);
+
+    @PUT("event/{eventId}")
+    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body boolean eventStatus);
 }

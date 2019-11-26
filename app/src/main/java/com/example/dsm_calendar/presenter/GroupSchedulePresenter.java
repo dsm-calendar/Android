@@ -20,8 +20,8 @@ public class GroupSchedulePresenter implements GroupScheduleContract.Presenter {
     }
 
     @Override
-    public void onStarted() {
-        groupScheduleRepo.getSchedule(new GroupScheduleRepository.GetScheduleListener() {
+    public void onStarted(int roomId) {
+        groupScheduleRepo.getSchedule(roomId, new GroupScheduleRepository.GetScheduleListener() {
             @Override
             public void onSuccess(ArrayList<Schedule> schedules) {
                 groupScheduleView.getList(schedules);
@@ -35,11 +35,12 @@ public class GroupSchedulePresenter implements GroupScheduleContract.Presenter {
     }
 
     @Override
-    public void onItemDeleteClicked(int index) {
+    public void onItemDeleteClicked(int scheduleId, int index) {
         groupScheduleRepo.deleteSchedule(new GroupScheduleRepository.DeleteScheduleListener() {
             @Override
             public void onSuccess() {
                 groupScheduleView.showMessageForDeleteSuccess();
+                groupScheduleView.deleteSchedule(index);
             }
 
             @Override

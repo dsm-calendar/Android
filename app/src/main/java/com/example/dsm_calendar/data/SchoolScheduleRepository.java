@@ -42,7 +42,7 @@ public class SchoolScheduleRepository implements SchoolScheduleContract.Reposito
             public void onResponse(Call<SchoolSchedule> call, Response<SchoolSchedule> response) {
                 if (response.code() == 200){
                     ArrayList<Schedule> schedules = response.body().getSchedules();
-                    if (response.body() != null){
+                    if (response.body().getSchedules() != null){
                         for (int i = 0; i < schedules.size(); ++i){
                             schedules.get(i).setExpended(false);
                             schedules.get(i).setCalendarDay(schedules.get(i).getStartDate(), schedules.get(i).getEndDate());

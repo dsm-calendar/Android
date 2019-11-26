@@ -23,6 +23,7 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
     private ImageButton check;
 
     private int authCode;
+    private int memberId;
     private DialogListener.GroupMemberAuthDialogListener listener;
 
     public GroupMemberAuthDialog(@NonNull Context context) {
@@ -58,7 +59,7 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button_groupmemberauth_admin:
-                authCode = 1;
+                authCode = 3;
                 userAuth.setText("관리자 권한");
                 break;
             case R.id.button_groupmemberauth_writer:
@@ -66,19 +67,23 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
                 userAuth.setText("쓰기 권한");
                 break;
             case R.id.button_groupmemberauth_reader:
-                authCode = 3;
+                authCode = 1;
                 userAuth.setText("읽기 권한");
                 break;
             case R.id.button_groupmemberauth_off:
                 dismiss();
                 break;
             case R.id.button_groupmemberauth_check:
-                listener.onClickCheck(authCode);
+                listener.onClickCheck(authCode, memberId);
                 break;
         }
     }
 
     public void setGroupMemberAuthDialogListener(DialogListener.GroupMemberAuthDialogListener listener){
         this.listener = listener;
+    }
+
+    public void setMemberId(int memberId){
+        this.memberId = memberId;
     }
 }

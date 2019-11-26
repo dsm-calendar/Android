@@ -21,6 +21,9 @@ public class GroupMemberMenuDialog extends BottomSheetDialogFragment implements 
     private ConstraintLayout kickMember;
     private DialogListener.GroupMemberMenuDialogListener listener;
 
+    private int memberId;
+    private int position;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,11 +47,11 @@ public class GroupMemberMenuDialog extends BottomSheetDialogFragment implements 
                 dismiss();
                 break;
             case R.id.cl_group_member_menu_fix_member_auth:
-                listener.onClickMemberAuth();
+                listener.onClickMemberAuth(memberId);
                 dismiss();
                 break;
             case R.id.cl_group_member_menu_kick_member:
-                listener.onClickMemberKick();
+                listener.onClickMemberKick(memberId, position);
                 dismiss();
                 break;
         }
@@ -56,5 +59,10 @@ public class GroupMemberMenuDialog extends BottomSheetDialogFragment implements 
 
     public void setListener(DialogListener.GroupMemberMenuDialogListener listener){
         this.listener = listener;
+    }
+
+    public void setMemberInfo(int memberId, int position){
+        this.memberId = memberId;
+        this.position = position;
     }
 }

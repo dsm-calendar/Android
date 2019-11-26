@@ -11,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.data.SampleBanner;
 import com.example.dsm_calendar.presenter.BannerManagePresenter;
 
@@ -22,7 +24,7 @@ public class BannerManageAdapter extends RecyclerView.Adapter<BannerManageAdapte
     private Context context;
     private BannerManagePresenter presenter;
 
-    public ArrayList<SampleBanner> bannerList = new ArrayList<>();
+    public ArrayList<Event> bannerList = new ArrayList<>();
 
     public BannerManageAdapter(Context context, BannerManagePresenter presenter){
         this.context = context;
@@ -39,9 +41,8 @@ public class BannerManageAdapter extends RecyclerView.Adapter<BannerManageAdapte
 
     @Override
     public void onBindViewHolder(@NonNull BannerManageViewHolder holder, int position) {
-        int image = bannerList.get(position).getImage();
-        String content = bannerList.get(position).getContent();
-        holder.bind(image, content, position);
+        Event event = bannerList.get(position);
+        holder.bind(event, position);
     }
 
     @Override
@@ -65,12 +66,12 @@ public class BannerManageAdapter extends RecyclerView.Adapter<BannerManageAdapte
             delete = itemView.findViewById(R.id.button_bannermanage_delete);
         }
 
-        public void bind(int image, String bannerContent, int position){
-            banner.setImageResource(image);
-            content.setText(bannerContent);
+        public void bind(Event event, int position){
+            Glide.with(context).load(event.getEventPoster()).into(banner);
+            content.setText(event.getEventDetail());
 
-            accept.setOnClickListener(v -> presenter.onAccept(0, position));
-            delete.setOnClickListener(v -> presenter.onReject(0, position));
+            accept.setOnClickListener(v -> presenter.onManageButtonClicked(event.getEventId(), true, position));
+            delete.setOnClickListener(v -> presenter.onManageButtonClicked(event.getEventId(), true, position));
         }
     }
 }

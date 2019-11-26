@@ -32,11 +32,11 @@ public interface DialogListener {
     }
 
     interface GroupMemberAuthDialogListener {
-        void onClickCheck(int authCode);
+        void onClickCheck(int authCode, int memberId);
     }
 
     interface GroupMemberKickDialogListener {
-        void onYesClicked();
+        void onYesClicked(int memberId, int index);
         void onNoClicked();
     }
 
@@ -55,8 +55,8 @@ public interface DialogListener {
     }
 
     interface GroupMemberMenuDialogListener {
-        void onClickMemberAuth();
-        void onClickMemberKick();
+        void onClickMemberAuth(int memberId);
+        void onClickMemberKick(int memberId, int position);
     }
 
     interface LogoutDialogListener {

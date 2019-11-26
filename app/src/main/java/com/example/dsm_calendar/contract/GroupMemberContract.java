@@ -7,8 +7,9 @@ import java.util.ArrayList;
 public interface GroupMemberContract {
 
     interface View{
-        void showGroupMemberDetailDialog();
+        void showGroupMemberDetailDialog(int memberId, int position);
         void addItems(ArrayList<RoomMember> members);
+        void deleteItem(int index);
         void dismissInviteDialog();
         void dismissGroupMemberAuthDialog();
         void showMessageForInviteSuccess();
@@ -21,17 +22,17 @@ public interface GroupMemberContract {
     }
 
     interface Presenter{
-        void onClickDetail();
+        void onClickDetail(int memberId, int position);
         void onStarted(int roomId);
         void onInviteClicked(String userId, int roomId);
-        void onMemberKickClicked();
-        void onMemberAuthChanged(int authCode, int roomId);
+        void onMemberKickClicked(int roomId, int memberId, int index);
+        void onMemberAuthChanged(int authCode, int roomId, int memberId);
     }
 
     interface Repository{
         void getMemberList(int roomId, GroupMemberRepository.GetMemberListListener listener);
         void inviteMember(int roomId, String user, GroupMemberRepository.InviteMemberListener listener);
-        void changeMemberAuth(int roomId, int authCode, GroupMemberRepository.ChangeMemberAuthListener listener);
-        void kickMember(GroupMemberRepository.KickMemberListener listener);
+        void changeMemberAuth(int roomId, int memberId, int authCode, GroupMemberRepository.ChangeMemberAuthListener listener);
+        void kickMember(int roomId, int memberId, GroupMemberRepository.KickMemberListener listener);
     }
 }

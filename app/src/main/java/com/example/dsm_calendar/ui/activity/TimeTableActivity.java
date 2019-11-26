@@ -85,23 +85,27 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
     }
 
     private void syncTimeTable() {
-        Queue<TimeTableUnit> unitQueue = new ArrayDeque<>();
+        ArrayList<TimeTableUnit> units = new ArrayList<>();
 
         for (int i = 0; i < tables.size(); ++i) {
-            String[] tableInfo = tables.get(i).getText().toString().split("\n");
+            String rawInfo = tables.get(i).getText().toString();
+            if (rawInfo.indexOf('\n') == -1) continue;
+
             int index = Integer.parseInt(String.format("%d%d%d%d", curGrade, curClass, i % 5, i / 5));
-            unitQueue.add(new TimeTableUnit(tableInfo[0], tableInfo[1], index));
+            String[] tableInfo = rawInfo.split("\n");
+            units.add(new TimeTableUnit(tableInfo[0], tableInfo[1], index));
         }
 
 
+        int index = getStartIndex();
         int page = curGrade * 10 + curClass;
-        for (Iterator<TimeTableUnit> it = timeTableUnits.iterator(); it.hasNext();)
-             if (it.next().getTimeTableIndex() % 100 == page)
+        for (Iterator<TimeTableUnit> it = timeTableUnits.iterator(); it.hasNext();) {
+            TimeTableUnit val = it.next();
+            if ((val.getTimeTableIndex() / 100) == page)
                 it.remove();
-
-        for (int index = getStartIndex(); !unitQueue.isEmpty(); ++index) {
-            timeTableUnits.add(index++, unitQueue.poll());
         }
+
+        timeTableUnits.addAll(index, units);
     }
 
     private int getStartIndex() {
