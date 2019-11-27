@@ -119,8 +119,14 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         for (EditText table : tables)
             table.setText("");
 
-        for (int i = 0; i < timeTableUnits.size(); ++i)
-            tables.get(i).setText(timeTableUnits.get(i).getSubject()+"\n"+timeTableUnits.get(i).getTeacher());
+        for (int i = 0; i < timeTableUnits.size(); ++i) {
+            TimeTableUnit unit = timeTableUnits.get(i);
+            int index = unit.getTimeTableIndex();
+            int day = index / 10 % 10 - 1;
+            int time = index % 10 - 1;
+            EditText table = tables.get(time * 5 + day);
+            table.setText(unit.getSubject() + "\n" + unit.getTeacher());
+        }
     }
 
     public void setGrade(View v) {

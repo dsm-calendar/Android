@@ -140,7 +140,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
 
     @Override
     public void getItems(ArrayList<Schedule> list) {
-        schedules = list;
+        adapter.scheduleList = list;
     }
 
     @Override
