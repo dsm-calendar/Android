@@ -17,8 +17,8 @@ public class BannerRequirePresenter implements BannerRquireContract.Presenter {
     }
 
     @Override
-    public void onRequireClicked() {
-        bannerRequireRepo.requireBanner(new BannerRequireRepository.RequireBannerListener() {
+    public void onRequireClicked(String eventDetail, String eventPoster, String startDate, String endDate) {
+        bannerRequireRepo.requireBanner(eventDetail, eventPoster, startDate, endDate, new BannerRequireRepository.RequireBannerListener() {
             @Override
             public void onSuccess() {
                 bannerRequireView.showMessageForBannerRequireSuccess();

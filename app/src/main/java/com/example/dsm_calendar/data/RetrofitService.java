@@ -6,7 +6,6 @@ import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.DTO.Room;
-import com.example.dsm_calendar.data.DTO.RoomInfo;
 import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.data.DTO.SchoolSchedule;
@@ -106,6 +105,9 @@ public interface RetrofitService {
 
     @GET("event")
     Call<ArrayList<Event>> getEventList(@Header("loginUserId") int token);
+
+    @POST("event")
+    Call<Void> requireEvent(@Header("loginUserId") int token, @Body Event event);
 
     @GET("event/{eventId}")
     Call<Event> getEventDetail(@Header("loginUserId") int token, @Path("eventId") int eventId);

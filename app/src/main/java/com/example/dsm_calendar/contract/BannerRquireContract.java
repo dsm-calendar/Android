@@ -10,10 +10,10 @@ public interface BannerRquireContract {
     }
 
     interface Presenter{
-        void onRequireClicked();
+        void onRequireClicked(String eventDetail, String eventPoster, String startDate, String endDate);
     }
 
     interface Repository{
-        void requireBanner(BannerRequireRepository.RequireBannerListener listener);
+        void requireBanner(String eventDetail, String eventPoster, String startDate, String endDate, BannerRequireRepository.RequireBannerListener listener);
     }
 }

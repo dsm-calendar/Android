@@ -45,7 +45,7 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
     private File tempFile;
     private String path;
 
-    private BannerRequirePresenter presenter = new BannerRequirePresenter(this, new BannerRequireRepository());
+    private BannerRequirePresenter presenter = new BannerRequirePresenter(this, new BannerRequireRepository(this));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -128,7 +128,11 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
                 }
                 break;
             case R.id.button_bannerrequire_buttons_requirebanner:
-                presenter.onRequireClicked();
+                if (isContentFilled()){
+                    presenter.onRequireClicked(bannerContents.getText().toString(), tempFile.getAbsolutePath(), "", "");
+                } else {
+                    Toast.makeText(this, "내용이 전부 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -158,5 +162,10 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
         Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
         selectedImage.setImageBitmap(originalBm);
         selectedTextView.setText(path);
+    }
+
+    private boolean isContentFilled(){
+        return tempFile.getAbsoluteFile() != null && bannerContents.getText().toString().equals("");
+        //TODO why this returns true then edit text is empty
     }
 }
