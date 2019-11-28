@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 public class MainFragment extends Fragment implements RadioButton.OnClickListener, MainFragmentContract.View {
 
     private RecyclerView recyclerView;
+    private RadioGroup radioGroup;
     private MainRVTodayAdapter mainRVTodayAdapter;
     private MainRVNoticeAdapter mainRVNoticeAdapter;
     private MainBannerAdapter mainBannerAdapter;
@@ -48,6 +50,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
     private TableLayout table;
     private ArrayList<TextView> tables;
+    private boolean isNoticeChecked = true;
 
     private View rootView;
 
@@ -61,14 +64,28 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         noListTextView = rootView.findViewById(R.id.tv_no_list_main);
+        noListTextView.setOnClickListener(this);
+
+        radioGroup = rootView.findViewById(R.id.rg_main_listButtons);
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId){
+                case R.id.button_main_notice:
+                    recyclerView.setAdapter(mainRVNoticeAdapter);
+                    checkList(mainRVNoticeAdapter.getItemCount());
+                    isNoticeChecked = true;
+                    break;
+                case R.id.button_main_schedule:
+                    recyclerView.setAdapter(mainRVTodayAdapter);
+                    checkList(mainRVTodayAdapter.getItemCount());
+                    isNoticeChecked = false;
+                    break;
+            }
+        });
 
         recyclerView = rootView.findViewById(R.id.rv_main_listBox);
         mainRVTodayAdapter = new MainRVTodayAdapter(getActivity(), presenter);
         mainRVNoticeAdapter = new MainRVNoticeAdapter(getActivity(), presenter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        rootView.findViewById(R.id.button_main_notice).setOnClickListener(this);
-        rootView.findViewById(R.id.button_main_schedule).setOnClickListener(this);
 
         mainBannerAdapter = new MainBannerAdapter(getActivity());
 
@@ -96,12 +113,9 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.button_main_notice){
-            recyclerView.setAdapter(mainRVNoticeAdapter);
-            checkList(mainRVNoticeAdapter.getItemCount());
-        } else if(v.getId() == R.id.button_main_schedule){
-            recyclerView.setAdapter(mainRVTodayAdapter);
-            checkList(mainRVTodayAdapter.getItemCount());
+        if (v.getId() == R.id.tv_no_list_main && isNoticeChecked){
+            Intent intent = new Intent(getActivity(), NoticeActivity.class);
+            startActivity(intent);
         }
     }
 
