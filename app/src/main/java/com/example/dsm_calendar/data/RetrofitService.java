@@ -50,14 +50,14 @@ public interface RetrofitService {
     @GET("schoolCalendar")
     Call<SchoolSchedule> getSchoolCalendar(@Header("loginUserId") int token);
 
-    @POST("notice/")
-    Call<ArrayList<Notice>> getNoticeList();
+    @GET("notice")
+    Call<ArrayList<Notice>> getNoticeList(@Header("loginUserId") int token);
 
-    @POST("notice/addNotice")
-    Call<Void> addNotice(@Body Notice notice);
+    @POST("notice")
+    Call<Void> addNotice(@Header("loginUserId") int token, @Body Notice notice);
 
-    @DELETE("notice/delete/{noticeId}")
-    Call<Void> deleteNotice(@Path("noticeId") int noticeId);
+    @DELETE("notice/{noticeId}")
+    Call<Void> deleteNotice(@Header("loginUserId") int token, @Path("noticeId") int noticeId);
 
     @POST("timeTable")
     Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTable);

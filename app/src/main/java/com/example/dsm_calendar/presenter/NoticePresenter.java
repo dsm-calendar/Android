@@ -29,7 +29,7 @@ public class NoticePresenter implements NoticeContract.Presenter {
 
             @Override
             public void onFail(String message) {
-
+                noticeView.showMessageForLoadingFail(message);
             }
         });
     }

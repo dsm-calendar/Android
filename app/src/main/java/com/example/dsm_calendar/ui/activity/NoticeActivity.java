@@ -26,7 +26,7 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
     private NoticeRVAdapter adapter;
     private ImageButton noticeAddButton;
 
-    private NoticePresenter noticePresenter = new NoticePresenter(this, new NoticeRepository());
+    private NoticePresenter noticePresenter = new NoticePresenter(this, new NoticeRepository(this));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,8 +62,14 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
     }
 
     @Override
+    public void showMessageForLoadingFail(String message) {
+        Toast.makeText(this, "Loading Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void addItems(ArrayList<Notice> noticeList) {
         adapter.noticeList = noticeList;
+        adapter.notifyDataSetChanged();
     }
 
     @Override

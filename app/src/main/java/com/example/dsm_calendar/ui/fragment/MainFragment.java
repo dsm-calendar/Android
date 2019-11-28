@@ -143,9 +143,13 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     @Override
     public void setMainFragment(MainResponse response) {
         mainRVNoticeAdapter.notice = response.getNotices();
+        mainRVNoticeAdapter.notifyDataSetChanged();
         mainBannerAdapter.bannerList = response.getEventList();
+        mainBannerAdapter.notifyDataSetChanged();
         timeTableUnits = response.getTimeTables();
         setTimeTable();
+        recyclerView.setAdapter(mainRVNoticeAdapter);
+        checkList(mainRVNoticeAdapter.getItemCount());
     }
 
     @Override

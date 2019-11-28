@@ -1,8 +1,11 @@
 package com.example.dsm_calendar.data;
 
+import android.content.Context;
+
 import com.example.dsm_calendar.contract.NoticeContract;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.Singleton.CalendarRetrofit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 
 import java.util.ArrayList;
 
@@ -11,6 +14,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NoticeRepository implements NoticeContract.Repository {
+
+    private Context context;
+    private int token;
+
+    public NoticeRepository(Context context) {
+        this.context = context;
+        this.token = UserPreference.getInstance(this.context).getUserID();
+    }
 
     public interface GetNoticeListener{
         void onSuccess(ArrayList<Notice> noticeList);
@@ -24,7 +35,7 @@ public class NoticeRepository implements NoticeContract.Repository {
 
     @Override
     public void getNoticeList(GetNoticeListener listener) {
-        Call<ArrayList<Notice>> call = CalendarRetrofit.getInstance().getService().getNoticeList();
+        Call<ArrayList<Notice>> call = CalendarRetrofit.getInstance().getService().getNoticeList(token);
         call.enqueue(new Callback<ArrayList<Notice>>() {
             @Override
             public void onResponse(Call<ArrayList<Notice>> call, Response<ArrayList<Notice>> response) {
@@ -33,7 +44,7 @@ public class NoticeRepository implements NoticeContract.Repository {
                 } else if(response.code() == 500){
                     listener.onFail("server error");
                 } else {
-                    listener.onFail(Integer.toString(response.code()));
+                    listener.onFail(response.code() + "");
                 }
             }
 
@@ -46,7 +57,7 @@ public class NoticeRepository implements NoticeContract.Repository {
 
     @Override
     public void deleteNotice(int noticeId, DeleteNoticeListener listener) {
-        Call<Void> call = CalendarRetrofit.getInstance().getService().deleteNotice(noticeId);
+        Call<Void> call = CalendarRetrofit.getInstance().getService().deleteNotice(token, noticeId);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
