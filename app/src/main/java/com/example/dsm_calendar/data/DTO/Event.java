@@ -6,6 +6,15 @@ public class Event{
 	private String eventPoster;
 	private String eventDetail;
 	private String startDate;
+	private boolean eventStatus;
+
+	public boolean isEventStatus() {
+		return eventStatus;
+	}
+
+	public void setEventStatus(boolean eventStatus) {
+		this.eventStatus = eventStatus;
+	}
 
 	public void setEventId(int eventId){
 		this.eventId = eventId;

@@ -25,6 +25,7 @@ import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.MainFragmentRepository;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
+import com.example.dsm_calendar.ui.activity.BannerManageActivity;
 import com.example.dsm_calendar.ui.activity.MainActivity;
 import com.example.dsm_calendar.ui.activity.NoticeActivity;
 import com.example.dsm_calendar.ui.adapter.MainBannerAdapter;
@@ -42,6 +43,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private MainRVNoticeAdapter mainRVNoticeAdapter;
     private MainBannerAdapter mainBannerAdapter;
     private TextView noListTextView;
+    private TextView noBannerTextView;
     private PageIndicatorView pageIndicatorView;
 
     private MainFragmentPresenter presenter = new MainFragmentPresenter(this, new MainFragmentRepository(getActivity()));
@@ -66,17 +68,20 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         noListTextView = rootView.findViewById(R.id.tv_no_list_main);
         noListTextView.setOnClickListener(this);
 
+        noBannerTextView = rootView.findViewById(R.id.tv_no_list_banner);
+        noBannerTextView.setOnClickListener(this);
+
         radioGroup = rootView.findViewById(R.id.rg_main_listButtons);
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             switch (checkedId){
                 case R.id.button_main_notice:
                     recyclerView.setAdapter(mainRVNoticeAdapter);
-                    checkList(mainRVNoticeAdapter.getItemCount());
+                    checkNoticeList(mainRVNoticeAdapter.getItemCount());
                     isNoticeChecked = true;
                     break;
                 case R.id.button_main_schedule:
                     recyclerView.setAdapter(mainRVTodayAdapter);
-                    checkList(mainRVTodayAdapter.getItemCount());
+                    checkNoticeList(mainRVTodayAdapter.getItemCount());
                     isNoticeChecked = false;
                     break;
             }
@@ -117,6 +122,10 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
             Intent intent = new Intent(getActivity(), NoticeActivity.class);
             startActivity(intent);
         }
+        if (v.getId() == R.id.tv_no_list_banner){
+            Intent intent = new Intent(getActivity(), BannerManageActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void setBanner(View rootView){
@@ -129,14 +138,22 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
     private void setRecyclerView(){
         recyclerView.setAdapter(mainRVNoticeAdapter);
-        checkList(mainRVNoticeAdapter.getItemCount());
+        checkNoticeList(mainRVNoticeAdapter.getItemCount());
     }
 
-    private void checkList(int size){
+    private void checkNoticeList(int size){
         if(size == 0){
             noListTextView.setVisibility(View.VISIBLE);
         } else {
             noListTextView.setVisibility(View.GONE);
+        }
+    }
+
+    private void checkBannerList(int size){
+        if (size == 0){
+            noBannerTextView.setVisibility(View.VISIBLE);
+        } else {
+            noBannerTextView.setVisibility(View.GONE);
         }
     }
 
@@ -149,7 +166,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
         timeTableUnits = response.getTimeTables();
         setTimeTable();
         recyclerView.setAdapter(mainRVNoticeAdapter);
-        checkList(mainRVNoticeAdapter.getItemCount());
+        checkBannerList(mainBannerAdapter.getCount());
+        checkNoticeList(mainRVNoticeAdapter.getItemCount());
     }
 
     @Override

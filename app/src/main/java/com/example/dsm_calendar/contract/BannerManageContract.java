@@ -10,6 +10,7 @@ public interface BannerManageContract {
     interface View{
         void addBannerList(ArrayList<Event> banners);
         void manageBanner(int position, boolean eventStatus);
+        void showMessageForBannerLoadingFail(String message);
         void showMessageForBannerManageSuccess(boolean eventStatus);
         void showMessageForBannerManageFail(boolean eventStatus, String message);
     }
