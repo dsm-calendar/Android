@@ -63,7 +63,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         groupMemberAddDialog.setAddGroupMemberDialogListener(ID -> presenter.onInviteClicked(ID, roomId));
 
         groupMemberAuthDialog = new GroupMemberAuthDialog(this);
-        groupMemberAuthDialog.setGroupMemberAuthDialogListener((authCode, member) -> presenter.onMemberAuthChanged(authCode, roomId, member));
+        groupMemberAuthDialog.setGroupMemberAuthDialogListener((authCode, member) -> presenter.onMemberAuthChanged(authCode, member.getMemberId(), member));
 
         groupMemberKickDialog = new GroupMemberKickDialog(this);
         groupMemberKickDialog.setGroupMemberKickDialogListener(new DialogListener.GroupMemberKickDialogListener() {

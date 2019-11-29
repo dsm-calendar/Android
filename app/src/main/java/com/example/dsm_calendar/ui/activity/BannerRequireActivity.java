@@ -165,6 +165,6 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
     }
 
     private boolean isContentFilled(){
-        return tempFile.getAbsoluteFile() != null && bannerContents.getText().toString().equals("");
+        return tempFile.getAbsoluteFile() != null && !bannerContents.getText().toString().equals("");
     }
 }

@@ -26,7 +26,7 @@ public interface GroupMemberContract {
         void onStarted(int roomId);
         void onInviteClicked(String userId, int roomId);
         void onMemberKickClicked(int roomId, RoomMember member, int index);
-        void onMemberAuthChanged(int authCode, int roomId, RoomMember member);
+        void onMemberAuthChanged(int authCode, int memberId, RoomMember member);
     }
 
     interface Repository{

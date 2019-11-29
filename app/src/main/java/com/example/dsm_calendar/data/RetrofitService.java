@@ -95,11 +95,11 @@ public interface RetrofitService {
     @POST("room/{roomId}")
     Call<Void> inviteMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body User user);
 
-    @PUT("room/{roomId}")
-    Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body RoomMember roomMember);
+    @PUT("room/roomMember/{memberId}")
+    Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("memberId") int memberId, @Body RoomMember roomMember);
 
     @DELETE("room/roomMember/{roomId}")
-    Call<Void> deleteRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Query("memberId") RoomMember member);
+    Call<Void> deleteRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Query("memberId") int memberId);
 
     @DELETE("room/{roomId}")
     Call<Void> deleteRoom(@Header("loginUserId") int token, @Path("roomId") int roomId);
