@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.util.DialogListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -21,7 +22,7 @@ public class GroupMemberMenuDialog extends BottomSheetDialogFragment implements 
     private ConstraintLayout kickMember;
     private DialogListener.GroupMemberMenuDialogListener listener;
 
-    private int memberId;
+    private RoomMember member;
     private int position;
 
     @Nullable
@@ -47,11 +48,11 @@ public class GroupMemberMenuDialog extends BottomSheetDialogFragment implements 
                 dismiss();
                 break;
             case R.id.cl_group_member_menu_fix_member_auth:
-                listener.onClickMemberAuth(memberId);
+                listener.onClickMemberAuth(member);
                 dismiss();
                 break;
             case R.id.cl_group_member_menu_kick_member:
-                listener.onClickMemberKick(memberId, position);
+                listener.onClickMemberKick(member, position);
                 dismiss();
                 break;
         }
@@ -61,8 +62,8 @@ public class GroupMemberMenuDialog extends BottomSheetDialogFragment implements 
         this.listener = listener;
     }
 
-    public void setMemberInfo(int memberId, int position){
-        this.memberId = memberId;
+    public void setMemberInfo(RoomMember member, int position){
+        this.member = member;
         this.position = position;
     }
 }

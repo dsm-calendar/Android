@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.util.DialogListener;
 
 public class GroupMemberKickDialog extends Dialog implements View.OnClickListener{
@@ -19,7 +20,7 @@ public class GroupMemberKickDialog extends Dialog implements View.OnClickListene
     private Button noButton;
     private DialogListener.GroupMemberKickDialogListener listener;
 
-    private int memberId;
+    private RoomMember member;
     private int position;
 
     public GroupMemberKickDialog(@NonNull Context context) {
@@ -50,7 +51,7 @@ public class GroupMemberKickDialog extends Dialog implements View.OnClickListene
                 dismiss();
                 break;
             case R.id.button_kickgroupmember_yes:
-                listener.onYesClicked(memberId, position);
+                listener.onYesClicked(member, position);
                 break;
             case R.id.button_kickgroupmember_no:
                 listener.onNoClicked();
@@ -62,8 +63,8 @@ public class GroupMemberKickDialog extends Dialog implements View.OnClickListene
         this.listener = listener;
     }
 
-    public void setMemberInfo(int memberId, int position){
-        this.memberId = memberId;
+    public void setMemberInfo(RoomMember member, int position){
+        this.member = member;
         this.position = position;
     }
 }

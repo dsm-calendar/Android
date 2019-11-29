@@ -93,10 +93,7 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     }
 
     @Override
-    public void changeMemberAuth(int roomId, int memberId, int authCode, ChangeMemberAuthListener listener) {
-        RoomMember member = new RoomMember();
-        member.setMemberRight(authCode);
-        member.setMemberId(memberId);
+    public void changeMemberAuth(int roomId, RoomMember member, int authCode, ChangeMemberAuthListener listener) {
         Call<ArrayList<RoomMember>> call = CalendarRetrofit.getInstance().getService().updateMemberAuth(token, roomId, member);
         call.enqueue(new Callback<ArrayList<RoomMember>>() {
             @Override
@@ -119,8 +116,8 @@ public class GroupMemberRepository implements GroupMemberContract.Repository {
     }
 
     @Override
-    public void kickMember(int roomId, int memberId, KickMemberListener listener) {
-        Call<Void> call = CalendarRetrofit.getInstance().getService().deleteRoomMember(token, roomId, memberId);
+    public void kickMember(int roomId, RoomMember member, KickMemberListener listener) {
+        Call<Void> call = CalendarRetrofit.getInstance().getService().deleteRoomMember(token, roomId, member);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

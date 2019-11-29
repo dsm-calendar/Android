@@ -63,13 +63,13 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         groupMemberAddDialog.setAddGroupMemberDialogListener(ID -> presenter.onInviteClicked(ID, roomId));
 
         groupMemberAuthDialog = new GroupMemberAuthDialog(this);
-        groupMemberAuthDialog.setGroupMemberAuthDialogListener((authCode, memberId) -> presenter.onMemberAuthChanged(authCode, roomId, memberId));
+        groupMemberAuthDialog.setGroupMemberAuthDialogListener((authCode, member) -> presenter.onMemberAuthChanged(authCode, roomId, member));
 
         groupMemberKickDialog = new GroupMemberKickDialog(this);
         groupMemberKickDialog.setGroupMemberKickDialogListener(new DialogListener.GroupMemberKickDialogListener() {
             @Override
-            public void onYesClicked(int memberId, int index) {
-                presenter.onMemberKickClicked(roomId, memberId, index);
+            public void onYesClicked(RoomMember member, int index) {
+                presenter.onMemberKickClicked(roomId, member, index);
             }
 
             @Override
@@ -84,14 +84,14 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
         groupMemberMenuDialog = new GroupMemberMenuDialog();
         groupMemberMenuDialog.setListener(new DialogListener.GroupMemberMenuDialogListener() {
             @Override
-            public void onClickMemberAuth(int memberId) {
-                groupMemberAuthDialog.setMemberId(memberId);
+            public void onClickMemberAuth(RoomMember member) {
+                groupMemberAuthDialog.setMemberId(member);
                 groupMemberAuthDialog.show();
             }
 
             @Override
-            public void onClickMemberKick(int memberId, int position) {
-                groupMemberKickDialog.setMemberInfo(memberId, position);
+            public void onClickMemberKick(RoomMember member, int position) {
+                groupMemberKickDialog.setMemberInfo(member, position);
                 groupMemberKickDialog.show();
             }
         });
@@ -109,8 +109,8 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
     }
 
     @Override
-    public void showGroupMemberDetailDialog(int memberId, int position) {
-        groupMemberMenuDialog.setMemberInfo(memberId, position);
+    public void showGroupMemberDetailDialog(RoomMember member, int position) {
+        groupMemberMenuDialog.setMemberInfo(member, position);
         groupMemberMenuDialog.show(getSupportFragmentManager(), "group Member setting");
     }
 

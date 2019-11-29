@@ -23,6 +23,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitService {
     @POST("join")
@@ -97,8 +98,8 @@ public interface RetrofitService {
     @PUT("room/{roomId}")
     Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body RoomMember roomMember);
 
-    @DELETE("room/roomMember/{roomId}/{roomMemberUserId}")
-    Call<Void> deleteRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Path("roomMemberUserId") int memberId);
+    @DELETE("room/roomMember/{roomId}")
+    Call<Void> deleteRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Query("memberId") RoomMember member);
 
     @DELETE("room/{roomId}")
     Call<Void> deleteRoom(@Header("loginUserId") int token, @Path("roomId") int roomId);
