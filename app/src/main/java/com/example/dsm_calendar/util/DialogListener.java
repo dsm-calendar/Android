@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.util;
 
 import com.example.dsm_calendar.data.DTO.Room;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 public interface DialogListener {
@@ -32,11 +33,11 @@ public interface DialogListener {
     }
 
     interface GroupMemberAuthDialogListener {
-        void onClickCheck(int authCode, int memberId);
+        void onClickCheck(int authCode, RoomMember member);
     }
 
     interface GroupMemberKickDialogListener {
-        void onYesClicked(int memberId, int index);
+        void onYesClicked(RoomMember member, int index);
         void onNoClicked();
     }
 
@@ -55,8 +56,8 @@ public interface DialogListener {
     }
 
     interface GroupMemberMenuDialogListener {
-        void onClickMemberAuth(int memberId);
-        void onClickMemberKick(int memberId, int position);
+        void onClickMemberAuth(RoomMember member);
+        void onClickMemberKick(RoomMember member, int position);
     }
 
     interface LogoutDialogListener {

@@ -20,11 +20,9 @@ import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.TimeTableRepository;
 import com.example.dsm_calendar.presenter.TimeTablePresenter;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Queue;
 
 public class TimeTableActivity extends AppCompatActivity implements TimeTableContract.View {
 
@@ -91,11 +89,10 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
             String rawInfo = tables.get(i).getText().toString();
             if (rawInfo.indexOf('\n') == -1) continue;
 
-            int index = Integer.parseInt(String.format("%d%d%d%d", curGrade, curClass, i % 5, i / 5));
+            int index = Integer.parseInt(String.format("%d%d%d%d", curGrade, curClass, i % 5, i / 5)) + 11;
             String[] tableInfo = rawInfo.split("\n");
             units.add(new TimeTableUnit(tableInfo[0], tableInfo[1], index));
         }
-
 
         int index = getStartIndex();
         int page = curGrade * 10 + curClass;
@@ -122,8 +119,14 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         for (EditText table : tables)
             table.setText("");
 
-        for (int i = 0; i < timeTableUnits.size(); ++i)
-            tables.get(i).setText(timeTableUnits.get(i).getSubject()+"\n"+timeTableUnits.get(i).getTeacher());
+        for (int i = 0; i < timeTableUnits.size(); ++i) {
+            TimeTableUnit unit = timeTableUnits.get(i);
+            int index = unit.getTimeTableIndex();
+            int day = index / 10 % 10 - 1;
+            int time = index % 10 - 1;
+            EditText table = tables.get(time * 5 + day);
+            table.setText(unit.getSubject() + "\n" + unit.getTeacher());
+        }
     }
 
     public void setGrade(View v) {

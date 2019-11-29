@@ -6,7 +6,6 @@ import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.DTO.Message;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.DTO.Room;
-import com.example.dsm_calendar.data.DTO.RoomInfo;
 import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.data.DTO.SchoolSchedule;
@@ -24,6 +23,7 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitService {
     @POST("join")
@@ -50,14 +50,14 @@ public interface RetrofitService {
     @GET("schoolCalendar")
     Call<SchoolSchedule> getSchoolCalendar(@Header("loginUserId") int token);
 
-    @POST("notice/")
-    Call<ArrayList<Notice>> getNoticeList();
+    @GET("notice")
+    Call<ArrayList<Notice>> getNoticeList(@Header("loginUserId") int token);
 
-    @POST("notice/addNotice")
-    Call<Void> addNotice(@Body Notice notice);
+    @POST("notice")
+    Call<Void> addNotice(@Header("loginUserId") int token, @Body Notice notice);
 
-    @DELETE("notice/delete/{noticeId}")
-    Call<Void> deleteNotice(@Path("noticeId") int noticeId);
+    @DELETE("notice/{noticeId}")
+    Call<Void> deleteNotice(@Header("loginUserId") int token, @Path("noticeId") int noticeId);
 
     @POST("timeTable")
     Call<ArrayList<TimeTableUnit>> updateTimetable(@Header("loginUserId") int token, @Body ArrayList<TimeTableUnit> timeTable);
@@ -95,17 +95,20 @@ public interface RetrofitService {
     @POST("room/{roomId}")
     Call<Void> inviteMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body User user);
 
-    @PUT("room/{roomId}")
-    Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("roomId") int roomId, @Body RoomMember roomMember);
+    @PUT("room/roomMember/{memberId}")
+    Call<ArrayList<RoomMember>> updateMemberAuth(@Header("loginUserId") int token, @Path("memberId") int memberId, @Body RoomMember roomMember);
 
-    @DELETE("room/roomMember/{roomId}/{roomMemberUserId}")
-    Call<Void> deleteRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Path("roomMemberUserId") int memberId);
+    @DELETE("room/roomMember/{roomId}")
+    Call<Void> deleteRoomMember(@Header("loginUserId") int token, @Path("roomId") int roomId, @Query("memberId") int memberId);
 
     @DELETE("room/{roomId}")
     Call<Void> deleteRoom(@Header("loginUserId") int token, @Path("roomId") int roomId);
 
     @GET("event")
     Call<ArrayList<Event>> getEventList(@Header("loginUserId") int token);
+
+    @POST("event")
+    Call<Void> requireEvent(@Header("loginUserId") int token, @Body Event event);
 
     @GET("event/{eventId}")
     Call<Event> getEventDetail(@Header("loginUserId") int token, @Path("eventId") int eventId);

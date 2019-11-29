@@ -6,6 +6,22 @@ public class Event{
 	private String eventPoster;
 	private String eventDetail;
 	private String startDate;
+	private boolean eventStatus;
+
+	public Event(String eventDetail, String eventPoster, String startDate, String endDate) {
+		this.endDate = endDate;
+		this.eventPoster = eventPoster;
+		this.eventDetail = eventDetail;
+		this.startDate = startDate;
+	}
+
+	public boolean isEventStatus() {
+		return eventStatus;
+	}
+
+	public void setEventStatus(boolean eventStatus) {
+		this.eventStatus = eventStatus;
+	}
 
 	public void setEventId(int eventId){
 		this.eventId = eventId;

@@ -51,23 +51,29 @@ public class GroupMemberRVAdapter extends RecyclerView.Adapter<GroupMemberRVAdap
     class GroupMemberViewHolder extends RecyclerView.ViewHolder {
 
         ImageView profile;
-        TextView std_no;
         TextView name;
+        TextView auth;
         ImageButton detail;
 
         public GroupMemberViewHolder(@NonNull View itemView) {
             super(itemView);
 
             profile = itemView.findViewById(R.id.iv_item_group_member);
-            std_no = itemView.findViewById(R.id.tv_item_group_member_std_no);
             name = itemView.findViewById(R.id.tv_item_group_member_name);
+            auth = itemView.findViewById(R.id.tv_item_group_member_auth);
             detail = itemView.findViewById(R.id.button_item_group_member_detail);
         }
 
         public void bind(RoomMember member, int position){
-//            std_no.setText(Integer.toString(member.ge));
+            String memberAuth = "";
+            switch (member.getMemberRight()){
+                case 1: memberAuth = "읽기 권한"; break;
+                case 2: memberAuth = "쓰기 권한"; break;
+                case 3: memberAuth = "관리자 권한"; break;
+            }
+            auth.setText(memberAuth);
             name.setText(member.getUserId());
-            detail.setOnClickListener(v -> presenter.onClickDetail(member.getMemberId(), position));
+            detail.setOnClickListener(v -> presenter.onClickDetail(member, position));
         }
     }
 }

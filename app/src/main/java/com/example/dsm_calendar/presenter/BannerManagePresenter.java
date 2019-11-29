@@ -30,7 +30,7 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
 
             @Override
             public void onFail(String message) {
-
+                bannerManageView.showMessageForBannerLoadingFail(message);
             }
         });
     }

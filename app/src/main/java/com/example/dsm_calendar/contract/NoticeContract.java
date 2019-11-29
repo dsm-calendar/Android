@@ -9,6 +9,7 @@ public interface NoticeContract {
     interface View {
         void showMessageForDeleteNoticeSuccess();
         void showMessageForDeleteNoticeFail(String message);
+        void showMessageForLoadingFail(String message);
         void addItems(ArrayList<Notice> noticeList);
         void startNoticeDetailActivity(String title, String content);
     }

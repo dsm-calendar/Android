@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.RoomMember;
 import com.example.dsm_calendar.util.DialogListener;
 
 public class GroupMemberAuthDialog extends Dialog implements View.OnClickListener {
@@ -23,7 +24,7 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
     private ImageButton check;
 
     private int authCode;
-    private int memberId;
+    private RoomMember member;
     private DialogListener.GroupMemberAuthDialogListener listener;
 
     public GroupMemberAuthDialog(@NonNull Context context) {
@@ -74,7 +75,7 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
                 dismiss();
                 break;
             case R.id.button_groupmemberauth_check:
-                listener.onClickCheck(authCode, memberId);
+                listener.onClickCheck(authCode, member);
                 break;
         }
     }
@@ -83,7 +84,7 @@ public class GroupMemberAuthDialog extends Dialog implements View.OnClickListene
         this.listener = listener;
     }
 
-    public void setMemberId(int memberId){
-        this.memberId = memberId;
+    public void setMemberId(RoomMember member){
+        this.member = member;
     }
 }

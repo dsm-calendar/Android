@@ -1,6 +1,7 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -27,6 +28,7 @@ import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
 import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 
 public class BannerRequireActivity extends AppCompatActivity implements BannerRquireContract.View, View.OnClickListener{
@@ -43,7 +45,7 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
     private File tempFile;
     private String path;
 
-    private BannerRequirePresenter presenter = new BannerRequirePresenter(this, new BannerRequireRepository());
+    private BannerRequirePresenter presenter = new BannerRequirePresenter(this, new BannerRequireRepository(this));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,22 +73,24 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_FROM_ALBUM) {
-            Uri selectedImageUri = data.getData();
-            Cursor cursor = null;
-            try {
-                String[] proj = {MediaStore.Images.Media.DATA};
-                assert selectedImageUri != null;
-                cursor = getContentResolver().query(selectedImageUri, proj, null, null, null);
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                tempFile = new File(cursor.getString(column_index));
-                path = cursor.getString(column_index).substring(cursor.getString(column_index).lastIndexOf("/")+1);
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
+            if (resultCode != RESULT_CANCELED){
+                Uri selectedImageUri = data.getData();
+                Cursor cursor = null;
+                try {
+                    String[] proj = {MediaStore.Images.Media.DATA};
+                    assert selectedImageUri != null;
+                    cursor = getContentResolver().query(selectedImageUri, proj, null, null, null);
+                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                    cursor.moveToFirst();
+                    tempFile = new File(cursor.getString(column_index));
+                    path = cursor.getString(column_index).substring(cursor.getString(column_index).lastIndexOf("/")+1);
+                } finally {
+                    if (cursor != null) {
+                        cursor.close();
+                    }
                 }
+                setImage();
             }
-            setImage();
         }
     }
 
@@ -116,10 +120,19 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
             case R.id.tv_bannerrequire_selected:
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-                startActivityForResult(intent, PICK_FROM_ALBUM);
+                try {
+                    intent.putExtra("return-data", true);
+                    startActivityForResult(intent, PICK_FROM_ALBUM);
+                } catch (ActivityNotFoundException e){
+
+                }
                 break;
             case R.id.button_bannerrequire_buttons_requirebanner:
-                presenter.onRequireClicked();
+                if (isContentFilled()){
+                    presenter.onRequireClicked(bannerContents.getText().toString(), tempFile.getAbsolutePath(), "", "");
+                } else {
+                    Toast.makeText(this, "내용이 전부 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -149,5 +162,9 @@ public class BannerRequireActivity extends AppCompatActivity implements BannerRq
         Bitmap originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
         selectedImage.setImageBitmap(originalBm);
         selectedTextView.setText(path);
+    }
+
+    private boolean isContentFilled(){
+        return tempFile.getAbsoluteFile() != null && !bannerContents.getText().toString().equals("");
     }
 }

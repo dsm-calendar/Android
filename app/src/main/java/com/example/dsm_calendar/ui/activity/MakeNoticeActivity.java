@@ -26,7 +26,7 @@ public class MakeNoticeActivity extends AppCompatActivity implements MakeNoticeC
     private String title;
     private String content;
 
-    private MakeNoticePresenter presenter = new MakeNoticePresenter(this, new MakeNoticeRepository());
+    private MakeNoticePresenter presenter = new MakeNoticePresenter(this, new MakeNoticeRepository(this));
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

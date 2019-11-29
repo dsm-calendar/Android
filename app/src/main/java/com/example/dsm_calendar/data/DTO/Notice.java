@@ -8,7 +8,7 @@ public class Notice{
 	private String startDate;
 	private boolean expanded;
 
-	public Notice(String noticeContent, String endDate, String noticeTitle, String startDate) {
+	public Notice(String noticeTitle, String noticeContent, String endDate, String startDate) {
 		this.noticeContent = noticeContent;
 		this.endDate = endDate;
 		this.noticeTitle = noticeTitle;

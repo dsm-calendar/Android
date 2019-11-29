@@ -59,6 +59,11 @@ public class BannerManageActivity extends AppCompatActivity implements BannerMan
     }
 
     @Override
+    public void showMessageForBannerLoadingFail(String message) {
+        Toast.makeText(this, "banner Loading Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
     public void showMessageForBannerManageSuccess(boolean eventStatus) {
         String manageStatus;
         if (eventStatus){
