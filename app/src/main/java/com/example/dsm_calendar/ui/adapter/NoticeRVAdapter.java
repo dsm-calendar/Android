@@ -22,12 +22,14 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
 
     public ArrayList<Notice> noticeList = new ArrayList<>();
     private Context context;
+    private boolean isAdmin;
 
     private NoticePresenter noticePresenter;
 
-    public NoticeRVAdapter(Context context, NoticePresenter noticePresenter){
+    public NoticeRVAdapter(Context context, NoticePresenter noticePresenter, boolean isAdmin){
         this.context = context;
         this.noticePresenter = noticePresenter;
+        this.isAdmin = isAdmin;
     }
 
     @NonNull
@@ -65,7 +67,11 @@ public class NoticeRVAdapter extends RecyclerView.Adapter<NoticeRVAdapter.Notice
         public void bind(int position){
             this.titleText.setText(noticeList.get(position).getNoticeTitle());
             int noticeId = noticeList.get(position).getNoticeId();
-
+            if (isAdmin){
+                delete.setVisibility(View.VISIBLE);
+            } else {
+                delete.setVisibility(View.GONE);
+            }
             delete.setOnClickListener(v -> noticePresenter.onClickItemDelete(noticeId));
         }
     }

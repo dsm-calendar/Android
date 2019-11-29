@@ -21,8 +21,9 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder{
     private ImageButton delete;
 
     private View.OnClickListener listener;
+    private boolean isAdmin;
 
-    public ScheduleViewHolder(@NonNull View itemView, View.OnClickListener listener) {
+    public ScheduleViewHolder(@NonNull View itemView, boolean isAdmin, View.OnClickListener listener) {
         super(itemView);
 
         tv_title = itemView.findViewById(R.id.tv_schedule_title);
@@ -33,12 +34,18 @@ public class ScheduleViewHolder extends RecyclerView.ViewHolder{
         delete = itemView.findViewById(R.id.button_my_schedule_delete);
 
         this.listener = listener;
+        this.isAdmin = isAdmin;
     }
 
     public void bind(Schedule schedule) {
         boolean expended = schedule.getExpended();
         content.setVisibility(expended ? View.VISIBLE : View.GONE);
         delete.setVisibility(expended ? View.VISIBLE : View.GONE);
+        if (isAdmin){
+            delete.setVisibility(View.VISIBLE);
+        } else {
+            delete.setVisibility(View.GONE);
+        }
 
         tv_title.setText(schedule.getScheduleTitle());
         tv_date.setText(String.format("%s ~ %s", schedule.getStartDate(), schedule.getEndDate()));

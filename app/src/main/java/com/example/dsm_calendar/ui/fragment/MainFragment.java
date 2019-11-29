@@ -24,6 +24,7 @@ import com.example.dsm_calendar.contract.MainFragmentContract;
 import com.example.dsm_calendar.data.DTO.MainResponse;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
 import com.example.dsm_calendar.data.MainFragmentRepository;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
 import com.example.dsm_calendar.ui.activity.BannerManageActivity;
 import com.example.dsm_calendar.ui.activity.MainActivity;
@@ -53,6 +54,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     private TableLayout table;
     private ArrayList<TextView> tables;
     private boolean isNoticeChecked = true;
+    private boolean isAdmin = UserPreference.getInstance(getActivity()).getIsAdmin();
 
     private View rootView;
 
@@ -118,7 +120,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.tv_no_list_main && isNoticeChecked){
+        if (v.getId() == R.id.tv_no_list_main && isNoticeChecked && isAdmin){
             Intent intent = new Intent(getActivity(), NoticeActivity.class);
             startActivity(intent);
         }

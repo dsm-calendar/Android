@@ -2,6 +2,7 @@ package com.example.dsm_calendar.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.NoticeContract;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.NoticeRepository;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.NoticePresenter;
 import com.example.dsm_calendar.ui.adapter.NoticeRVAdapter;
 
@@ -25,6 +27,8 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
     private RecyclerView noticeRecyclerView;
     private NoticeRVAdapter adapter;
     private ImageButton noticeAddButton;
+    private boolean isAdmin = UserPreference.getInstance(this).getIsAdmin();
+    //TODO have to test about this code
 
     private NoticePresenter noticePresenter = new NoticePresenter(this, new NoticeRepository(this));
 
@@ -37,8 +41,10 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
         noticeRecyclerView = findViewById(R.id.rv_notice);
         noticeAddButton = findViewById(R.id.button_notice_add);
 
+        adminMode(UserPreference.getInstance(this).getIsAdmin());
+
         noticeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new NoticeRVAdapter(this, noticePresenter);
+        adapter = new NoticeRVAdapter(this, noticePresenter, UserPreference.getInstance(this).getIsAdmin());
 
         noticeRecyclerView.setAdapter(adapter);
 
@@ -78,5 +84,13 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
         intent.putExtra("title", title);
         intent.putExtra("content", content);
         startActivity(intent);
+    }
+
+    private void adminMode(boolean isAdmin){
+        if (isAdmin){
+            noticeAddButton.setVisibility(View.VISIBLE);
+        } else {
+            noticeAddButton.setVisibility(View.GONE);
+        }
     }
 }

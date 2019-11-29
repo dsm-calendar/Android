@@ -19,16 +19,18 @@ public class SchoolScheduleAdapter extends RecyclerView.Adapter<ScheduleViewHold
     public ArrayList<Schedule> scheduleList = new ArrayList<>();
     private SchoolSchedulePresenter presenter;
     private int position;
+    private boolean isAdmin;
 
-    public SchoolScheduleAdapter(SchoolSchedulePresenter presenter){
+    public SchoolScheduleAdapter(SchoolSchedulePresenter presenter, boolean isAdmin){
         this.presenter = presenter;
+        this.isAdmin = isAdmin;
     }
 
     @NonNull
     @Override
     public ScheduleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fragment_schedule, parent, false);
-        ScheduleViewHolder viewHolder = new ScheduleViewHolder(view, v -> presenter.onDeleteClicked(position));
+        ScheduleViewHolder viewHolder = new ScheduleViewHolder(view, isAdmin,  v -> presenter.onDeleteClicked(position));
         return viewHolder;
     }
 
