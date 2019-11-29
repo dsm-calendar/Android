@@ -21,14 +21,14 @@
         android:src="@drawable/ic_sprout"/>
 
     <TextView
-        android:id="@+id/tv_item_group_member_std_no"
+        android:id="@+id/tv_item_group_member_auth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_item_group_member"
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
-        android:text="@string/sample_student_number"
+        android:text="sample"
         android:textSize="10dp"
         android:textColor="#737373"
         android:fontFamily="@font/bm_dohyun"/>
@@ -37,7 +37,7 @@
         android:id="@+id/tv_item_group_member_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_group_member_std_no"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_group_member_auth"
         app:layout_constraintStart_toEndOf="@id/iv_item_group_member"
         android:layout_marginTop="5dp"
         android:layout_marginStart="20dp"
