@@ -41,6 +41,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
     private int roomId;
+    private int groupCalendarId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
 
         Intent roomIntent = getIntent();
         roomId = roomIntent.getIntExtra("roomId", -1);
+        groupCalendarId = roomIntent.getIntExtra("groupCalendarId", -1);
 
         presenter.onStarted(roomId);
 
@@ -86,6 +88,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
         addButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddScheduleActivity.class);
             intent.putExtra("schedule code", "group");
+            intent.putExtra("groupCalendarId", groupCalendarId);
             startActivity(intent);
         });
 

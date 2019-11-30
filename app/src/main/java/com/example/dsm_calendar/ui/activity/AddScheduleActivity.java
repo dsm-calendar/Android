@@ -50,6 +50,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
     private SelectDateDialog selectDateDialog;
 
     private String scheduleCode;
+    private int groupCalendarId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
 
         Intent intent = getIntent();
         scheduleCode = intent.getStringExtra("schedule code");
+        groupCalendarId = intent.getIntExtra("groupCalendarId", -1);
     }
 
     @Override
@@ -125,7 +127,13 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 scheduleTitle = title.getText().toString();
                 scheduleContent = content.getText().toString();
                 if (isAllChecked()) {
-                    presenter.onSaveClicked(scheduleCode, scheduleTitle, scheduleContent, startDateText.getText().toString(), endDateText.getText().toString());
+                    presenter.onSaveClicked(
+                            scheduleCode,
+                            scheduleTitle,
+                            scheduleContent,
+                            startDateText.getText().toString(),
+                            endDateText.getText().toString(),
+                            groupCalendarId);
                 } else {
                     Toast.makeText(this, "모든 칸이 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
                 }
