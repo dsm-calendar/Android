@@ -127,7 +127,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
 
     @Subscribe
     public void getNewScheduleList(ScheduleEvent status) {
-        if (status.getStatus() == ScheduleEvent.EVENT.SCHEDULE_ADD) {
+        if (status.getStatus() == ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD) {
             scheduleFragmentPresenter.onStarted();
         }
     }

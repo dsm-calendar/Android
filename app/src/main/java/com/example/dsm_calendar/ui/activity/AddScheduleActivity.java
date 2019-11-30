@@ -95,7 +95,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
 
     @Override
     public void finishActivity() {
-        BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.EVENT.SCHEDULE_ADD));
+        BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD));
         finish();
     }
 
@@ -120,7 +120,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 break;
             case R.id.button_addschedule_cancel:
             case R.id.button_addschedule_off:
-                BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.EVENT.JUST_FINISHED));
+                BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.SCHEDULE_EVENT.JUST_FINISHED));
                 finish();
                 break;
             case R.id.button_addschedule_confirm:

@@ -15,9 +15,12 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.NoticeContract;
 import com.example.dsm_calendar.data.DTO.Notice;
 import com.example.dsm_calendar.data.NoticeRepository;
+import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.NoticePresenter;
 import com.example.dsm_calendar.ui.adapter.NoticeRVAdapter;
+import com.example.dsm_calendar.util.NoticeEvent;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,8 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
 
+        BusProvider.getInstance().register(this);
+
         offButton = findViewById(R.id.button_notice_off);
         noticeRecyclerView = findViewById(R.id.rv_notice);
         noticeAddButton = findViewById(R.id.button_notice_add);
@@ -55,6 +60,19 @@ public class NoticeActivity extends AppCompatActivity implements NoticeContract.
         });
 
         noticePresenter.onStarted();
+    }
+
+    @Override
+    protected void onDestroy() {
+        BusProvider.getInstance().unregister(this);
+        super.onDestroy();
+    }
+
+    @Subscribe
+    public void getNewNoticeList(NoticeEvent status){
+        if (status.getStatus() == NoticeEvent.NOTICE_EVENT.NOTICE_ADD){
+            noticePresenter.onStarted();
+        }
     }
 
     @Override
