@@ -26,7 +26,7 @@ public class ScheduleDecorator implements DayViewDecorator {
     @Override
     public boolean shouldDecorate(CalendarDay day) {
         for (Schedule unit : list){
-            if (unit.contain(day))
+            if (day.isInRange(unit.getStartDay(), unit.getEndDay()))
                 return true;
         }
         return false;

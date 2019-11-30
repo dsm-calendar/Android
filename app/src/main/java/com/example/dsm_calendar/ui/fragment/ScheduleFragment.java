@@ -34,10 +34,8 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeSet;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
 
