@@ -63,7 +63,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         offButton.setOnClickListener(this);
         addSchedule.setOnClickListener(this);
 
-        adapter = new SchoolScheduleAdapter(presenter);
+        adapter = new SchoolScheduleAdapter(presenter, UserPreference.getInstance(this).getIsAdmin());
         presenter.onStarted();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -120,7 +120,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
 
     @Subscribe
     public void getNewScheduleList(ScheduleEvent status) {
-        if (status.getStatus() == ScheduleEvent.EVENT.SCHEDULE_ADD) {
+        if (status.getStatus() == ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD) {
             presenter.onStarted();
         }
         Toast.makeText(this, "Event Bus", Toast.LENGTH_SHORT).show();
