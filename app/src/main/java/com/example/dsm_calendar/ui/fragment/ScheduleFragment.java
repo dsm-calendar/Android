@@ -148,7 +148,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     @Override
     public void getItems(ArrayList<Schedule> schedules) {
         this.schedules = schedules;
-//        refreshScheduleDecorators(schedules);
+        refreshScheduleDecorators();
         checkList();
     }
 
