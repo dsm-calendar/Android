@@ -16,13 +16,16 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.GroupScheduleContract;
 import com.example.dsm_calendar.data.GroupScheduleRepository;
 import com.example.dsm_calendar.data.DTO.Schedule;
+import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.GroupSchedulePresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
 import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.adapter.GroupScheduleRVAdapter;
+import com.example.dsm_calendar.util.ScheduleEvent;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,15 +44,18 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
     private int roomId;
+    private int groupCalendarId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_group_schedule);
+        BusProvider.getInstance().register(this);
 
         Intent roomIntent = getIntent();
         roomId = roomIntent.getIntExtra("roomId", -1);
+        groupCalendarId = roomIntent.getIntExtra("groupCalendarId", -1);
 
         presenter.onStarted(roomId);
 
@@ -59,7 +65,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
         recyclerView = findViewById(R.id.rv_group_schedule);
         addButton = findViewById(R.id.button_group_schedule_add);
 
-        adapter = new GroupScheduleRVAdapter(presenter);
+        adapter = new GroupScheduleRVAdapter(presenter, this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -86,11 +92,25 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
         addButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddScheduleActivity.class);
             intent.putExtra("schedule code", "group");
+            intent.putExtra("groupCalendarId", groupCalendarId);
             startActivity(intent);
         });
 
         calendarView.setSelectedDate(new Date());
         checkList();
+    }
+
+    @Override
+    protected void onDestroy() {
+        BusProvider.getInstance().unregister(this);
+        super.onDestroy();
+    }
+
+    @Subscribe
+    public void getNewScheduleList(ScheduleEvent event){
+        if (event.getStatus() == ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD){
+            presenter.onStarted(roomId);
+        }
     }
 
     private void checkList(){

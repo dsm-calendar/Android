@@ -70,6 +70,7 @@ public class GroupMemberActivity extends AppCompatActivity implements GroupMembe
             @Override
             public void onYesClicked(RoomMember member, int index) {
                 presenter.onMemberKickClicked(roomId, member, index);
+                groupMemberKickDialog.dismiss();
             }
 
             @Override

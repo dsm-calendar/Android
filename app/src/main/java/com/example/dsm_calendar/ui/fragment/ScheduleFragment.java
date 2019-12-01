@@ -34,10 +34,8 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeSet;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
 
@@ -127,7 +125,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
 
     @Subscribe
     public void getNewScheduleList(ScheduleEvent status) {
-        if (status.getStatus() == ScheduleEvent.EVENT.SCHEDULE_ADD) {
+        if (status.getStatus() == ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD) {
             scheduleFragmentPresenter.onStarted();
         }
     }
@@ -150,7 +148,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     @Override
     public void getItems(ArrayList<Schedule> schedules) {
         this.schedules = schedules;
-//        refreshScheduleDecorators(schedules);
+        refreshScheduleDecorators();
         checkList();
     }
 

@@ -18,8 +18,8 @@ public class AddSchedulePresenter implements AddScheduleContract.Presenter {
     }
 
     @Override
-    public void onSaveClicked(String scheduleCode, String title, String content, String startDay, String endDay) {
-        addScheduleRepository.addSchedule(scheduleCode, title, content, startDay, endDay, new AddScheduleRepository.AddScheduleListener() {
+    public void onSaveClicked(String scheduleCode, String title, String content, String startDay, String endDay, int groupCalendarId) {
+        addScheduleRepository.addSchedule(scheduleCode, title, content, startDay, endDay, groupCalendarId, new AddScheduleRepository.AddScheduleListener() {
             @Override
             public void onSuccess() {
                 addScheduleActivity.showMessageForSuccess();

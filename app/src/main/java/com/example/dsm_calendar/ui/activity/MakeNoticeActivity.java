@@ -13,7 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.MakeNoticeContract;
 import com.example.dsm_calendar.data.MakeNoticeRepository;
+import com.example.dsm_calendar.data.Singleton.BusProvider;
 import com.example.dsm_calendar.presenter.MakeNoticePresenter;
+import com.example.dsm_calendar.util.NoticeEvent;
 
 public class MakeNoticeActivity extends AppCompatActivity implements MakeNoticeContract.View, View.OnClickListener{
 
@@ -49,6 +51,7 @@ public class MakeNoticeActivity extends AppCompatActivity implements MakeNoticeC
         switch (v.getId()){
             case R.id.button_makeNotice_off:
             case R.id.button_makeNotice_buttons_cancel:
+                BusProvider.getInstance().post(new NoticeEvent(NoticeEvent.NOTICE_EVENT.JUST_FINISHED));
                 finish();
                 break;
             case R.id.button_makeNotice_buttons_makeNotice:
@@ -79,6 +82,7 @@ public class MakeNoticeActivity extends AppCompatActivity implements MakeNoticeC
 
     @Override
     public void finishActivity() {
+        BusProvider.getInstance().post(new NoticeEvent(NoticeEvent.NOTICE_EVENT.NOTICE_ADD));
         finish();
     }
 }

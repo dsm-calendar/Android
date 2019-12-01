@@ -1,21 +1,21 @@
 package com.example.dsm_calendar.util;
 
 public class ScheduleEvent {
-    public enum EVENT{
+    public enum SCHEDULE_EVENT{
         SCHEDULE_ADD, JUST_FINISHED
     }
 
-    private EVENT status;
+    private SCHEDULE_EVENT status;
 
-    public ScheduleEvent(EVENT status){
+    public ScheduleEvent(SCHEDULE_EVENT status){
         this.status = status;
     }
 
-    public EVENT getStatus() {
+    public SCHEDULE_EVENT getStatus() {
         return status;
     }
 
-    public void setStatus(EVENT status) {
+    public void setStatus(SCHEDULE_EVENT status) {
         this.status = status;
     }
 }

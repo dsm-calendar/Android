@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.DTO.Schedule;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.ScheduleFragmentPresenter;
 import com.example.dsm_calendar.ui.viewHolder.ScheduleViewHolder;
 
@@ -32,7 +33,8 @@ public class ScheduleFragmentRVAdapter extends RecyclerView.Adapter<ScheduleView
     @Override
     public ScheduleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fragment_schedule, parent, false);
-        ScheduleViewHolder holder = new ScheduleViewHolder(item, v -> scheduleFragmentPresenter.onItemDeleteClicked(list.get(position).getScheduleId(), position));
+        ScheduleViewHolder holder = new ScheduleViewHolder(
+                item, UserPreference.getInstance(context).getIsAdmin(), v -> scheduleFragmentPresenter.onItemDeleteClicked(list.get(position).getScheduleId(), position));
         return holder;
     }
 

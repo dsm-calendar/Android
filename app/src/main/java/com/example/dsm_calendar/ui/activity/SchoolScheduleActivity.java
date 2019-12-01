@@ -17,6 +17,7 @@ import com.example.dsm_calendar.contract.SchoolScheduleContract;
 import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.data.SchoolScheduleRepository;
 import com.example.dsm_calendar.data.Singleton.BusProvider;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.SchoolSchedulePresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
@@ -57,10 +58,12 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         noListTextView = findViewById(R.id.tv_no_list_school_schedule);
         addSchedule = findViewById(R.id.button_school_schedule_add);
 
+        adminMode(UserPreference.getInstance(this).getIsAdmin());
+
         offButton.setOnClickListener(this);
         addSchedule.setOnClickListener(this);
 
-        adapter = new SchoolScheduleAdapter(presenter);
+        adapter = new SchoolScheduleAdapter(presenter, UserPreference.getInstance(this).getIsAdmin());
         presenter.onStarted();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,7 +120,7 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
 
     @Subscribe
     public void getNewScheduleList(ScheduleEvent status) {
-        if (status.getStatus() == ScheduleEvent.EVENT.SCHEDULE_ADD) {
+        if (status.getStatus() == ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD) {
             presenter.onStarted();
         }
         Toast.makeText(this, "Event Bus", Toast.LENGTH_SHORT).show();
@@ -148,5 +151,13 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         adapter.scheduleList.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+    }
+
+    private void adminMode(boolean isAdmin){
+        if (isAdmin){
+            addSchedule.setVisibility(View.VISIBLE);
+        } else {
+            addSchedule.setVisibility(View.GONE);
+        }
     }
 }

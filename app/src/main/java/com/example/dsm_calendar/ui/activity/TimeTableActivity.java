@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.TimeTableContract;
 import com.example.dsm_calendar.data.DTO.TimeTableUnit;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.data.TimeTableRepository;
 import com.example.dsm_calendar.presenter.TimeTablePresenter;
 
@@ -47,6 +48,8 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
         timeTableEdit = findViewById(R.id.button_timetable_edit);
         tableTitle = findViewById(R.id.tv_timetable_tableTitle);
         tableTitle.setText(String.format("%d학년%d반 시간표", curGrade, curClass));
+
+        adminMode(UserPreference.getInstance(this).getIsAdmin());
 
         initTableArray();
 
@@ -186,5 +189,13 @@ public class TimeTableActivity extends AppCompatActivity implements TimeTableCon
     @Override
     public void showMessageForEditSaveFail(String message) {
         Toast.makeText(this, "Saving Fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    private void adminMode(boolean isAdmin){
+        if (isAdmin){
+            timeTableEdit.setVisibility(View.VISIBLE);
+        } else {
+            timeTableEdit.setVisibility(View.GONE);
+        }
     }
 }

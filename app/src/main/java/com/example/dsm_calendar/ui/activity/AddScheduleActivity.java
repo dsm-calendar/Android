@@ -50,6 +50,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
     private SelectDateDialog selectDateDialog;
 
     private String scheduleCode;
+    private int groupCalendarId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
 
         Intent intent = getIntent();
         scheduleCode = intent.getStringExtra("schedule code");
+        groupCalendarId = intent.getIntExtra("groupCalendarId", -1);
     }
 
     @Override
@@ -93,7 +95,7 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
 
     @Override
     public void finishActivity() {
-        BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.EVENT.SCHEDULE_ADD));
+        BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD));
         finish();
     }
 
@@ -118,14 +120,20 @@ public class AddScheduleActivity extends AppCompatActivity implements AddSchedul
                 break;
             case R.id.button_addschedule_cancel:
             case R.id.button_addschedule_off:
-                BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.EVENT.JUST_FINISHED));
+                BusProvider.getInstance().post(new ScheduleEvent(ScheduleEvent.SCHEDULE_EVENT.JUST_FINISHED));
                 finish();
                 break;
             case R.id.button_addschedule_confirm:
                 scheduleTitle = title.getText().toString();
                 scheduleContent = content.getText().toString();
                 if (isAllChecked()) {
-                    presenter.onSaveClicked(scheduleCode, scheduleTitle, scheduleContent, startDateText.getText().toString(), endDateText.getText().toString());
+                    presenter.onSaveClicked(
+                            scheduleCode,
+                            scheduleTitle,
+                            scheduleContent,
+                            startDateText.getText().toString(),
+                            endDateText.getText().toString(),
+                            groupCalendarId);
                 } else {
                     Toast.makeText(this, "모든 칸이 채워지지 않았습니다.", Toast.LENGTH_LONG).show();
                 }
