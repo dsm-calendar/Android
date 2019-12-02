@@ -125,5 +125,5 @@ public interface RetrofitService {
     Call<Event> getEventDetail(@Header("loginUserId") int token, @Path("eventId") int eventId);
 
     @PUT("event/{eventId}")
-    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body boolean eventStatus);
+    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body Event event);
 }

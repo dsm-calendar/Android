@@ -1,6 +1,8 @@
 package com.example.dsm_calendar.data;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.example.dsm_calendar.contract.BannerRquireContract;
 import com.example.dsm_calendar.data.DTO.Event;
@@ -38,7 +40,7 @@ public class BannerRequireRepository implements BannerRquireContract.Repository 
         File file = new File(eventPoster);
         MultipartBody.Part detail = MultipartBody.Part.createFormData("eventDetail", eventDetail);
         MultipartBody.Part poster = MultipartBody.Part.createFormData(
-                "eventPoster", file.getName(), RequestBody.create(MediaType.parse("multipart/form-date"), file.getAbsolutePath()));
+                "eventPoster", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
         MultipartBody.Part start = MultipartBody.Part.createFormData("startDate", startDate);
         MultipartBody.Part end = MultipartBody.Part.createFormData("endDate", endDate);
         Call<Void> call = CalendarRetrofit.getInstance().getService().requireEvent(token, detail, poster, start, end);

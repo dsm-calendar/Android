@@ -1,6 +1,8 @@
 package com.example.dsm_calendar.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -19,7 +21,7 @@ public class BannerDetailActivity extends AppCompatActivity {
     private TextView summary;
     private ImageButton offButton;
     private ImageButton manageButton;
-    int bannerImage;
+    byte[] bannerImage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,11 +34,12 @@ public class BannerDetailActivity extends AppCompatActivity {
         manageButton = findViewById(R.id.button_bannerDetail_manage);
 
         Intent intent = getIntent();
-        bannerImage = intent.getIntExtra("image", 0);
-        if (bannerImage == 0){
+        bannerImage = intent.getByteArrayExtra("image");
+        if (bannerImage == null){
             Toast.makeText(this, "image error", Toast.LENGTH_SHORT).show();
         } else {
-            image.setImageResource(bannerImage);
+            Bitmap bmp = BitmapFactory.decodeByteArray(bannerImage, 0, bannerImage.length);
+            image.setImageBitmap(bmp);
         }
 
         offButton.setOnClickListener(v -> finish());

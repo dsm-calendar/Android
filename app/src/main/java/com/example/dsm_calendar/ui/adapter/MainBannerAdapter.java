@@ -19,6 +19,7 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.ui.activity.BannerDetailActivity;
 import com.example.dsm_calendar.ui.activity.MainActivity;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -44,12 +45,10 @@ public class MainBannerAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.main_vp_banner_image_view, null);
         ImageView imageView = view.findViewById(R.id.vp_adapter);
-        Glide.with(context).load(bannerList.get(position).getEventPoster()).into(imageView);
+        Picasso.with(context).load(bannerList.get(position).getEventPoster()).into(imageView);
         imageView.setOnClickListener(v -> {
             Intent intent = new Intent(context, BannerDetailActivity.class);
-            Bitmap bmp = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.PNG, 50, baos);
+            intent.putExtra("eventId", bannerList.get(position).getEventId());
             context.startActivity(intent);
         });
 
