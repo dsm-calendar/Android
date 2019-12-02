@@ -175,8 +175,13 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
         ArrayList<Schedule> sortedSchedules = new ArrayList<>(schedules);
         Collections.sort(sortedSchedules);
 
-        Date minDay = sortedSchedules.get(0).getStartDay().getDate();
-        Date maxDay = sortedSchedules.get(0).getEndDay().getDate();
+        Date minDay = new Date();
+        Date maxDay = new Date();
+
+        if (sortedSchedules.size() != 0){
+            minDay = sortedSchedules.get(0).getStartDay().getDate();
+            maxDay = sortedSchedules.get(0).getEndDay().getDate();
+        }
 
         for (int i = 1; i < sortedSchedules.size(); ++i) {
             Date endDay = sortedSchedules.get(i).getEndDay().getDate();

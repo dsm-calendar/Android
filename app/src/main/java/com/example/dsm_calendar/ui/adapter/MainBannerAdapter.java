@@ -14,14 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.Glide;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.DTO.Event;
 import com.example.dsm_calendar.ui.activity.BannerDetailActivity;
-import com.example.dsm_calendar.ui.activity.MainActivity;
 import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class MainBannerAdapter extends PagerAdapter {
