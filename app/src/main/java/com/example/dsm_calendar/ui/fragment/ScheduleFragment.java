@@ -103,6 +103,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
+        checkList();
         return rootView;
     }
 

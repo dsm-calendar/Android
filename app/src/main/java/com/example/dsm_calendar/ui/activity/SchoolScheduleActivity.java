@@ -21,15 +21,22 @@ import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.SchoolSchedulePresenter;
 import com.example.dsm_calendar.ui.Decorator.OnDayDecorator;
 import com.example.dsm_calendar.ui.Decorator.SaturdayDecorator;
+import com.example.dsm_calendar.ui.Decorator.Schedule1Decorator;
+import com.example.dsm_calendar.ui.Decorator.Schedule2Decorator;
 import com.example.dsm_calendar.ui.Decorator.ScheduleDecorator;
 import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.adapter.SchoolScheduleAdapter;
 import com.example.dsm_calendar.util.ScheduleEvent;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.TreeSet;
+import java.util.concurrent.TimeUnit;
 
 public class SchoolScheduleActivity extends AppCompatActivity implements SchoolScheduleContract.View, View.OnClickListener {
 
@@ -44,6 +51,10 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
 
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
+
+    private ArrayList<CalendarDay> schedules0 = new ArrayList<>();
+    private ArrayList<CalendarDay> schedules1 = new ArrayList<>();
+    private ArrayList<CalendarDay> schedules2 = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +84,10 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
                 new SaturdayDecorator(),
                 new SundayDecorator(),
                 new OnDayDecorator(),
-                new ScheduleDecorator(new TreeSet<>(schedules), this));
+                new ScheduleDecorator(schedules0, this),
+                new Schedule1Decorator(schedules1, this),
+                new Schedule2Decorator(schedules2, this));
+
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
             todayList.clear();
             for (Schedule schedule : schedules){
@@ -87,7 +101,6 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         });
 
         checkList();
-//        addSchedule.setVisibility(View.GONE);
     }
 
     @Override
@@ -118,6 +131,12 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         }
     }
 
+    private void refreshScheduleDecorators() {
+        calendarView.addDecorators(new ScheduleDecorator(schedules0, this));
+        calendarView.addDecorators(new Schedule1Decorator(schedules1, this));
+        calendarView.addDecorators(new Schedule2Decorator(schedules2, this));
+    }
+
     @Subscribe
     public void getNewScheduleList(ScheduleEvent status) {
         if (status.getStatus() == ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD) {
@@ -143,14 +162,24 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
 
     @Override
     public void getItems(ArrayList<Schedule> list) {
-        adapter.scheduleList = list;
+        this.schedules = list;
+        setScheduleCount();
+        refreshScheduleDecorators();
+        checkList();
     }
 
     @Override
     public void deleteSchedule(int position) {
+        for (int i = 0; i < schedules.size(); ++i){
+            if (schedules.get(i) == adapter.scheduleList.get(position)){
+                schedules.remove(i--);
+            }
+        }
         adapter.scheduleList.remove(position);
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+        setScheduleCount();
+        refreshScheduleDecorators();
     }
 
     private void adminMode(boolean isAdmin){
@@ -159,5 +188,55 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         } else {
             addSchedule.setVisibility(View.GONE);
         }
+    }
+
+    private void setScheduleCount() {
+        ArrayList<Schedule> sortedSchedules = new ArrayList<>(schedules);
+        Collections.sort(sortedSchedules);
+
+        Date minDay = sortedSchedules.get(0).getStartDay().getDate();
+        Date maxDay = sortedSchedules.get(0).getEndDay().getDate();
+
+        for (int i = 1; i < sortedSchedules.size(); ++i) {
+            Date endDay = sortedSchedules.get(i).getEndDay().getDate();
+            maxDay = endDay.after(maxDay) ? endDay : maxDay;
+        }
+
+        int size = getDiffFromDay(maxDay, minDay);
+
+        ArrayList<Integer> contains = new ArrayList<>(size);
+        while (--size >= 0) contains.add(0);
+
+        for (Schedule schedule : sortedSchedules) {
+            Date endDay = schedule.getEndDay().getDate();
+            Calendar calendar = Calendar.getInstance();
+
+            for (calendar.setTime(schedule.getStartDay().getDate()); !calendar.getTime().equals(endDay); calendar.add(Calendar.DATE, 1)) {
+                int idx = getDiffFromDay(calendar.getTime(), minDay);
+                int oldValue = contains.get(idx);
+                contains.set(idx, oldValue + 1);
+            }
+        }
+
+        ArrayList<CalendarDay>[] scheduleList = (ArrayList<CalendarDay>[])new ArrayList[3];
+        scheduleList[0] = schedules0;
+        scheduleList[1] = schedules1;
+        scheduleList[2] = schedules2;
+
+        for (int i = 0; i < contains.size(); ++i) {
+            if (contains.get(i) == 0) continue;
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(minDay);
+            calendar.add(Calendar.DATE, i);
+
+            ArrayList<CalendarDay> mySchedule = scheduleList[Math.min(contains.get(i) - 1, 2)];
+            mySchedule.add(CalendarDay.from(calendar.getTime()));
+        }
+    }
+
+    private int getDiffFromDay(Date lhs, Date rhs) {
+        long diff = lhs.getTime() - rhs.getTime();
+        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 }
