@@ -81,7 +81,7 @@
     <TextView
         android:id="@+id/tv_bannerDetail_summary"
         android:layout_width="280dp"
-        android:layout_height="170dp"
+        android:layout_height="200dp"
         android:background="#eeeeee"
         android:text="동해물과 백두산이 마르고 닳도록 이 행사는
 무지무지 재밌으니까 많은 참여 부탁드립니다
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_bannerDetail_image"
         android:layout_marginTop="40dp"
         android:padding="30dp"
-        android:textSize="10dp"
+        android:textSize="15dp"
         android:fontFamily="@font/nanumsquare_r"
         android:elevation="3dp"/>
 

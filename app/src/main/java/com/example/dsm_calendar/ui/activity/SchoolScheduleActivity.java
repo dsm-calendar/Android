@@ -142,7 +142,6 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
         if (status.getStatus() == ScheduleEvent.SCHEDULE_EVENT.SCHEDULE_ADD) {
             presenter.onStarted();
         }
-        Toast.makeText(this, "Event Bus", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -191,23 +190,20 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
     }
 
     private void setScheduleCount() {
+        if (schedules.size() == 0) return;
+
         ArrayList<Schedule> sortedSchedules = new ArrayList<>(schedules);
         Collections.sort(sortedSchedules);
 
-        Date minDay = new Date();
-        Date maxDay = new Date();
-
-        if (sortedSchedules.size() != 0){
-            minDay = sortedSchedules.get(0).getStartDay().getDate();
-            maxDay = sortedSchedules.get(0).getEndDay().getDate();
-        }
+        Date minDay = sortedSchedules.get(0).getStartDay().getDate();
+        Date maxDay = sortedSchedules.get(0).getEndDay().getDate();
 
         for (int i = 1; i < sortedSchedules.size(); ++i) {
             Date endDay = sortedSchedules.get(i).getEndDay().getDate();
             maxDay = endDay.after(maxDay) ? endDay : maxDay;
         }
 
-        int size = getDiffFromDay(maxDay, minDay);
+        int size = getDiffFromDay(maxDay, minDay)+1;
 
         ArrayList<Integer> contains = new ArrayList<>(size);
         while (--size >= 0) contains.add(0);
@@ -216,17 +212,16 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
             Date endDay = schedule.getEndDay().getDate();
             Calendar calendar = Calendar.getInstance();
 
-            for (calendar.setTime(schedule.getStartDay().getDate()); !calendar.getTime().equals(endDay); calendar.add(Calendar.DATE, 1)) {
+            for (calendar.setTime(schedule.getStartDay().getDate()); !calendar.getTime().after(endDay); calendar.add(Calendar.DATE, 1)) {
                 int idx = getDiffFromDay(calendar.getTime(), minDay);
                 int oldValue = contains.get(idx);
                 contains.set(idx, oldValue + 1);
             }
         }
 
-        ArrayList<CalendarDay>[] scheduleList = (ArrayList<CalendarDay>[])new ArrayList[3];
-        scheduleList[0] = schedules0;
-        scheduleList[1] = schedules1;
-        scheduleList[2] = schedules2;
+        schedules0.clear();
+        schedules1.clear();
+        schedules2.clear();
 
         for (int i = 0; i < contains.size(); ++i) {
             if (contains.get(i) == 0) continue;
@@ -235,8 +230,11 @@ public class SchoolScheduleActivity extends AppCompatActivity implements SchoolS
             calendar.setTime(minDay);
             calendar.add(Calendar.DATE, i);
 
-            ArrayList<CalendarDay> mySchedule = scheduleList[Math.min(contains.get(i) - 1, 2)];
-            mySchedule.add(CalendarDay.from(calendar.getTime()));
+            switch (Math.min(contains.get(i) - 1, 2)) {
+                case 0: schedules0.add(CalendarDay.from(calendar.getTime())); break;
+                case 1: schedules1.add(CalendarDay.from(calendar.getTime())); break;
+                case 2: schedules2.add(CalendarDay.from(calendar.getTime())); break;
+            }
         }
     }
 

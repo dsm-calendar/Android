@@ -34,8 +34,6 @@ public class MessageActivity extends AppCompatActivity implements MessageContrac
     private MessageDeleteDialog messageDeleteDialog;
     private MessagePresenter messagePresenter = new MessagePresenter(this, new MessageRepository(this));
 
-    private ArrayList<Message> messageList = new ArrayList<>();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

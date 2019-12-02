@@ -17,6 +17,7 @@ import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.contract.BannerDetailContract;
 import com.example.dsm_calendar.data.BannerDetailRepository;
 import com.example.dsm_calendar.data.DTO.Event;
+import com.example.dsm_calendar.data.Singleton.UserPreference;
 import com.example.dsm_calendar.presenter.BannerDetailPresenter;
 import com.squareup.picasso.Picasso;
 
@@ -49,6 +50,7 @@ public class BannerDetailActivity extends AppCompatActivity implements BannerDet
             startActivity(managePageIntent);
         });
         presenter.onStarted(eventId);
+        adminMode();
     }
 
     @Override
@@ -60,5 +62,13 @@ public class BannerDetailActivity extends AppCompatActivity implements BannerDet
     @Override
     public void showMessageForLoadingFail(String message) {
         Toast.makeText(this, "event loading fail\nmessage: " + message, Toast.LENGTH_LONG).show();
+    }
+
+    private void adminMode(){
+        if (UserPreference.getInstance(this).getIsAdmin()){
+            manageButton.setVisibility(View.VISIBLE);
+        } else {
+            manageButton.setVisibility(View.GONE);
+        }
     }
 }

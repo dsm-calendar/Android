@@ -66,7 +66,7 @@ public class BannerManageAdapter extends RecyclerView.Adapter<BannerManageAdapte
         }
 
         public void bind(Event event, int position){
-            Picasso.with(context).load(event.getEventPoster()).placeholder(R.drawable.sample_car).into(banner);
+            Picasso.with(context).load(event.getEventPoster()).into(banner);
             content.setText(event.getEventDetail());
 
             accept.setOnClickListener(v -> presenter.onManageButtonClicked(event, true, position));

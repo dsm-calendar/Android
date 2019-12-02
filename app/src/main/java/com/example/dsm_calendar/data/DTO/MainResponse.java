@@ -6,6 +6,15 @@ public class MainResponse {
     private ArrayList<Event> eventList;
     private ArrayList<Notice> notices;
     private ArrayList<TimeTableUnit> timeTables;
+    private ArrayList<Schedule> schedules;
+
+    public ArrayList<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(ArrayList<Schedule> schedules) {
+        this.schedules = schedules;
+    }
 
     public ArrayList<Event> getEventList() {
         return eventList;
