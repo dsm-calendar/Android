@@ -63,7 +63,7 @@ public class MessageRVAdapter extends RecyclerView.Adapter<MessageRVAdapter.Mess
 
         void bind(Message message){
             String date = message.getSendDateNow();
-            String content = message.getToUserId() + "님이 당신을 그룹에 초대하였습니다.";
+            String content = message.getSendUserId() + "님이 당신을 그룹에 초대하였습니다.";
 
             tv_message.setText(content);
             tv_date.setText(date);
