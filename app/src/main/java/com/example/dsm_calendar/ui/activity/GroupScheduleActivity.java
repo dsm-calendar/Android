@@ -74,7 +74,7 @@ public class GroupScheduleActivity extends AppCompatActivity implements GroupSch
                 new SaturdayDecorator(),
                 new SundayDecorator(),
                 new OnDayDecorator(),
-                new ScheduleDecorator(new TreeSet<>(schedules), this));
+                new ScheduleDecorator(schedules, this));
 
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
             todayList.clear();
