@@ -124,7 +124,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
             Intent intent = new Intent(getActivity(), NoticeActivity.class);
             startActivity(intent);
         }
-        if (v.getId() == R.id.tv_no_list_banner){
+        if (v.getId() == R.id.tv_no_list_banner && UserPreference.getInstance(getActivity()).getIsAdmin()){
             Intent intent = new Intent(getActivity(), BannerManageActivity.class);
             startActivity(intent);
         }
