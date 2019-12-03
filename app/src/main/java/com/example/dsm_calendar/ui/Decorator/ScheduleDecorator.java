@@ -1,10 +1,10 @@
 package com.example.dsm_calendar.ui.Decorator;
 
 import android.content.Context;
+
 import androidx.core.content.ContextCompat;
 
 import com.example.dsm_calendar.R;
-import com.example.dsm_calendar.data.DTO.Schedule;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
@@ -15,21 +15,17 @@ import java.util.HashSet;
 
 public class ScheduleDecorator implements DayViewDecorator {
 
-    private ArrayList<Schedule> list;
+    private HashSet<CalendarDay> list;
     private Context context;
 
-    public ScheduleDecorator(Collection<Schedule> list, Context context) {
-        this.list = new ArrayList<>(list);
+    public ScheduleDecorator(Collection<CalendarDay> list, Context context) {
+        this.list = new HashSet<>(list);
         this.context = context;
     }
 
     @Override
     public boolean shouldDecorate(CalendarDay day) {
-        for (Schedule unit : list){
-            if (day.isInRange(unit.getStartDay(), unit.getEndDay()))
-                return true;
-        }
-        return false;
+        return list.contains(day);
     }
 
     @Override

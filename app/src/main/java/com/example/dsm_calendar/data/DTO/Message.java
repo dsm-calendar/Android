@@ -7,7 +7,16 @@ public class Message{
 	private int messageId;
 	private int type;
 	private String toUserId;
+	private String sendUserId;
 	private int roomId;
+
+	public String getSendUserId() {
+		return sendUserId;
+	}
+
+	public void setSendUserId(String sendUserId) {
+		this.sendUserId = sendUserId;
+	}
 
 	public void setEventId(int eventId){
 		this.eventId = eventId;

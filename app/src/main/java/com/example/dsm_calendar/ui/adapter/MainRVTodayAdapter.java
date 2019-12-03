@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dsm_calendar.R;
+import com.example.dsm_calendar.data.DTO.Schedule;
 import com.example.dsm_calendar.presenter.MainFragmentPresenter;
 
 import java.util.ArrayList;
 
 public class MainRVTodayAdapter extends RecyclerView.Adapter<MainRVTodayAdapter.MainTodayViewHolder> {
 
-    public ArrayList<String> today = new ArrayList<>();
+    public ArrayList<Schedule> today = new ArrayList<>();
     private MainFragmentPresenter presenter;
     private Context context;
 
@@ -50,8 +51,8 @@ public class MainRVTodayAdapter extends RecyclerView.Adapter<MainRVTodayAdapter.
             tv = itemView.findViewById(R.id.main_rv_item_tv);
         }
 
-        public void bind(String title){
-            tv.setText(title);
+        public void bind(Schedule schedule){
+            tv.setText(schedule.getScheduleTitle());
             itemView.setOnClickListener( v -> presenter.onClickScheduleItem());
         }
     }

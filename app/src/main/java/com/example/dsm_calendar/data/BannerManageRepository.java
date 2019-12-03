@@ -57,8 +57,9 @@ public class BannerManageRepository implements BannerManageContract.Repository {
     }
 
     @Override
-    public void manageBanners(int eventId, boolean eventStatus, ManageBannerListener listener) {
-        Call<Void> call = CalendarRetrofit.getInstance().getService().manageEvent(token, eventId, eventStatus);
+    public void manageBanners(Event event, boolean eventStatus, ManageBannerListener listener) {
+        event.setEventStatus(eventStatus);
+        Call<Void> call = CalendarRetrofit.getInstance().getService().manageEvent(token, event.getEventId(), event);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

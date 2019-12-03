@@ -11,11 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.dsm_calendar.R;
 import com.example.dsm_calendar.data.DTO.Event;
-import com.example.dsm_calendar.data.SampleBanner;
 import com.example.dsm_calendar.presenter.BannerManagePresenter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -67,11 +66,11 @@ public class BannerManageAdapter extends RecyclerView.Adapter<BannerManageAdapte
         }
 
         public void bind(Event event, int position){
-            Glide.with(context).load(event.getEventPoster()).into(banner);
+            Picasso.with(context).load(event.getEventPoster()).into(banner);
             content.setText(event.getEventDetail());
 
-            accept.setOnClickListener(v -> presenter.onManageButtonClicked(event.getEventId(), true, position));
-            delete.setOnClickListener(v -> presenter.onManageButtonClicked(event.getEventId(), true, position));
+            accept.setOnClickListener(v -> presenter.onManageButtonClicked(event, true, position));
+            delete.setOnClickListener(v -> presenter.onManageButtonClicked(event, false, position));
         }
     }
 }

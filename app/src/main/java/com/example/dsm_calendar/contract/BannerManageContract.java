@@ -17,11 +17,11 @@ public interface BannerManageContract {
 
     interface Presenter{
         void onStarted();
-        void onManageButtonClicked(int id, boolean eventStatus, int position);
+        void onManageButtonClicked(Event event, boolean eventStatus, int position);
     }
 
     interface Repository{
         void getBanners(BannerManageRepository.GetBannerListener listener);
-        void manageBanners(int eventId, boolean eventStatus, BannerManageRepository.ManageBannerListener listener);
+        void manageBanners(Event event, boolean eventStatus, BannerManageRepository.ManageBannerListener listener);
     }
 }

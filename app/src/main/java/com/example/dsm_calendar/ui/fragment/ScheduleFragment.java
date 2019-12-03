@@ -30,12 +30,15 @@ import com.example.dsm_calendar.ui.Decorator.SundayDecorator;
 import com.example.dsm_calendar.ui.activity.AddScheduleActivity;
 import com.example.dsm_calendar.ui.adapter.ScheduleFragmentRVAdapter;
 import com.example.dsm_calendar.util.ScheduleEvent;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class ScheduleFragment extends Fragment implements ScheduleFragmentContract.View {
 
@@ -49,9 +52,9 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<Schedule> todayList = new ArrayList<>();
 
-    private ArrayList<Schedule> schedules1 = new ArrayList<>();
-    private ArrayList<Schedule> schedules2 = new ArrayList<>();
-    private ArrayList<Schedule> schedules3 = new ArrayList<>();
+    private ArrayList<CalendarDay> schedules0 = new ArrayList<>();
+    private ArrayList<CalendarDay> schedules1 = new ArrayList<>();
+    private ArrayList<CalendarDay> schedules2 = new ArrayList<>();
 
     public ScheduleFragment() {
     }
@@ -77,7 +80,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 new SaturdayDecorator(),
                 new SundayDecorator(),
                 new OnDayDecorator(),
-                new ScheduleDecorator(schedules, getActivity()),
+                new ScheduleDecorator(schedules0, getActivity()),
                 new Schedule1Decorator(schedules1, getActivity()),
                 new Schedule2Decorator(schedules2, getActivity()));
 
@@ -100,6 +103,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
             startActivity(intent);
         });
 
+        checkList();
         return rootView;
     }
 
@@ -118,7 +122,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     }
 
     private void refreshScheduleDecorators() {
-        calendarView.addDecorators(new ScheduleDecorator(schedules, getActivity()));
+        calendarView.addDecorators(new ScheduleDecorator(schedules0, getActivity()));
         calendarView.addDecorators(new Schedule1Decorator(schedules1, getActivity()));
         calendarView.addDecorators(new Schedule2Decorator(schedules2, getActivity()));
     }
@@ -148,6 +152,7 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
     @Override
     public void getItems(ArrayList<Schedule> schedules) {
         this.schedules = schedules;
+        setScheduleCount();
         refreshScheduleDecorators();
         checkList();
     }
@@ -159,34 +164,63 @@ public class ScheduleFragment extends Fragment implements ScheduleFragmentContra
                 schedules.remove(i--);
             }
         }
-        adapter.list.remove(position);
-        adapter.notifyItemRemoved(position);
-        adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+        adapter.list = schedules;
+        adapter.notifyDataSetChanged();
         setScheduleCount();
         refreshScheduleDecorators();
     }
 
     private void setScheduleCount() {
-        Map<Schedule, Integer> scheduleMap = new LinkedHashMap<>();
+        if (schedules.size() == 0) return;
+
+        ArrayList<Schedule> sortedSchedules = new ArrayList<>(schedules);
+        Collections.sort(sortedSchedules);
+
+        Date minDay = sortedSchedules.get(0).getStartDay().getDate();
+        Date maxDay = sortedSchedules.get(0).getEndDay().getDate();
+
+        for (int i = 1; i < sortedSchedules.size(); ++i) {
+            Date endDay = sortedSchedules.get(i).getEndDay().getDate();
+            maxDay = endDay.after(maxDay) ? endDay : maxDay;
+        }
+
+        int size = getDiffFromDay(maxDay, minDay) + 1;
+
+        ArrayList<Integer> contains = new ArrayList<>(size);
+        while (--size >= 0) contains.add(0);
+
+        for (Schedule schedule : sortedSchedules) {
+            Date endDay = schedule.getEndDay().getDate();
+            Calendar calendar = Calendar.getInstance();
+
+            for (calendar.setTime(schedule.getStartDay().getDate()); !calendar.getTime().after(endDay); calendar.add(Calendar.DATE, 1)) {
+                int idx = getDiffFromDay(calendar.getTime(), minDay);
+                int oldValue = contains.get(idx);
+                contains.set(idx, oldValue + 1);
+            }
+        }
+
+        schedules0.clear();
         schedules1.clear();
         schedules2.clear();
-        schedules3.clear();
 
-        for (Schedule schedule : schedules) {
-            if (!scheduleMap.containsKey(schedule)) {
-                scheduleMap.put(schedule, 1);
-                continue;
+        for (int i = 0; i < contains.size(); ++i) {
+            if (contains.get(i) == 0) continue;
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(minDay);
+            calendar.add(Calendar.DATE, i);
+
+            switch (Math.min(contains.get(i) - 1, 2)) {
+                case 0: schedules0.add(CalendarDay.from(calendar.getTime())); break;
+                case 1: schedules1.add(CalendarDay.from(calendar.getTime())); break;
+                case 2: schedules2.add(CalendarDay.from(calendar.getTime())); break;
             }
-
-            Integer oldVal = scheduleMap.get(schedule);
-            scheduleMap.put(schedule, oldVal + 1);
         }
+    }
 
-        for (Map.Entry<Schedule, Integer> schedule : scheduleMap.entrySet()) {
-            int n = schedule.getValue();
-            if (n == 1) schedules1.add(schedule.getKey());
-            if (n == 2) schedules2.add(schedule.getKey());
-            if (n >= 3) schedules3.add(schedule.getKey());
-        }
+    private int getDiffFromDay(Date lhs, Date rhs) {
+        long diff = lhs.getTime() - rhs.getTime();
+        return (int)TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
     }
 }

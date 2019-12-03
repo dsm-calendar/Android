@@ -36,8 +36,8 @@ public class BannerManagePresenter implements BannerManageContract.Presenter {
     }
 
     @Override
-    public void onManageButtonClicked(int id, boolean eventStatus, int position) {
-        bannerManageRepo.manageBanners(id, eventStatus, new BannerManageRepository.ManageBannerListener() {
+    public void onManageButtonClicked(Event event, boolean eventStatus, int position) {
+        bannerManageRepo.manageBanners(event, eventStatus, new BannerManageRepository.ManageBannerListener() {
             @Override
             public void onSuccess() {
                 bannerManageView.showMessageForBannerManageSuccess(eventStatus);

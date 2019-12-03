@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
@@ -124,7 +125,7 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
             Intent intent = new Intent(getActivity(), NoticeActivity.class);
             startActivity(intent);
         }
-        if (v.getId() == R.id.tv_no_list_banner){
+        if (v.getId() == R.id.tv_no_list_banner && UserPreference.getInstance(getActivity()).getIsAdmin()){
             Intent intent = new Intent(getActivity(), BannerManageActivity.class);
             startActivity(intent);
         }
@@ -163,6 +164,8 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
     public void setMainFragment(MainResponse response) {
         mainRVNoticeAdapter.notice = response.getNotices();
         mainRVNoticeAdapter.notifyDataSetChanged();
+        mainRVTodayAdapter.today = response.getSchedules();
+        mainRVTodayAdapter.notifyDataSetChanged();
         mainBannerAdapter.bannerList = response.getEventList();
         mainBannerAdapter.notifyDataSetChanged();
         timeTableUnits = response.getTimeTables();
@@ -202,7 +205,10 @@ public class MainFragment extends Fragment implements RadioButton.OnClickListene
             }
         }
 
-        for (int i = 0; i < timeTableUnits.size(); ++i)
-            tables.get(i).setText(timeTableUnits.get(i).getSubject()+"\n"+timeTableUnits.get(i).getTeacher());
+        for (TimeTableUnit unit : timeTableUnits) {
+            int idx = unit.getTimeTableIndex() % 100 - 11;
+            TextView table = tables.get((idx / 10) + (idx % 10) * 5);
+            table.setText(unit.getSubject() +"\n" + unit.getTeacher());
+        }
     }
 }

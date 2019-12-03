@@ -114,12 +114,16 @@ public interface RetrofitService {
     Call<ArrayList<Event>> getEventList(@Header("loginUserId") int token);
 
     @Multipart
-    @POST("event")
-    Call<Void> requireEvent(@Header("loginUserId") int token, @PartMap Map<String, RequestBody> map);
+    @POST("event/request")
+    Call<Void> requireEvent(@Header("loginUserId") int token,
+                            @Part MultipartBody.Part eventDetail,
+                            @Part MultipartBody.Part eventPoster,
+                            @Part MultipartBody.Part startDate,
+                            @Part MultipartBody.Part endDate);
 
     @GET("event/{eventId}")
     Call<Event> getEventDetail(@Header("loginUserId") int token, @Path("eventId") int eventId);
 
     @PUT("event/{eventId}")
-    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body boolean eventStatus);
+    Call<Void> manageEvent(@Header("loginUserId") int token, @Path("eventId") int eventId, @Body Event event);
 }

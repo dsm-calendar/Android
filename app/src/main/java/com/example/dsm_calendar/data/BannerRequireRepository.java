@@ -1,6 +1,8 @@
 package com.example.dsm_calendar.data;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.example.dsm_calendar.contract.BannerRquireContract;
 import com.example.dsm_calendar.data.DTO.Event;
@@ -35,17 +37,13 @@ public class BannerRequireRepository implements BannerRquireContract.Repository 
 
     @Override
     public void requireBanner(String eventDetail, String eventPoster, String startDate, String endDate, RequireBannerListener listener) {
-        Event event = new Event(eventDetail, eventPoster, startDate, endDate);
-        Map<String, RequestBody> body = new HashMap<>();
-        RequestBody detail = RequestBody.create(MediaType.parse("text/plain"), eventDetail);
-        body.put("eventDetail", detail);
-        RequestBody poster = RequestBody.create(MediaType.parse("multipart/from-data"), eventPoster);
-        body.put("eventPoster", poster);
-        RequestBody start = RequestBody.create(MediaType.parse("text/plain"), startDate);
-        body.put("startDate", start);
-        RequestBody end = RequestBody.create(MediaType.parse("text/plain"), endDate);
-        body.put("endDate", end);
-        Call<Void> call = CalendarRetrofit.getInstance().getService().requireEvent(token, body);
+        File file = new File(eventPoster);
+        MultipartBody.Part detail = MultipartBody.Part.createFormData("eventDetail", eventDetail);
+        MultipartBody.Part poster = MultipartBody.Part.createFormData(
+                "eventPoster", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+        MultipartBody.Part start = MultipartBody.Part.createFormData("startDate", startDate);
+        MultipartBody.Part end = MultipartBody.Part.createFormData("endDate", endDate);
+        Call<Void> call = CalendarRetrofit.getInstance().getService().requireEvent(token, detail, poster, start, end);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
